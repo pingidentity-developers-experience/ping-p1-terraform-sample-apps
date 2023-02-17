@@ -135,4 +135,7 @@ dist
 
 # TernJS port file
 .tern-port
-BXRetail-Terraform-pkg/.DS_Store
+
+################### MISC. UNWANTED FILES ###################
+# Mac desktop service store. (Finder metadata).
+.DS_Store

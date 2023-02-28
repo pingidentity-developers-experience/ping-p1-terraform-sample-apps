@@ -1,3 +1,8 @@
+##########################################################################
+# k8s.tf - Contains Kubernetes deployment declarations.
+# @see https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs
+##########################################################################
+
 resource "kubernetes_ingress_v1" "package_ingress" {
   metadata {
     namespace = var.k8s_namespace
@@ -92,8 +97,8 @@ resource "kubernetes_deployment" "app_proxy" {
       }
       spec {
         container {
-          image = "${var.proxy_image_name}"
-          name  = "${var.k8s_deploy_name}-proxy"
+          image             = var.proxy_image_name
+          name              = "${var.k8s_deploy_name}-proxy"
           image_pull_policy = "Always"
           port {
             container_port = 4000
@@ -151,8 +156,8 @@ resource "kubernetes_deployment" "bxr_app" {
           name = "gcr-pull-secret"
         }
         container {
-          image = "${var.app_image_name}"
-          name  = "${var.k8s_deploy_name}-app"
+          image             = var.app_image_name
+          name              = "${var.k8s_deploy_name}-app"
           image_pull_policy = "Always"
 
           env {
@@ -175,24 +180,24 @@ resource "kubernetes_deployment" "bxr_app" {
           env {
             # Client ID
             name  = "REACT_APP_CLIENT"
-            value = pingone_application.bxr_logon.oidc_options[0].client_id
+            value = pingone_application.bxretail_sample_app.oidc_options[0].client_id
           }
           env {
             # Client secret
             name  = "REACT_APP_RECSET"
-            value = pingone_application.bxr_logon.oidc_options[0].client_secret
+            value = pingone_application.bxretail_sample_app.oidc_options[0].client_secret
           }
           env {
             # P1 Auth URL (accounts for Region)
-            name = "REACT_APP_P1HOST"
+            name  = "REACT_APP_P1HOST"
             value = "https://auth.pingone.${local.pingone_domain}"
           }
           env {
             # The Docker image name just for validation/troubleshooting.
-            name = "REACT_APP_IMAGE_NAME"
-            value = "${var.app_image_name}"
-              
-            }
+            name  = "REACT_APP_IMAGE_NAME"
+            value = var.app_image_name
+
+          }
         }
 
       }

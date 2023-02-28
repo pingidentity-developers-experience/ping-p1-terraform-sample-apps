@@ -1,7 +1,7 @@
-# output "authz_url" {
-#   value = "https://auth.pingone.com/v1/environments/${pingone_environment.youniverse_migrations.id}/as"
-# }
-
+##########################################################################
+# vars.tf - (optional) Contains outputs from the resources created in main.tf
+# @see 
+##########################################################################
 output "login_url" {
   value = local.app_url
 }

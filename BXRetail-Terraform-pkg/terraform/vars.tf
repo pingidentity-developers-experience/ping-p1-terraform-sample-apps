@@ -1,3 +1,7 @@
+##########################################################################
+# vars.tf - Contains declarations of variables and locals.
+# @see https://developer.hashicorp.com/terraform/language/values
+##########################################################################
 variable "region" {
   type        = string
   description = "Region your P1 Org is in"
@@ -9,7 +13,7 @@ variable "organization_id" {
 }
 
 variable "license_name" {
-  type = string
+  type        = string
   description = "Name of the P1 license you want to assign to the Environment"
 }
 
@@ -36,45 +40,46 @@ variable "worker_secret" {
 variable "env_name" {
   type        = string
   description = "Name used for the PingOne Environment"
+  default     = "PingIdentity Example"
 }
 
 variable "env_type" {
-  type = string
+  type        = string
   description = "Deployment Type (Dev | QA | Prod)"
 }
 
 variable "k8s_namespace" {
-  type    = string
+  type        = string
   description = "K8s namespace for container deployment"
 }
 
 variable "k8s_deploy_name" {
-  type = string
+  type        = string
   description = "Name used in the K8s deployment of the App. Used in Deployment \\ Service \\ Ingress delivery"
 }
 
 variable "k8s_deploy_domain" {
-  type = string
+  type        = string
   description = "DNS Domain used when creating the Ingresses"
 }
 
 variable "proxy_image_name" {
-  type = string
+  type        = string
   description = "Repo/Image:tag used for Proxy container"
 }
 
 variable "app_image_name" {
-  type = string
+  type        = string
   description = "Repo/Image:tag used for App container"
 }
 
 locals {
   # The URL of the demo app
-  app_url="https://${kubernetes_ingress_v1.package_ingress.spec[0].rule[0].host}"
+  app_url = "https://${kubernetes_ingress_v1.package_ingress.spec[0].rule[0].host}"
   # Translate the Region to a Domain suffix
-  north_america = "${var.region == "NorthAmerica" ? "com" : ""}"
-  europe = "${var.region == "Europe" ? "eu" : ""}"
-  canada = "${var.region == "Canada" ? "ca" : ""}"
-  asia_pacific = "${var.region == "AsiaPacific" ? "asia" : ""}"
-  pingone_domain = "${coalesce(local.north_america, local.europe, local.canada, local.asia_pacific)}"
+  north_america  = var.region == "NorthAmerica" ? "com" : ""
+  europe         = var.region == "Europe" ? "eu" : ""
+  canada         = var.region == "Canada" ? "ca" : ""
+  asia_pacific   = var.region == "AsiaPacific" ? "asia" : ""
+  pingone_domain = coalesce(local.north_america, local.europe, local.canada, local.asia_pacific)
 }

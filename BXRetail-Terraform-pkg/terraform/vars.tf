@@ -56,7 +56,7 @@ variable "k8s_namespace" {
 variable "k8s_deploy_name" {
   type        = string
   description = "Name used in the K8s deployment of the App. Used in Deployment \\ Service \\ Ingress delivery"
-  default = "bxretail-sample-app"
+  default     = "bxretail-sample-app"
 }
 
 variable "k8s_deploy_domain" {

@@ -118,6 +118,46 @@ resource "pingone_sign_on_policy" "default_authN_policy" {
   description = "Simple Login with optional, opt-in MFA. Includes options for account registration and account recovery."
 }
 
+# MFA Policy
+# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/mfa_policy
+# @see https://docs.pingidentity.com/r/en-us/pingone/pingone_c_mfa_policies
+resource "pingone_mfa_policy" "bxr_mfa_policy" {
+  environment_id = module.environment.environment_id
+  name           = "BXRetail Sample MFA Policy"
+
+  mobile {
+    enabled = true
+  }
+
+  totp {
+    enabled = false
+  }
+
+  security_key {
+    enabled = false
+  }
+
+  platform {
+    enabled = false
+  }
+
+  sms {
+    enabled               = false
+    # otp_lifetime_duration = 30
+    # otp_lifetime_units    = MINUTES
+  }
+
+  voice {
+    enabled = false
+  }
+
+  email {
+    enabled = true
+    # otp_lifetime_duration = 30
+    # otp_lifetime_units    = MINUTES
+  }
+}
+
 # PingOne sign-on Policy Action
 # @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/sign_on_policy_action
 # @see https://docs.pingidentity.com/r/en-us/pingone/p1_add_login_auth_step
@@ -152,7 +192,7 @@ resource "pingone_sign_on_policy_action" "default_authN_policy_secondFactor" {
   }
 
   mfa {
-    device_sign_on_policy_id = ""
+    device_sign_on_policy_id = pingone_mfa_policy.bxr_mfa_policy.id
     no_device_mode           = "BYPASS"
   }
 }

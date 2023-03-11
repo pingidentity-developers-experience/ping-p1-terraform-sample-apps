@@ -14,7 +14,7 @@
 resource "pingone_population" "bxr_pop" {
   environment_id = module.environment.environment_id
 
-  name        = "Retail Customers"
+  name        = "BXRetail Sample Customers"
   description = "Population containing BXRetail shoppers. This includes both shoppers with accounts and full profiles, and guest shoppers shipping info."
 }
 
@@ -114,7 +114,7 @@ resource "pingone_application" "bxretail_sample_app" {
 resource "pingone_sign_on_policy" "default_authN_policy" {
   environment_id = module.environment.environment_id
 
-  name        = "BXRetail-Default"
+  name        = "BXRetail_Sample_Policy"
   description = "Simple Login with optional, opt-in MFA. Includes options for account registration and account recovery."
 }
 
@@ -175,7 +175,7 @@ resource "pingone_application_sign_on_policy_assignment" "default_authN_policy" 
 resource "pingone_application_resource_grant" "pingone_scopes" {
   environment_id = module.environment.environment_id
   application_id = pingone_application.bxretail_sample_app.id
-  resource_id = data.pingone_resource.pingone_apis.id
+  resource_id    = data.pingone_resource.pingone_apis.id
   scopes = [
     data.pingone_resource_scope.p1api_validatePassword.id,
     data.pingone_resource_scope.p1api_read_sessions.id,

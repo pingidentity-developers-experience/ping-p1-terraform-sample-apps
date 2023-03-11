@@ -4,7 +4,7 @@
 provider "registry.terraform.io/hashicorp/kubernetes" {
   version = "2.18.1"
   hashes = [
-    "h1:vBRsQjT8QeFe8C9yJ1PR43wzX4hM5UssxlHkPPo34gU=",
+    "h1:y4VED+vsulAqE7YbQC7x1XXrzvi/dEIjupttSyzSA/M=",
     "zh:09d69d244f5e688d9b1582112aa5d151c5336278e43d39c88ae920c26536b753",
     "zh:0df4c988056f7d84d9161c6c955ad7346364c261d100ef510a6cc7fa4a235197",
     "zh:2d3d0cb2931b6153a7971ce8c6fae92722b1116e16f42abbaef115dba895c8d8",
@@ -24,7 +24,7 @@ provider "registry.terraform.io/pingidentity/pingone" {
   version     = "0.9.0"
   constraints = ">= 0.6.1"
   hashes = [
-    "h1:9Ibl8qqRMzDOTsAvU16ZQtofVsxTD9EUD/AZCx5LfAg=",
+    "h1:sGC7LFWm/zJeChga/GaVqxrL8XfI3lipoLDJVEcDuvk=",
     "zh:102d8d58930f3dfc892fb4db40cbb7247ac444c81084cf0970f0b20b232089ee",
     "zh:345132c43c065b1f429a2e110cca3c231ffa2fd749925d6be398b93131c79edd",
     "zh:37486160be140b26878e622aa96be11e97f32cf30ba5b62d7cd4e2377bcb37f6",

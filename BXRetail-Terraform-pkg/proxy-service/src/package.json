@@ -1,0 +1,28 @@
+{
+    "name": "ping-integrations-proxy",
+    "version": "0.0.8",
+    "description": "A simple proxy built with fastify, to provide server functions to the demo app",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "dependencies": {
+      "fastify": "^4.11.0",
+      "@fastify/http-proxy": "^8.4.0",
+      "@fastify/cors": "^8.2.0"
+    },
+    "engines": {
+      "node": "18.x"
+    },
+    "type": "module",
+    "repository": {
+      "url": "https://glitch.com/edit/#!/glitch-hello-node"
+    },
+    "license": "MIT",
+    "keywords": [
+      "node",
+      "ping-identity",
+      "integration",
+      "fastify"
+    ]
+  }

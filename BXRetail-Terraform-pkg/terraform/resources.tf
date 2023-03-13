@@ -143,8 +143,8 @@ resource "pingone_mfa_policy" "bxr_mfa_policy" {
 
   sms {
     enabled               = false
-    # otp_lifetime_duration = 30
-    # otp_lifetime_units    = MINUTES
+    otp_lifetime_duration = 30
+    otp_lifetime_timeunit    = "MINUTES"
   }
 
   voice {
@@ -153,8 +153,8 @@ resource "pingone_mfa_policy" "bxr_mfa_policy" {
 
   email {
     enabled = true
-    # otp_lifetime_duration = 30
-    # otp_lifetime_units    = MINUTES
+    otp_lifetime_duration = 30
+    otp_lifetime_timeunit    = "MINUTES"
   }
 }
 

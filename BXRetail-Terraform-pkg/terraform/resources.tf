@@ -45,6 +45,7 @@ resource "pingone_schema_attribute" "consent_json_attribute" {
 
 # PingOne attribute mappings
 # @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application_attribute_mapping
+# @see https://docs.pingidentity.com/r/en-us/pingone/p1_t_editsamlattributemapping
 resource "pingone_application_attribute_mapping" "email" {
   environment_id = module.environment.environment_id
   application_id = pingone_application.bxretail_sample_app.id
@@ -198,6 +199,7 @@ resource "pingone_sign_on_policy_action" "default_authN_policy_secondFactor" {
 }
 
 # @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application_sign_on_policy_assignment
+# @see https://docs.pingidentity.com/r/en-us/pingone/pingonemfa_associating_sign_on_policy_with_web_app?section=rxy1666194779493
 resource "pingone_application_sign_on_policy_assignment" "default_authN_policy" {
   environment_id = module.environment.environment_id
   application_id = pingone_application.bxretail_sample_app.id

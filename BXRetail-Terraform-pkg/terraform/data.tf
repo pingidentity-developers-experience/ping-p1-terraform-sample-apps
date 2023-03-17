@@ -27,6 +27,7 @@ data "pingone_resource" "openid" {
 
 # OIDC Scopes
 # @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/resource_scope
+# @see https://docs.pingidentity.com/r/en-us/pingone/pingone_viewing_oidc_attributes_for_an_application
 # OAuth Scopes
 data "pingone_resource_scope" "openid_profile" {
   environment_id = module.environment.environment_id

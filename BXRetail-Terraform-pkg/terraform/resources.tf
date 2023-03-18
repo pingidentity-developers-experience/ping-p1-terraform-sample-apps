@@ -172,7 +172,7 @@ resource "pingone_mfa_policy" "bxr_mfa_policy" {
   sms {
     enabled               = false
     otp_lifetime_duration = 30
-    otp_lifetime_timeunit    = "MINUTES"
+    otp_lifetime_timeunit = "MINUTES"
   }
 
   voice {
@@ -180,9 +180,9 @@ resource "pingone_mfa_policy" "bxr_mfa_policy" {
   }
 
   email {
-    enabled = true
+    enabled               = true
     otp_lifetime_duration = 30
-    otp_lifetime_timeunit    = "MINUTES"
+    otp_lifetime_timeunit = "MINUTES"
   }
 }
 
@@ -294,4 +294,96 @@ resource "pingone_resource_scope_openid" "email_scope" {
   environment_id = module.environment.environment_id
 
   name = "email"
+}
+
+##############################################
+# PingOne Branding
+# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/branding_settings
+# @see https://docs.pingidentity.com/r/en-us/pingone/p1_c_edit_environment_branding
+##############################################
+
+resource "pingone_branding_settings" "branding" {
+  environment_id = module.environment.environment_id
+
+  company_name = "BXRetail Sample Company"
+
+  logo_image {
+    id   = pingone_image.bxretail_logo_white.id
+    href = pingone_image.bxretail_logo_white.uploaded_image[0].href
+  }
+}
+
+resource "pingone_branding_theme" "bxretail_theme" {
+  environment_id = module.environment.environment_id
+
+  name     = "BXRetail (not used)"
+  template = "mural"
+
+  body_text_color    = "#000000"
+  button_color       = "#007BFF"
+  button_text_color  = "#FFFFFF"
+  card_color         = "#FFFFFF"
+  heading_text_color = "#000000"
+  link_text_color    = "#FFC107"
+
+  background_image {
+    id   = pingone_image.bxretail_background.id
+    href = pingone_image.bxretail_background.uploaded_image[0].href
+  }
+
+  logo {
+    id   = pingone_image.bxretail_logo.id
+    href = pingone_image.bxretail_logo.uploaded_image[0].href
+  }
+}
+
+# Pulling in BXRetail images.
+# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/image
+resource "pingone_image" "bxretail_logo" {
+  environment_id = module.environment.environment_id
+
+  image_file_base64 = filebase64("${path.module}/bxretail_logo.png")
+}
+resource "pingone_image" "bxretail_logo_white" {
+  environment_id = module.environment.environment_id
+
+  image_file_base64 = filebase64("${path.module}/bxretail_logo_white.png")
+}
+
+resource "pingone_image" "bxretail_background" {
+  environment_id = module.environment.environment_id
+
+  image_file_base64 = filebase64("${path.module}/home-hero-office-bg.png")
+}
+
+##############################################
+# PingOne Notification Templates
+# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/notification_template_content
+# @see https://docs.pingidentity.com/r/en-us/pingone/p1_c_notifications
+##############################################
+
+resource "pingone_notification_template_content" "sms" {
+  environment_id = module.environment.environment_id
+  template_name  = "device_pairing"
+  locale         = "en"
+
+  sms {
+    content = "To finish pairing your device, enter this code: $${otp}."
+    sender  = "BXRetail"
+  }
+}
+resource "pingone_notification_template_content" "email" {
+  environment_id = module.environment.environment_id
+  template_name  = "device_pairing"
+  locale         = "en"
+
+  email {
+    body    = "Device enrollment code: $${otp}."
+    subject = "BXRetail: Finish pairing your device"
+
+  #   from {
+  #     name    = "BXRetail by Ping Identity"
+  #     address = "noreply@bxretail.org"
+  #   }
+  }
 }

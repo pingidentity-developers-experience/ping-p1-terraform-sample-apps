@@ -362,7 +362,8 @@ resource "pingone_image" "bxretail_background" {
 # @see https://docs.pingidentity.com/r/en-us/pingone/p1_c_notifications
 ##############################################
 
-resource "pingone_notification_template_content" "sms" {
+# Device pairing templates.
+resource "pingone_notification_template_content" "pair_sms_device" {
   environment_id = module.environment.environment_id
   template_name  = "device_pairing"
   locale         = "en"
@@ -372,7 +373,7 @@ resource "pingone_notification_template_content" "sms" {
     sender  = "BXRetail"
   }
 }
-resource "pingone_notification_template_content" "email" {
+resource "pingone_notification_template_content" "pair_email_device" {
   environment_id = module.environment.environment_id
   template_name  = "device_pairing"
   locale         = "en"
@@ -381,9 +382,31 @@ resource "pingone_notification_template_content" "email" {
     body    = "Device enrollment code: $${otp}."
     subject = "BXRetail: Finish pairing your device"
 
-  #   from {
-  #     name    = "BXRetail by Ping Identity"
-  #     address = "noreply@bxretail.org"
-  #   }
+    from {
+      name    = "BXRetail"
+      address = "noreply@pingidentity.com"
+    }
   }
 }
+# Password recovery tempalate
+# resource "pingone_notification_template_content" "recover_password_email" {
+#   environment_id = module.environment.environment_id
+#   template_name  = "recovery_code_template"
+#   locale         = "en"
+
+#   email {
+#     body          = "Please use this code to reset your password. Your reset code is: $${otp}."
+#     subject       = "BXRetail: Password Reset"
+#     character_set = "UTF-8"
+#     content_type  = "text/html"
+
+#     from {
+#       name    = "BXRetail"
+#       address = "noreply@pingidentity.com"
+#     }
+#     reply_to {
+#       address = "noreply@pingidentity.com"
+#       name    = "PingOne"
+#     }
+#   }
+# }

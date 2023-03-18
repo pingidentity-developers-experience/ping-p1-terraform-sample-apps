@@ -25,11 +25,11 @@ module "environment" {
   admin_user_id_list = [
     var.admin_user_id
   ]
-  create_mfa       = true
+  create_mfa = true
   # create_davinci   = true
   # create_authorize = true
-  license_name     = var.license_name
-  organization_id  = var.organization_id
+  license_name    = var.license_name
+  organization_id = var.organization_id
 }
 
 ##############################################

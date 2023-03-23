@@ -389,21 +389,21 @@ resource "pingone_notification_template_content" "pair_email_device" {
   }
 }
 # Password recovery tempalate
-# resource "pingone_notification_template_content" "recover_password_email" {
-#   environment_id = module.environment.environment_id
-#   template_name  = "recovery_code_template"
-#   locale         = "en"
+resource "pingone_notification_template_content" "recover_password_email" {
+  environment_id = module.environment.environment_id
+  template_name  = "recovery_code_template"
+  locale         = "en"
 
-#   email {
-#     body          = "Please use this code to reset your password. Your reset code is: $${otp}."
-#     subject       = "BXRetail: Password Reset"
+  email {
+    body          = "Please use this code to reset your password. Your reset code is: $${code.value}."
+    subject       = "BXRetail: Password Reset"
 
-#     from {
-#       name    = "BXRetail"
-#       address = "noreply@pingidentity.com"
-#     }
-#   }
-# }
+    from {
+      name    = "BXRetail"
+      address = "noreply@pingidentity.com"
+    }
+  }
+}
 
 # Strong authentication templates
 resource "pingone_notification_template_content" "sms_authn" {
@@ -461,18 +461,18 @@ resource "pingone_notification_template_content" "email_transaction" {
 }
 
 # Verification template
-# resource "pingone_notification_template_content" "email_verification" {
-#   environment_id = module.environment.environment_id
-#   template_name  = "verification_code_template"
-#   locale         = "en"
+resource "pingone_notification_template_content" "email_verification" {
+  environment_id = module.environment.environment_id
+  template_name  = "verification_code_template"
+  locale         = "en"
 
-#   email {
-#     body    = "Please use this code to verify your registration: Account verification code: $${otp}."
-#     subject = "BXRetail: Verification Code"
+  email {
+    body    = "Please use this code to verify your registration: Account verification code: $${code.value}."
+    subject = "BXRetail: Verification Code"
 
-#     from {
-#       name    = "BXRetail"
-#       address = "noreply@pingidentity.com"
-#     }
-#   }
-# }
+    from {
+      name    = "BXRetail"
+      address = "noreply@pingidentity.com"
+    }
+  }
+}

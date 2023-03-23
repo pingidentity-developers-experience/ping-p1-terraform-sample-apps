@@ -2,7 +2,7 @@
 
 ## Terraforming Ping Products with a Custom App
 
-As the start of a new initiative called "developer enablement", we are creating BXTerraform sample apps, also known as BXTerraform packages. BXRetail, BXHealth, and BXFinance versions have been created to be used as sample Ping integration apps, concentrating on integration and security best practices, and are deployed and integrated using Terraform from Hashicorp.
+As the start of a new initiative called "developer experience", we are creating BXTerraform sample app packages. Starting with BXRetail, BXRetail, BXHealth, and BXFinance versions have been created to be used as sample Ping integration apps, concentrating on integration and security best practices, and are deployed and integrated using Terraform from Hashicorp.
 
 *Explanation of this project/program goes here, including any global data that applies to all three sub projects. Use the README files in the sub-project folders for sample app package specific info and instructions.*
 

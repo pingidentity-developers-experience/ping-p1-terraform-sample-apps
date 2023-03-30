@@ -1,0 +1,228 @@
+.privacy-security {
+
+  .module {
+    position: relative;
+  }
+
+  li {
+    margin-left: 25px;
+  }
+
+  // Edit Screen
+  .edit {
+    // Header
+    h3 {
+      font-weight: 400;
+      margin: 0;
+    }
+
+    .btn-link {
+      padding-left: 0;
+    }
+
+    // Form
+    form {
+      margin-top: 5px;
+      margin-bottom: 2rem;
+      .row {
+        @media only screen and (max-width: 991px) {
+          padding: 15px 20px 15px 20px;
+        }
+        @media only screen and (min-width: 992px) {
+          padding: 5px 20px;
+        }
+        &.gray {
+          background: rgb(243, 243, 243);
+        }
+  
+        .custom-radio {
+          float: left;
+          @media only screen and (max-width: 991px) {
+            margin: 15px 15px 5px 0;
+          }
+          @media only screen and (min-width: 992px) {
+            margin-left: 15px;
+          }
+        }
+  
+        a.partner-overlay {
+          position: relative;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 22px;
+          padding-left: 20px;
+
+          &:before {
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;
+            display: block;
+            // background: url(/images/icons/info.png) 0 0 no-repeat; Icon does not exist
+            width: 14px;
+            height: 14px;
+          }
+        }
+      }
+    }
+
+    // Account Access Dropdown
+    .accounts-access {
+      display: none;
+      background: rgb(243, 243, 243);
+  
+      &.visible {
+        display: block;
+      }
+      &:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      p {
+        margin: 0 0 5px 0;
+        font-size: 12px;
+        line-height: 22px;
+        font-weight: normal;
+      }
+      .form-check {
+        float: left;
+        padding: 0 20px 10px 20px;
+      }
+    }
+  }
+
+  // Confirmation Screen
+  .confirmation {
+    // Confirmation Title
+    h3 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 30px;
+      @media only screen and (min-width: 992px) {
+        font-size: 36px;
+        line-height: 48px;
+      }
+    }
+
+    // P Tags
+    p {
+      margin: 0;
+
+      &.form-header {
+        font-weight: 500;
+        margin-top: 20px;
+        margin-bottom: 10px;
+      }
+    }
+      
+    ul {
+      margin: 0;
+      padding: 0 0 0 20px;
+
+      li {
+        margin: 4px 0;
+      }
+    }
+
+    // Form
+    form {
+      padding: 0 35px;
+
+      // Checkbox
+      .form-check {
+        @media only screen and (max-width: 991px) {
+          padding: 5px 20px;
+        }
+        @media only screen and (min-width: 992px) {
+          float: left;
+          padding: 0 20px 10px 20px;
+        }
+      }
+    }
+
+    // Any TV Partner Banner
+    .anywealthadvisor {
+      clear: left;
+      background: rgb(236, 126, 0);
+      padding: 20px 35px;
+      margin: 10px -35px 20px -35px;
+   
+      &:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      p {
+        @media only screen and (max-width: 991px) {
+          margin: 0 0 15px;
+        }
+        @media only screen and (min-width: 992px) {
+          width: 66%;
+          float: left;
+          margin: 0;
+        }
+        color: #fff;
+      }
+
+      .btn {
+        @media only screen and (min-width: 992px) {
+          float: right;
+        }
+        background: #fff;
+        color: rgb(31, 15, 17);
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 19px;
+      }
+    }
+
+    // Back Button
+    .buttons {
+      text-align: right;
+      @media only screen and (max-width: 991px) {
+        margin: 30px 0 0;
+      }
+    }
+  }
+
+  // Modal
+  .psmodal {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    z-index: 10;
+    transform: translateX(-50%);
+    background: rgb(255, 255, 255);
+    border-radius: 11px;
+    box-shadow: 0px 2px 20px 0px rgba(31, 15, 17, 0.11);
+    width: 100%;
+    max-width: 721px;
+    padding: 40px;
+
+    img {
+      margin: 0 0 20px 0;
+    }
+
+    p {
+      margin: 0 0 15px 0;
+      font-size: 16px;
+      font-weight: normal;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 10px;
+      height: 30px;
+      width: 30px;
+      border-radius: 5px;
+      &:after {
+        display: inline-block;
+        content: "\2715"; /* This will render the 'X' */
+        color: rgb(198, 205, 207);;
+      }
+    }
+  }
+}

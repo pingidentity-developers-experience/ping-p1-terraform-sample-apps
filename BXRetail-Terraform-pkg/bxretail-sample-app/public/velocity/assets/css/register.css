@@ -1,0 +1,71 @@
+
+/* Card Register */
+
+.card-register {
+  width: 100%;
+  max-width: 1056px;
+  padding: 0;
+  margin: auto;
+  border: 0;
+  border-radius: 14px;
+  box-shadow: 0px 2px 20px 0px rgba(31, 15, 17, 0.11);
+}
+
+.card-register .card-header {
+  width: 100%;
+  text-align: center;
+  padding: 3rem 0 1rem 0;
+  border: 0;
+  background: transparent;
+}
+
+.card-register .card-header .btn-back {
+  position: absolute;
+  left: 0.7rem;
+  top: 0.8rem;
+}
+
+.card-register .card-header .btn-back:before {
+  content: "‹ ";
+}
+
+.card-register .card-body {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
+.card-register .card-body h4 {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  line-height: 36px;
+}
+
+@media (min-width:768px) {
+  .card-register .card-body .form-row .col-md-6:first-child {
+    padding-right: 1rem;
+  }
+  .card-register .card-body .form-row .col-md-6:last-child {
+    padding-left: 1rem;
+  }
+}
+
+.card-register .card-body .form-group .form-check-inline {
+  display: inline-flex;
+}
+
+.card-register .card-body .form-row-login {
+  margin-bottom: 1rem;
+}
+
+.card-register .card-body .form-row-login .btn {
+  padding: 0;
+  margin-left: .5rem;
+}
+
+.card-register .card-body .icon-info {
+  width: 16px;
+}

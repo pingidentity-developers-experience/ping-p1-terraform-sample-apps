@@ -1,0 +1,76 @@
+{
+	"title": "Let's Create Your Online Account",
+	"form": {
+		"fields": {
+			"account_type": {
+				"label": "Which type of account would you like to access online?",
+				"options": {
+					"personal": "Personal",
+					"business": "Business",
+					"corporate": "Corporate"
+				}
+			},
+			"account_number": {
+				"label": "Account Number",
+				"placeholder": "Account Number"
+			},
+			"username": {
+				"label": "Username",
+				"placeholder": "Username"
+			},
+			"firstname": {
+				"label": "First Name",
+				"placeholder": "First Name"
+			},
+			"lastname": {
+				"label": "Last Name",
+				"placeholder": "Last Name"
+			},
+			"email": {
+				"label": "Email Address*",
+				"placeholder": "Email Address"
+			},
+			"phone": {
+				"label": "Mobile Number",
+				"placeholder": "(555) 555-5555",
+				"requirements": "Please enter a country code if outside the USA."
+			},
+			"password": {
+				"label": "Password*",
+				"placeholder": "Enter Password"
+			},
+			"password_confirm": {
+				"label": "Confirm Password*",
+				"placeholder": "Confirm Password"
+			},
+			"password_requirements": {
+				"text": "Must include a number, lowercase, uppercase, and special character. e.g. 2FederateM0re!"
+			},
+			"login": {
+				"label": "How would you like to sign in?",
+				"popover": {
+					"title": "Sign in method",
+					"content": "Choose to sign in between your mobile device or your password."
+				},
+				"options": {
+					"default": "Choose your Method",
+					"mobile": "With my Mobile Device",
+					"password": "With my Password"
+				}
+			},
+			"rewards": {
+				"label": "Yes, email me about member rewards, offers and more."
+			},
+			"regVerification": {
+				"label": "Email Verification Code*",
+				"placeholder": "",
+				"title": "Enter the registration verification code from your email"
+			}
+		},
+		"buttons": {
+			"submit": "Submit",
+			"cancel": "Cancel",
+			"reg_verification": "Submit my code"
+		}
+	}
+}

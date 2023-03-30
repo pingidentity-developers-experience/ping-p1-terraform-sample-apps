@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="79px" height="34px" viewBox="0 0 79 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 9</title>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop/Hero-Band" transform="translate(-1283.000000, -33.000000)">
+            <g id="Group-9" transform="translate(1283.000000, 35.000000)">
+                <text id="BXTech" font-family="Helvetica" font-size="16" font-weight="normal" fill="#262626">
+                    <tspan x="0" y="23.6430664">BXTech</tspan>
+                </text>
+                <g id="Group-5" transform="translate(61.500000, 15.000000) scale(-1, 1) translate(-61.500000, -15.000000) translate(46.000000, 0.000000)" stroke="#262626" stroke-width="2.5">
+                    <path d="M30.6059793,11.2903919 C30.1086838,10.3862848 28.5691334,8.53448278 25.9873282,7.73498603 C25.0430546,2.34037295 22.1544531,1.95399252e-14 17.1318359,1.95399252e-14 C12.1092188,1.95399252e-14 6.75292969,1.83398437 6.09976968,8.21685027 C2.03325656,8.30868439 4.22772928e-13,10.3668717 4.22772928e-13,14.3914121 C4.22772928e-13,18.4159525 3.62914688,20.4282227 8.88744065,20.4282227" id="Path"></path>
+                    <circle id="Oval" cx="16.1318359" cy="9" r="3"></circle>
+                    <polyline id="Path-12" points="16.4736328 10.5229492 16.4736328 27.5229492 8.54785156 27.5229492"></polyline>
+                    <circle id="Oval" cx="5.63183594" cy="27.5" r="2.5"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -139,3 +139,4 @@ dist
 ################### MISC. UNWANTED FILES ###################
 # Mac desktop service store. (Finder metadata).
 .DS_Store
+BXRetail-Terraform-pkg/bxretail-sample-app/image-build-tool.sh

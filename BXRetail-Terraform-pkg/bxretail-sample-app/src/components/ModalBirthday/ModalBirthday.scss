@@ -1,0 +1,40 @@
+/* ModalBirthday */
+
+@import '../../styles/variables.scss';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/bootstrap-grid';
+
+.modal-birthday {
+  .modal-content {
+    .modal-header {
+      h5.modal-title {
+        padding-bottom: 0;
+        img {
+          width: 130px;
+        }
+      }
+    }
+
+    .modal-body {
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2rem;
+      padding-top: 0;
+      text-align: center;
+
+      h4 {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        color: theme-color("primary");
+      }
+
+      .form-group {
+        max-width: 200px;
+        margin: 2rem auto;
+      }
+    }
+  }
+}

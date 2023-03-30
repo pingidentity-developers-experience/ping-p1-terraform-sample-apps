@@ -1,0 +1,208 @@
+/* NavbarMain */
+
+
+@import '../../styles/variables.scss';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/bootstrap-grid';
+
+section.navbar-main {
+  background: theme-color("primary");
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  position: relative;
+  box-shadow: 0px 2px 14px 0px rgba(31, 15, 17, 0.21);
+
+  @include media-breakpoint-down(sm) {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .navbar {
+    background-color: transparent !important;
+
+    .navbar-brand {
+      img {
+        width: 120px;
+      }
+
+      &:hover {
+        font-weight: normal;
+      }
+    }
+
+    .nav-link {
+      color: white;
+      font-weight: 300;
+
+      &.active {
+        font-weight: 500;
+      }
+    }
+
+    .customer-collection {
+      form {
+        height: 25px;
+        position: relative;
+      }
+    }
+
+    &.navbar-desktop {
+      padding-left: 0;
+      padding-right: 0;
+
+      @include media-breakpoint-down(sm) {
+        display: none;
+      }
+
+      .navbar-nav-main {
+        .nav-item {
+          margin-right: 2rem;
+
+          @include media-breakpoint-down(md) {
+            margin-right: 1rem;
+          }
+
+          .nav-link {
+            padding-left: 0;
+
+            &.active {
+              position: relative;
+
+              &::after{
+                content: "";
+                position: absolute;
+                left: 20%;
+                bottom: -2.2rem;
+                width: 0;
+                height: 0;
+                border-left: 15px solid transparent;
+                border-right: 15px solid transparent;
+                border-top: 15px solid theme-color("primary");
+                clear: both;
+              }
+            }
+          }
+        }
+      }
+
+      .navbar-nav-utility {
+        position: relative;
+        z-index: 2;
+        width: 500px;
+
+        @include media-breakpoint-down(md) {
+          margin-top: -2rem;
+        }
+
+        .nav-item {
+          &.register {
+            position: absolute;
+            top: 2rem;
+            right: 0;
+            font-size: 14px;
+          }
+
+          .searchbar {
+            height: 25px;
+          }
+
+          &.login,
+          &.logout {
+            position: relative;
+            margin-left: 10px;
+            padding-left: 10px;
+            font-size: 14px;
+            line-height: 25px;
+
+            &:before {
+              content: "";
+              width: 1px;
+              height: 20px;
+              border-left: 1px solid white;
+              position: absolute;
+              left: 0;
+              top: 25%;
+            }
+          }
+        }
+      }
+    }
+
+    &.navbar-mobile {
+      @include media-breakpoint-up(md) {
+        display: none;
+      }
+
+      .collapsing {
+        -webkit-transition: none;
+        transition: none !important;
+        display: none;
+      }
+
+      .mobilenav-menu,
+      .mobilenav-brand,
+      .mobilenav-prospect,
+      .mobilenav-login {
+        flex: 1;
+      }
+
+      .navbar-toggler {
+        border: 0;
+      }
+
+      .navbar-toggler {
+        max-width: 3.5rem;
+      }
+
+      .mobilenav-brand {
+        text-align: center;
+
+        .navbar-brand {
+          margin: 0;
+
+          img {
+            height: 30px;
+          }
+        }
+      }
+
+      .mobilenav-login {
+        text-align: center;
+      }
+
+      .mobilenav-prospect {
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+
+      .navbar-nav-main {
+        margin: 1rem -15px;
+        padding: 1rem 0;
+
+        .nav-link {
+          color: black;
+          padding-left: 15px;
+        }
+      }
+    }
+  }
+}
+
+.accounts {
+  section.navbar-main {
+    .logout {
+      display: flex !important;
+    }
+
+    .navbar-mobile {
+      .logout {
+        display: block !important;
+      }
+    }
+    /* this was hiding the sign up link when NOT on the home page.  */
+    /* .login,
+    .register {
+      display: none;
+    } */
+  }
+}

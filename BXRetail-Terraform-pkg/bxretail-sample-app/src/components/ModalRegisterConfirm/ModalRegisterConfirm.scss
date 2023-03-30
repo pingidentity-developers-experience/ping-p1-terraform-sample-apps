@@ -1,0 +1,83 @@
+/* ModalRegisterConfirm */
+
+@import '../../styles/variables.scss';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/bootstrap-grid';
+
+.modal-register-confirm {
+
+  @include media-breakpoint-up(md) {
+    margin-top: 6rem;
+  }
+
+  @include media-breakpoint-only(md) {
+    max-width: 700px;
+  }
+
+  .modal-content {
+    position: relative;
+
+    .modal-header {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 10;
+    }
+
+    .modal-body {
+      margin: 0;
+      padding: 0;
+      height: 600px;
+      overflow: hidden;
+
+      .row {
+         margin: 0;
+
+        .col-download {
+          border-top-left-radius: 14px;
+          border-bottom-left-radius: 14px;
+          text-align: center;
+          padding: 2.5rem 2.5rem 0 2.5rem;
+          background: $gray-100;
+
+          @include media-breakpoint-down(md) {
+            background-position: center 340px;
+          }
+
+          @include media-breakpoint-down(sm) {
+            border-top-left-radius: 14px;
+            border-top-right-radius: 14px;
+            border-bottom-left-radius: 0;
+          }
+
+          h4 {
+            margin-bottom: 1.5rem;
+          }
+
+          img.device-with-logo {
+            width: 270px;
+          }
+        }
+
+        .col-content {
+          padding: 3.5rem 2.5rem;
+
+          h3 {
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+          }
+
+          p, ul {
+            margin-bottom: 2rem;
+          }
+
+          p,
+          ul li {
+            line-height: 26px;
+            max-width: 515px;
+          }
+        }
+      }
+    }
+  }
+}

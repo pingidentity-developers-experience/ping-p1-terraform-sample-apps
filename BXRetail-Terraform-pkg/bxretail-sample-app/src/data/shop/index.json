@@ -1,0 +1,248 @@
+{
+	"title": "Electronics",
+	"checkoutTitle": "Checkout",
+	"subnav": [
+    {
+      "title": "Clothing",
+      "href": "#",
+      "open": false
+    },
+    {
+      "title": "Home Decor",
+      "open": false,
+      "href": "#"
+    },
+    {
+      "title": "Entertainment",
+      "open": false,
+      "href": "#"
+    },
+    {
+      "title": "Electronics",
+      "open": true,
+      "href": "#",
+      "links": [
+        {
+          "title": "Audio",
+          "active": false,
+          "href": "#"
+        },
+        {
+          "title": "Video",
+          "active": false,
+          "href": "#"
+        },
+        {
+          "title": "Computers",
+          "active": false,
+          "href": "#"
+        },
+        {
+          "title": "Home",
+          "active": false,
+          "href": "#"
+        }
+      ]
+    },
+    {
+      "title": "Personal Care & Pharmacy",
+      "open": false,
+      "href": "#"
+    },
+    {
+      "title": "Accessories",
+      "open": false,
+      "href": "#"
+    }
+  ],
+  "dropdown": "See Other Electronics",
+  "productsClickable": [
+    {
+      "featured": true,
+      "img": "bxmanufacturing-clera.jpg",
+      "title": "BXManufacturing Clera 65\" 4K UHD LED TV ",
+      "model": "C515C-V",
+      "stars": "4",
+      "content": "2-day Delivery <br /> Free pickup",
+      "price": "$1,270.00",
+      "tax": "(excl. tax)",
+      "servicesPrice": "$199.00",
+      "subtotal": "$1,469.00",
+      "salesTax": "$88.14",
+      "finalTotal": "$1,557.14",
+      "button": "Add",
+      "servicesButton": "Add Services",
+      "protection": {
+        "title": "Add a BXRetail Protection Plan",
+        "option1": "Two Years, $69.99",
+        "option2": "Three Years, $89.99",
+        "content": "Enhance your manufacturer warranty and get extended coverage when the warranty ends, including: <ul><li>We make house calls to repair TVs 42\" and larger.</li><li>If your screen has bad pixels, we'll correct it.</li><li>If your TV won't work because of a power surge, we'll fix it.</li><li>You'll never pay for parts and labor on covered repairs. No hidden fees.</li><ul>"
+      },
+      "mounting": {
+        "title": "Add Mounting and Professional Services",
+        "content": "Hassle-free setup from our BXRetail Installation pros.",
+        "option1": "Delivery + Premium TV Mounting 56\" and larger (Mount, Connect, and Setup included), $199.00",
+        "option2": "Delivery + TV Connect and Setup 56\" and larger (Connect and Setup only), $129.00",
+        "included": "What’s Included?"
+      },
+      "confirmationSubtitle": "Thanks for your purchase. You'll receive an email confirmation. See the options below to schedule your delivery and Professional Services appointment."
+    },
+    {
+      "featured": false,
+      "img": "streamstick.jpg",
+      "title": "Streamstick Video Streaming Player with 4K, Full HD",
+      "stars": "5",
+      "content": "2-day Delivery <br /> Free pickup",
+      "price": "$99.99",
+      "tax": "(excl. tax)",
+      "servicesPrice": "$6.99",
+      "subtotal": "$106.98",
+      "salesTax": "$6.43",
+      "finalTotal": "$113.41",
+      "button": "Add",
+      "servicesButton": "Add Protection Plan",
+      "protection": {
+        "title": "Add a BXRetail Protection Plan",
+        "option1": "Two Years, $6.99",
+        "option2": "Three Years, $9.99",
+        "content": "Enhance your manufacturer warranty and get extended coverage when the warranty ends, including: <ul><li>If your video accessory won’t turn on because of a power surge, we'll fix it.</li><li>If the remote that came with your video accessory stops working, we'll replace it.</li><li>If there's a failure from normal wear and tear, we'll repair it.</li><li>You'll never pay for parts and labor on covered repairs. No hidden fees.</li></ul>",
+        "included": "What's Included?"
+      },
+      "mounting": null,
+      "confirmationSubtitle": "Thanks for your purchase. You'll receive an email confirmation including the details of your protection plan."
+    }
+  ],
+  "products": [
+    {
+      "featured": false,
+      "img": "adventex.jpg",
+      "title": "Adventex 27\" LED PC Monitor with HDMI",
+      "stars": "5",
+      "price": "$253.00",
+      "tax": "(excl. tax)",
+      "content": "2-day Delivery <br /> Free pickup",
+      "button": "Add"
+    },
+    {
+      "featured": false,
+      "img": "touchpad.jpg",
+      "title": "TouchPad 16-inch tablet with cellular, WiFi, 64GB storage",
+      "stars": "5",
+      "price": "$256.99",
+      "tax": "(excl. tax)",
+      "content": "2-day Delivery <br /> Free pickup",
+      "button": "Add"
+    },
+    {
+      "featured": false,
+      "img": "bxmanufacturing-silva.jpg",
+      "title": "BXManufacturing Silva Laptop",
+      "stars": "5",
+      "price": "$959.99",
+      "tax": "(excl. tax)",
+      "content": "2-day Delivery <br /> Free pickup",
+      "button": "Add"
+    },
+    {
+      "featured": true,
+      "img": "widera.jpg",
+      "title": "Widera Tri-Band Mesh WiFi Router",
+      "stars": "5",
+      "price": "$152.99",
+      "tax": "(excl. tax)",
+      "content": "2-day Delivery <br /> Free pickup",
+      "button": "Add"
+    }
+  ],
+  "modal": {
+    "product": {
+      "title": "Item added to cart",
+      "buttons": {
+        "cart": "Go to Cart",
+        "continue": "Continue Shopping",
+        "details": "See Product Details",
+        "calculate": "Calculate Shipping to 63456",
+        "skip": "Skip This",
+        "add": "Add to Cart",
+        "clearCart": "Empty Cart",
+        "close": "Close"
+      }
+    },
+    "cart": {
+      "title": "Order Summary",
+      "buttons": {
+        "update": "Update Total",
+        "checkout": "Checkout"
+      },
+      "labels": {
+        "subtotal": "Subtotal",
+        "salesTax": "Sales Tax",
+        "finalTotal": "Final Total",
+        "discount": "Discount"
+      }
+    },
+    "loading": {
+      "title": "Please wait while we process your payment...",
+      "finalizeOrder": "Finalizing your order...",
+      "openBankingRedirect": "Redirecting to BXFinance to complete your order in ",
+      "help": "What is this?"
+    },
+    "confirmation": {
+      "title": "Purchase Confirmed",
+      "subtitle": "Schedule Your Professional Services",
+      "scheduleDescription": "Contact our professional services partner at AnyTVPartner to schedule your delivery to",
+      "scheduleButtons": {
+        "call": "Call to Schedule: 800.232.5440",
+        "online": "Schedule Online"
+      },
+      "consents":{
+        "description1": "BXRetail partners with AnyTVPartner for Professional Services installations like yours.",
+        "description2": "To begin scheduling your appointment, we need you to approve sharing of your contact info with AnyTVPartner, so they can work directly with you.",
+        "description3": "Please review these settings below.",
+        "iAgree": "I consent to BXRetail sharing with AnyTVPartner:",
+        "phoneLabel": "My Phone Number",
+        "emailLabel": "My Email Address",
+        "confirmation": "BXRetail is now approved to share the following with our Professional Services partner AnyTVPartner:"
+      },
+      "consentButtons": {
+        "cancel": "Cancel",
+        "save": "Save",
+        "changeSettings": "Change Settings"
+      }
+    },
+    "prompt": {
+      "title": "Would you like to sign in or check out as guest?",
+      "buttons" : {
+        "signin": "Sign in",
+        "checkout": "Check out as guest"
+      }
+    },
+    "emailPrompt": {
+      "title": "Enter your email address to continue",
+      "acctFound": "We found your account. We're taking you to login...",
+      "buttons" : {
+        "signin": "Sign in",
+        "checkout": "Checkout as guest"
+      }
+    },
+    "acctPrompt": {
+      "title": "Thank you for your purchase! Would you like to create an account to manage your delivery preferences?",
+      "verificationCodeTitle":"Enter the verification code we sent to your email",
+      "passwordLabel": "Enter a password",
+      "passwordConfirmLabel": "Confirm password",
+      "verificationCodeLabel": "Verification Code",
+      "buttons" : {
+        "createAcct": "Create my account",
+        "backToShop": "Back to the Shop",
+        "verifyCode": "Verify"
+      }
+    },
+    "acctConfirmation": {
+      "title": "Your account was successfully created!",
+      "description": "Please sign in to manage your profile and other preferences."
+    }
+  },
+  "paymentProcessing": {
+    "paymentErrorMsg": "We did not receive payment authorization from your bank. Try again, or choose another form of payment."
+  }
+}

@@ -1,0 +1,33 @@
+# This Dockerfile is used development images only.
+# The .env config file should be updated accordingly before running "docker build...".
+# The Dev environment has its own DockerFile and Compose YAML file because we want 
+# a React "dev build" that allows for hot code reloading and volume mounted source for
+# development with VSCode Remote.
+ 
+# pull official base image
+FROM node:18.13.0-alpine
+
+# set working directory
+WORKDIR /app
+
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
+
+# install app dependencies
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm install
+# RUN npm install react-scripts@3.4.3 -g
+
+# add app
+COPY . ./
+
+# Copy .env file and shell script to container
+COPY ./env.sh .
+COPY .env.development .
+
+# Add bash - not included with Alpine based images
+RUN apk add --no-cache bash
+
+# start app
+CMD ["npm", "start", ".env.development"]

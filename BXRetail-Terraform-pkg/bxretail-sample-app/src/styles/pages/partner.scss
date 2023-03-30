@@ -1,0 +1,155 @@
+/* Advisor */
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/bootstrap-grid';
+
+.advisor {
+  .section-content {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+
+    h5 {
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 25px;
+      color: rgb(65, 65, 65);
+    }
+
+    .card {
+      border-radius: 11px;
+      border: none;
+      background: transparent;
+      @include media-breakpoint-up(lg) {
+        max-width: 300px;
+      }
+
+      .card-body {
+        padding: 0;
+      }
+    }
+
+    .btn-link {
+      padding-left: 0;
+      color: theme-color("primary");
+
+      &:hover {
+        font-weight: bold;
+        text-decoration: none;
+      }
+    }
+
+    .media-object {
+      width: 80px;
+      margin-right: 1rem;
+    }
+
+    .img-pie-chart {
+      width: 220px;
+    }
+
+    .form-control-select {
+      width: 120px;
+      margin-top: -3px;
+      color: #9ca4ab;
+      font-style: italic;
+
+      -webkit-appearance:none;
+      -moz-appearance:none;
+      background: no-repeat right 12px top 15px white;
+      background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+      background-size: 8px 6px;
+      -webkit-appearance: none;
+    }
+
+    .form-search {
+      position: relative;
+
+      .form-control {
+        width: 200px;
+
+        @include media-breakpoint-up(lg) {
+          width: 250px;
+        }
+
+        &::placeholder {
+          color: #9ca4ab;
+          font-style: italic;
+        }
+
+        &:focus {
+          box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.15);
+        }
+      }
+
+      img.img-search {
+        position: absolute;
+        top: 11px;
+        right: 15px;
+        filter: invert(0) brightness(0%);
+      }
+
+      .suggestions-list {
+        width: 200px;
+
+        @include media-breakpoint-up(lg) {
+          width: 250px;
+        }
+
+        border: 1px solid rgb(198, 205, 207);
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        position: absolute;
+        top: 36px;
+        right: 0;
+        list-style: none;
+        padding-left: 0;
+        background: white;
+        z-index: 1;
+
+        li {
+          padding: 8px 10px;
+          color: theme-color("primary");
+          cursor: pointer;
+        }
+      }
+    }
+
+    .client-order {
+      background-color: white;
+      border-radius: 11px;
+
+      .btn-link {
+        padding: 0;
+
+        &.tracking-info {
+          padding-left: 4px;
+        }
+      }
+
+      &_title {
+        display: flex;
+        align-items: center;
+      }
+
+      &_name {
+        font-size: 20px;
+      }
+
+      &_address,
+      &_phone,
+      &_email {
+        padding-top: 10px;
+      }
+
+      &_list {
+        margin: 0;
+        padding-inline-start: 20px;
+      }
+    }
+  }
+}

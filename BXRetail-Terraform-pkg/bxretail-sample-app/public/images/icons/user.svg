@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="15px" viewBox="0 0 14 15" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Icon/User\</title>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="Desktop/Hompage/Nav" transform="translate(-1209.000000, -5.000000)" stroke="#FFFFFF">
+            <g id="Icon/User\" transform="translate(1210.000000, 6.000000)">
+                <g id="Group">
+                    <path d="M11,13 C11,13 12,13 12,12 C12,11 11,8 6,8 C1,8 0,11 0,12 C0,13 1,13 1,13 L11,13 Z" id="Icon-Path"></path>
+                    <path d="M9,3 C9,4.65685425 7.65685425,6 6,6 C4.34314575,6 3,4.65685425 3,3 C3,1.34314575 4.34314575,0 6,0 C7.65685425,0 9,1.34314575 9,3 Z" id="Icon-Path"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

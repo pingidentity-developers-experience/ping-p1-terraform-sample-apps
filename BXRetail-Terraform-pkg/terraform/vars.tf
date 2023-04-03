@@ -30,11 +30,13 @@ variable "admin_user_id" {
 variable "worker_id" {
   type        = string
   description = "Worker App ID App - App must have sufficient Roles"
+  sensitive = true
 }
 
 variable "worker_secret" {
   type        = string
   description = "Worker App Secret - App must have sufficient Roles"
+  sensitive = true
 }
 
 variable "env_name" {

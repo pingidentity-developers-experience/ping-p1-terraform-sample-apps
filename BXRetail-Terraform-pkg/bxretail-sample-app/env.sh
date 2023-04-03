@@ -46,5 +46,4 @@ done < "$ENVFILE"
 echo "}" >> ./env-config.js
 
 # This script will self destruct
-# If you are running this locally, comment this out.
-# rm -- "$0"
+rm -- "$0"

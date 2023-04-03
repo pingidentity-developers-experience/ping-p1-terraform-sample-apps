@@ -1,0 +1,14 @@
+# npmignore patterns are based on gitignore. 
+# https://www.atlassian.com/git/tutorials/saving-changes/gitignore#git-ignore-patterns
+.vscode
+.DS_Store
+.dockerignore
+build-bx-app-image.sh
+*-sbom.json
+Dockerfile
+Dockerfile.dev
+env.sh
+nginx.conf
+README.md
+.gitignore
+env-config.js

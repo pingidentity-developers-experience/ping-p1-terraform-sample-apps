@@ -9,7 +9,7 @@ resource "kubernetes_ingress_v1" "package_ingress" {
     name      = "${var.k8s_deploy_name}-app"
     annotations = {
       "kubernetes.io/ingress.class"                    = "nginx-public"
-      "nginx.ingress.kubernetes.io/backend-protocol"   = "HTTPS"
+      "nginx.ingress.kubernetes.io/backend-protocol"   = "HTTP"
       "nginx.ingress.kubernetes.io/cors-allow-headers" = "X-Forwarded-For"
       "nginx.ingress.kubernetes.io/force-ssl-redirect" = true
       "nginx.ingress.kubernetes.io/service-upstream"   = true

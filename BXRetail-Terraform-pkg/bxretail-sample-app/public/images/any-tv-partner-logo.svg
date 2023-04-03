@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="134px" height="40px" viewBox="0 0 134 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>logo/white/v2</title>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop/Nav/Sign-Out-Nav" transform="translate(-4.000000, 1.000000)">
+            <g id="Group" transform="translate(0.000000, -1.000000)">
+                <path d="M41,33.7441406 L41,35 C41,36.6568542 39.6568542,38 38,38 L9,38 C7.34314575,38 6,36.6568542 6,35 L6,15 C6,13.3431458 7.34314575,12 9,12 L38,12 C39.6568542,12 41,13.3431458 41,15 L41,16.9902344 L41,16.9902344" id="Path" stroke="#BB0D59" stroke-width="3" stroke-linejoin="round"></path>
+                <polyline id="Path-3" stroke="#BB0D59" stroke-width="3" stroke-linecap="round" points="15 2.03074952 23.4836329 10 32 2"></polyline>
+                <text id="AnyTVPartner" font-family="Montserrat-SemiBold, Montserrat" font-size="16" font-weight="500" fill="#414141">
+                    <tspan x="22" y="30">AnyTVPartner</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

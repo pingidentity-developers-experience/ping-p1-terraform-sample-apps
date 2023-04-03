@@ -1,0 +1,169 @@
+{
+	"brand": "AnyMarketing",
+	"menus": {
+		"primary": [
+			{
+				"title": "My Dashboard",
+				"url": "/any-marketing/dashboard"
+			},
+			{
+				"title": "Client Profiles",
+				"url": "/any-marketing/client-profiles"
+			},
+			{
+				"title": "Tracking",
+				"url": "/any-marketing/tracking"
+			},
+			{
+				"title": "Planning Tools",
+				"url": "/any-marketing/planning-tools"
+			},
+			{
+				"title": "Other Services",
+				"url": "/any-marketing"
+			}
+		],
+		"utility": {
+			"search": "Search",
+			"locations": "Find a Location",
+			"support": "Get Support",
+			"logout": "Sign Out"
+		},
+		"footer": [
+			{
+				"title": "Our Company",
+				"url": "#",
+				"children": [
+					{
+						"title": "Investor Relations",
+						"url": "#"
+					},
+					{
+						"title": "Corporate Citizenship",
+						"url": "#"
+					},
+					{
+						"title": "News",
+						"url": "#"
+					},
+					{
+						"title": "Locations",
+						"url": "#"
+					}
+				]
+			},
+			{
+				"title": "800.543.2276",
+				"url": "#",
+				"children": [
+					{
+						"title": "help@atvpartner.com",
+						"url": "#"
+					},
+					{
+						"title": "Chat with Us",
+						"url": "https://docs.google.com/forms/d/e/1FAIpQLSdw2-rdvc3bFV2wkLbI5_pjD2l1_n6inWZxDfwL2z2bkHBhvg/viewform"
+					}
+				]
+			},
+			{
+				"title": "Privacy & Security",
+				"url": "#",
+				"children": [
+					{
+						"title": "Terms of Use",
+						"url": "#"
+					},
+					{
+						"title": "Disclosures",
+						"url": "#"
+					},
+					{
+						"title": "Accessibility",
+						"url": "#"
+					}
+				]
+			}
+		]
+	},
+	"welcome_bar": "MyCRM Manager",
+	"subnav": [
+		{
+			"title": "Active Campaigns",
+			"href": "#",
+			"open": false
+		},
+		{
+			"title": "Past Campaigns",
+			"href": "#",
+			"open": false
+		},
+		{
+			"title": "Analysis & Insights",
+			"href": "#",
+			"open": false
+		},
+		{
+			"title": "Budgeting",
+			"href": "#",
+			"open": false
+		},
+		{
+			"title": "Forecasting/Benchmarking",
+			"href": "#",
+			"open": false
+		},
+		{
+			"title": "Import/Export",
+			"href": "#",
+			"open": false
+		}
+	],
+	"alerts": {
+		"title": "Alerts",
+		"messages": [
+			"You have <a href=\"#\">5 new messages</a> from <br> AWA Marketing Leads.",
+			"You have <a href=\"#\">2 new alerts</a> from <br> AWA Ops."
+		],
+		"button": "Message Center"
+	},
+	"dashboard": {
+		"title": "Activity Dashboard",
+		"search_placeholder": "Enter Keywords...",
+		"suggestions": [
+			"janesmith@gmail.com"
+		]
+	},
+	"metrics": {
+		"title": "Metrics (Current)",
+		"buttons": {
+			"insights": "Insights",
+			"data": "View Data"
+		}
+	},
+	"record": {
+		"fields": [
+			{
+				"label": "Name",
+				"value": "Smith, Jane"
+			},
+			{
+				"label": "Mail Address",
+				"value": false
+			},
+			{
+				"label": "Email Address",
+				"value": "janesmith@gmail.com"
+			},
+			{
+				"label": "SMS/TXT Phone",
+				"value": "(210) 555-5555"
+			}
+		],
+		"buttons": {
+			"inspect": "Inspect Record",
+			"modify": "Modify Record"
+		}
+	},
+	"copyright": "© AnyMarketing, 2020 <br /> Member FDIC, Member SIPC <br /> Equal Housing Lender"
+}

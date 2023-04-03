@@ -1,0 +1,98 @@
+{
+	"title": "Privacy & Security Settings",
+	"subnav": [
+    {
+      "title": "Payment Methods",
+      "href": "#",
+      "open": false
+    },
+    {
+      "title": "BXClub Visa Card",
+      "open": false,
+      "href": "#"
+    },
+    {
+      "title": "Orders, Deliveries, Installations",
+      "open": false,
+      "href": "#"
+    },
+    {
+      "title": "Extraordinary Club Membership",
+      "open": false,
+      "href": "#"
+    },
+    {
+      "title": "My Settings",
+      "open": true,
+      "href": "/dashboard/settings",
+      "links": [
+        {
+          "title": "Manage Your Profile",
+          "active": false,
+          "href": "/dashboard/settings/profile"
+        },
+        {
+          "title": "Communications Preferences",
+          "active": false,
+          "href": "#"
+        },
+        {
+          "title": "Privacy & Security",
+          "active": false,
+          "href": "/dashboard/settings/privacy-security"
+        },
+        {
+          "title": "Sign In & Password",
+          "active": false,
+          "href": "#"
+        },
+        {
+          "title": "Alerts",
+          "active": false,
+          "href": "#"
+        }
+      ]
+    },
+    {
+      "title": "Special Offers",
+      "open": false,
+      "href": "#"
+    }
+  ],
+  "dropdown": "Things I Can Do",
+  "steps": [
+    {
+      "title": "Partner Data Sharing",
+      "description": "Review your settings for how BXRetail partner AnyTVPartner can access information about you for your Professional Services installation:",
+      "table_title": "AnyTVPartner Data Sharing",
+      "communication_types": [
+        {
+          "name": "deliveryPhone",
+          "label": "My Phone Number"
+        },
+        {
+          "name": "deliveryEmail",
+          "label": "My Email Address"
+        }
+      ],
+      "btn_cancel": "Cancel",
+      "btn_save": "Save"
+    },
+    {
+      "title": "Changes Confirmed",
+      "description": "Your sharing settings for AnyTVPartner now are as follows:",
+      "communication_types": [
+        {
+          "name": "deliveryPhone",
+          "label": "My Phone Number"
+        },
+        {
+          "name": "deliveryEmail",
+          "label": "My Email Address"
+        }
+      ],
+      "other_things": "<p>Other things you can do:</p><ul><li>Review <a href=\"#\">Communication Preferences</a></li><li>Review other <a href=\"#\">Partner Settings</a></li></ul>",
+      "btn_back": "Close"
+    }
+  ]
+}

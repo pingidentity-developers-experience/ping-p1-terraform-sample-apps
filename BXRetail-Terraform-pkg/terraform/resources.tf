@@ -395,8 +395,8 @@ resource "pingone_notification_template_content" "recover_password_email" {
   locale         = "en"
 
   email {
-    body          = "Please use this code to reset your password. Your reset code is: $${code.value}."
-    subject       = "BXRetail: Password Reset"
+    body    = "Please use this code to reset your password. Your reset code is: $${code.value}."
+    subject = "BXRetail: Password Reset"
 
     from {
       name    = "BXRetail"

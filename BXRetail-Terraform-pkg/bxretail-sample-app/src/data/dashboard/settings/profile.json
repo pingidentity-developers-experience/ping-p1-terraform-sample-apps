@@ -1,0 +1,141 @@
+{
+	"title": "Manage Your Profile",
+	"subnav": [
+    {
+      "title": "Payment Methods",
+      "href": "#",
+      "open": false
+    },
+    {
+      "title": "BXClub Visa Card",
+      "open": false,
+      "href": "#"
+    },
+    {
+      "title": "Orders, Deliveries, Installations",
+      "open": false,
+      "href": "#"
+    },
+    {
+      "title": "Extraordinary Club Membership",
+      "open": false,
+      "href": "#"
+    },
+    {
+      "title": "My Settings",
+      "open": true,
+      "href": "/dashboard/settings",
+      "links": [
+        {
+          "title": "Manage Your Profile",
+          "active": true,
+          "href": "/dashboard/settings/profile"
+        },
+        {
+          "title": "Communications Preferences",
+          "active": false,
+          "href": "#"
+        },
+        {
+          "title": "Privacy & Security",
+          "active": false,
+          "href": "/dashboard/settings/privacy-security"
+        },
+        {
+          "title": "Sign In & Password",
+          "active": false,
+          "href": "#"
+        },
+        {
+          "title": "Alerts",
+          "active": false,
+          "href": "#"
+        }
+      ]
+    },
+    {
+      "title": "Special Offers",
+      "open": false,
+      "href": "#"
+    }
+  ],
+  "dropdown": "Things I Can Do",
+  "form": {
+    "fields": {
+      "account_type": {
+        "label": "Which type of account would you like to access online?",
+        "options": {
+          "personal": "Personal",
+          "business": "Business",
+          "corporate": "Corporate"
+        }
+      },
+      "firstname": {
+        "label": "First Name",
+        "placeholder": ""
+      },
+      "lastname": {
+        "label": "Last Name",
+        "placeholder": ""
+      },
+      "fullname": {
+        "label": "Full Name",
+        "placeholder": ""
+      },
+      "birthdate": {
+        "label": "Birth Date",
+        "placeholder": "MM/DD/YYYY"
+      },
+      "email": {
+        "label": "Username (Email Address)",
+        "placeholder": ""
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": ""
+      },
+      "street": {
+        "label": "Street",
+        "placeholder": ""
+      },
+      "city": {
+        "label": "City",
+        "placeholder": ""
+      },
+      "zipcode": {
+        "label": "Zip Code",
+        "placeholder": ""
+      },
+      "password": {
+        "label": "Password",
+        "placeholder": "Enter Password"
+      },
+      "password_confirm": {
+        "label": "Confirm Password",
+        "placeholder": "Confirm Password"
+      },
+      "login": {
+        "label": "Authentication Preferences",
+        "description": "Would you like to opt into two-factor authentication to make your account more secure? We will send a one-time passcode via email on login.",
+        "options": {
+          "default": "",
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+      "creditCards": {
+        "addCardHeader": "Manage Your Credit Cards",
+        "addCardLabel": "Add Card",
+        "description": "Add credit cards to your account to make shopping easier."
+      },
+      "transactions": {
+        "label": "Use device to approve transactions over:",
+        "placeholder": "Dollar Amount"
+      }
+    },
+    "buttons": {
+      "submit": "Save",
+      "cancel": "Cancel"
+    }
+  }
+}

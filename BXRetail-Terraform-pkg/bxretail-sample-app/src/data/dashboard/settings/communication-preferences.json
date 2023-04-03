@@ -1,0 +1,106 @@
+{
+	"title": "Communications Preferences",
+	"subnav": [
+    {
+      "title": "Payment Methods",
+      "href": "#",
+      "open": false
+    },
+    {
+      "title": "BXClub Visa Card",
+      "open": false,
+      "href": "#"
+    },
+    {
+      "title": "Orders, Deliveries, Installations",
+      "open": false,
+      "href": "#"
+    },
+    {
+      "title": "Extraordinary Club Membership",
+      "open": false,
+      "href": "#"
+    },
+    {
+      "title": "My Settings",
+      "open": true,
+      "href": "/dashboard/settings",
+      "links": [
+        {
+          "title": "Manage Your Profile",
+          "active": false,
+          "href": "/dashboard/settings/profile"
+        },
+        {
+          "title": "Communications Preferences",
+          "active": true,
+          "href": "#"
+        },
+        {
+          "title": "Privacy & Security",
+          "active": false,
+          "href": "/dashboard/settings/privacy-security"
+        },
+        {
+          "title": "Sign In & Password",
+          "active": false,
+          "href": "#"
+        },
+        {
+          "title": "Alerts",
+          "active": false,
+          "href": "#"
+        }
+      ]
+    },
+    {
+      "title": "Special Offers",
+      "open": false,
+      "href": "#"
+    }
+  ],
+  "dropdown": "Things I Can Do",
+  "steps": [
+    {
+      "title": "How should we communicate with you?",
+      "description": "Review your notification settings for how you want to receive exclusive membership deals and marketing materials:",
+      "table_title": "Marketing Communications",
+      "communication_types": [
+        {
+          "name": "commSms",
+          "label": "SMS/Text Messages"
+        },
+        {
+          "name": "commEmail",
+          "label": "Email Address"
+        },
+        {
+          "name": "commMail",
+          "label": "Mail"
+        }
+      ],
+      "btn_cancel": "Cancel",
+      "btn_save": "Save"
+    },
+    {
+      "title": "Changes Confirmed",
+      "description": "Your marketing communications preferences now are as follows:",
+      "communication_types": [            
+        {
+          "name": "commSms",
+          "label": "SMS/Text Messages"
+        },
+        {
+          "name": "commEmail",
+          "label": "Email Address"
+        },
+        {
+          "name": "commMail",
+          "label": "Mail"
+        }
+      ],
+      "other_things": "<p>Other things you can do:</p><ul><li>Review other <a href=\"/dashboard/settings/privacy-security\">Privacy &amp; Security</a> settings</li></ul>",
+      "btn_back": "Close"
+    }
+  ]
+}

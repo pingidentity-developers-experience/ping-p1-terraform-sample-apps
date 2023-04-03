@@ -1,0 +1,104 @@
+/* FooterMain */
+
+@import '../../styles/variables.scss';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/bootstrap-grid';
+//@import '~bootstrap/scss/variables';
+//@import '~bootstrap/scss/mixins';
+
+footer.footer-main {
+  background: #262626;
+  color: #D8D8D8;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+
+  .nav {
+    .nav-item {
+      a.nav-link {
+        color: #D8D8D8;
+
+        @include media-breakpoint-down(md) {
+          padding-left: 0;
+        }
+      }
+    }
+
+    &.nav-social {
+      margin-left: -1rem;
+      margin-bottom: 5rem;
+
+      @include media-breakpoint-down(md) {
+        margin-left: 0;
+      }
+    }
+
+    &.nav-main {
+      @include media-breakpoint-down(md) {
+        width: 100%;
+        margin-bottom: 2rem;
+      }
+
+      .nav-item-parent {
+        margin-right: 1rem;
+        position: relative;
+
+        @include media-breakpoint-down(md) {
+          width: 100%;
+          padding-bottom: 1rem;
+          margin-bottom: 1rem;
+
+          &:after {
+            content: "";
+            width: 30px;
+            height: 1px;
+            border-bottom: 2px solid white;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+          }
+        }
+      }
+
+      .nav-link {
+        padding: 0.3rem 1rem;
+      }
+    }
+  }
+
+  p {
+    color: #D8D8D8;
+    font-size: 12px;
+  }
+
+  .chatbot {
+    position: fixed;
+    right: -600rem;
+    bottom: 3rem;
+    z-index: 40;
+
+    .btn {
+      width: 200px;
+      border-radius: 11px;
+      background: theme-color("primary");
+      font-size: 12px;
+
+      img {
+        width: 20px;
+        margin-right: 10px;
+      }
+    }
+
+    .chatbot-window {
+      max-width: 380px;
+      cursor: pointer;
+    }
+  }
+}
+
+.dashboard {
+  footer.footer-main {
+    .chatbot {
+      right: 3rem;
+    }
+  }
+}

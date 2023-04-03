@@ -1,0 +1,42 @@
+/**
+* Class representing xxxxxxxxxxxxxxxxxx.
+* <further description if necessary.>
+* 
+* This demo-specifc class is developed and maintained by PingIdentity Technical Enablement.
+* Implements methods to integrate with <explain further here>.
+* 
+* @author <your name or nickname>
+* @see <url to related documentation>
+*/
+
+// Packages
+import React from 'react';
+
+// Components
+import <classNameRef> from '../path/to/js/file';
+
+class <thisClassName> {
+
+    /**
+     * What constructor does [optional if nothing done special for instantiation].
+     * @param {type} paramName - Short description.
+     * @param {type} paramName - Short description.
+     */
+    constructor(props) {
+        super(props);
+        this.envVars = window._env_;
+        this.state = {};
+    }
+
+    /**
+     * What method does.
+     * 
+     * @param {type} paramName - Short description.
+     * @return {type} What's being returned.
+    */
+    methodName({arg1, arg2, asObject3}) {
+        console.info("FileName.js", "Friendly log message about what is happening.");
+        //TODO implementation here.
+    }
+}
+export default <thisClassName>;

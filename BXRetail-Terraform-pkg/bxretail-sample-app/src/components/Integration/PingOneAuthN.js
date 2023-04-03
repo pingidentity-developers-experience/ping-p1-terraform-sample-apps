@@ -12,7 +12,7 @@ class PingOneAuthN {
 
     /**
     Class constructor
-    @param {string} authPath PingOne auth path for your region's tenant. (For BXR, could be the DG (PAZ) proxy host.)
+    @param {string} authPath PingOne auth path for your region's tenant. (For BXRetail, could be the DG (PAZ) proxy host.)
     @param {string} envId PingOne environment ID needed for authZ integrations.
     */
     constructor(authPath, envId) {

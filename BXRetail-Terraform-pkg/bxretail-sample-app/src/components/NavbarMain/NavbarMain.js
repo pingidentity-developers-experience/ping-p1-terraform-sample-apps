@@ -31,7 +31,6 @@ import './NavbarMain.scss';
 
 // Data
 import data from './data.json';
-// import { faRegistered } from '@fortawesome/free-regular-svg-icons';
 
 class NavbarMain extends React.Component {
   constructor(props) {
@@ -102,14 +101,12 @@ class NavbarMain extends React.Component {
   triggerModalRegisterConfirm() {
     this.modalRegisterConfirm.current.toggle();
   }
-  // Not doing identifier first in BXR
+  // Not doing identifier first in BXRetail
   /* triggerModalLogin() {
     this.refs.modalLogin.toggle();
   } */
-  triggerModalLoginPassword() {
-    // Google Analytics
-    Event("User", "Clicked sign in");
 
+  triggerModalLoginPassword() {
     if (this.session.getAuthenticatedUserItem("triggerLogin", "session")) {
       this.session.removeAuthenticatedUserItem("triggerLogin", "session");
     }

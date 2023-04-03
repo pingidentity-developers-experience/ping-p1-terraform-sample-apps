@@ -106,7 +106,7 @@ class DemoAdmin extends React.Component {
         this.setState({ actionInProgress: true });
         let payload;
 
-        //Unlike PD for BXH and BXF, there is no concept of escalated scopes to delete a user in P1 for BXR. It's done with WorkerApps.
+        //Unlike PD for BXH and BXF, there is no concept of escalated scopes to delete a user in P1 for BXRetail. It's done with WorkerApps.
         // So we just use the bearer token we already have.
         const accessToken = this.session.getAuthenticatedUserItem('AT', 'session');
 
@@ -144,7 +144,7 @@ class DemoAdmin extends React.Component {
         this.authz.openBankingApi(this.state.paymentToken, +this.state.paymentAmount)
             .then(response => {
                 if (response.success) {
-                    // Should never be hit unless we allow users to not complete a payment after redirect to back to BXR
+                    // Should never be hit unless we allow users to not complete a payment after redirect to back to BXRetail
                     this.setState({paymentSuccessful: true, paymentResponse: 'Payment successful!'})
                 } else {
                     let reason = ''

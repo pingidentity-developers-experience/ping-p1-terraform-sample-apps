@@ -61,7 +61,7 @@ class AuthZ {
 
     /**
     OAuth Token:
-    Swap an authZ code for an authZ and ID token.
+    Swap an authZ code for an access and ID token.
 
     @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#post-token-authorization_code
     @param {string} code authorization code from AS.
@@ -69,13 +69,14 @@ class AuthZ {
     @returns {object} response
     */
 
-    async swapCodeForToken({ code, redirectURI, authMode }) {
+    async swapCodeForToken({ code, redirectURI, authMode, clientId }) {
         console.info('Controller.AuthZ', 'Swapping an auth code for an access token.');
 
         let authPath;
-        if (authMode === 'ATVP') {
-            authPath = this.envVars.REACT_APP_ATVPAUTHPATH;
-        }
+
+        // if (authMode === 'ATVP') {
+        //     authPath = this.envVars.REACT_APP_ATVPAUTHPATH;
+        // }
         
         let bauth;
         if (!authPath) {
@@ -83,14 +84,15 @@ class AuthZ {
         } else {
             bauth = this.envVars.REACT_APP_ATVP_CLIENT + ':' + this.envVars.REACT_APP_ATVP_RECSET;
         }
-        const swaprods = btoa(bauth); //TODO deprecated function to be updated.
+        const swaprods = btoa(bauth);
 
         let response;
         if (!authPath) {
-            response = await this.ping1AuthZ.getToken({ code: code, redirectURI: redirectURI, swaprods: swaprods });
-        } else {
-            response = await this.ping1AuthZATVP.getToken({ code: code, redirectURI: redirectURI, swaprods: swaprods });
-        }
+            response = await this.ping1AuthZ.getToken({ code: code, redirectURI: redirectURI, swaprods: swaprods, clientId: clientId });
+        } 
+        // else {
+        //     response = await this.ping1AuthZATVP.getToken({ code: code, redirectURI: redirectURI, swaprods: swaprods });
+        // }
         return response;
     }
 

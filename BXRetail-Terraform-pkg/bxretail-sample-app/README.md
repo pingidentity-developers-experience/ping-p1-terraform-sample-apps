@@ -1,11 +1,11 @@
 # BXRetail Sample App by PingIdentity Technical Enablement
 
 ## Introduction
-BXRetail is a demo application developed by Ping Technical Enablement to showcase various use cases implemented in a real-world looking, online retail application. The application was branded and designed to look identical to an online retail app. Because many features of online retail do not relate to Ping, many links are not functional if they do not pertain to Ping products or are a duplication of use cases already implemented. 
+BXRetail is a demo application developed by Ping Identity's Technical Enablement team to showcase various use cases implemented in a real-world looking, online retail application. The application was branded and designed to look identical to an online retail app. Because many features of online retail do not relate to Ping's line of business, many links or features are not functional. They are still include for aesthetic reality. 
 
 It is a unique demo due to our PingOne-led initiative, with no non-SaaS software added to the environment.
 
-BXRetail is a Single Page Application (SPA) built with React; JSX, ECMAscript 2017, react-router, react-strap, SASS, JSON.
+BXRetail is a Single Page Application (SPA) built with React; JSX, Javascript, react-router, react-strap, SASS, JSON.
 
 
 # Disclaimer

@@ -175,6 +175,9 @@ class NavbarMain extends React.Component {
   }
 
   componentDidMount() {
+    // For validation/troubleshooting only.
+    console.info('DOCKER IMAGE', this.envVars.REACT_APP_IMAGE_NAME);
+    
     this.session.protectPage(this.session.isLoggedOut, window.location.pathname, this.session.getAuthenticatedUserItem("bxRetailUserType", "session"), this.props);
 
     if(this.session.isLoggedOut && this.session.getAuthenticatedUserItem("triggerLogin", "session")) {

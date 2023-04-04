@@ -18,8 +18,9 @@ class PingOneAuthZ {
      * @param {string} authPath PingOne auth path for your regions tenant. (For BXRetail, could be the DG (PAZ) proxy host.)
      * @param {string} envId PingOne environment ID needed for authZ integrations. 
      */
-    constructor(authPath, envId) {
+    constructor(authPath, envId, proxyApiPath) {
         this.authPath = authPath;
+        this.proxyApiPath = proxyApiPath;
         this.envId = envId;
         this.OAuthUtils = new OAuthUtils();
         this.Session = new Session();
@@ -42,7 +43,7 @@ class PingOneAuthZ {
             'Sending user to the authorize endpoint to start an authN flow and get a flowId.'
         );
 
-        let url = this.authPath + '/as/authorize?response_type=' + responseType + '&client_id=' + clientId + '&redirect_uri=' + redirectURI + '&scope=' + scopes;
+        let url = this.authPath + '/' + this.envId + '/as/authorize?response_type=' + responseType + '&client_id=' + clientId + '&redirect_uri=' + redirectURI + '&scope=' + scopes;
 
         // PKCE and state support for auth code grant types
         if (responseType === 'code') {
@@ -93,7 +94,7 @@ class PingOneAuthZ {
             body: urlencoded,
             redirect: 'manual',
         };
-        const url = this.authPath + '/as/token';
+        const url = this.proxyApiPath + '/auth/' + this.envId + '/as/token';
         const response = await fetch(url, requestOptions);
         const jsonResponse = await response.json();
         return jsonResponse;

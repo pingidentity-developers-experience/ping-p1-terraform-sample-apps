@@ -169,7 +169,7 @@ resource "kubernetes_deployment" "bxr_app" {
             # The PingOne host for authN API calls
             # Note: For this demo, we're proxying the calls to avoid CORS
             # Typically you'd resolve this with a P1 Custom Domain
-            name  = "REACT_APP_AUTHPATH"
+            name  = "REACT_APP_PROXYAPIPATH"
             value = "https://${var.k8s_deploy_name}-proxy.${var.k8s_deploy_domain}"
           }
           env {
@@ -189,8 +189,13 @@ resource "kubernetes_deployment" "bxr_app" {
           }
           env {
             # P1 Auth URL (accounts for Region)
-            name  = "REACT_APP_P1HOST"
+            name  = "REACT_APP_AUTHPATH"
             value = "https://auth.pingone.${local.pingone_domain}"
+          }
+          env {
+            # P1 API URL (accounts for Region)
+            name  = "REACT_APP_APIPATH"
+            value = "https://api.pingone.${local.pingone_domain}/v1"
           }
           env {
             # The Docker image name just for validation/troubleshooting.

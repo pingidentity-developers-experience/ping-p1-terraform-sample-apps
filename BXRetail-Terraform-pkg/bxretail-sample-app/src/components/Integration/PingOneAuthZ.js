@@ -76,17 +76,18 @@ class PingOneAuthZ {
     @param {string} redirectURI App URL user should be redirected to after swap for token.
     @returns {object} JSON formatted response object.
     */
-    async getToken({ code, redirectURI, swaprods }) {
+    async getToken({ code, redirectURI, swaprods, clientId }) {
         console.info('Integration.PingOneAuthZ.js', 'Swapping an authorization code for an access token.');
 
         let myHeaders = new Headers();
-        myHeaders.append('Authorization', 'Basic ' + swaprods);
+        // myHeaders.append('Authorization', 'Basic ' + swaprods);
         myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
 
         let urlencoded = new URLSearchParams();
         urlencoded.append('grant_type', 'authorization_code'); //grant type should be a param passed in. But in the demos we're only doing auth code.
         urlencoded.append('code', code);
         urlencoded.append('redirect_uri', redirectURI);
+        urlencoded.append('client_id', clientId);
         urlencoded.append('code_verifier', this.Session.getAuthenticatedUserItem('code_verifier', 'session'));
         const requestOptions = {
             method: 'POST',

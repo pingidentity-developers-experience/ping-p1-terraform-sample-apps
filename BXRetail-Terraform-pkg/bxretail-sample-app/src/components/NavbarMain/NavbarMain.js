@@ -249,7 +249,7 @@ class NavbarMain extends React.Component {
             throw new Error("oAuth state parameters do not match.");
           }
 
-          this.authz.swapCodeForToken({ code: authCode, redirectURI: redirectURI, authMode: this.session.getAuthenticatedUserItem("authMode", "session") })
+          this.authz.swapCodeForToken({ code: authCode, redirectURI: redirectURI, authMode: this.session.getAuthenticatedUserItem("authMode", "session"), clientId: this.envVars.REACT_APP_CLIENT })
             .then(response => {
               // Clean up pkce and state storage
               this.session.removeAuthenticatedUserItem("state", "session");

@@ -27,7 +27,7 @@ class PingOneAuthZ {
 
     /**
     Authorization Flow:
-    Start an authorization flow.
+    Start an authorization flow with PKCE and state options.
     
     @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#openid-connectoauth-2
     @param {string} responseType The OAuth grant type. Options are "code" and "token".
@@ -44,7 +44,7 @@ class PingOneAuthZ {
 
         let url = this.authPath + '/as/authorize?response_type=' + responseType + '&client_id=' + clientId + '&redirect_uri=' + redirectURI + '&scope=' + scopes;
 
-        // Add pkce support for auth code grant types
+        // PKCE and state support for auth code grant types
         if (responseType === 'code') {
             const state = this.OAuthUtils.getRandomString(20);
             const code_verifier = this.OAuthUtils.getRandomString(128);

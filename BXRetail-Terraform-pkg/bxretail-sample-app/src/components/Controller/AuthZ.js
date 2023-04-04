@@ -26,7 +26,7 @@ class AuthZ {
 
     /**
     Authentication Flow:
-    Initializes the authentication flow. Handler for different authentication API request and responses.
+    Initializes the authentication flow.
 
     @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#openid-connectoauth-2
     @param {string} grantType The OAuth grant type to be used.

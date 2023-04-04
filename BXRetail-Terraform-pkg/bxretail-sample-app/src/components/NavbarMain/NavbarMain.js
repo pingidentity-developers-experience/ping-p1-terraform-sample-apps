@@ -31,7 +31,6 @@ import './NavbarMain.scss';
 
 // Data
 import data from './data.json';
-// import { faRegistered } from '@fortawesome/free-regular-svg-icons';
 
 class NavbarMain extends React.Component {
   constructor(props) {
@@ -62,7 +61,7 @@ class NavbarMain extends React.Component {
   triggerModalRegister() {
     this.session.setAuthenticatedUserItem("authMode", "registration", "session");
     const redirectURI = this.envVars.REACT_APP_HOST + this.envVars.PUBLIC_URL + "/";
-    //TODO should we move envVars param to controller like get token. Consistent pattern for things UI shouldn't know or care about?
+    //TODO should we move envVars param to controller like get token? Consistent pattern for the things UI shouldn't know or care about?
     this.authz.initAuthNFlow({ grantType: "authCode", clientId: this.envVars.REACT_APP_CLIENT, redirectURI: redirectURI, scopes: "openid profile email p1:read:user p1:update:user p1:read:sessions p1:update:userMfaEnabled p1:create:device" });
     // this.modalRegister.current.toggle(); //Moved to componentDidMount because we have to send them to P1 first.
   }
@@ -102,14 +101,12 @@ class NavbarMain extends React.Component {
   triggerModalRegisterConfirm() {
     this.modalRegisterConfirm.current.toggle();
   }
-  // Not doing identifier first in BXR
+  // Not doing identifier first in BXRetail
   /* triggerModalLogin() {
     this.refs.modalLogin.toggle();
   } */
-  triggerModalLoginPassword() {
-    // Google Analytics
-    Event("User", "Clicked sign in");
 
+  triggerModalLoginPassword() {
     if (this.session.getAuthenticatedUserItem("triggerLogin", "session")) {
       this.session.removeAuthenticatedUserItem("triggerLogin", "session");
     }
@@ -178,6 +175,9 @@ class NavbarMain extends React.Component {
   }
 
   componentDidMount() {
+    // For validation/troubleshooting only.
+    console.info('DOCKER IMAGE', this.envVars.REACT_APP_IMAGE_NAME);
+    
     this.session.protectPage(this.session.isLoggedOut, window.location.pathname, this.session.getAuthenticatedUserItem("bxRetailUserType", "session"), this.props);
 
     if(this.session.isLoggedOut && this.session.getAuthenticatedUserItem("triggerLogin", "session")) {

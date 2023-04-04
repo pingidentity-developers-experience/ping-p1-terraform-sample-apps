@@ -128,7 +128,7 @@ resource "pingone_application" "bxretail_sample_app" {
     response_types              = ["CODE", "TOKEN", "ID_TOKEN"]
     pkce_enforcement            = "S256_REQUIRED"
     token_endpoint_authn_method = "NONE"
-    redirect_uris               = ["${local.app_url}/"]
+    redirect_uris               = ["${local.app_url}"]
   }
 }
 

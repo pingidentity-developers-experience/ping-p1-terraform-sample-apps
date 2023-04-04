@@ -449,7 +449,7 @@ class ModalLoginPassword extends React.Component {
                   </div>
                 </form>
               </TabPane>
-              {/* <TabPane tabId="2"> PASSWORDLESS UI. NOT SUPPORTED IN BXR USE CASES YET.
+              {/* <TabPane tabId="2"> PASSWORDLESS UI. NOT SUPPORTED IN BXRetail USE CASES YET.
                   <h4>{data.titles.login_method}</h4>
                   <FormGroup className={this.state.loginMethodFormGroupClass}>
                     <div>

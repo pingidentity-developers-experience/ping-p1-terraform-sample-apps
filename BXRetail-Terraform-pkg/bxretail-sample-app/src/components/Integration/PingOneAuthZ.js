@@ -15,11 +15,12 @@ class PingOneAuthZ {
 
     /**
     Class constructor
-     * @param {string} authPath PingOne auth path for your regions tenant. (For BXR, could be the DG (PAZ) proxy host.)
+     * @param {string} authPath PingOne auth path for your regions tenant. (For BXRetail, could be the DG (PAZ) proxy host.)
      * @param {string} envId PingOne environment ID needed for authZ integrations. 
      */
-    constructor(authPath, envId) {
+    constructor(authPath, envId, proxyApiPath) {
         this.authPath = authPath;
+        this.proxyApiPath = proxyApiPath;
         this.envId = envId;
         this.OAuthUtils = new OAuthUtils();
         this.Session = new Session();
@@ -27,7 +28,7 @@ class PingOneAuthZ {
 
     /**
     Authorization Flow:
-    Start an authorization flow.
+    Start an authorization flow with PKCE and state options.
     
     @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#openid-connectoauth-2
     @param {string} responseType The OAuth grant type. Options are "code" and "token".
@@ -42,9 +43,9 @@ class PingOneAuthZ {
             'Sending user to the authorize endpoint to start an authN flow and get a flowId.'
         );
 
-        let url = this.authPath + '/as/authorize?response_type=' + responseType + '&client_id=' + clientId + '&redirect_uri=' + redirectURI + '&scope=' + scopes;
+        let url = this.authPath + '/' + this.envId + '/as/authorize?response_type=' + responseType + '&client_id=' + clientId + '&redirect_uri=' + redirectURI + '&scope=' + scopes;
 
-        // Add pkce support for auth code grant types
+        // PKCE and state support for auth code grant types
         if (responseType === 'code') {
             const state = this.OAuthUtils.getRandomString(20);
             const code_verifier = this.OAuthUtils.getRandomString(128);
@@ -93,7 +94,7 @@ class PingOneAuthZ {
             body: urlencoded,
             redirect: 'manual',
         };
-        const url = this.authPath + '/as/token';
+        const url = this.proxyApiPath + '/auth/' + this.envId + '/as/token';
         const response = await fetch(url, requestOptions);
         const jsonResponse = await response.json();
         return jsonResponse;

@@ -15,7 +15,7 @@ class Session {
     Protect Page:
     Ensures a user doesn't access pages when unauthenticated or 
     when not the right user type. We are not using Ping Access for a SaaS-first demo.
-    This would ideally be done with PA's new SPA support features, but BXR is intended 
+    This would ideally be done with PA's new SPA support features, but BXRetail is intended 
     to be an all-SaaS demo. Reality bytes.
 
     @param {boolean} loggedOut Whether the user is logged in or not.

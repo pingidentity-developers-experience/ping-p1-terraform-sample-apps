@@ -16,7 +16,7 @@ class AuthZ {
     */
     constructor() {
         this.envVars = window._env_;
-        this.ping1AuthZ = new PingOneAuthZ(this.envVars.REACT_APP_AUTHPATH, this.envVars.REACT_APP_ENVID);
+        this.ping1AuthZ = new PingOneAuthZ(this.envVars.REACT_APP_AUTHPATH, this.envVars.REACT_APP_ENVID, this.envVars.REACT_APP_PROXYAPIPATH);
         this.atvpPath = this.envVars.REACT_APP_ATVPAUTHPATH + '/' + this.envVars.REACT_APP_ATVP_ENVID;
         this.ping1AuthZATVP = new PingOneAuthZ(this.atvpPath, this.envVars.REACT_APP_ENVID);
         this.session = new Session();
@@ -26,7 +26,7 @@ class AuthZ {
 
     /**
     Authentication Flow:
-    Initializes the authentication flow. Handler for different authentication API request and responses.
+    Initializes the authentication flow.
 
     @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#openid-connectoauth-2
     @param {string} grantType The OAuth grant type to be used.

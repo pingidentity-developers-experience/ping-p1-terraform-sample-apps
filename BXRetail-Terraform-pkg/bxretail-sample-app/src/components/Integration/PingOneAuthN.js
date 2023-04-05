@@ -45,7 +45,7 @@ class PingOneAuthN {
             credentials: "include"
         };
 
-        const url = this.authPath + "/flows/" + flowId;
+        const url = this.authPath + '/' + this.envId + "/flows/" + flowId;
         const response = await fetch(url, requestOptions);
         const jsonResponse = await response.json();
         return jsonResponse;

@@ -121,7 +121,7 @@ resource "pingone_application" "bxretail_sample_app" {
   enabled        = true
   name           = "BXRetail Sample App"
   description    = "A custom sample retail app to demonstrate PingOne integtation."
-  login_page_url              = "${local.app_url}"
+  login_page_url = local.app_url
 
   oidc_options {
     type                        = "SINGLE_PAGE_APP"
@@ -130,7 +130,8 @@ resource "pingone_application" "bxretail_sample_app" {
     pkce_enforcement            = "S256_REQUIRED"
     token_endpoint_authn_method = "NONE"
     redirect_uris               = ["${local.app_url}"]
-    home_page_url               = "${local.app_url}"
+    home_page_url               = local.app_url
+    post_logout_redirect_uris   = ["${local.app_url}"]
   }
 }
 

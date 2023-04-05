@@ -17,8 +17,8 @@ class AuthZ {
     constructor() {
         this.envVars = window._env_;
         this.ping1AuthZ = new PingOneAuthZ(this.envVars.REACT_APP_AUTHPATH, this.envVars.REACT_APP_ENVID, this.envVars.REACT_APP_PROXYAPIPATH);
-        this.atvpPath = this.envVars.REACT_APP_ATVPAUTHPATH + '/' + this.envVars.REACT_APP_ATVP_ENVID;
-        this.ping1AuthZATVP = new PingOneAuthZ(this.atvpPath, this.envVars.REACT_APP_ENVID);
+        // this.atvpPath = this.envVars.REACT_APP_ATVPAUTHPATH + '/' + this.envVars.REACT_APP_ATVP_ENVID;
+        // this.ping1AuthZATVP = new PingOneAuthZ(this.atvpPath, this.envVars.REACT_APP_ENVID);
         this.session = new Session();
         this.tokens = new Tokens();
         // this.davinci = new DaVinci();
@@ -49,14 +49,15 @@ class AuthZ {
                 redirectURI: redirectURI,
                 scopes: scopes,
             });
-        } else {
-            this.ping1AuthZATVP.authorize({
-                responseType: responseType,
-                clientId: clientId,
-                redirectURI: redirectURI,
-                scopes: scopes,
-            });
-        }
+        } 
+        // else {
+        //     this.ping1AuthZATVP.authorize({
+        //         responseType: responseType,
+        //         clientId: clientId,
+        //         redirectURI: redirectURI,
+        //         scopes: scopes,
+        //     });
+        // }
     }
 
     /**

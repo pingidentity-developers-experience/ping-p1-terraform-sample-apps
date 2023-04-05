@@ -28,7 +28,6 @@ import Session from '../../components/Utils/Session';
 import AuthZ from '../../components/Controller/AuthZ';
 import Registration from '../../components/Controller/Registration';
 import Users from '../../components/Controller/Users';
-import { ModalView, Event } from '../../components/Integration/Analytics';
 
 // Data
 import data from '../../data/shop/index.json';
@@ -136,8 +135,6 @@ class Checkout extends React.Component {
     }
 
     openBankingRedirect() {
-        // Google Analytics
-        Event('OpenBanking', 'purchase', 'transaction_authorization');
         // Make OAuth PAR request to BXFinance OAuth AS.
         // Take response of request_uri and redirect user to BXFinance authorization endpoint
         const cart = JSON.parse(this.session.getAuthenticatedUserItem('cart', 'session'));
@@ -157,11 +154,6 @@ class Checkout extends React.Component {
     }
 
     toggleConfirmation() {
-        // Google Analytics: Only track when the modal is being opened.
-        if (!this.state.isOpen) {
-            ModalView('Checkout-Confirmation');
-        }
-
         this.setState({
             isOpenConfirmation: !this.state.isOpenConfirmation,
         });
@@ -220,9 +212,6 @@ class Checkout extends React.Component {
 
         /* Guest email lookup */
         if (stepNumber === '2') {
-            // Google Analytics
-            Event('User', 'Clicked Checkout', 'Guest Checkout');
-
             this.setState({ step: stepNumber });
         }
         /* Checkout profile verify/update */
@@ -286,8 +275,6 @@ class Checkout extends React.Component {
         if (stepNumber === '6') {
             // TODO For #182366216 If sessionVar offerToCreateAcct = yes,
             // remove that session var, bounce back to checkOut() and all should fall in line.
-            // Google Analytics
-            Event('User', 'Created Account', 'Guest Checkout');
             this.setState({ haveError: false });
             this.createAccount();
         }
@@ -313,9 +300,6 @@ class Checkout extends React.Component {
     }
 
     signInToCheckout(email, postCheckoutAccountCreation = false) {
-        // Google Analytics
-        Event('User', 'Clicked sign in', postCheckoutAccountCreation ? 'Account Created Sign In' : 'Guest Checkout');
-
         if (postCheckoutAccountCreation) {
             this.session.setAuthenticatedUserItem('authMode', 'login', 'session');
         } else {

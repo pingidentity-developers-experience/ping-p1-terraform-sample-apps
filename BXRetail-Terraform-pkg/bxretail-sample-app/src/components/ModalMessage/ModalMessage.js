@@ -15,7 +15,6 @@ import "./ModalMessage.scss";
 
 // Data
 import data from './data.json';
-import { ModalView } from '../Integration/Analytics';
 
 class ModalMessage extends React.Component {
   constructor(props) {
@@ -25,9 +24,6 @@ class ModalMessage extends React.Component {
     };
   }
   toggle() {
-    // Google Analytics: Only track when the modal is opened.
-    if (!this.state.isOpen) {ModalView("Modal-Message");}
-    
     this.setState({
       isOpen: !this.state.isOpen
     });

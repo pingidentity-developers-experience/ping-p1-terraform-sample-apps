@@ -10,7 +10,7 @@ Implements methods to integrate with PingOne authentication-related API endpoint
 class PingOneRegistration {
     /**
     Class constructor
-    @param {string} authPath PingOne auth path for your regions tenant. (For BXRetail, could be the DG (PAZ) proxy host.)
+    @param {string} authPath PingOne auth path for your regions tenant. (For BXR, could be the DG (PAZ) proxy host.)
     @param {string} envId PingOne environment ID needed for authZ integrations.
     */
     constructor(authPath, envId) {
@@ -41,7 +41,7 @@ class PingOneRegistration {
             credentials: "include"
         };
 
-        const url = this.authPath + "/flows/" + flowId;
+        const url = this.authPath + '/' + this.envId + "/flows/" + flowId;
         const response = await fetch(url, requestOptions);
         const jsonResponse = await response.json();
         return jsonResponse;
@@ -68,7 +68,7 @@ class PingOneRegistration {
             credentials: "include"
         };
 
-        const url = this.authPath + "/flows/" + flowId;
+        const url = this.authPath + '/' + this.envId + "/flows/" + flowId;
         const response = await fetch(url, requestOptions);
         const jsonResponse = await response.json();
         return jsonResponse;

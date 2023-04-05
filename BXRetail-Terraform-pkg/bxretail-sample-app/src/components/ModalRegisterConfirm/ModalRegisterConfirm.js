@@ -11,7 +11,6 @@ import {
   Col
 } from 'reactstrap';
 
-import { ModalView } from '../Integration/Analytics';
 // Styles
 import './ModalRegisterConfirm.scss';
 
@@ -26,8 +25,6 @@ class ModalRegisterConfirm extends React.Component {
     };
   }
   toggle() {
-    // Google Analytics: Only track if the modal is being opened.
-    if (!this.state.isOpen) {ModalView("Modal-Register-Confirm");}
     this.setState({
       isOpen: !this.state.isOpen
     });

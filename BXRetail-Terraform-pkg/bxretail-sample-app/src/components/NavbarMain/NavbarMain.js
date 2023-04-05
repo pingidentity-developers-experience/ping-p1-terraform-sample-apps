@@ -24,7 +24,6 @@ import AuthZ from '../Controller/AuthZ';
 import Registration from '../Controller/Registration';
 import Users from '../../components/Controller/Users';
 import Tokens from '../Utils/Tokens';
-import { Event } from '../Integration/Analytics';
 
 // Styles
 import './NavbarMain.scss';
@@ -125,9 +124,6 @@ class NavbarMain extends React.Component {
     });
   }
   logout() {
-    // Google Analytics
-    Event("User", "Clicked logout");
-
     // TODO ideally this UI content should come from a data file. Not hard coded here.
     this.setState({
       msgTitle: "Just a minute please...",
@@ -137,12 +133,14 @@ class NavbarMain extends React.Component {
     const userType = this.session.getAuthenticatedUserItem("bxRetailUserType", "session");
     
     this.session.clearUserAppSession('session');
-    if (userType === "Customer") {
-        window.location.assign(`${this.envVars.REACT_APP_AUTHPATH}/as/signoff?post_logout_redirect_uri=${this.envVars.REACT_APP_HOST}/app/`);
-    } else {
-      // Federated ATVP users.
-      window.location.assign(this.envVars.REACT_APP_ATVP_PORTAL);
-    }
+    if (userType === "Customer") {console.log("WE Are logging out");
+        // window.location.assign(`${this.envVars.REACT_APP_AUTHPATH}/${this.envVars.REACT_APP_ENVID}/as/signoff?post_logout_redirect_uri=${this.envVars.REACT_APP_HOST}/app/`);
+        window.location.assign(`${this.envVars.REACT_APP_AUTHPATH}/${this.envVars.REACT_APP_ENVID}/as/signoff`);
+    } 
+    // else {
+    //   // Federated ATVP users.
+    //   window.location.assign(this.envVars.REACT_APP_ATVP_PORTAL);
+    // }
   }
   
   handleFormInput(e) {
@@ -158,19 +156,6 @@ class NavbarMain extends React.Component {
       this.toggleCart();
     } else {
       myProps.history.push({pathname:"/shop", state: {action: "showCart"}})
-    }
-  }
-
-  //For GA
-  captureCustomer(e) {
-    this.setState({prospect: e.target.value});
-  }
-  // For GA
-  submitCustomer(e) {
-    e.preventDefault();
-    if (this.state.prospect) {
-      Event("Sales", "Demo", this.state.prospect);
-      this.setState({prospect: ""});
     }
   }
 

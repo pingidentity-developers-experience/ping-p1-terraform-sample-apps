@@ -23,7 +23,6 @@ import AccountsSubnav from '../../components/AccountsSubnav';
 import AccountsDropdown from '../../components/AccountsDropdown';
 import Session from '../../components/Utils/Session';
 import Users from '../../components/Controller/Users';
-import { Event } from '../../components/Integration/Analytics';
 
 // Data
 import data from '../../data/shop/index.json';
@@ -59,9 +58,6 @@ class Shop extends React.Component {
       });
   }
   addToCart(item) {
-    // Google Analytics
-    Event("User", "Added to Cart", item.title);
-
     this.setState({
       isOpen: !this.state.isOpen,
       selectedItem: item

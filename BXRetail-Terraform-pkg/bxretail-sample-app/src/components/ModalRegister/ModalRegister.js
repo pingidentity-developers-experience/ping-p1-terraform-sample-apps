@@ -28,7 +28,6 @@ import data from './data.json';
 import FormPassword from '../../components/FormPassword';
 import Registration from '../Controller/Registration';
 import AuthN from '../Controller/AuthN';
-import { ModalView, Event } from '../Integration/Analytics';
 import Session from '../Utils/Session';
 
 class ModalRegister extends React.Component {
@@ -53,17 +52,11 @@ class ModalRegister extends React.Component {
     this.session = new Session();
   }
   toggle() {
-    // Google Analytics: Only track when the modal is being opened.
-    if (!this.state.isOpen) { ModalView("Modal-Register"); }
-
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
   toggleTab(tab) {
-    // Google Analytics: Tracking tab panes as modal views.
-    if (tab === "2") { ModalView("Modal-Register-Verification-Code");}
-
     this.setState({
       activeTab: tab
     });
@@ -124,16 +117,13 @@ class ModalRegister extends React.Component {
             }
           });
         break;
-      case "Extraordinary Club":
-      case "Google":
-        // Google Analytics
-        Event("User", "Clicked " + authMode + " Registration");
-
-        this.authn.getRequestedSocialProvider({ IdP: authMode, flowId: this.props.flowId })
-          .then(idpURL => {
-            window.location.assign(idpURL)
-          });
-        break;
+      // case "Extraordinary Club":
+      // case "Google":
+      //   this.authn.getRequestedSocialProvider({ IdP: authMode, flowId: this.props.flowId })
+      //     .then(idpURL => {
+      //       window.location.assign(idpURL)
+      //     });
+      //   break;
       default:
         throw new Error("Unexpected authMode for ModalLoginPassword.handleUserAction.");
     }
@@ -181,21 +171,16 @@ class ModalRegister extends React.Component {
                       </div>
                     </Col>
                   </Row>
-                  <Row form className="form-row-light">
+                  {/* <Row form className="form-row-light">
                     <Col className="text-center">
                       <img src={window._env_.PUBLIC_URL + "/images/home-login-or.png"} alt="or" className="or" />
                     </Col>
-                  </Row>
+                  </Row> */}
                   {/* <Row form className="form-row-light">
                     <Col className="text-center">
                       <img onClick={() => { this.handleUserAction("Extraordinary Club") }} src={window._env_.PUBLIC_URL + "/images/SignUpEOC-500x109.png"} alt="Extraordinary Club" className="social-signup mr-1" />
                     </Col>
                   </Row> */}
-                  <Row form className="form-row-light">
-                    <Col className="text-center">
-                      <img onClick={() => { this.handleUserAction("Google") }} src={window._env_.PUBLIC_URL + "/images/social-signup-google.png"} alt="Google" className="social-signup mr-1" />
-                    </Col>
-                  </Row>
                 </form>
               </TabPane>
               <TabPane tabId="2"> {/* Registration email verification code UI. */}

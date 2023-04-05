@@ -17,9 +17,6 @@ import "./ModalBirthday.scss";
 // Data
 import data from './data.json';
 
-// Components
-import { ModalView } from '../Integration/Analytics';
-
 class ModalBirthday extends React.Component {
   constructor() {
     super();
@@ -28,10 +25,7 @@ class ModalBirthday extends React.Component {
     };
   }
   toggle() {
-    // Google Analytics: Only track when the modal is being opened.
-    if (!this.state.isOpen) { ModalView("Modal-Birthday"); }
-
-    this.setState({
+     this.setState({
       isOpen: !this.state.isOpen
     });
   }

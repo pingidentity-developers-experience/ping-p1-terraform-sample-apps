@@ -12,7 +12,6 @@ import Partner from './pages/partner/index';
 import PartnerClient from './pages/partner/client'; 
 import AnyMarketing from './pages/any-marketing'; 
 import * as serviceWorker from './serviceWorker';
-import { PageView, initGA } from "./components/Integration/Analytics"
 import DemoAdmin from './pages/admin';
 
 

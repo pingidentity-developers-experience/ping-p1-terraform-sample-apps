@@ -8,7 +8,6 @@ access rules.
 @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage}
 */
 
-import { SetAttribute } from "../Integration/Analytics";
 class Session {
 
     /** 
@@ -43,31 +42,19 @@ class Session {
                     if (!partnerAllowedPaths.includes(path)) {
                         console.info("Access Rule", "Attempt to access disallowed resource for user type " + userType + ". Redirecting to default.");
                         props.history.push(partnerAllowedPaths[0]);
-                    } else { // Google Analytics user/session tracking
-                        if (this.getAuthenticatedUserItem("email", "session")) {
-                            SetAttribute("userId", this.getAuthenticatedUserItem("email", "session"));
-                        }
-                    }
+                    } 
                     break;
                 case "AnyMarketing":
                     if (!marketingAllowedPaths.includes(path)) {
                         console.info("Access Rule", "Attempt to access disallowed resource for user type " + userType + ". Redirecting to default.");
                         props.history.push(marketingAllowedPaths[0]);
-                    } else { // Google Analytics user/session tracking
-                        if (this.getAuthenticatedUserItem("email", "session")) {
-                            SetAttribute("userId", this.getAuthenticatedUserItem("email", "session"));
-                        }
-                    }
+                    } 
                     break;
                 case "Customer":
                     if (!customerAllowedPaths.includes(path) && !unauthenticatedPaths.includes(path)) {
                         console.info("Access Rule", "Attempt to access disallowed resource for user type " + userType + ". Redirecting to default.");
                         props.history.push(unauthenticatedPaths[0]);
-                    } else { // Google Analytics user/session tracking
-                        if (this.getAuthenticatedUserItem("email", "session")) {
-                            SetAttribute("userId", this.getAuthenticatedUserItem("email", "session"));
-                        }
-                    }
+                    } 
                     break;
                 default:
                     console.warn("Unknown bxRetailUserType:", "Not authenticated yet.");

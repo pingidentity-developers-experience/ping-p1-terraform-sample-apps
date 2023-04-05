@@ -23,7 +23,6 @@ import LoginLinkButton from '../LoginLinkButton';
 import AuthN from '../Controller/AuthN';
 import AuthZ from '../Controller/AuthZ';
 import Session from '../Utils/Session';
-import { ModalView, Event } from '../Integration/Analytics';
 
 // Styles
 import "./ModalLoginPassword.scss";
@@ -83,9 +82,6 @@ class ModalLoginPassword extends React.Component {
     }
   }
   toggle(tab) {
-    // Google Analytics: Only track when the modal is being opened.
-    if (!this.state.isOpen) { ModalView("Modal-Login-Password"); }
-
     this.setState({
       isOpen: !this.state.isOpen
     });
@@ -98,27 +94,6 @@ class ModalLoginPassword extends React.Component {
     }
   }
   toggleTab(tab) {
-    // Google Analytics: Tracking tab panes as modal views in Google Analytics.
-    switch (tab) {
-      case "2":
-        ModalView("MFA-OTP");
-        break;
-      case "4":
-        ModalView("Username-Recovery");
-        break;
-      case "5":
-        ModalView("Password-Reset");
-        break;
-      case "6":
-        ModalView("Username-Recovery-Success");
-        break;
-      case "7":
-        ModalView("Password-Reset-Code");
-        break;
-      default:
-        console.warn("ModalLoginPassword", "Switching to a tabpane not tracked by Google Analytics.");
-    }
-
     this.setState({ haveError: false });
     // Tab 3 is the progress spinner.
     if (tab === "3") {
@@ -340,9 +315,6 @@ class ModalLoginPassword extends React.Component {
       case "Extraordinary Club":
       case "Google":
       case "Magic Link":
-        // Google Analytics
-        Event("User", "Clicked " + authMode + " Sign In");
-
         this.authn.getRequestedSocialProvider({ IdP: authMode, flowId: this.props.flowId })
           .then(idpURL => {
             this.session.setAuthenticatedUserItem("federatedUser", true, "session");

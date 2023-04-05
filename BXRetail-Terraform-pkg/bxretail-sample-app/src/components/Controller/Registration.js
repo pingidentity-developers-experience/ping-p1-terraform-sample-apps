@@ -19,7 +19,7 @@ class Registration {
     constructor() {
         this.envVars = window._env_;
         this.authz = new AuthZ();
-        this.ping1Reg = new PingOneRegistration(this.envVars.REACT_APP_AUTHPATH, this.envVars.REACT_APP_ENVID);
+        this.ping1Reg = new PingOneRegistration(this.envVars.REACT_APP_AUTHPATH, this.envVars.REACT_APP_ENVID, this.envVars.REACT_APP_PROXYAPIPATH);
         this.session = new Session();
         this.davinci = new DaVinci();
     }

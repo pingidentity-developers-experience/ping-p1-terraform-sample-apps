@@ -10,7 +10,6 @@ import AccountsSubnav from '../../../components/AccountsSubnav';
 import AccountsDropdown from '../../../components/AccountsDropdown';
 import Users from '../../../components/Controller/Users';
 import Session from '../../../components/Utils/Session';
-import { Event } from '../../../components/Integration/Analytics';
 import Tokens from '../../../components/Utils/Tokens.js';
 
 
@@ -118,10 +117,6 @@ class DashboardSettingsProfile extends React.Component {
         const enabled = !this.state.mfaEnabled;
         this.users.toggleMFA({ IdT: this.session.getAuthenticatedUserItem('IdT', 'session'), toggleState: enabled });
         this.setState({ mfaEnabled: enabled });
-
-        // Google Analytics
-        const result = enabled ? 'Enabled' : 'Disabled';
-        Event('User', 'Clicked MFA Checkbox', result);
     }
 
     toggle() {

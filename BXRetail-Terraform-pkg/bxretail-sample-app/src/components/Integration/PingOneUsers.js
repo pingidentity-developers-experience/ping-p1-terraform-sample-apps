@@ -18,7 +18,6 @@ class PingOneUsers {
     @param {string} envId PingOne tenant environment ID.
     */
     constructor(proxyApiPath, envId) {
-        // this.proxyApiPath = `${proxyApiPath}/environments/${envId}`;
         this.proxyApiPath = proxyApiPath;
         this.envId = envId;
     }
@@ -43,7 +42,6 @@ class PingOneUsers {
             headers: myHeaders,
             redirect: 'manual'
         };
-        // const url = this.proxyApiPath + "/users/" + userId;
         const url = this.proxyApiPath + '/user/' + this.envId + "/users/" + userId;
         const response = await fetch(url, requestOptions);
         const jsonResponse = await response.json();
@@ -76,7 +74,6 @@ class PingOneUsers {
             redirect: 'manual'
         };
 
-        // const url = this.proxyApiPath + "/users/" + userId;
         const url = this.proxyApiPath + '/user/' + this.envId + "/users/" + userId;
         const response = await fetch(url, requestOptions);
         const jsonResponse = await response.json();
@@ -108,7 +105,6 @@ class PingOneUsers {
             redirect: "manual"
         };
 
-        // const url = this.proxyApiPath + "/users/" + userId + "/mfaEnabled";
         const url = this.proxyApiPath + '/user/' + this.envId + "/users/" + userId + "/mfaEnabled";
         
         const response = await fetch(url, requestOptions);

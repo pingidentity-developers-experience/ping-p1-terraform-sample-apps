@@ -36,7 +36,6 @@ class Users {
     @return {object} JSON formatted response object.
      */
     async getUserProfile({ IdT, userId }) {
-        console.log("you are here", IdT);
         console.info("Controller.Users", "Reading user's data.");
 
         let sub;

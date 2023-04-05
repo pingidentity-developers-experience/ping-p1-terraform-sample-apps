@@ -12,7 +12,6 @@ import Partner from './pages/partner/index';
 import PartnerClient from './pages/partner/client'; 
 import AnyMarketing from './pages/any-marketing'; 
 import * as serviceWorker from './serviceWorker';
-import DemoAdmin from './pages/admin';
 
 
 const routing = (
@@ -33,9 +32,6 @@ const routing = (
             </Route>
             <Route path='/shop/checkout'>
                 <Checkout />
-            </Route>
-            <Route path='/admin/'>
-                <DemoAdmin />
             </Route>
             <Route path='/dashboard/settings/privacy-security'>
                 <DashboardSettingsPrivacySecurity />

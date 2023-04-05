@@ -24,8 +24,8 @@ class Session {
     protectPage(loggedOut, path, userType, props) {
         const partnerAllowedPaths = ["/partner", "/app/partner", "/app/partner/client"];
         const marketingAllowedPaths = ["/app/any-marketing"];
-        const customerAllowedPaths = ["/app/admin/", "/app/dashboard/settings", "/app/dashboard/settings/profile", "/app/dashboard/settings/communication-preferences", "/app/dashboard/settings/privacy-security"];
-        const unauthenticatedPaths = ["/", "/app/", "/app", "/app/admin/", "/app/shop", "/app/shop/checkout"];
+        const customerAllowedPaths = ["/app/dashboard/settings", "/app/dashboard/settings/profile", "/app/dashboard/settings/communication-preferences", "/app/dashboard/settings/privacy-security"];
+        const unauthenticatedPaths = ["/", "/app/", "/app", "/app/shop", "/app/shop/checkout"];
         console.info("Utils.Session", "Checking access rules for user type " + userType + " at " + path);
 
         this.removeAuthenticatedUserItem("triggerLogin", "session");

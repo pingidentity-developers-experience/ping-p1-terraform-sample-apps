@@ -134,25 +134,6 @@ class Checkout extends React.Component {
         }
     }
 
-    openBankingRedirect() {
-        // Make OAuth PAR request to BXFinance OAuth AS.
-        // Take response of request_uri and redirect user to BXFinance authorization endpoint
-        const cart = JSON.parse(this.session.getAuthenticatedUserItem('cart', 'session'));
-        const price = cart.finalTotal.replace(/\$|,/g, '');
-        this.session.setAuthenticatedUserItem('price', price, 'session');
-
-        if (!this.state.acctFound) {
-            // Store user id and email for account creation is user is a guest
-            this.session.setAuthenticatedUserItem('storedUserId', this.state.userId, 'session');
-            this.session.setAuthenticatedUserItem('storedEmail', this.state.email, 'session');
-        }
-
-        this.authz.pushAuthzRequest(price).then((response) => {
-            const res = JSON.parse(response.additionalProperties.body);
-            window.location.assign(this.envVars.REACT_APP_FINANCE_APP + '/as/authorization.oauth2?client_id=OB-PAR&request_uri=' + res.request_uri + '&scope=urn:banking:initiate_payment');
-        });
-    }
-
     toggleConfirmation() {
         this.setState({
             isOpenConfirmation: !this.state.isOpenConfirmation,
@@ -167,43 +148,37 @@ class Checkout extends React.Component {
     onApproval() {
         let self = this;
 
-        const checkoutType = this.session.getAuthenticatedUserItem('cartCheckoutType', 'session');
-
-        if (checkoutType === 'bankAccount') {
-            this.openBankingRedirect();
+        let cost;
+        if (this.state.selectedItem.price) {
+            cost = this.state.selectedItem.price;
         } else {
-            let cost;
-            if (this.state.selectedItem.price) {
-                cost = this.state.selectedItem.price;
-            } else {
-                let cart = JSON.parse(this.session.getAuthenticatedUserItem('cart', 'session'));
-                cost = cart.price
-            }
-            cost = cost.replace(/\$|,/gi, '');
-            console.info('cost', cost);
+            let cart = JSON.parse(this.session.getAuthenticatedUserItem('cart', 'session'));
+            cost = cart.price
+        }
+        cost = cost.replace(/\$|,/gi, '');
+        console.info('cost', cost);
 
-            // Need transaction approval.
-            if (parseFloat(cost) >= 1000.0) {
-                console.info('Need purchase approval');
-                this.toggleLoading();
+        // Need transaction approval.
+        if (parseFloat(cost) >= 1000.0) {
+            console.info('Need purchase approval');
+            this.toggleLoading();
 
-                setTimeout(() => {
-                    self.toggleLoading();
-                    self.toggleConfirmation();
-                    if (!this.state.acctFound) {
-                        this.changeUIStep('5');
-                    }
-                }, 6000);
-            } else {
-                console.info('No purchase approval needed');
+            setTimeout(() => {
+                self.toggleLoading();
                 self.toggleConfirmation();
                 if (!this.state.acctFound) {
                     this.changeUIStep('5');
                 }
+            }, 6000);
+        } else {
+            console.info('No purchase approval needed');
+            self.toggleConfirmation();
+            if (!this.state.acctFound) {
+                this.changeUIStep('5');
             }
-
-            this.clearShoppingCart();
         }
+
+        this.clearShoppingCart();
     }
 
     async changeUIStep(stepNumber) {
@@ -221,39 +196,39 @@ class Checkout extends React.Component {
             if (this.session.isLoggedOut && !this.formref1.current.reportValidity()) {
                 return false;
             }
-            // this.setState({ step: stepNumber });
-            this.setState({ lookupPending: true });
-            const email = this.state.email ? this.state.email : this.session.getAuthenticatedUserItem('email', 'session');
-            this.customerLookup(email)
-                .then((lookupResponse) => {
-                    //Promise will only resolve if there is a user record found. See customerLookup().
-                    this.setState((state) => {
-                        return { recordFound: true };
-                    });
-                    IdP = lookupResponse._embedded.users[0].identityProvider.type;
-                    userId = lookupResponse._embedded.users[0].id;
-                    this.setState({ userId: userId });
-                    if (!this.session.isLoggedOut) {
-                        this.getProfile(userId);
-                        this.setState({ step: stepNumber, detailsPending: false, acctFound: true });
-                    } else if (IdP.length && IdP === 'PING_ONE') {
-                        this.signInToCheckout(email);
-                    } else if (IdP.length && IdP !== 'PING_ONE') {
-                        console.info('Customer has an external IdP (federated identity).');
-                        // TODO UX question: Do we need to automate this federated login so when we kick off signin, we automatically redirect to their idp upon return with a flowId.
-                        if (authMode === 'signInToCheckout' || authMode === 'login') {
-                            this.getProfile(userId);
-                            this.setState({ step: stepNumber, acctFound: true });
-                        } else {
-                            this.signInToCheckout();
-                        }
-                    }
-                })
-                .catch((error) => {
-                    console.warn("We didn't find any user records with that email address/userName.");
-                    this.setState({ step: stepNumber });
-                    this.setState({ lookupPending: false, detailsPending: false, profilePending: false });
-                });
+            this.setState({ step: stepNumber, profilePending: false });
+            // this.setState({ lookupPending: true });
+            // const email = this.state.email ? this.state.email : this.session.getAuthenticatedUserItem('email', 'session');
+            // this.customerLookup(email)
+            //     .then((lookupResponse) => {
+            //         //Promise will only resolve if there is a user record found. See customerLookup().
+            //         this.setState((state) => {
+            //             return { recordFound: true };
+            //         });
+            //         IdP = lookupResponse._embedded.users[0].identityProvider.type;
+            //         userId = lookupResponse._embedded.users[0].id;
+            //         this.setState({ userId: userId });
+            //         if (!this.session.isLoggedOut) {
+            //             this.getProfile(userId);
+            //             this.setState({ step: stepNumber, detailsPending: false, acctFound: true });
+            //         } else if (IdP.length && IdP === 'PING_ONE') {
+            //             this.signInToCheckout(email);
+            //         } else if (IdP.length && IdP !== 'PING_ONE') {
+            //             console.info('Customer has an external IdP (federated identity).');
+            //             // TODO UX question: Do we need to automate this federated login so when we kick off signin, we automatically redirect to their idp upon return with a flowId.
+            //             if (authMode === 'signInToCheckout' || authMode === 'login') {
+            //                 this.getProfile(userId);
+            //                 this.setState({ step: stepNumber, acctFound: true });
+            //             } else {
+            //                 this.signInToCheckout();
+            //             }
+            //         }
+            //     })
+            //     .catch((error) => {
+            //         console.warn("We didn't find any user records with that email address/userName.");
+            //         this.setState({ step: stepNumber });
+            //         this.setState({ lookupPending: false, detailsPending: false, profilePending: false });
+            //     });
         }
 
         /* Choose billing option */
@@ -319,20 +294,20 @@ class Checkout extends React.Component {
         });
     }
 
-    customerLookup(email) {
-        return new Promise((resolve, reject) => {
-            this.users.userLookup(email).then((lookupResponse) => {
-                // If user with password found in P1, resolve promise.
-                if (lookupResponse.additionalProperties.existingUser === true) {
-                    let response = lookupResponse.additionalProperties.rawResponse;
-                    let jsonResponse = JSON.parse(response);
-                    resolve(jsonResponse.matchedUsers);
-                } else {
-                    reject(lookupResponse);
-                }
-            });
-        });
-    }
+    // customerLookup(email) {
+    //     return new Promise((resolve, reject) => {
+    //         this.users.userLookup(email).then((lookupResponse) => {
+    //             // If user with password found in P1, resolve promise.
+    //             if (lookupResponse.additionalProperties.existingUser === true) {
+    //                 let response = lookupResponse.additionalProperties.rawResponse;
+    //                 let jsonResponse = JSON.parse(response);
+    //                 resolve(jsonResponse.matchedUsers);
+    //             } else {
+    //                 reject(lookupResponse);
+    //             }
+    //         });
+    //     });
+    // }
 
     /**
      * Get user profile
@@ -383,46 +358,22 @@ class Checkout extends React.Component {
     }
 
     checkout() {
-        const queryParams = new URLSearchParams(window.location.search);
-        if (queryParams.get('OpenBankingTransactionId')) {
-            console.info('OpenBanking transaction approval completed in BXFinance');
-            this.setState({
-                orderProcessingMsg: data.modal.loading.finalizeOrder,
-                isOpenLoading: true,
-                userId: this.session.getAuthenticatedUserItem('storedUserId', 'session'),
-            });
-            // TODO For #182366216 Somewhere in here,
-            // If session var offerToCreateAcct = true,
-            // setState stepNumber = 5.
-            //Else, continue on below as per usual.
-            this.session.removeAuthenticatedUserItem('storedUserId', 'session');
-
-            setTimeout(
-                function () {
-                    this.setState({ isOpenLoading: false });
-                    this.toggleConfirmation();
-                    this.clearShoppingCart();
-                }.bind(this),
-                3000
-            );
-        } else {
-            //REFACTOR this is horribly written. It's better than before but it can be improved I think.
-            // I.e. can probably have the first check only be for this.acctVerified and call this.onApproval since that is always the case.
-            // And just handle the logged in/logged out scenarios separately.
-            console.info('Starting the checkout process.');
-            if (this.session.isLoggedOut) {
-                if (this.acctVerified) {
-                    this.onApproval();
-                }
+        //REFACTOR this is horribly written. It's better than before but it can be improved I think.
+        // I.e. can probably have the first check only be for this.acctVerified and call this.onApproval since that is always the case.
+        // And just handle the logged in/logged out scenarios separately.
+        console.info('Starting the checkout process.');
+        if (this.session.isLoggedOut) {
+            if (this.acctVerified) {
+                this.onApproval();
             }
+        }
 
-            if (!this.session.isLoggedOut) {
-                if (this.acctVerified) {
-                    this.onApproval();
-                } else {
-                    //Read user attributes and Display UI step 3. User adds/updates profile.
-                    this.changeUIStep('3');
-                }
+        if (!this.session.isLoggedOut) {
+            if (this.acctVerified) {
+                this.onApproval();
+            } else {
+                //Read user attributes and Display UI step 3. User adds/updates profile.
+                this.changeUIStep('3');
             }
         }
     }
@@ -437,60 +388,19 @@ class Checkout extends React.Component {
         // clear abandoned/failed banking account payment key
         this.session.removeAuthenticatedUserItem('cartCheckoutType', 'session');
 
-        const queryParams = new URLSearchParams(window.location.search);
-        const code = queryParams.get('code');
-
-        if (code) {
-            const price = parseFloat(this.session.getAuthenticatedUserItem('price', 'session'));
-
-            this.authz.swapCodeForTokenOB(code).then((response) => {
-                console.info('Open Banking Payment Token -  you can use this token on the admin page to attempt to make an additional payment.', response.access_token);
-                this.authz.openBankingApi(response.access_token, price).then((response) => {
-                    if (response.success) {
-                        this.toggleConfirmation();
-                        this.clearShoppingCart();
-                        if (!this.state.acctFound) {
-                            this.setState({
-                                userId: this.session.getAuthenticatedUserItem('storedUserId', 'session'),
-                                email: this.session.getAuthenticatedUserItem('storedEmail', 'session'),
-                            }, () => {
-                                this.changeUIStep('5');
-                                this.session.removeAuthenticatedUserItem('storedUserId', 'session');
-                                this.session.removeAuthenticatedUserItem('storedEmail', 'session');
-                            });
-                        }
-                    } else {
-                        console.error('Bank payment failed', response);
-                    }
-                });
-            });
+        // Checkout process
+        if (!this.session.isLoggedOut) {
+            this.setState({ step: 3, detailsPending: true });
         }
-
-        // Checking if BXFinance payment authorization failed.
-        if (queryParams.get('error') && queryParams.get('error') === 'access_denied') {
-            console.info('Payment authorization at BXFinance was denied or failed.');
+        const hasCartInStorage = this.session.getAuthenticatedUserItem('cart', 'session') === null || this.session.getAuthenticatedUserItem('cart', 'session') === 'undefined' ? false : true;
+        if (hasCartInStorage) {
+            // Returning from BXFinance, OpenBanking transaction
+            console.info('Items found in shopping cart.', 'Starting checkout process.');
             this.addToCart(JSON.parse(this.session.getAuthenticatedUserItem('cart', 'session')));
-            this.setState({
-                step: '4',
-                paymentError: true,
-            });
-            // Setting to true for subsequent attempts with BXFinance, user acct verified with first attempt
-            this.acctVerified = true;
+            this.checkout();
         } else {
-        // Otherwise continue normal checkout process.
-            if (!this.session.isLoggedOut) {
-                this.setState({ step: 3, detailsPending: true });
-            }
-            const hasCartInStorage = this.session.getAuthenticatedUserItem('cart', 'session') === null || this.session.getAuthenticatedUserItem('cart', 'session') === 'undefined' ? false : true;
-            if (hasCartInStorage) {
-                // Returning from BXFinance, OpenBanking transaction
-                console.info('Items found in shopping cart.', 'Starting checkout process.');
-                this.addToCart(JSON.parse(this.session.getAuthenticatedUserItem('cart', 'session')));
-                this.checkout();
-            } else {
-                // You need to shop before you can checkout.
-                this.props.history.push('/shop');
-            }
+            // You need to shop before you can checkout.
+            this.props.history.push('/shop');
         }
     }
 

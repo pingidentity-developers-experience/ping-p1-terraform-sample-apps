@@ -184,7 +184,6 @@
     "loading": {
       "title": "Please wait while we process your payment...",
       "finalizeOrder": "Finalizing your order...",
-      "openBankingRedirect": "Redirecting to BXFinance to complete your order in ",
       "help": "What is this?"
     },
     "confirmation": {

@@ -134,8 +134,7 @@ class NavbarMain extends React.Component {
     
     this.session.clearUserAppSession('session');
     if (userType === "Customer") {console.log("WE Are logging out");
-        // window.location.assign(`${this.envVars.REACT_APP_AUTHPATH}/${this.envVars.REACT_APP_ENVID}/as/signoff?post_logout_redirect_uri=${this.envVars.REACT_APP_HOST}/app/`);
-        window.location.assign(`${this.envVars.REACT_APP_AUTHPATH}/${this.envVars.REACT_APP_ENVID}/as/signoff`);
+        window.location.assign(`${this.envVars.REACT_APP_AUTHPATH}/${this.envVars.REACT_APP_ENVID}/as/signoff?post_logout_redirect_uri=${this.envVars.REACT_APP_HOST}/app/`);
     } 
     // else {
     //   // Federated ATVP users.

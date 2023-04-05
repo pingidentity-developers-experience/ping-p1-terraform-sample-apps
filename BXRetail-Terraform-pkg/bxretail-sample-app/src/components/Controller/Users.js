@@ -2,7 +2,7 @@
 import AuthZ from "./AuthZ";
 import Tokens from "../Utils/Tokens"; 
 import PingOneUsers from "../Integration/PingOneUsers";
-import DaVinci from '../Integration/DaVinci';
+// import DaVinci from '../Integration/DaVinci';
 import Session from '../Utils/Session';
 
 /**
@@ -22,7 +22,7 @@ class Users {
         this.authz = new AuthZ();
         this.tokens = new Tokens();
         this.ping1Users = new PingOneUsers(this.envVars.REACT_APP_PROXYAPIPATH, this.envVars.REACT_APP_ENVID);
-        this.davinci = new DaVinci();
+        // this.davinci = new DaVinci();
         this.session = new Session();
     }
 
@@ -129,12 +129,12 @@ class Users {
         };
         const rawPayload = JSON.stringify(body);
 
-        const response = await this.davinci.request({
-            dvCompanyId: this.envVars.REACT_APP_DAVINCI_COMPANY_ID,
-            dvApiKey: this.envVars.REACT_APP_USER_SEARCH_DAVINCI_API_KEY,
-            dvPolicyId: this.envVars.REACT_APP_USER_SEARCH_DAVINCI_POLICY_ID,
-            rawPayload,
-        });
+        // const response = await this.davinci.request({
+        //     dvCompanyId: this.envVars.REACT_APP_DAVINCI_COMPANY_ID,
+        //     dvApiKey: this.envVars.REACT_APP_USER_SEARCH_DAVINCI_API_KEY,
+        //     dvPolicyId: this.envVars.REACT_APP_USER_SEARCH_DAVINCI_POLICY_ID,
+        //     rawPayload,
+        // });
 
         return response;
     }
@@ -177,12 +177,12 @@ class Users {
         };
         const rawPayload = JSON.stringify(body);
 
-        const response = await this.davinci.request({
-            dvCompanyId: this.envVars.REACT_APP_DAVINCI_COMPANY_ID,
-            dvApiKey: this.envVars.REACT_APP_USER_LOOKUP_DAVINCI_API_KEY,
-            dvPolicyId: this.envVars.REACT_APP_USER_LOOKUP_DAVINCI_POLICY_ID,
-            rawPayload,
-        });
+        // const response = await this.davinci.request({
+        //     dvCompanyId: this.envVars.REACT_APP_DAVINCI_COMPANY_ID,
+        //     dvApiKey: this.envVars.REACT_APP_USER_LOOKUP_DAVINCI_API_KEY,
+        //     dvPolicyId: this.envVars.REACT_APP_USER_LOOKUP_DAVINCI_POLICY_ID,
+        //     rawPayload,
+        // });
 
         return response;
     }

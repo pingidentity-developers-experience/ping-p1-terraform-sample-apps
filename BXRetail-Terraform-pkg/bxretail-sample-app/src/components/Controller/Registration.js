@@ -2,7 +2,7 @@
 import AuthZ from "./AuthZ";
 import PingOneRegistration from "../Integration/PingOneRegistration";
 import Session from "../Utils/Session";
-import DaVinci from "../Integration/DaVinci";
+// import DaVinci from "../Integration/DaVinci";
 
 /**
 Class representing user registration via PingOne. 
@@ -21,7 +21,7 @@ class Registration {
         this.authz = new AuthZ();
         this.ping1Reg = new PingOneRegistration(this.envVars.REACT_APP_AUTHPATH, this.envVars.REACT_APP_ENVID, this.envVars.REACT_APP_PROXYAPIPATH);
         this.session = new Session();
-        this.davinci = new DaVinci();
+        // this.davinci = new DaVinci();
     }
 
     /**
@@ -74,12 +74,12 @@ class Registration {
         };
         const rawPayload = JSON.stringify(body);
 
-        const response = await this.davinci.request({
-            dvCompanyId: this.envVars.REACT_APP_DAVINCI_COMPANY_ID,
-            dvApiKey: this.envVars.REACT_APP_ENROLL_DEVICE_DAVINCI_API_KEY,
-            dvPolicyId: this.envVars.REACT_APP_ENROLL_DEVICE_DAVINCI_POLICY_ID,
-            rawPayload,
-        });
+        // const response = await this.davinci.request({
+        //     dvCompanyId: this.envVars.REACT_APP_DAVINCI_COMPANY_ID,
+        //     dvApiKey: this.envVars.REACT_APP_ENROLL_DEVICE_DAVINCI_API_KEY,
+        //     dvPolicyId: this.envVars.REACT_APP_ENROLL_DEVICE_DAVINCI_POLICY_ID,
+        //     rawPayload,
+        // });
 
         return response;
     }

@@ -4,7 +4,7 @@ import AuthZ from "./AuthZ";
 import Tokens from "../Utils/Tokens";
 import Users from "../Controller/Users";
 import Session from "../Utils/Session";
-import DaVinci from "../Integration/DaVinci";
+// import DaVinci from "../Integration/DaVinci";
 
 /**
 Class representing consent management and enforcement. 
@@ -25,7 +25,7 @@ class Consents {
         this.tokens = new Tokens();
         this.users = new Users();
         this.session = new Session();
-        this.daVinci = new DaVinci();
+        // this.daVinci = new DaVinci();
     }
 
 
@@ -100,12 +100,12 @@ class Consents {
             accessToken: AT
         });
 
-        const response = await this.daVinci.request({
-            dvCompanyId: this.envVars.REACT_APP_DAVINCI_COMPANY_ID,
-            dvApiKey: this.envVars.REACT_APP_CONSENT_ENFORCEMENT_DAVINCI_API_KEY,
-            dvPolicyId: this.envVars.REACT_APP_CONSENT_ENFORCEMENT_DAVINCI_POLICY_ID,
-            rawPayload
-        });
+        // const response = await this.daVinci.request({
+        //     dvCompanyId: this.envVars.REACT_APP_DAVINCI_COMPANY_ID,
+        //     dvApiKey: this.envVars.REACT_APP_CONSENT_ENFORCEMENT_DAVINCI_API_KEY,
+        //     dvPolicyId: this.envVars.REACT_APP_CONSENT_ENFORCEMENT_DAVINCI_POLICY_ID,
+        //     rawPayload
+        // });
         return response;
     }
 }

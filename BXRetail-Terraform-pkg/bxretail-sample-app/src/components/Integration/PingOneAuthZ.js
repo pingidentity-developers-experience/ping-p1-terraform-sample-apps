@@ -44,7 +44,6 @@ class PingOneAuthZ {
         );
 
         let url = this.authPath + '/' + this.envId + '/as/authorize?response_type=' + responseType + '&client_id=' + clientId + '&redirect_uri=' + redirectURI + '&scope=' + scopes;
-
         // PKCE and state support for auth code grant types
         if (responseType === 'code') {
             const state = this.OAuthUtils.getRandomString(20);

@@ -385,7 +385,7 @@ class ModalLoginPassword extends React.Component {
                       <div>
                         <Button type="button" color="link" size="sm" className="text-info pl-0" onClick={() => { this.toggleTab('5'); }}>{data.form.buttons.reset_password}</Button>
                       </div>
-                      <div className="login-link-container">
+                      {/* <div className="login-link-container">
                         <LoginLinkButton color="#211012" backgroundColor="#F9C646" text="Tired of Passwords?" clickHandler={() => this.handleUserAction("Magic Link")} icon={
                           <FontAwesomeIcon size="2x" icon={faLink} />
                         } />
@@ -399,7 +399,7 @@ class ModalLoginPassword extends React.Component {
                         <LoginLinkButton backgroundColor="#2A84FC" text="Sign In with Google" clickHandler={() => this.handleUserAction("Google")} icon={
                           <img src={window._env_.PUBLIC_URL + "/images/google-icon.png"} alt="Google" />
                         } />
-                      </div>
+                      </div> */}
                     </div>}
                 </form>
               </TabPane>

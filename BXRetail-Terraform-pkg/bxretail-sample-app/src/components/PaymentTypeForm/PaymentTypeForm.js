@@ -38,10 +38,6 @@ class PaymentTypeForm extends React.Component {
                             </FormGroup>}
                     </>}
                 </div>
-                {/* <div className="payment-type" style={{ backgroundColor: this.props.checkoutType === 'bankAccount' ? '#f3f3f3' : '#ffffff'}}>
-                    <CustomInput id="cart_options2" type="radio" name="cart_options" value="bankAccount" onChange={this.props.onCheckoutTypeChange} checked={this.props.checkoutType === 'bankAccount'} className="mt-2" label={data.option2} />
-                    {this.props.checkoutType === 'bankAccount' && <div className="payment-type__bank-account-msg">{data.bankAccountMsg}</div>}
-                </div> */}
                 <div className="payment-type">
                     <CustomInput id="cart_options3" type="radio" name="cart_options" readOnly onClick={(event) => event.preventDefault()} className="mt-2" label={data.option3} />
                 </div>

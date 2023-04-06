@@ -17,8 +17,9 @@ class PingOneUsers {
     @param {string} proxyApiPath Management API host.
     @param {string} envId PingOne tenant environment ID.
     */
-    constructor(proxyApiPath, envId) {
+    constructor(proxyApiPath, envId, apiPath) {
         this.proxyApiPath = `${proxyApiPath}/environments/${envId}`;
+        this.apiPath = apiPath;
     }
 
     /**
@@ -73,7 +74,8 @@ class PingOneUsers {
             redirect: 'manual'
         };
 
-        const url = this.proxyApiPath + "/users/" + userId;
+        // const url = this.proxyApiPath + "/users/" + userId;
+        const url = this.apiPath + '/environments/' + this.envId + "/users/" + userId;
         const response = await fetch(url, requestOptions);
         const jsonResponse = await response.json();
         return jsonResponse;

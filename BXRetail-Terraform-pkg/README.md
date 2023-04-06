@@ -34,7 +34,7 @@
 
 ## Cloning the Project
 ### Variables
-After cloning the project, navigate to /terraform and create a **terraform.tfvars** file with the following:
+After cloning the project, navigate to `/terraform` and create a `terraform.tfvars` file with the following:
 
 ```hcl
 region          = "{{ NorthAmerica | Canada | Asia | Europe }}"

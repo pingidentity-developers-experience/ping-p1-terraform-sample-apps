@@ -31,5 +31,51 @@
 | vars.tf | HCL that declares [variables](https://developer.hashicorp.com/terraform/language/values/variables) that will be needed in defining your environment/infrastructure. |
 | versions.tf | HCL declaring [required providers](https://developer.hashicorp.com/terraform/language/providers/requirements#requiring-providers) & versions to use. |
 
+
+## Cloning the Project
+### Variables
+After cloning the project, navigate to /terraform and create a **terraform.tfvars** file with the following:
+
+region          = "{{ NorthAmerica | Canada | Asia | Europe }}"
+organization_id = "{{orgId}}"
+admin_env_id    = "{{adminEnvId}}"
+admin_user_id   = "{{adminUserId}}"
+license_name    = "{{licenseName}}"
+worker_id       = "{{workerId}}"
+worker_secret   = "{{workerSecret}}"
+k8s_deploy_domain = "{{k8sDeployName}}"
+k8s_namespace     = "{{k8sNamespace}}"
+proxy_image_name  = "docker.io/michaelspingidentity/ping-integration-proxy:0.1.0"
+app_image_name    = "docker.io/michaelspingidentity/ping-bxretail-terraform-sample:202303-0.19.2-beta"
+env_type          = "dev"
+
+| Variable | Description | 
+| -------- | ----------- |
+| region | Region for PingOne Environment | 
+| organization_id | PingOne Organization Id - Located under Environment -> Properties | 
+| admin_env_id | PingOne Environment Id for Administrators Environment - Located under Environment -> Properties |
+| admin_user_id | User Id for a user in the Administrators Environment - Located under Identities -> Users -> Select user -> Click API tab -> ID |
+| license_name | License name to be used for PingOne Environment |
+| worker_id | Client Id for Worker App in the Administrators Environment - Located under Connections -> Applications -> Select existing Worker App or create one -> Configuration -> Expand General -> Client ID |
+| worker_secret | Client Secrey for Worker App in the Administrators Environment - Located under Connections -> Applications -> Select Worker App -> Configuration -> Expand General -> Client Secret |
+| k8s_deploy_domain | K8s Deploy Domain name |
+| k8s_namespace | K8s Namespace to deploy app |
+
+### Deployment
+
+In the command line, navigate to the /terraform directory and run:
+
+```zsh
+terraform init
+```
+
+If the plan fails - check your `terraform.tfvars` values.
+
+If the plan succeeds:
+
+```hcl
+terraform apply —auto-approve
+````
+
 # Disclaimer
 THIS DEMO AND SAMPLE CODE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL PING IDENTITY OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) SUSTAINED BY YOU OR A THIRD PARTY, HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT ARISING IN ANY WAY OUT OF THE USE OF THIS DEMO AND SAMPLE CODE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

@@ -22,7 +22,7 @@ fastify.register(import('@fastify/http-proxy'), {
 
 fastify.register(import("@fastify/cors"), {
     origin: "*",
-    methods: ["GET","POST"]
+    methods: ["GET","POST","PATCH","PUT"]
 })
 
 // Run the server!

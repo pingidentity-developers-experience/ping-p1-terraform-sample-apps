@@ -204,7 +204,7 @@ class Checkout extends React.Component {
 
             this.setState({ step: stepNumber, profilePending: false });
 
-            // 
+            // User Lookup DV Flow
             // this.setState({ lookupPending: true });
             // const email = this.state.email ? this.state.email : this.session.getAuthenticatedUserItem('email', 'session');
             // this.customerLookup(email)

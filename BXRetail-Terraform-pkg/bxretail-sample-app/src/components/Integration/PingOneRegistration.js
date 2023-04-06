@@ -13,9 +13,10 @@ class PingOneRegistration {
     @param {string} authPath PingOne auth path for your regions tenant. (For BXR, could be the DG (PAZ) proxy host.)
     @param {string} envId PingOne environment ID needed for authZ integrations.
     */
-    constructor(authPath, envId) {
+    constructor(authPath, envId, apiPath) {
         this.authPath = authPath;
         this.envId = envId;
+        this.apiPath = apiPath;
     }
 
     /**
@@ -71,6 +72,44 @@ class PingOneRegistration {
         const url = this.authPath + '/' + this.envId + "/flows/" + flowId;
         const response = await fetch(url, requestOptions);
         const jsonResponse = await response.json();
+        return jsonResponse;
+    }
+
+    /**
+     * Enroll an MFA device for a user.
+     * @param {} tk blah blah
+     * @returns {object}
+     */
+    async enrollMFADevice(payload) {
+        console.log("payload", payload);
+        const payloadJSON = JSON.parse(payload);
+        const accessToken = payloadJSON.accessToken;
+        const emailaddress = payloadJSON.email;
+        const userId = payloadJSON.userId;
+        console.log("payloadJSON", payloadJSON);
+        console.log("emailaddress", emailaddress);
+
+        let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        myHeaders.append("Authorization", "Bearer " + accessToken);
+
+        const raw = JSON.stringify({
+            "type": "EMAIL",
+            "email": emailaddress
+        });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+        const url = this.apiPath + '/environments/' + this.envId + '/users/' + userId + '/devices'
+
+        // fetch("{{apiPath}}/environments/{{envID}}/users/{{userID}}/devices", requestOptions)
+        const response = await fetch(url, requestOptions);
+        const jsonResponse = await response.json();
+        
         return jsonResponse;
     }
 }

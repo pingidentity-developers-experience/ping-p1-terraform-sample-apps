@@ -175,22 +175,31 @@ class NavbarMain extends React.Component {
 
     // This enrolls an email device & updates user data on the first navigation to navbarMain after reg.
     if (this.session.getAuthenticatedUserItem('AT', 'session') && this.session.getAuthenticatedUserItem('authMode', 'session') === 'registration') {
+      this.session.removeAuthenticatedUserItem('authMode', 'session');
       const userId = this.tokens.getTokenValue({ token: this.session.getAuthenticatedUserItem('IdT', 'session'), key: "sub" });
-      this.registration.enrollDevice({ userId: userId, email: this.session.getAuthenticatedUserItem('email', 'session'), accessToken: this.session.getAuthenticatedUserItem('AT', 'session') })
-      .then(() => {
-        console.info('Email device enrolled successfully.')
-        this.session.removeAuthenticatedUserItem('authMode', 'session');
-        if (this.session.getAuthenticatedUserItem('userData', 'session')) {
-          const userData = JSON.parse(this.session.getAuthenticatedUserItem('userData', 'session'));
-          this.users.updateUserProfile({ userState: userData, userId: userId })
-          .then(response => {
-            this.session.setAuthenticatedUserItem('firstName', userData.firstname, 'session');
-            this.session.removeAuthenticatedUserItem('userData', 'session');
-          })
-        }
-      }).catch(error => {
-        console.warn('enrollDevice Exception', error);
-      })
+      if (this.session.getAuthenticatedUserItem('userData', 'session')) {
+        const userData = JSON.parse(this.session.getAuthenticatedUserItem('userData', 'session'));
+        this.users.updateUserProfile({ userState: userData, userId: userId })
+        .then(response => {
+          this.session.setAuthenticatedUserItem('firstName', userData.firstname, 'session');
+          this.session.removeAuthenticatedUserItem('userData', 'session');
+        })
+      }
+      // this.registration.enrollDevice({ userId: userId, email: this.session.getAuthenticatedUserItem('email', 'session'), accessToken: this.session.getAuthenticatedUserItem('AT', 'session') })
+      // .then(() => {
+      //   console.info('Email device enrolled successfully.')
+      //   this.session.removeAuthenticatedUserItem('authMode', 'session');
+      //   if (this.session.getAuthenticatedUserItem('userData', 'session')) {
+      //     const userData = JSON.parse(this.session.getAuthenticatedUserItem('userData', 'session'));
+      //     this.users.updateUserProfile({ userState: userData, userId: userId })
+      //     .then(response => {
+      //       this.session.setAuthenticatedUserItem('firstName', userData.firstname, 'session');
+      //       this.session.removeAuthenticatedUserItem('userData', 'session');
+      //     })
+      //   }
+      // }).catch(error => {
+      //   console.warn('enrollDevice Exception', error);
+      // })
     }
 
     if (window.location.search) {

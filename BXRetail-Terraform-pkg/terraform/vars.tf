@@ -1,6 +1,6 @@
 ##########################################################################
 # vars.tf - Contains declarations of variables and locals.
-# @see https://developer.hashicorp.com/terraform/language/values
+# {@link https://developer.hashicorp.com/terraform/language/values}
 ##########################################################################
 variable "region" {
   type        = string

@@ -1,6 +1,6 @@
 ##########################################################################
 # k8s.tf - Contains Kubernetes deployment declarations.
-# @see https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs
+# {@link https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs}
 ##########################################################################
 
 resource "kubernetes_ingress_v1" "package_ingress" {

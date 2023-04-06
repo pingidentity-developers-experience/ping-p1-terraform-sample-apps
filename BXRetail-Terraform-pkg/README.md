@@ -41,10 +41,11 @@ region          = "{{ NorthAmerica | Canada | Asia | Europe }}"
 organization_id = "{{orgId}}"
 admin_env_id    = "{{adminEnvId}}"
 admin_user_id   = "{{adminUserId}}"
-license_id    = "{{licenseName}}"
+license_id    = "{{licenseId}}"
 worker_id       = "{{workerId}}"
 worker_secret   = "{{workerSecret}}"
-k8s_deploy_domain = "{{k8sDeployName}}"
+k8s_deploy_name = "{{k8sDeployName}}
+k8s_deploy_domain = "{{k8sDeployDomain}}"
 k8s_namespace     = "{{k8sNamespace}}"
 proxy_image_name  = "docker.io/michaelspingidentity/ping-integration-proxy:0.1.0"
 app_image_name    = "docker.io/michaelspingidentity/ping-bxretail-terraform-sample:202303-0.19.1-beta"
@@ -57,9 +58,10 @@ env_type          = "dev"
 | organization_id | PingOne Organization Id - Located under Environment -> Properties | 
 | admin_env_id | PingOne Environment Id for Administrators Environment - Located under Environment -> Properties |
 | admin_user_id | User Id for a user in the Administrators Environment - Located under Identities -> Users -> Select user -> Click API tab -> ID |
-| license_id | License name to be used for PingOne Environment |
+| license_id | License Id to be used for PingOne Environment |
 | worker_id | Client Id for Worker App in the Administrators Environment - Located under Connections -> Applications -> Select existing Worker App or create one -> Configuration -> Expand General -> Client ID |
-| worker_secret | Client Secrey for Worker App in the Administrators Environment - Located under Connections -> Applications -> Select Worker App -> Configuration -> Expand General -> Client Secret |
+| worker_secret | Client Secret for Worker App in the Administrators Environment - Located under Connections -> Applications -> Select Worker App -> Configuration -> Expand General -> Client Secret |
+| k8s_deploy_name | Name used for k8s deployment |
 | k8s_deploy_domain | K8s Deploy Domain name |
 | k8s_namespace | K8s Namespace to deploy app |
 
@@ -69,6 +71,7 @@ In the command line, navigate to the /terraform directory and run:
 
 ```zsh
 terraform init
+terraform plan
 ```
 
 If the plan fails - check your `terraform.tfvars` values.
@@ -78,6 +81,8 @@ If the plan succeeds:
 ```hcl
 terraform apply —auto-approve
 ````
+
+If this is successful, you will see a new environment added to your PingOne organization under the name "Ping Identity Example". 
 
 ### Optional
 Ping Identity Technical Enablement hosts and maintains the sample for you. If for some reason you'd rather build and host your own Docker images for the sample app, here are the instructions to do that. 

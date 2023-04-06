@@ -12,7 +12,8 @@ We include HTML formatted documentation using the JSDoc utility. Just open the i
 
 Also, all Ping integration methods are annotated with links to the related API docs. All of this is picked up by JSdoc, too.
 
-## Demo Use Cases walk-through
+## Demo Use Cases Walk-Through
+*Incognito or private browser windows may lead to unexpected behavior, please use a regular browser window.*
 
 ### Guest Checkout
 1. Click **Weekly Deals** on the navigation bar.
@@ -106,8 +107,6 @@ PingOne Authentication API
     7. Click **Save**.
     8. Credit Card will be pre-selected as the method of payment, click **Save**.
     9. After the order completes successfully, you will see a Purchase Confirmed screen.
-
-
 
 ### Registration
 PingOne Authentication API & PingOne Management API

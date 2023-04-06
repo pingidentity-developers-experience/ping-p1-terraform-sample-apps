@@ -87,9 +87,7 @@ class Checkout extends React.Component {
             this.setState({
                 activeTab: '1',
             });
-        } else {
-            this.props.history.push('/shop');
-        }
+        } 
     }
     toggle() {
         this.setState({
@@ -199,7 +197,11 @@ class Checkout extends React.Component {
                 return false;
             }
 
-            this.getProfile();
+            if (!this.session.isLoggedOut) {
+                this.setState({ acctFound: true });
+                this.getProfile();
+            }
+
             this.setState({ step: stepNumber, profilePending: false });
         }
 

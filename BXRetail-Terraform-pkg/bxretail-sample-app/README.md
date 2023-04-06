@@ -12,7 +12,7 @@ BXRetail is a Single Page Application (SPA) built with React; JSX, Javascript, r
 ### Guest Checkout
 1. Click **Weekly Deals** on the navigation bar.
 2. On this page you have two item options:
-  1. BXManufacturing Clera 65" 4K UHD LED TV
+   - BXManufacturing Clera 65" 4K UHD LED TV
     1. Click **Add** beneath the product. This product will have an installation serverice auto-selected.
     2. Click **Add Services**.
     3. To finish the checkout session, click **Checkout**.
@@ -24,7 +24,7 @@ BXRetail is a Single Page Application (SPA) built with React; JSX, Javascript, r
     9. After the order completes successfully, you will see a **Purchase Confirmed** screen.
     10. Click **Close**
     11. You will be prompted to create an account. If you wish to remain in an anonymous guest checkout, click **Back to the Shop**.
-  2. Streamstick Video Streaming Player with 4K, Full HD
+   - Streamstick Video Streaming Player with 4K, Full HD
     1. Click **Add** beneath the product. This product will have a protection plan auto-selected.
     2. Click **Add Protection Plan**.
     3. To finish the checkout session, click **Checkout**.
@@ -41,7 +41,7 @@ BXRetail is a Single Page Application (SPA) built with React; JSX, Javascript, r
 PingOne Authentication API & PingOne Management API
 1. Click **Weekly Deals** on the navigation bar.
 2. On this page you have two item options:
-  1. BXManufacturing Clera 65" 4K UHD LED TV
+   - BXManufacturing Clera 65" 4K UHD LED TV
     1. Click **Add** beneath the product. This product will have an installation serverice auto-selected.
     2. Click **Add Services**.
     3. To finish the checkout session, click **Checkout**.
@@ -58,7 +58,7 @@ PingOne Authentication API & PingOne Management API
     14. Enter the verififcation code you received in your email and click **Submit My Code**.
     15. Upon successful registration, you will be signed in to your account.
     16. Navigate to the **My Account** tab, then click **Manage Your Profile**. You will see the information provided during checkout populated here to be used for future purchases.
-  2. Streamstick Video Streaming Player with 4K, Full HD
+   - Streamstick Video Streaming Player with 4K, Full HD
     1. Click **Add** beneath the product. This product will have a protection plan auto-selected.
     2. Click **Add Protection Plan**.
     3. To finish the checkout session, click **Checkout**.
@@ -80,7 +80,7 @@ PingOne Authentication API & PingOne Management API
 PingOne Authentication API
 1. Click **Weekly Deals** on the navigation bar.
 2. On this page you have two item options:
-  1. BXManufacturing Clera 65" 4K UHD LED TV
+   - BXManufacturing Clera 65" 4K UHD LED TV
     1. Click **Add** beneath the product. This product will have an installation serverice auto-selected.
     2. Click **Add Services**.
     3. To finish the checkout session, click **Checkout**.
@@ -91,7 +91,7 @@ PingOne Authentication API
     8. Credit Card will be pre-selected as the method of payment, click **Save**.
     9. After the order completes successfully, you will see a **Purchase Confirmed** screen.
     10. Click **Close**.
-  2. Streamstick Video Streaming Player with 4K, Full HD
+   - Streamstick Video Streaming Player with 4K, Full HD
     1. Click **Add** beneath the product. This product will have a protection plan auto-selected.
     2. Click **Add Protection Plan**.
     3. To finish the checkout session, click **Checkout**.

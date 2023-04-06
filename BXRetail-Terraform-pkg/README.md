@@ -47,7 +47,7 @@ worker_secret   = "{{workerSecret}}"
 k8s_deploy_domain = "{{k8sDeployName}}"
 k8s_namespace     = "{{k8sNamespace}}"
 proxy_image_name  = "docker.io/michaelspingidentity/ping-integration-proxy:0.1.0"
-app_image_name    = "docker.io/michaelspingidentity/ping-bxretail-terraform-sample:202303-0.19.2-beta"
+app_image_name    = "docker.io/michaelspingidentity/ping-bxretail-terraform-sample:202303-0.19.1-beta"
 env_type          = "dev"
 ```
 
@@ -78,6 +78,21 @@ If the plan succeeds:
 ```hcl
 terraform apply —auto-approve
 ````
+
+### Optional
+Ping Identity Technical Enablement hosts and maintains the sample for you. If for some reason you'd rather build and host your own Docker images for the sample app, here are the instructions to do that. 
+
+You would need to have your own Docker image repo to push to and update your tfvars file accordingly. Depending on your image repo, whether that's local, ECR, GCR, etc, you may need to update the k8s.tf file too. 
+
+But again, none of this is necessary to use this project.
+
+Note: in this current version, we are not using the fastify proxy server image. So recreating that is unnecessary.
+
+**From the command line**, change directories to the /bxretail-sample-app directory.
+
+`cd <your project path>/BXTerraform/BXTerraform-Sample-Apps/BXRetail-Terraform-pkg/bxretail-sample-app`
+
+Then run, `build -f Dockerfile.dev -t <host>/<repo_path>/ping-bxretail-terraform-sample:<version_tag> .`
 
 # Disclaimer
 THIS DEMO AND SAMPLE CODE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL PING IDENTITY OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) SUSTAINED BY YOU OR A THIRD PARTY, HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT ARISING IN ANY WAY OUT OF THE USE OF THIS DEMO AND SAMPLE CODE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

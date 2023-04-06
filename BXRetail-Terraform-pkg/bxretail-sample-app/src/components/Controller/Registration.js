@@ -5,16 +5,17 @@ import Session from "../Utils/Session";
 // import DaVinci from "../Integration/DaVinci";
 
 /**
-Class representing user registration via PingOne. 
-
-This demo-specific class is developed and maintained by Ping Identity Technical Enablement.
+Class representing user registration business logic and payload prep for PingOne registration API calls.
+This demo-specific class is developed and maintained by Ping Identity Technical Enablement's demo team.
 Implements methods to integrate with PingOne authentication-related API endpoints.
+@author Ping Identity Technical Enablement
  */
 
 class Registration {
 
     /**
-    Class constructor
+    Class constructor.
+    Declares and sets demo environment variables from our window object.
     */
     constructor() {
         this.envVars = window._env_;
@@ -25,9 +26,7 @@ class Registration {
     }
 
     /**
-    Verify the User:
-    Verify the user's registration email code to complete registration.
-
+    Verify the User owns the email account. Process the request and payload to validate the user's account.
     @param {object} regData State object from user input.
     @param {string} flowId Id for the current authN transaction.
     @returns {*} The flow status, or response object if there's an error.
@@ -55,10 +54,7 @@ class Registration {
     }
 
     /**
-    Enroll a Device:
-    Enroll email as a device at registration for all users so that MFA works later if they opt-in. 
-
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#post-create-mfa-user-device-email
+    Enroll an MFA device Device. Process ther request and payload to enroll email as a device at registration for all users so that MFA works later if they opt-in. 
     @param {string} userId User Id GUID for which to enroll device.
     @param {string} email Email address to be enrolled as user device.
     @param {string} accessToken PingOne access token.
@@ -88,10 +84,7 @@ class Registration {
     }
 
     /**
-    Register a User:
-    Parse and prepare user registration data.
-
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#post-register-user
+    Register a User. Processes the request and payload for the register user call.
     @param {object} regData State object from user input.
     @return {string} The flow status.
     */

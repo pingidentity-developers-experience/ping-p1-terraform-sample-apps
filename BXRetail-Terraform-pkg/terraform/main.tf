@@ -1,8 +1,8 @@
 ##########################################################################
 # main.tf - Declarations for modules and providers to 
 # create infrastructure.
-# @see https://developer.hashicorp.com/terraform/language/modules
-# @see https://developer.hashicorp.com/terraform/language/providers
+# {@link https://developer.hashicorp.com/terraform/language/modules}
+# {@link https://developer.hashicorp.com/terraform/language/providers}
 ##########################################################################
 
 ##############################################
@@ -10,7 +10,7 @@
 ##############################################
 
 # PingOne Environment Module
-# @see https://registry.terraform.io/modules/terraform-pingidentity-modules/environment/pingone/latest?tab=inputs
+# {@link https://registry.terraform.io/modules/terraform-pingidentity-modules/environment/pingone/latest?tab=inputs}
 
 module "environment" {
   source  = "terraform-pingidentity-modules/environment/pingone"
@@ -37,7 +37,7 @@ module "environment" {
 ##############################################
 
 # PingOne Provider
-# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs}
 provider "pingone" {
   client_id                    = var.worker_id
   client_secret                = var.worker_secret

@@ -1,7 +1,7 @@
 ##########################################################################
 # resource.tf - Declarations for PingOne resources.
-# @see https://developer.hashicorp.com/terraform/language/resources
-# @see https://docs.pingidentity.com/r/en-us/pingone/p1_c_resources
+# {@link https://developer.hashicorp.com/terraform/language/resources}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/p1_c_resources}
 ##########################################################################
 
 ##############################################
@@ -9,8 +9,8 @@
 ##############################################
 
 # PingOne Population
-# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/population
-# @see https://docs.pingidentity.com/r/en-us/pingone/p1_c_populations
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/population}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/p1_c_populations}
 resource "pingone_population" "bxr_pop" {
   environment_id = module.environment.environment_id
 
@@ -23,8 +23,8 @@ resource "pingone_population" "bxr_pop" {
 ##############################################
 
 # PingOne Schema Custom JSON Attribute
-# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/resource_attribute
-# @see https://docs.pingidentity.com/r/en-us/pingone/p1_t_adduserattributes
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/resource_attribute}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/p1_t_adduserattributes}
 resource "pingone_schema_attribute" "consent_json_attribute" {
   environment_id = module.environment.environment_id
   #resource_id    = pingone_population.bxr_pop.id
@@ -44,8 +44,8 @@ resource "pingone_schema_attribute" "consent_json_attribute" {
 ##############################################
 
 # PingOne attribute mappings
-# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application_attribute_mapping
-# @see https://docs.pingidentity.com/r/en-us/pingone/p1_t_editsamlattributemapping
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application_attribute_mapping}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/p1_t_editsamlattributemapping}
 resource "pingone_application_attribute_mapping" "email" {
   environment_id = module.environment.environment_id
   application_id = pingone_application.bxretail_sample_app.id
@@ -88,8 +88,8 @@ resource "pingone_application_attribute_mapping" "streetAddress" {
 # PingOne Resources & Scopes
 ##############################################
 
-# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/resource
-# @see https://docs.pingidentity.com/r/en-us/pingone/p1_c_resources
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/resource}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/p1_c_resources}
 resource "pingone_resource" "bxretail_resource" {
   environment_id = module.environment.environment_id
 
@@ -100,8 +100,8 @@ resource "pingone_resource" "bxretail_resource" {
   access_token_validity_seconds = 3600
 }
 
-# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/resource_scope
-# @see https://docs.pingidentity.com/r/en-us/pingone/p1_t_addresource
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/resource_scope}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/p1_t_addresource}
 resource "pingone_resource_scope" "my_resource_scope" {
   environment_id = module.environment.environment_id
   resource_id    = pingone_resource.bxretail_resource.id
@@ -114,8 +114,8 @@ resource "pingone_resource_scope" "my_resource_scope" {
 ##############################################
 
 # PingOne Connection (application)
-# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application
-# @see https://docs.pingidentity.com/r/en-us/pingone/p1_add_app_worker
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/p1_add_app_worker}
 resource "pingone_application" "bxretail_sample_app" {
   environment_id = module.environment.environment_id
   enabled        = true
@@ -140,8 +140,8 @@ resource "pingone_application" "bxretail_sample_app" {
 ##############################################
 
 # PingOne Sign-On Policy
-# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/sign_on_policy
-# @see https://docs.pingidentity.com/r/en-us/pingone/p1_add_an_auth_policy
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/sign_on_policy}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/p1_add_an_auth_policy}
 resource "pingone_sign_on_policy" "default_authN_policy" {
   environment_id = module.environment.environment_id
 
@@ -150,8 +150,8 @@ resource "pingone_sign_on_policy" "default_authN_policy" {
 }
 
 # MFA Policy
-# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/mfa_policy
-# @see https://docs.pingidentity.com/r/en-us/pingone/pingone_c_mfa_policies
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/mfa_policy}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/pingone_c_mfa_policies}
 resource "pingone_mfa_policy" "bxr_mfa_policy" {
   environment_id = module.environment.environment_id
   name           = "BXRetail Sample MFA Policy"
@@ -190,8 +190,8 @@ resource "pingone_mfa_policy" "bxr_mfa_policy" {
 }
 
 # PingOne sign-on Policy Action
-# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/sign_on_policy_action
-# @see https://docs.pingidentity.com/r/en-us/pingone/p1_add_login_auth_step
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/sign_on_policy_action}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/p1_add_login_auth_step}
 resource "pingone_sign_on_policy_action" "default_authN_policy_firstFactor" {
   environment_id    = module.environment.environment_id
   sign_on_policy_id = pingone_sign_on_policy.default_authN_policy.id
@@ -228,8 +228,8 @@ resource "pingone_sign_on_policy_action" "default_authN_policy_secondFactor" {
   }
 }
 
-# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application_sign_on_policy_assignment
-# @see https://docs.pingidentity.com/r/en-us/pingone/pingonemfa_associating_sign_on_policy_with_web_app?section=rxy1666194779493
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application_sign_on_policy_assignment}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/pingonemfa_associating_sign_on_policy_with_web_app?section=rxy1666194779493}
 resource "pingone_application_sign_on_policy_assignment" "default_authN_policy" {
   environment_id = module.environment.environment_id
   application_id = pingone_application.bxretail_sample_app.id
@@ -243,7 +243,7 @@ resource "pingone_application_sign_on_policy_assignment" "default_authN_policy" 
 # PingOne Application Resource Grants
 ##############################################
 
-# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application_resource_grant
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application_resource_grant}
 resource "pingone_application_resource_grant" "pingone_scopes" {
   environment_id = module.environment.environment_id
   application_id = pingone_application.bxretail_sample_app.id
@@ -301,8 +301,8 @@ resource "pingone_resource_scope_openid" "email_scope" {
 
 ##############################################
 # PingOne Branding
-# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/branding_settings
-# @see https://docs.pingidentity.com/r/en-us/pingone/p1_c_edit_environment_branding
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/branding_settings}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/p1_c_edit_environment_branding}
 ##############################################
 
 resource "pingone_branding_settings" "branding" {
@@ -341,7 +341,7 @@ resource "pingone_branding_theme" "bxretail_theme" {
 }
 
 # Pulling in BXRetail images.
-# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/image
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/image}
 resource "pingone_image" "bxretail_logo" {
   environment_id = module.environment.environment_id
 
@@ -361,8 +361,8 @@ resource "pingone_image" "bxretail_background" {
 
 ##############################################
 # PingOne Notification Templates
-# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/notification_template_content
-# @see https://docs.pingidentity.com/r/en-us/pingone/p1_c_notifications
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/notification_template_content}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/p1_c_notifications}
 ##############################################
 
 # Device pairing templates.

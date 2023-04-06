@@ -16,16 +16,6 @@ import * as serviceWorker from './serviceWorker';
 
 const routing = (
     <Router basename={`${window._env_.PUBLIC_URL}`}>
-        <Route
-            path='/'
-            render={({ location }) => {
-                if (window._env_.REACT_APP_TRACKINGID) {
-                    initGA(window._env_.REACT_APP_TRACKINGID);
-                    PageView();
-                }
-                return null;
-            }}
-        />
         <Switch>
             <Route exact path='/shop'>
                 <Shop />

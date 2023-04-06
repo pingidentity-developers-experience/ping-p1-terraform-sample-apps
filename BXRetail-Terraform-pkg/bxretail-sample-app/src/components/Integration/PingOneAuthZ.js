@@ -1,10 +1,8 @@
 /**
 Class representing PingOne Authorization API's integration.
-This demo-specific class is developed and maintained by Ping Identity Technical Enablement.
-Implements methods to integrate with PingOne authentication-related API endpoints.
-
-@author Michael Sanchez
-@see https://apidocs.pingidentity.com/pingone/platform/v1/api/#authentication-apis
+This demo-specific class is developed and maintained by Ping Identity Technical Enablement's demo team.
+Implements methods to integrate with PingOne authorization-related API endpoints.
+@author Ping Identity Technical Enablement
 */
 import OAuthUtils from '../Utils/OAuthUtils';
 import Session from "../Utils/Session";
@@ -27,10 +25,9 @@ class PingOneAuthZ {
     }
 
     /**
-    Authorization Flow:
-    Start an authorization flow with PKCE and state options.
-    
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#openid-connectoauth-2
+    OAuth Authorization start. Redirects the user to the AS authorization endpoint.
+    Uses PKCE and state options as a security best practice for the auth code grant type.    
+    {@link https://apidocs.pingidentity.com/pingone/platform/v1/api/#authorization}
     @param {string} responseType The OAuth grant type. Options are "code" and "token".
     @param {string} clientId The client ID of the OAuth application.
     @param {string} redirectURI The URL to which the OAuth AS should redirect the user with a flowId.
@@ -68,9 +65,8 @@ class PingOneAuthZ {
     }
 
     /**
-    OAuth Token:
-    Swaps an OAuth code for an OAuth access token.
-
+    Get an OAuth Token. Swaps an OAuth code for an OAuth access token.
+    {@link https://apidocs.pingidentity.com/pingone/platform/v1/api/#post-token-authorization_code}
     @param {string} code Authorization code from AS.
     @param {string} redirectURI App URL user should be redirected to after swap for token.
     @returns {object} JSON formatted response object.
@@ -94,17 +90,16 @@ class PingOneAuthZ {
             body: urlencoded,
             redirect: 'manual',
         };
-        const url = this.proxyApiPath + '/auth/' + this.envId + '/as/token';
+        // const url = this.proxyApiPath + '/auth/' + this.envId + '/as/token';
+        const url = this.authPath + '/' + this.envId + '/as/token';
         const response = await fetch(url, requestOptions);
         const jsonResponse = await response.json();
         return jsonResponse;
     }
 
     /**
-    Introspect a Token:
-    Introspect a token. This is not in use today.
-    
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#post-token-introspection-id-token
+    Introspect and validate a token. This is not in use today.
+    {@link https://apidocs.pingidentity.com/pingone/platform/v1/api/#post-token-introspection-id-token}
     @param {string} token an OAuth token
     @return {string} JSON web token.
     */
@@ -130,33 +125,4 @@ class PingOneAuthZ {
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
     } */
-
-    /**
-    Swap Code for Token (BXFinance PingFederate - OpenBanking):
-    Swaps an OAuth code for an OAuth access token.
-
-    @see https://docs.pingidentity.com/bundle/pingfederate-110/page/xhx1564003025004.html
-    @param {string} code Authorization code from AS.
-    @param {string} bxfHost BXF base url
-    @param {string} appHost REACT_APP_HOST
-    @return {string} JSON web token.
-    */
-
-    async swapCodeForToken(code, bxfHost, appHost) {
-        console.info('Integration.PingOneAuthZ.js', 'Swapping authorization code for access token');
-
-        let myHeaders = new Headers();
-        myHeaders.append('Authorization', 'Basic T0ItUEFSOmFDNm5IelN2ODZwU0lmalNUZG5wZXBUbDhUOFZ3SWVLa2FiRkgwVEpaa2NNU09lVXBuazUwUXlIeTNTdmVueHc=');
-        myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
-
-        const requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-        };
-
-        const url = bxfHost + '/as/token.oauth2?grant_type=authorization_code&redirect_uri=' + appHost + '/app/shop/checkout&code=' + code;
-        const response = await fetch(url, requestOptions);
-        const jsonResponse = await response.json();
-        return jsonResponse;
-    }
 } export default PingOneAuthZ;

@@ -5,15 +5,15 @@ import Tokens from "../Utils/Tokens";
 import Session from "../Utils/Session";
 
 /**
- Class representing authentication via PingOne for login and profile update events. 
- This demo-specific class is developed and maintained by Ping Identity Technical Enablement.
- Implements methods to integrate with PingOne and PingAuthorize-related API endpoints.
- 
+ Class representing authentication business logic and payload prep for PingOne authentication API calls.
+ This demo-specific class is developed and maintained by Ping Identity Technical Enablement's demo team.
+ @author Ping Identity Technical Enablement
  */
 
 class AuthN {
     /**
     Class constructor
+    Declares and sets demo environment variables from our window object.
     */
     constructor() {
         this.envVars = window._env_;
@@ -31,9 +31,7 @@ class AuthN {
     }
 
     /**
-    User Login:
-    Login the user.
-
+    Login the user. Processes the request to validate the username and password.
     @param {object} loginData state object from user input.
     @param {string} flowId Id for the current authN transaction.
     @return {*} Response status, or response object if there's an issue.
@@ -68,35 +66,30 @@ class AuthN {
     }
 
     /**
-    Select Device:
-    Select our only enrolled device (email) for the user. Not based on user input. 
-
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#post-select-device
+    Select MFA Device
+    Process the reqeuest to select our only enrolled device (email) for the user. Not based on user input. 
     @param {string} deviceId Device Id for the device you would like to select.
     @param {string} flowId Id for the current authN transaction.
     @return {object} response
     */
-    async selectDevice({ deviceId, flowId }) {
-        console.info("Controller.AuthN", "Selecting email as our MFA device.");
+    // async selectDevice({ deviceId, flowId }) {
+    //     console.info("Controller.AuthN", "Selecting email as our MFA device.");
 
-        let payload = JSON.stringify({
-            device: {
-                id: deviceId,
-            },
-        });
+    //     let payload = JSON.stringify({
+    //         device: {
+    //             id: deviceId,
+    //         },
+    //     });
 
-        const response = await this.ping1AuthN.selectDevice({
-            devicePayload: payload,
-            flowId: flowId,
-        });
-        return response;
-    }
+    //     const response = await this.ping1AuthN.selectDevice({
+    //         devicePayload: payload,
+    //         flowId: flowId,
+    //     });
+    //     return response;
+    // }
 
     /**
-    Opt-in MFA OTP Request:
-    OTP Request for users who have opted into MFA.
-
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#post-check-one-time-password-otp 
+    MFA OTP Check. Processes the request for an OTP check.
     @param {string} OTP User-entered one-time-passcode they received.
     @param {string} flowId Id for the current authN transaction.
     @return {object} response
@@ -116,31 +109,25 @@ class AuthN {
     }
 
     /**
-    Get Requested Social Provider:
-    For users logging in from a social provider, know where they need to go.
-
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#get-read-external-authentication-initialization 
+    Get Requested Social Providers. Processes the request to get the user's list of social login providers.
     @param {string} IdP name of the external IdP for which data is needed.
     @param {string} flowId Id for the current authN transaction.
     @returns {object} Portion of the response object for a given social provider.
     */
-    async getRequestedSocialProvider({ IdP, flowId }) {
-        console.info("Controller.AuthN","Getting a list of social providers." );
+    // async getRequestedSocialProvider({ IdP, flowId }) {
+    //     console.info("Controller.AuthN","Getting a list of social providers." );
 
-        const response = await this.ping1AuthN.readAuthNFlowData({
-            flowId: flowId,
-        });
-        const resultsArr = await response._embedded.socialProviders;
-        const result = resultsArr.find((provider) => provider["name"] === IdP);
+    //     const response = await this.ping1AuthN.readAuthNFlowData({
+    //         flowId: flowId,
+    //     });
+    //     const resultsArr = await response._embedded.socialProviders;
+    //     const result = resultsArr.find((provider) => provider["name"] === IdP);
 
-        return result._links.authenticate.href;
-    }
+    //     return result._links.authenticate.href;
+    // }
 
     /**
-    Initiate Self-service Forgot Password:
-    Receives username to start the self-service forgot password flow.
-
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#post-forgot-password
+    Initiate Self-service Forgot Password. Processes the request to start a forgot password process.
     @param {string} flowId Id for the current authN transaction.
     @param {string} username User-entered username for the account they are attempting to access.
     @returns {object} response
@@ -160,10 +147,7 @@ class AuthN {
     }
 
     /**
-    Self-service Forgot Password, Change Password:
-    Accepts the recovery code and new password for self-service password reset.
-
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#post-recover-password
+    Self-service password reset. Processes the request to validate a recovery code and new password.
     @param {string} flowId Id for the current authN transaction.
     @param {string} recoveryCode User-entered recovery code that was sent to them.
     @param {string} newPassword User's new chosen password.
@@ -185,28 +169,25 @@ class AuthN {
     }
 
     /**
-    Reset Expired Password:
-    Accepts the current password and new password for password reset.
-
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#post-reset-password
+    Reset Expired Password. Processes the request to reset a password.
     @param {string} flowId Id for the current authN transaction.
     @param {string} currentPassword User's current expired password.
     @param {string} newPassword User's new chosen password.
     @returns response
     */
-    async resetPassword({ flowId, currentPassword, newPassword }) {
-        console.info("Controller.AuthN", "Accepting current and new password to begin password reset flow.");
+    // async resetPassword({ flowId, currentPassword, newPassword }) {
+    //     console.info("Controller.AuthN", "Accepting current and new password to begin password reset flow.");
 
-        const payload = JSON.stringify({
-            currentPassword: currentPassword,
-            newPassword: newPassword
-        });
+    //     const payload = JSON.stringify({
+    //         currentPassword: currentPassword,
+    //         newPassword: newPassword
+    //     });
 
-        const response = await this.ping1AuthN.resetPassword({
-            flowId: flowId,
-            resetPasswordPayload: payload,
-        });
-        return response;
-    }
+    //     const response = await this.ping1AuthN.resetPassword({
+    //         flowId: flowId,
+    //         resetPasswordPayload: payload,
+    //     });
+    //     return response;
+    // }
 }
 export default AuthN;

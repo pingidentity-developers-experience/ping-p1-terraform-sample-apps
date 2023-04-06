@@ -1,6 +1,6 @@
 ##########################################################################
 # data.tf - Declarations for PingOne data.
-# @see https://developer.hashicorp.com/terraform/language/data-sources
+# {@link https://developer.hashicorp.com/terraform/language/data-sources}
 ##########################################################################
 
 ##############################################
@@ -8,8 +8,8 @@
 ##############################################
 
 # PingOne Schema
-# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/data-sources/schema
-# @see https://docs.pingidentity.com/r/en-us/pingone/p1_t_viewuserattributeschema
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/data-sources/schema}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/p1_t_viewuserattributeschema}
 data "pingone_schema" "bxr_schema" {
   environment_id = module.environment.environment_id
 
@@ -26,8 +26,8 @@ data "pingone_resource" "openid" {
 }
 
 # OIDC Scopes
-# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/resource_scope
-# @see https://docs.pingidentity.com/r/en-us/pingone/pingone_viewing_oidc_attributes_for_an_application
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/resource_scope}
+# {@link https://docs.pingidentity.com/r/en-us/pingone/pingone_viewing_oidc_attributes_for_an_application}
 # OAuth Scopes
 data "pingone_resource_scope" "openid_profile" {
   environment_id = module.environment.environment_id
@@ -55,7 +55,7 @@ data "pingone_resource_scope" "openid_email" {
 }
 
 # PingOne API Resource Scopes
-# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/resource_scope
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/resource_scope}
 data "pingone_resource" "pingone_apis" {
   environment_id = module.environment.environment_id
   name           = "PingOne API"

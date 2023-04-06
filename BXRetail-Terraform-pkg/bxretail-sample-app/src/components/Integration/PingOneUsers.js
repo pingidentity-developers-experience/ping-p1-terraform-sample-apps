@@ -1,11 +1,8 @@
 /**
-* Class representing users in PingOne Directory.
-* 
-* This demo-specific class is developed and maintained by Ping Identity Technical Enablement.
-* Implements methods to integrate with PingOne via the management APIs.
-* 
-* @author Michael Sanchez
-* @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#management-apis
+Class representing PingOne user API integration.
+This demo-specific class is developed and maintained by Ping Identity Technical Enablement's demo team.
+Implements methods to integrate with PingOne user-related API endpoints.
+@author Ping Identity Technical Enablement
 */
 
 class PingOneUsers {
@@ -24,10 +21,8 @@ class PingOneUsers {
     }
 
     /**
-    Read User:
-    Read one user's data.
-
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#get-read-one-user
+    Read a user's entry data.
+    {@link https://apidocs.pingidentity.com/pingone/platform/v1/api/#get-read-one-user}
     @param {string} userId User ID GUID that you would like to read.
     @param {string} accessToken PingOne access token.
     @return {object} JSON formatted response object of user data.
@@ -53,10 +48,8 @@ class PingOneUsers {
 
    
     /**
-    Update User:
-    Update a user's record.
-
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#patch-update-user-patch
+    Update a user's record via PATCH operation.
+    {@link https://apidocs.pingidentity.com/pingone/platform/v1/api/#patch-update-user-patch}
     @param {string} userId User ID GUID that you would like to update.
     @param {string} accessToken PingOne access token.
     @param {string} userPayload JSON literal of updated user attributes.
@@ -83,16 +76,13 @@ class PingOneUsers {
     }
 
     /**
-    Update MFA Preferences:
-    Update a user's MFA preferences. 
-
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#put-update-user-mfa-enabled
+    Update a user's opt-in/out MFA preferences. 
+    {@link https://apidocs.pingidentity.com/pingone/platform/v1/api/#put-update-user-mfa-enabled}
     @param {string} accessToken PingOne access token.
     @param {object} userPayload User's MFA preference.
     @param {string} userId User ID GUID that you would like to update.
     @return {object} JSON formatted response object.
     */
-
     async toggleMFA({accessToken, userPayload, userId}) {
         console.info("Integration.PingOneUsers.js", "Updating user's MFA preferences.");
 

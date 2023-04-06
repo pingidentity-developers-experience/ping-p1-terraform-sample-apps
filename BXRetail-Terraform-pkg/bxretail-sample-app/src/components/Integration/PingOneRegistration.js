@@ -3,8 +3,8 @@ Class representing PingOne registration and profile managemente API's integratio
 This demo-specific class is developed and maintained by Ping Identity Technical Enablement.
 Implements methods to integrate with PingOne authentication-related API endpoints.
 
-@author Michael Sanchez
-@see https://apidocs.pingidentity.com/pingone/platform/v1/api/#management-apis
+@author Ping Identity Technical Enablement
+{@link https://apidocs.pingidentity.com/pingone/platform/v1/api/#management-apis}
 */
 
 class PingOneRegistration {
@@ -20,11 +20,9 @@ class PingOneRegistration {
     }
 
     /**
-    Register a User:
     Registers a user with PingOne.
-    
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#post-register-user
-    @param {object} regPayload User input object.
+    {@link https://apidocs.pingidentity.com/pingone/platform/v1/api/#post-register-user}
+    @param {object} regPayload User registration request payload.
     @param {string} flowId flowId from initial authorize endpoint call.
     @return {object} jsonResponse API response object in JSON format.
     **/
@@ -49,11 +47,9 @@ class PingOneRegistration {
     }
 
     /**
-    Verify the User:
     Verify the user's registration email code to complete registration.
-
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#post-verify-user
-    @param {string} rawPayload JSON of the verificationCode payload to send to the API.
+    {@link https://apidocs.pingidentity.com/pingone/platform/v1/api/#post-verify-user}
+    @param {object} rawPayload The verificationCode payload to send to the API.
     @param {string} flowId Id for the current authZ/authN transaction.
     @return {object} JSON formatted response object.
     */
@@ -77,7 +73,8 @@ class PingOneRegistration {
 
     /**
      * Enroll an MFA device for a user.
-     * @param {} tk blah blah
+     * {@link https://apidocs.pingidentity.com/pingone/platform/v1/api/#post-create-mfa-user-device-email}
+     * @param {object} payload The device enrollment request payload.
      * @returns {object}
      */
     async enrollMFADevice(payload) {

@@ -13,7 +13,7 @@ BXRetail is a Single Page Application (SPA) built with React; JSX, Javascript, r
 1. Click **Weekly Deals** on the navigation bar.
 2. On this page you have two item options:
   - **BXManufacturing Clera 65" 4K UHD LED TV**
-    1. Click **Add** beneath the product. This product will have an installation serverice auto-selected.
+    1. Click **Add** beneath the product. This product will have an installation service auto-selected.
     2. Click **Add Services**.
     3. To finish the checkout session, click **Checkout**.
     4. Click **Checkout as guest**.
@@ -21,7 +21,7 @@ BXRetail is a Single Page Application (SPA) built with React; JSX, Javascript, r
     6. Complete ALL account and shipping information fields.
     7. Click **Save**.
     8. Credit Card will be pre-selected as the method of payment, click **Save**.
-    9. After the order completes successfully, you will see a **Purchase Confirmed** screen.
+    9. After the order completes successfully, you will see a Purchase Confirmed screen.
     10. Click **Close**
     11. You will be prompted to create an account. If you wish to remain in an anonymous guest checkout, click **Back to the Shop**.
   - **Streamstick Video Streaming Player with 4K, Full HD**
@@ -33,7 +33,7 @@ BXRetail is a Single Page Application (SPA) built with React; JSX, Javascript, r
     6. Complete ALL account and shipping information fields.
     7. Click **Save**.
     8. Credit Card will be pre-selected as the method of payment, click **Save**.
-    9. After the order completes successfully, you will see a **Purchase Confirmed** screen.
+    9. After the order completes successfully, you will see a Purchase Confirmed screen.
     10. Click **Close**
     11. You will be prompted to create an account. If you wish to remain in an anonymous guest checkout, click **Back to the Shop**.
 
@@ -42,7 +42,7 @@ PingOne Authentication API & PingOne Management API
 1. Click **Weekly Deals** on the navigation bar.
 2. On this page you have two item options:
   - **BXManufacturing Clera 65" 4K UHD LED TV**
-    1. Click **Add** beneath the product. This product will have an installation serverice auto-selected.
+    1. Click **Add** beneath the product. This product will have an installation service auto-selected.
     2. Click **Add Services**.
     3. To finish the checkout session, click **Checkout**.
     4. Click **Checkout as guest**.
@@ -50,7 +50,7 @@ PingOne Authentication API & PingOne Management API
     6. Complete ALL account and shipping information fields.
     7. Click **Save**.
     8. Credit Card will be pre-selected as the method of payment, click **Save**.
-    9. After the order completes successfully, you will see a **Purchase Confirmed** screen.
+    9. After the order completes successfully, you will see a Purchase Confirmed screen.
     10. Click **Close**
     11. Click **Create My Account**.
     12. You will be redirected to the registration form with your email pre-populated. Enter a password and password confirmation to create your account.
@@ -67,7 +67,7 @@ PingOne Authentication API & PingOne Management API
     6. Complete ALL account and shipping information fields.
     7. Click **Save**.
     8. Credit Card will be pre-selected as the method of payment, click **Save**.
-    9. After the order completes successfully, you will see a **Purchase Confirmed** screen.
+    9. After the order completes successfully, you will see a Purchase Confirmed screen.
     10. Click **Close**
     11. Click **Create My Account**.
     12. You will be redirected to the registration form with your email pre-populated. Enter a password and password confirmation to create your account.
@@ -81,15 +81,15 @@ PingOne Authentication API
 1. Click **Weekly Deals** on the navigation bar.
 2. On this page you have two item options:
   - **BXManufacturing Clera 65" 4K UHD LED TV**
-    1. Click **Add** beneath the product. This product will have an installation serverice auto-selected.
+    1. Click **Add** beneath the product. This product will have an installation service auto-selected.
     2. Click **Add Services**.
     3. To finish the checkout session, click **Checkout**.
     4. Click **Sign In** 
     5. Sign on with your user credentials.
-    6. After successful sign on, you are prompted to **Confirm or Update Account and Shipping Details**. ALL fields must be completed.
+    6. After successful sign on, you are prompted to Confirm or Update Account and Shipping Details. ALL fields must be completed.
     7. Click **Save**.
     8. Credit Card will be pre-selected as the method of payment, click **Save**.
-    9. After the order completes successfully, you will see a **Purchase Confirmed** screen.
+    9. After the order completes successfully, you will see a Purchase Confirmed screen.
     10. Click **Close**.
   - **Streamstick Video Streaming Player with 4K, Full HD**
     1. Click **Add** beneath the product. This product will have a protection plan auto-selected.
@@ -97,10 +97,10 @@ PingOne Authentication API
     3. To finish the checkout session, click **Checkout**.
     4. Click **Sign In** 
     5. Sign on with your user credentials.
-    6. After successful sign on, you are prompted to **Confirm or Update Account and Shipping Details**. ALL fields must be completed.
+    6. After successful sign on, you are prompted to Confirm or Update Account and Shipping Details. ALL fields must be completed.
     7. Click **Save**.
     8. Credit Card will be pre-selected as the method of payment, click **Save**.
-    9. After the order completes successfully, you will see a **Purchase Confirmed** screen.
+    9. After the order completes successfully, you will see a Purchase Confirmed screen.
 
 
 
@@ -131,7 +131,7 @@ PingOne Authentication API
 ### Profile Management
 PingOne Management API
 1. After signing on to your user's account, click **My Account** from the navigation menu.
-2. Click **Update** next to the **Personal Details** section on this page.
+2. Click **Update** next to the Personal Details section on this page.
 3. Update any profile information within this section.
 4. Click **Save**.
 

@@ -12,7 +12,7 @@ variable "organization_id" {
   description = "Your P1 Organization ID"
 }
 
-variable "license_name" {
+variable "license_id" {
   type        = string
   description = "Name of the P1 license you want to assign to the Environment"
 }
@@ -58,7 +58,6 @@ variable "k8s_namespace" {
 variable "k8s_deploy_name" {
   type        = string
   description = "Name used in the K8s deployment of the App. Used in Deployment \\ Service \\ Ingress delivery"
-  default     = "bxretail-sample"
 }
 
 variable "k8s_deploy_domain" {

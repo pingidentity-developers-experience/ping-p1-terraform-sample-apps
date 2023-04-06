@@ -41,7 +41,7 @@ region          = "{{ NorthAmerica | Canada | Asia | Europe }}"
 organization_id = "{{orgId}}"
 admin_env_id    = "{{adminEnvId}}"
 admin_user_id   = "{{adminUserId}}"
-license_name    = "{{licenseName}}"
+license_id    = "{{licenseName}}"
 worker_id       = "{{workerId}}"
 worker_secret   = "{{workerSecret}}"
 k8s_deploy_domain = "{{k8sDeployName}}"
@@ -57,7 +57,7 @@ env_type          = "dev"
 | organization_id | PingOne Organization Id - Located under Environment -> Properties | 
 | admin_env_id | PingOne Environment Id for Administrators Environment - Located under Environment -> Properties |
 | admin_user_id | User Id for a user in the Administrators Environment - Located under Identities -> Users -> Select user -> Click API tab -> ID |
-| license_name | License name to be used for PingOne Environment |
+| license_id | License name to be used for PingOne Environment |
 | worker_id | Client Id for Worker App in the Administrators Environment - Located under Connections -> Applications -> Select existing Worker App or create one -> Configuration -> Expand General -> Client ID |
 | worker_secret | Client Secrey for Worker App in the Administrators Environment - Located under Connections -> Applications -> Select Worker App -> Configuration -> Expand General -> Client Secret |
 | k8s_deploy_domain | K8s Deploy Domain name |

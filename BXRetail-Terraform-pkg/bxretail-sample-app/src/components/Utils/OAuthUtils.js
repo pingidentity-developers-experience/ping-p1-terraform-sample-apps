@@ -3,9 +3,9 @@ Implements helper functions to support Proof Key for Code Exchange (PKCE).
 PKCE makes the use of OAuth 2.0 authorization code grant more secure.
 
 @author Ping Identity Technical Enablement
-@see {@link https://docs.pingidentity.com/bundle/pingfederate-102/page/roj1564002966901.html}
-@see {@link https://docs.pingidentity.com/bundle/pingfederate-102/page/nfr1564003024683.html}
-@see {@link https://www.valentinog.com/blog/challenge/}
+{@link {@link https://docs.pingidentity.com/bundle/pingfederate-102/page/roj1564002966901.html}}
+{@link {@link https://docs.pingidentity.com/bundle/pingfederate-102/page/nfr1564003024683.html}}
+{@link {@link https://www.valentinog.com/blog/challenge/}}
 */
 import { encode as base64encode } from "base64-arraybuffer";
 

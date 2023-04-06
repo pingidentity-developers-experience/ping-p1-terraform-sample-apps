@@ -19,7 +19,7 @@ import { faCircleNotch, faLink } from '@fortawesome/free-solid-svg-icons';
 
 // Components
 import FormPassword from '../../components/FormPassword';
-import LoginLinkButton from '../LoginLinkButton';
+// import LoginLinkButton from '../LoginLinkButton';
 import AuthN from '../Controller/AuthN';
 import AuthZ from '../Controller/AuthZ';
 import Session from '../Utils/Session';
@@ -199,11 +199,13 @@ class ModalLoginPassword extends React.Component {
             this.setState({ loginPending: false });
             if (response.status === "COMPLETED") {
               window.location.replace(response.resumeUrl); //Using replace() because we don't want the user to go "back" to the middle of the login process.
-            } else if (response.status === "VERIFICATION_CODE_REQUIRED") {
-              this.continueVerification();
-            } else if (response.status === "OTP_REQUIRED") {
-              this.toggleTab("2");
-            } else if (response.code) { //Error case.
+            } 
+            // else if (response.status === "VERIFICATION_CODE_REQUIRED") {
+            //   this.continueVerification();
+            // } else if (response.status === "OTP_REQUIRED") {
+            //   this.toggleTab("2");
+            // } 
+            else if (response.code) { //Error case.
               this.handleResponseError(response);
             } else if (response.status === "EXTERNAL_AUTHENTICATION_REQUIRED") {
               let authenticateHref;
@@ -312,17 +314,17 @@ class ModalLoginPassword extends React.Component {
           }
         }
         break;
-      case "Extraordinary Club":
-      case "Google":
-      case "Magic Link":
-        this.authn.getRequestedSocialProvider({ IdP: authMode, flowId: this.props.flowId })
-          .then(idpURL => {
-            this.session.setAuthenticatedUserItem("federatedUser", true, "session");
-            let redirectUrl = idpURL;
-            if (authMode === "Magic Link") redirectUrl = idpURL.concat('&loginHint='+this.state.username);
-            window.location.assign(redirectUrl)
-          });
-        break;
+      // case "Extraordinary Club":
+      // case "Google":
+      // case "Magic Link":
+      //   this.authn.getRequestedSocialProvider({ IdP: authMode, flowId: this.props.flowId })
+      //     .then(idpURL => {
+      //       this.session.setAuthenticatedUserItem("federatedUser", true, "session");
+      //       let redirectUrl = idpURL;
+      //       if (authMode === "Magic Link") redirectUrl = idpURL.concat('&loginHint='+this.state.username);
+      //       window.location.assign(redirectUrl)
+      //     });
+      //   break;
       default:
         throw new Error("Unexpected authMode for ModalLoginPassword.handleUserAction.");
     }

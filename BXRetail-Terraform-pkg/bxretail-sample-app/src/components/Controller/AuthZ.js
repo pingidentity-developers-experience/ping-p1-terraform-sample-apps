@@ -5,14 +5,17 @@ import Session from "../Utils/Session";
 import Tokens from "../Utils/Tokens";
 
 /**
- Class representing authorization flows via PingOne.
+ Class representing authorization business logic and payload prep for PingOne authorization API calls.
  This demo-specific class is developed and maintained by Ping Identity Technical Enablement.
- Implements methods to integrate with PingOne and PingAuthorize-related API endpoints.
+ Implements methods to integrate with PingOne authorization API endpoints.
+ @author Ping Identity Technical Enablement
+
 */
 
 class AuthZ {
     /**
     Class constructor
+    Declares and sets demo environment variables from our window object.
     */
     constructor() {
         this.envVars = window._env_;
@@ -25,10 +28,7 @@ class AuthZ {
     }
 
     /**
-    Authentication Flow:
-    Initializes the authentication flow.
-
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#openid-connectoauth-2
+    Initialize an authorization request. Process the request to call the authorization endpoint.
     @param {string} grantType The OAuth grant type to be used.
     @param {string} clientId The OAuth client from which you want to authorize.
     @param {string} redirectURI The URI the OAuth client should send you back to after completing OAuth authZ.
@@ -63,13 +63,10 @@ class AuthZ {
     /**
     OAuth Token:
     Swap an authZ code for an access and ID token.
-
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#post-token-authorization_code
     @param {string} code authorization code from AS.
     @param {string} redirectURI App URL user should be redirected to after swap for token.
     @returns {object} response
     */
-
     async swapCodeForToken({ code, redirectURI, authMode, clientId }) {
         console.info('Controller.AuthZ', 'Swapping an auth code for an access token.');
 

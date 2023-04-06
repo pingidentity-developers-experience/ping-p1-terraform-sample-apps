@@ -6,16 +6,17 @@ import PingOneUsers from "../Integration/PingOneUsers";
 import Session from '../Utils/Session';
 
 /**
-Class representing the management of user data.
-
-This demo-specific class is developed and maintained by Ping Identity Technical Enablement.
-Implements methods to integrate with PingOne authentication-related API endpoints.
+Class representing user record business logic and payload prep for PingOne user API calls.
+ This demo-specific class is developed and maintained by Ping Identity Technical Enablement.
+ Implements methods to integrate with PingOne authorization API endpoints.
+ @author Ping Identity Technical Enablement
  */
 
 class Users {
 
     /**
-    Class constructor
+    Class constructor.
+    Declares and sets demo environment variables from our window object.
     */
     constructor() {
         this.envVars = window._env_;
@@ -27,11 +28,8 @@ class Users {
     }
 
     /**
-    Read User:
-    Read one user's data.
-
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#get-read-one-user
-    @param {string} IdT OIDC ID JWT token.
+    Read a user's entry data. Processes the request and payload for the read user API call.
+    @param {string} IdT OIDC ID token.
     @param {string} userId User Id GUID
     @return {object} JSON formatted response object.
      */
@@ -50,10 +48,7 @@ class Users {
     }
 
     /**
-    Update User:
-    Update a user's record.
-
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#patch-update-user-patch
+    Update a user's record. Processes the request and payload for the update user API call.
     @param {string} IdT Id Token
     @param {object} userState State object from UI.
     @param {string} userId User ID that is being updated.
@@ -112,38 +107,32 @@ class Users {
     }
 
     /**
-    Read All Users:
-    Read all users data.
-
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#get-read-all-users
-    @param {*} limit Limit the number of results that come back.
-    @return {object} response
+     Read all users' data. Processes the request and payload for a read all users API call.
+     @param {*} limit Limit the number of results that come back.
+     @return {object} response
     */
-    async getAllUsers({ limit, email }) {
-        console.info("Controller.Users", "Reading all users data.");
+    // async getAllUsers({ limit, email }) {
+    //     console.info("Controller.Users", "Reading all users data.");
 
-        const body = {
-            accessToken: this.session.getAuthenticatedUserItem('AT', 'session'),
-            limit: limit,
-            email: email
-        };
-        const rawPayload = JSON.stringify(body);
+    //     const body = {
+    //         accessToken: this.session.getAuthenticatedUserItem('AT', 'session'),
+    //         limit: limit,
+    //         email: email
+    //     };
+    //     const rawPayload = JSON.stringify(body);
 
-        // const response = await this.davinci.request({
-        //     dvCompanyId: this.envVars.REACT_APP_DAVINCI_COMPANY_ID,
-        //     dvApiKey: this.envVars.REACT_APP_USER_SEARCH_DAVINCI_API_KEY,
-        //     dvPolicyId: this.envVars.REACT_APP_USER_SEARCH_DAVINCI_POLICY_ID,
-        //     rawPayload,
-        // });
+    //     const response = await this.davinci.request({
+    //         dvCompanyId: this.envVars.REACT_APP_DAVINCI_COMPANY_ID,
+    //         dvApiKey: this.envVars.REACT_APP_USER_SEARCH_DAVINCI_API_KEY,
+    //         dvPolicyId: this.envVars.REACT_APP_USER_SEARCH_DAVINCI_POLICY_ID,
+    //         rawPayload,
+    //     });
 
-        return response;
-    }
+    //     return response;
+    // }
 
     /**
-    Update MFA Preferences:
-    Update a user's MFA preferences. 
-
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#put-update-user-mfa-enabled
+    Update a user's opt-in/out MFA preference. Processes the request and payload for the enable/disable API call.
     @param {string} IdT Id Token
     @param {*} toggleState Toggle MFA preference.
     @return Status
@@ -164,28 +153,28 @@ class Users {
     Look-up User:
     Read one user's data by way of filter. Username/email in our case.
 
-    @see https://apidocs.pingidentity.com/pingone/platform/v1/api/#get-read-one-user
+    {@link https://apidocs.pingidentity.com/pingone/platform/v1/api/#get-read-one-user}
     @param {string} email userName (email) of user to search.
     @return {object} response
     */
-    async userLookup(email) {
-        console.info("Controller.Users", "Using a username/email filter to read one user's data.");
+    // async userLookup(email) {
+    //     console.info("Controller.Users", "Using a username/email filter to read one user's data.");
 
-        const body = {
-            email: email,
-            hostname: this.envVars.REACT_APP_HOST
-        };
-        const rawPayload = JSON.stringify(body);
+    //     const body = {
+    //         email: email,
+    //         hostname: this.envVars.REACT_APP_HOST
+    //     };
+    //     const rawPayload = JSON.stringify(body);
 
-        // const response = await this.davinci.request({
-        //     dvCompanyId: this.envVars.REACT_APP_DAVINCI_COMPANY_ID,
-        //     dvApiKey: this.envVars.REACT_APP_USER_LOOKUP_DAVINCI_API_KEY,
-        //     dvPolicyId: this.envVars.REACT_APP_USER_LOOKUP_DAVINCI_POLICY_ID,
-        //     rawPayload,
-        // });
+    //     const response = await this.davinci.request({
+    //         dvCompanyId: this.envVars.REACT_APP_DAVINCI_COMPANY_ID,
+    //         dvApiKey: this.envVars.REACT_APP_USER_LOOKUP_DAVINCI_API_KEY,
+    //         dvPolicyId: this.envVars.REACT_APP_USER_LOOKUP_DAVINCI_POLICY_ID,
+    //         rawPayload,
+    //     });
 
-        return response;
-    }
+    //     return response;
+    // }
 }
 
 export default Users;

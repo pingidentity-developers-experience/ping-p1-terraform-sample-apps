@@ -14,7 +14,7 @@ import WelcomeBar from '../../../components/WelcomeBar';
 import FooterMain from '../../../components/FooterMain';
 import AccountsSubnav from '../../../components/AccountsSubnav';
 import AccountsDropdown from '../../../components/AccountsDropdown';
-import Consents from '../../../components/Controller/Consents';
+// import Consents from '../../../components/Controller/Consents';
 import Session from '../../../components/Utils/Session';
 import Users from '../../../components/Controller/Users';
 
@@ -47,15 +47,15 @@ class PrivacySecurity extends React.Component {
     this.showStep2 = this.showStep2.bind(this);
     this.close = this.close.bind(this);
     this.toggleConsent = this.toggleConsent.bind(this);
-    this.consents = new Consents();
+    // this.consents = new Consents();
     this.session = new Session();
     this.users = new Users();
   }
 
   showStep2() {
     // Sends the user's consent selections to state to be sent to FlowHandler.
-    this.consents.userUpdateConsent({ consentData: this.state, IdT: this.session.getAuthenticatedUserItem("IdT", "session") });
-    this.setState({step: 2});
+    // this.consents.userUpdateConsent({ consentData: this.state, IdT: this.session.getAuthenticatedUserItem("IdT", "session") });
+    // this.setState({step: 2});
   }
 
   close() {

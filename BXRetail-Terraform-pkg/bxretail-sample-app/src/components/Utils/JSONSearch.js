@@ -4,9 +4,9 @@ Originally written by shakhal in classic JS.
 Refactored to ES6 by dr-mohamed-benkhalifa.
 getObjects() written by iwek.
 
-@author dr-mohamed-benkhalifa
-@see https://gist.github.com/shakhal/3cf5402fc61484d58c8d
-@see https://gist.github.com/iwek/3924925#file-find-in-json-js
+@author Ping Identity Technical Enablement
+{@link https://gist.github.com/shakhal/3cf5402fc61484d58c8d}
+{@link https://gist.github.com/iwek/3924925#file-find-in-json-js}
 */
 
 class JSONSearch {

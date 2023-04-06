@@ -4,8 +4,8 @@ session and local storage API to maintain user state during
 an authenticated app session. Also includes a method for 
 access rules.
 
-@author Michael Sanchez, Eric Anderson
-@see {@link https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage}
+@author Ping Identity Technical Enablement
+{@link {@link https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage}}
 */
 
 class Session {

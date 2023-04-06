@@ -19,7 +19,7 @@ class Registration {
     constructor() {
         this.envVars = window._env_;
         this.authz = new AuthZ();
-        this.ping1Reg = new PingOneRegistration(this.envVars.REACT_APP_AUTHPATH, this.envVars.REACT_APP_ENVID, this.envVars.REACT_APP_PROXYAPIPATH);
+        this.ping1Reg = new PingOneRegistration(this.envVars.REACT_APP_AUTHPATH, this.envVars.REACT_APP_ENVID, this.envVars.REACT_APP_APIPATH);
         this.session = new Session();
         // this.davinci = new DaVinci();
     }
@@ -70,9 +70,12 @@ class Registration {
         const body = {
             accessToken: accessToken,
             type: "EMAIL",
-            email: email
+            email: email,
+            userId: userId
         };
         const rawPayload = JSON.stringify(body);
+
+        const response = await this.ping1Reg.enrollMFADevice(rawPayload);
 
         // const response = await this.davinci.request({
         //     dvCompanyId: this.envVars.REACT_APP_DAVINCI_COMPANY_ID,

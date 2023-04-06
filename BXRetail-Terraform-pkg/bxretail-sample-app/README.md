@@ -8,6 +8,7 @@ It is a unique demo due to our PingOne-led initiative, with no non-SaaS software
 BXRetail is a Single Page Application (SPA) built with React; JSX, Javascript, react-router, react-strap, SASS, JSON.
 
 ## Use Cases
+*Incognito or private browser windows may lead to unexpected behavior, please use a regular browser window.*
 
 ### Guest Checkout
 1. Click **Weekly Deals** on the navigation bar.
@@ -101,8 +102,6 @@ PingOne Authentication API
     7. Click **Save**.
     8. Credit Card will be pre-selected as the method of payment, click **Save**.
     9. After the order completes successfully, you will see a Purchase Confirmed screen.
-
-
 
 ### Registration
 PingOne Authentication API & PingOne Management API

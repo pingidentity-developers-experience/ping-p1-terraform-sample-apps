@@ -1,0 +1,82 @@
+{
+	"titles": {
+		"welcome": "Welcome back",
+		"login_method": "How would you like to sign in?",
+		"recover_username_success": "Email sent!"
+	},
+	"form": {
+		"fields": {
+			"email": {
+				"label": "Email Address*",
+				"placeholder": ""
+			},
+			"username": {
+				"label": "Username*",
+				"placeholder": ""
+			},
+			"password": {
+				"label": "Password*",
+				"placeholder": ""
+			},
+			"rememberme": {
+				"label": "Remember Me"
+			},
+			"login_method": {
+				"options": {
+					"email": "Email me a one-time passcode",
+					"text": "Text me a one-time passcode",
+					"faceid": "With FaceID (Mobile App Required)"
+				}
+			}
+		},
+		"buttons": {
+			"next": "Next",
+			"reset": "Forgot your username?",
+			"reset_password": "Forgot your password?",
+			"login": "Sign In",
+			"help": "Need help signing in?",
+			"recover_username": "Recover Username",
+			"recover_password": "Send email",
+			"reg_verification": "Submit my code"
+		}
+	},
+	"mobile": {
+		"loading": "Please check your smartphone to sign in..."
+	},
+	"mfa": {
+		"buttons": {
+			"submit": "Submit",
+			"cancel": "Cancel",
+			"login_verification": "Submit my code"
+		},
+		"login_verification": {
+			"label": "Authentication Passcode*",
+			"placeholder": "",
+			"title": "Enter the one time passcode from your email"
+		}
+	},
+	"forgotPassword": {
+		"buttons": {
+			"submit": "Submit",
+			"cancel": "Cancel"
+		},
+		"labels": {
+			"usernameWarning": "If the email is associated with an account, we’ll send you instructions to reset your password.",
+			"recoveryCode": "Recovery Code*",
+			"newPassword": "New Password*"
+		}
+	},
+	"expiredPassword": {
+		"title": "Password Expired",
+		"description": "Your password has expired, please set a new password below"
+	},
+	"resetPassword": {
+		"title": "Password Reset Successfully",
+		"description": "Your password was reset successfully!"
+	},
+	"accountLockout": {
+		"title": "Account Locked",
+		"description": "You've been locked out due to too many attempts. Please try again in 1 minute.",
+		"button": "Continue"
+	}
+}

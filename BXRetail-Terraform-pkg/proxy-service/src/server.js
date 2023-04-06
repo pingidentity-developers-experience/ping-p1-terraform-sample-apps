@@ -6,6 +6,7 @@ const fastify = Fastify({
 
 // Proxy calls to the PingOne Flows API
 fastify.register(import('@fastify/http-proxy'), {
+    //FIXME this upstream is a problem being hardcoded to the NA region.
     upstream: 'https://auth.pingone.com/',
     prefix: '/auth', // optional
     http2: false // optional
@@ -13,6 +14,7 @@ fastify.register(import('@fastify/http-proxy'), {
 
 //Proxy calls to the PingOne User API
 fastify.register(import('@fastify/http-proxy'), {
+    //FIXME this upstream is a problem being hardcoded to the NA region.
     upstream: 'https://api.pingone.com/v1/environments',
     prefix: '/user', // optional
     http2: false // optional
@@ -20,7 +22,7 @@ fastify.register(import('@fastify/http-proxy'), {
 
 fastify.register(import("@fastify/cors"), {
     origin: "*",
-    methods: ["GET","POST"]
+    methods: ["GET","POST","PATCH","PUT"]
 })
 
 // Run the server!

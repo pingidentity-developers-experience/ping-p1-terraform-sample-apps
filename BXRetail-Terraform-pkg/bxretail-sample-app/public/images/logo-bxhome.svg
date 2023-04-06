@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="78px" height="32px" viewBox="0 0 78 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group 7</title>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Desktop/Hero-Band" transform="translate(-1001.000000, -33.000000)">
+            <g id="Group-7" transform="translate(1001.595215, 33.000000)">
+                <text id="BXHome" font-family="Helvetica" font-size="16" font-weight="normal" fill="#262626">
+                    <tspan x="0" y="26">BXHome</tspan>
+                </text>
+                <g id="Group-3" transform="translate(57.904785, 15.500000) scale(-1, 1) translate(-57.904785, -15.500000) translate(40.404785, 0.000000)">
+                    <polyline id="Path" stroke="#262626" stroke-width="2.5" points="30 12.4687594 17.1502343 6 4 12.4687594 4 31"></polyline>
+                    <polyline id="Path-7" stroke="#262626" stroke-width="2.5" points="-4.61852778e-14 11 17.1524658 2.27075195 34.3049316 11"></polyline>
+                    <polygon id="Path-8" fill="#262626" points="2.59521484 7 2.59521484 0 7.59521484 0 7.59521484 4.44512939"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

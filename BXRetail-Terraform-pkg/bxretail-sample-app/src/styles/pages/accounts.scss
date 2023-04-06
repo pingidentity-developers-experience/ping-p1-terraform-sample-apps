@@ -1,0 +1,57 @@
+.accounts {
+  position: relative;
+  background: #f3f3f3;
+
+  .inner {
+    margin: 0 auto;
+    padding: 30px 0;
+    display: flex;
+
+    @media only screen and (max-width: 767px) {
+      flex-direction: column-reverse;
+    }
+  }
+
+  .sidebar {
+    @media only screen and (min-width: 768px) {
+      flex-shrink: 0;
+      width: 324px;
+      margin-right: 60px;
+    }
+    @media only screen and (min-width: 1200px) {
+      margin-right: 109px;
+    }
+
+    .card-rewards {
+      margin-top: 20px;
+      margin-bottom: 40px;
+    }
+  }
+
+  .content {
+    flex-grow: 1;
+
+    .accounts-hdr {
+      &:after {
+        display: block;
+        content: '';
+        clear: both;
+      }
+
+      h1 {
+        color: rgb(31, 15, 17);
+        font: 500 22px/36px "Mulish";
+        @media only screen and (min-width: 992px) {
+          float: left;
+          margin: 0 0 40px 0;
+        }
+      }
+  
+      .accounts-dropdown {
+        @media only screen and (min-width: 992px) {
+          float: right;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+	"title": "Your BXRetail Account Home",
+	"subnav": [
+    {
+      "title": "Payment Methods",
+      "href": "#",
+      "open": false
+    },
+    {
+      "title": "BXClub Visa Card",
+      "open": false,
+      "href": "#"
+    },
+    {
+      "title": "Orders, Deliveries, Installations",
+      "open": false,
+      "href": "#"
+    },
+    {
+      "title": "Extraordinary Club Membership",
+      "open": false,
+      "href": "#"
+    },
+    {
+      "title": "My Settings",
+      "open": true,
+      "href": "/dashboard/settings",
+      "links": [
+        {
+          "title": "Manage Your Profile",
+          "active": false,
+          "href": "/dashboard/settings/profile"
+        },
+        {
+          "title": "Communications Preferences",
+          "active": false,
+          "href": "#"
+        },
+        {
+          "title": "Privacy & Security",
+          "active": false,
+          "href": "/dashboard/settings/privacy-security"
+        },
+        {
+          "title": "Sign In & Password",
+          "active": false,
+          "href": "#"
+        },
+        {
+          "title": "Alerts",
+          "active": false,
+          "href": "#"
+        }
+      ]
+    },
+    {
+      "title": "Special Offers",
+      "open": false,
+      "href": "#"
+    }
+  ],
+  "dropdown": "Things I Can Do",
+  "sections": [
+    {
+      "title": "Personal Details",
+      "description": "Make changes to your name, address, phone number and other details of your account.",
+      "white": true,
+      "curved": false,
+      "button_text": "Update",
+      "button_href": "/dashboard/settings/profile"
+    },
+    {
+      "title": "Communications Preferences",
+      "description": "Review and modify how we communicate with you about your account.",
+      "white": false,
+      "curved": false,
+      "button_text": "Modify",
+      "button_href": "#"
+    },
+    {
+      "title": "Privacy & Security Settings",
+      "description": "Review and update the tools you use to keep your account secure. ",
+      "white": true,
+      "curved": false,
+      "button_text": "Review",
+      "button_href": "/dashboard/settings/privacy-security"
+    },
+    {
+      "title": "Sign In & Password",
+      "description": "Make secure changes to your username and password. ",
+      "white": false,
+      "curved": false,
+      "button_text": "Modify",
+      "button_href": "#"
+    },
+    {
+      "title": "Alerts",
+      "description": "Review and modify how you get alerts about activites on your account. ",
+      "white": true,
+      "curved": false,
+      "button_text": "Set",
+      "button_href": "#"
+    }
+  ]
+}

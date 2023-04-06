@@ -1,0 +1,150 @@
+@import '../../styles/variables.scss';
+@import '~bootstrap/scss/functions';
+
+.shop {
+  .sites {
+    img {
+      height: 24px;
+    }
+  }
+
+  .product {
+    margin-bottom: 2.5rem;
+    padding-right: 1rem;
+
+    .badge {
+      background: transparent;
+      border: 1px solid theme-color("primary");
+      color: theme-color("primary");
+      font-weight: 300;
+      font-size: 9px;
+      border-radius: 50px;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      padding: 3px 15px;
+      position: absolute;
+      top: -1rem;
+      left: 0;
+    }
+
+    img {
+      margin-bottom: 5px;
+    }
+
+    h5 {
+      color: theme-color("primary");
+      font-size: 16px;
+      margin-bottom: 0;
+    }
+
+    p {
+      font-size: 12px;
+    }
+
+    .price {
+      font-size: 21px;
+      margin-top: 5px;
+
+      small {
+        font-size: 11px;
+      }
+    }
+
+    .btn {
+      border-radius: 4px;
+      padding: 8px 15px;
+
+      img {
+        margin-right: 5px;
+        margin-top: -2px;
+      }
+    }
+  }
+}
+
+.checkout-form {
+  margin-bottom: 15px;
+}
+
+.paymentError {
+  font-size: 20px;
+  margin-bottom: 10;
+  color: rgb(255, 0, 0)
+}
+
+.modal-shop {
+  .btn-link {
+    font-size: 12px;
+    padding: 0;
+  }
+
+  img.img-product {
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  img.img-services {
+    width: 250px;
+  }
+
+  hr {
+    border: 1px solid theme-color("primary");
+    margin-bottom: 2rem;
+  }
+
+  h5, p {
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+
+  .price {
+    font-size: 21px;
+    margin-top: 5px;
+    margin-bottom: 1rem;
+
+    small {
+      font-size: 11px;
+    }
+  }
+
+  .confirmation-footer {
+    width: 102.9%;
+    margin-top: 1rem;
+    margin-left: -1rem;
+    margin-bottom: -1rem;
+  }
+
+  .radio-form {
+    p {
+      margin-bottom: 1rem;
+    }
+    .form-group {
+      @media only screen and (min-width: 992px) {
+        display: flex;
+      }
+      border-left: none;
+      border-right: none;
+      padding: 5px 35px;
+      margin: 0;
+
+      &.gray {
+        background: rgb(243, 243, 243);
+      }
+
+      > label {
+        margin: 0 0 10px 0;
+        @media only screen and (min-width: 992px) {
+          margin: 0;
+          flex-grow: 1;
+        }
+      }
+
+      .custom-radio {
+        @media only screen and (min-width: 992px) {
+          margin: 0 0 0 20px;
+        }
+      }
+    }
+  }
+  
+}

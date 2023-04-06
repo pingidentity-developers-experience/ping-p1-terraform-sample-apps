@@ -1,0 +1,8 @@
+{
+    "title": "Choose a Payment Type",
+    "option1": "Credit Card",
+    "option3": "PayPal",
+    "option4": "Another Payment Method (Choose)",
+    "cardOnFile": "BXRetail Visa Card (...4899)",
+    "newCreditCard": "New Credit Card"
+}

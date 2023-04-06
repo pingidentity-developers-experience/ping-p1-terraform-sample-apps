@@ -1,0 +1,143 @@
+/* HeroHome */
+
+@import '../../styles/variables.scss';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/bootstrap-grid';
+
+.jumbotron-hero-home {
+  background: white;
+  position: relative;
+  margin: 0;
+  padding: 2rem;
+
+  @include media-breakpoint-down(sm) {
+    padding: 0;
+  }
+
+  .container {
+    .electronics {
+      height: 470px;
+      background: right bottom no-repeat;
+      background-size: 110%;
+      margin-right: 2rem;
+      margin-left: -1rem;
+
+      @include media-breakpoint-down(sm) {
+        margin-top: 2rem;
+        padding: 0 3rem;
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+
+    .office {
+      height: 470px;
+      background: right bottom no-repeat;
+      background-size: cover;
+      margin-right: -1rem;
+
+      .office-content {
+        background: rgba(255, 255, 255, 0.8);
+        padding: 3rem;
+        margin: 5rem -1rem 0 3rem;
+
+        @include media-breakpoint-down(sm) {
+          margin: 2rem -1rem 0 1rem;
+        }
+
+        p.lead {
+          font-size: 20px;
+          font-weight: bold;
+        }
+
+        .btn {
+          margin-top: 1rem;
+        }
+      }
+    }
+
+    h1 {
+      color: white;
+      font-size: 48px;
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+
+      @include media-breakpoint-down(sm) {
+        font-size: 32px;
+        margin-top: 0;
+      }
+    }
+
+    .card-rewards {
+      box-shadow: 0px 2px 20px 0px rgba(31, 15, 17, 0.11);
+
+      @include media-breakpoint-up(lg) {
+        height: 480px;
+        margin-bottom: -8rem;
+
+        img.img-credit-card {
+          max-width: 350px;
+          bottom: -10px;
+          right: -2px;
+        }
+      }
+
+      @include media-breakpoint-down(md) {
+        margin-top: 3rem;
+      }
+
+      @include media-breakpoint-down(sm) {
+        margin-top: 2rem;
+        margin-bottom: 0;
+
+        img.img-credit-card {
+          max-width: 350px;
+          bottom: -120px;
+          right: -80px;
+        }
+      }
+    }
+  }
+}
+
+section.section-home-cta-bar {
+  background: theme-color("secondary");
+  padding-top: 2.5rem;
+  padding-bottom: 2rem;
+
+  h3 {
+    color: theme-color("dark");
+    margin-bottom: 0;
+
+    @include media-breakpoint-down(md) {
+      font-size: 18px;
+    }
+  }
+}
+
+section.section-home-features {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+
+  h4 {
+    width: 100%;
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+    margin-top: -50px;
+    position: relative;
+    padding: 8px 10px;
+
+    @include media-breakpoint-down(md) {
+      font-size: 14px;
+    }
+  }
+
+  .btn-link {
+    padding-left: 0;
+
+    @include media-breakpoint-down(sm) {
+      margin-bottom: 1.5rem;
+    }
+  }
+}

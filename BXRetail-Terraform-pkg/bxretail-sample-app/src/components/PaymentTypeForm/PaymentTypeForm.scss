@@ -1,0 +1,40 @@
+.select-payment-type {
+    .payment-type {
+      border: 1px solid #c6cdcf;
+      padding: .5rem 1rem 1rem 1rem;
+
+      [name="cart_options"]:checked + label {
+        font-weight: bold;
+      }
+
+      &:not(:last-child) {
+        border-bottom: none;
+      }
+
+      &__bank-account-msg {
+        margin: 1rem 1.5rem;
+        font-size: 14px;
+      }
+
+      .credit-card-radio {
+          .custom-radio {
+              padding-top: 5px;
+          }
+      }
+
+      .credit-card-icons {
+        display: flex;
+        justify-content: flex-end;
+        padding-top: 5px;
+        
+        svg {
+            width: 40px;
+            height: auto;
+
+            &:not(:last-child) {
+                margin-right: .5rem;
+            }
+        }
+      }
+    }
+  }

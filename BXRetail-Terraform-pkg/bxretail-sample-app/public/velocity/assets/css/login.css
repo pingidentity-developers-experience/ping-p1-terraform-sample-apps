@@ -1,0 +1,107 @@
+
+/* Card Login */
+
+.card-login {
+  width: 100%;
+  max-width: 400px;
+  padding: 0;
+  margin: auto;
+  border: 0;
+  border-radius: 14px;
+  box-shadow: 0px 2px 20px 0px rgba(31, 15, 17, 0.11);
+}
+
+.card-login .card-header {
+  width: 100%;
+  text-align: center;
+  padding: 3rem 0 1rem 0;
+  border: 0;
+  background: transparent;
+}
+
+.card-login .card-header .btn-back {
+  position: absolute;
+  left: 0.7rem;
+  top: 0.8rem;
+}
+
+.card-login .card-header .btn-back:before {
+  content: "‹ ";
+}
+
+.card-login .card-body {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
+.card-login .card-body h4 {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  line-height: 36px;
+}
+
+.custom-radio.custom-control {
+  padding-left: 0;
+  margin-right: 0;
+  text-align: center;
+  position: relative;
+  padding-bottom: 0.8rem;
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+
+.custom-radio.custom-control::after {
+  content: "";
+  width: 40px;
+  height: 1px;
+  border-bottom: 2px solid #c6cdcf;
+  position: absolute;
+  left: 43%;
+  bottom: 0;
+}
+
+.custom-radio.custom-control:last-child::after {
+  content: unset;
+}
+
+.custom-radio.custom-control label.custom-control-label {
+  color: var(--dark);
+}
+
+.custom-radio.custom-control input:checked + label.custom-control-label {
+  color: var(--info);
+}
+
+.custom-radio.custom-control label.custom-control-label:hover {
+  cursor: pointer;
+  color: var(--info);
+}
+
+.custom-radio.custom-control label.custom-control-label::before {
+  content: unset;
+}
+
+.card-login .mobile-loading {
+  width: 180px;
+  height: 330px;
+  display: block;
+  margin: 0 auto;
+  padding-top: 6rem;
+  background: url("/images/login-device-outline.jpg") center center no-repeat;
+  background-size: 100%;
+}
+.card-login .mobile-loading .spinner {
+  color: #c6cdcf;
+  text-align: center;
+}
+
+.card-login .mobile-loading p {
+  color: var(--dark);
+  max-width: 130px;
+  text-align: center;
+  margin: 2rem auto 0 auto;
+}

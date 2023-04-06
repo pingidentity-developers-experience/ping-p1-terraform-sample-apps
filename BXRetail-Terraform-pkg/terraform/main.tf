@@ -1,16 +1,16 @@
 ##########################################################################
 # main.tf - Declarations for modules and providers to 
 # create infrastructure.
-# @see https://developer.hashicorp.com/terraform/language/modules
-# @see https://developer.hashicorp.com/terraform/language/providers
+# {@link https://developer.hashicorp.com/terraform/language/modules}
+# {@link https://developer.hashicorp.com/terraform/language/providers}
 ##########################################################################
 
 ##############################################
-# PingOne Modules
+# PingOne Module
 ##############################################
 
 # PingOne Environment Module
-# @see https://registry.terraform.io/modules/terraform-pingidentity-modules/environment/pingone/latest?tab=inputs
+# {@link https://registry.terraform.io/modules/terraform-pingidentity-modules/environment/pingone/latest?tab=inputs}
 
 module "environment" {
   source  = "terraform-pingidentity-modules/environment/pingone"
@@ -25,19 +25,19 @@ module "environment" {
   admin_user_id_list = [
     var.admin_user_id
   ]
-  create_mfa       = true
+  create_mfa = true
   # create_davinci   = true
   # create_authorize = true
-  license_name     = var.license_name
-  organization_id  = var.organization_id
+  license_id    = var.license_id
+  organization_id = var.organization_id
 }
 
 ##############################################
-# PingOne Providers
+# PingOne Provider
 ##############################################
 
 # PingOne Provider
-# @see https://registry.terraform.io/providers/pingidentity/pingone/latest/docs
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs}
 provider "pingone" {
   client_id                    = var.worker_id
   client_secret                = var.worker_secret

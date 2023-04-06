@@ -1,0 +1,136 @@
+form {
+
+  label {
+    color: #9ca4ab;
+    font-size: 14px;
+    line-height: 26px;
+    margin: 0;
+  }
+
+  select {
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    background: no-repeat right 12px top 15px #ddd;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-size: 8px 6px;
+    -webkit-appearance: none;
+  }
+
+  .form-group {
+    .form-control::placeholder {
+      color: #9ca4ab;
+      font-style: italic;
+    }
+  }
+  // Was causing duplication of icon with FormPassword.js
+  // input[type="password"] {
+  //   background: url("/app/images/icons/password-hide.svg") 95% center no-repeat;
+  // }
+
+  .input-currency {
+    position: relative;
+
+    &:before {
+      content: '$';
+      position: absolute;
+      top: 9px;
+      left: 12px;
+      z-index: 10;
+      font-size: .9rem;
+    }
+
+    input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding-left: 30px;
+    }
+  }
+
+}
+
+.submit-buttons {
+  button {
+    margin-left: 10px;
+
+    &.disabled {
+      background: rgb(198, 205, 207);
+      border-color: rgb(198, 205, 207);
+    }
+  }
+}
+
+// Custom Checkbox
+.custom-checkbox {
+  padding-left: 10px;
+  cursor: pointer;
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    
+    &:checked ~ .checkmark {
+      background-color: transparent;
+      span {
+        width: calc(100% - 4px);
+        height: calc(100% - 4px);
+        margin: 2px;
+        display: block;
+        position: relative;
+        &:after {
+          content: "";
+          position: absolute;
+          display: block;
+          left: 4px;
+          top: 0px;
+          width: 4px;
+          height: 10px;
+          border: solid theme-color("primary");
+          border-width: 0 2px 2px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+  .checkmark {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border: 2px solid rgb(198, 205, 207);
+    background-color: transparent;
+  }
+}
+
+// Custom Radio Button
+.custom-radio .custom-control-input {
+  ~ .custom-control-label {
+    cursor: pointer;
+  }
+ 
+  ~ .custom-control-label::before {
+    border: 2px solid theme-color("primary");
+  }
+
+  &:checked {
+
+    ~ .custom-control-label::before {
+      border: 3px solid theme-color("primary");
+      width: 20px;
+      height: 20px;
+      top: 2px;
+      left: -26px;
+    }
+
+    ~ .custom-control-label::after {
+      background: theme-color("primary");
+      border-radius: 50px;
+      border: 2px solid white;
+    }
+  }
+}

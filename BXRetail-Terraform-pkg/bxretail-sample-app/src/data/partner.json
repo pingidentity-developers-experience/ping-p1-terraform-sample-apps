@@ -1,0 +1,180 @@
+{
+	"brand": "Partner",
+	"menus": {
+		"primary": [
+			{
+				"title": "My Dashboard",
+				"url": "/partner"
+			},
+			{
+				"title": "Messages",
+				"url": "/partner/client"
+			},
+			{
+				"title": "Protocols Updates",
+				"url": "/partner/updates"
+			},
+			{
+				"title": "Reporting",
+				"url": "/partner/reporting"
+			},
+			{
+				"title": "Other Services",
+				"url": "/partner/other-services"
+			}
+		]
+	},
+	"welcome_bar": "Welcome, Philo",
+	"subnav": [
+		{
+			"title": "Active Campaigns",
+			"href": "#",
+			"open": false
+		},
+		{
+			"title": "Past Campaigns",
+			"href": "#",
+			"open": false
+		},
+		{
+			"title": "Analysis & Insights",
+			"href": "#",
+			"open": false
+		},
+		{
+			"title": "Budgeting",
+			"href": "#",
+			"open": false
+		},
+		{
+			"title": "Forecasting/Benchmarking",
+			"href": "#",
+			"open": false
+		},
+		{
+			"title": "Import/Export",
+			"href": "#",
+			"open": false
+		}
+	],
+	"profile": {
+		"partner": {
+			"title": "Your Profile",
+			"content": "<strong>Philo Farnsworth</strong> <br> AnyTVPartner Advisor <br> San Francisco, CA  94111 <br> Phone: 415.907.1927 <br> <br> philo.farnsworth@ATVP.com <br> atvp.com/philo.farnsworth",
+			"button": "Make Changes"
+		}
+	},
+	"alerts": {
+		"title": "Alerts",
+		"messages": [
+			"You have <a href=\"#\">5 new messages</a> <br> from AnyTVPartner Operations.",
+			"You have <a href=\"#\">2 new messages</a> <br> from BXRetail sales."
+		],
+		"button": "View Message Center"
+	},
+	"clients": {
+		"title": "My Dashboard",
+		"search_placeholder": "Enter Keywords...",
+		"suggestions": [
+			"janesmith@gmail.com"
+		],
+		"orders": [
+			{
+				"name": "Installation",
+				"id": "IL60434-PTS459",
+				"tracking_link": "Tracking Info",
+				"contact_details": {
+					"full_name": "Jane Smith",
+					"address": {
+						"title": "Installation Address",
+						"edit_link": "Edit Info",
+						"data": {
+							"line_1": "4700 Red River St",
+							"city": "Roebuck",
+							"state": "IL",
+							"postcode": "60610"
+						}
+					},
+					"phone_numbers": {
+						"title": "Phone Number",
+						"edit_link": "Edit Info",
+						"data": [
+							{
+								"name": "Mobile",
+								"data": "617.525.4435"
+							}
+						]
+					},
+					"email": {
+						"title": "Email Address",
+						"edit_link": "Edit Info",
+						"data": "janesmith@gmail.com"
+					}
+				},
+				"order_details": {
+					"products": [
+						{
+							"title": "Installing",
+							"names": [
+								"BXManufacturing Clera 65\" 4K UHD LED TV (C515CV-U)"
+							],
+							"image_url": "/images/products/bxmanufacturing-clera.jpg",
+							"product_link": "See Product Information"
+						}
+					],
+					"services": {
+						"title": "BXRetail services sold",
+						"instructions_link": "See Special Instructions",
+						"data": [
+							"Delivery, mounting, and setup, Premium TV 56\" and larger",
+							"Mounting hardware and installation included"
+						]
+					}
+				}
+			}
+		]
+	},
+	"news": {
+		"title": "BXRetail News/Events",
+		"webinar": {
+			"title": "Webinar: New Products",
+			"content": "CMO Leif Garickson leads a webinar introducing partners to BXRetail products. ",
+			"button": "Learn More"
+		},
+		"schedules": {
+			"title": "New Commission Schedules",
+			"content": "Review current commission schedules for BXRetail partners.  ",
+			"button": "Learn More"
+		}
+	},
+	"clients_recent": {
+		"title": "Recent Clients",
+		"content": "04/24/2020 | Initial Contact | <a href=\"#\">Notes</a> <br> 05/23/2020 | Linked Accounts | <a href=\"#\">Notes</a> <br> 06/03/2020 | Consult Call | <a href=\"#\">Notes</a>",
+		"button": "See All"
+	},
+	"record": {
+		"fields": [
+			{
+				"label": "Name",
+				"value": "Smith, Jane"
+			},
+			{
+				"label": "Mail Address",
+				"value": false
+			},
+			{
+				"label": "Email Address",
+				"value": "janesmith@gmail.com"
+			},
+			{
+				"label": "SMS/TXT Phone",
+				"value": "(314) 787-2278"
+			}
+		],
+		"buttons": {
+			"inspect": "Inspect Record",
+			"modify": "Modify Record"
+		}
+	},
+	"copyright": "© AnyMarketing, 2020"
+}

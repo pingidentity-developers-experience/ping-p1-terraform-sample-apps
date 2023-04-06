@@ -1,0 +1,35 @@
+.accounts-dropdown {
+  background: rgb(255, 255, 255);
+  border-radius: 4px;
+  border: 1px solid rgb(198, 205, 207);
+  height: 38px;
+  width: 247px;
+  padding: 5px 10px;
+  margin: 0 0 20px 0;
+
+  a {
+    display: block;
+    position: relative;
+    width: 100%;
+    color: #8c8f8f;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: normal;
+    line-height: 26px;
+    cursor: default;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+    
+    &:before {
+      display: block;
+      position: absolute;
+      right: 5px;
+      top: 0;
+      content: "▾";
+      font-style: normal;
+    }
+  }
+}

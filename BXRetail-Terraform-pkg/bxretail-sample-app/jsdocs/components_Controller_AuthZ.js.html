@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Controller/AuthZ.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Controller/AuthZ.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Components
+// import DaVinci from "../Integration/DaVinci";
+import PingOneAuthZ from "../Integration/PingOneAuthZ";
+import Session from "../Utils/Session";
+import Tokens from "../Utils/Tokens";
+
+/**
+ Class representing authorization business logic and payload prep for PingOne authorization API calls.
+ This demo-specific class is developed and maintained by Ping Identity Technical Enablement.
+ Implements methods to integrate with PingOne authorization API endpoints.
+ @author Ping Identity Technical Enablement
+
+*/
+
+class AuthZ {
+    /**
+    Class constructor
+    Declares and sets demo environment variables from our window object.
+    */
+    constructor() {
+        this.envVars = window._env_;
+        this.ping1AuthZ = new PingOneAuthZ(this.envVars.REACT_APP_AUTHPATH, this.envVars.REACT_APP_ENVID, this.envVars.REACT_APP_PROXYAPIPATH);
+        // this.atvpPath = this.envVars.REACT_APP_ATVPAUTHPATH + '/' + this.envVars.REACT_APP_ATVP_ENVID;
+        // this.ping1AuthZATVP = new PingOneAuthZ(this.atvpPath, this.envVars.REACT_APP_ENVID);
+        this.session = new Session();
+        this.tokens = new Tokens();
+        // this.davinci = new DaVinci();
+    }
+
+    /**
+    Initialize an authorization request. Process the request to call the authorization endpoint.
+    @param {string} grantType The OAuth grant type to be used.
+    @param {string} clientId The OAuth client from which you want to authorize.
+    @param {string} redirectURI The URI the OAuth client should send you back to after completing OAuth authZ.
+    @param {string} scopes The app or OIDC scopes being requested by the client.
+    */
+    initAuthNFlow({ grantType, clientId, redirectURI, scopes, authPath }) {
+        console.info('Controller.AuthZ', 'Initializing an authorization flow with PingOne.');
+
+        if (grantType !== 'implicit' &amp;&amp; grantType !== 'authCode') {
+            throw new Error('Invalid grant type provided. Controller.AuthZ.');
+        }
+
+        const responseType = grantType === 'implicit' ? 'token' : 'code';
+        if (!authPath) {
+            this.ping1AuthZ.authorize({
+                responseType: responseType,
+                clientId: clientId,
+                redirectURI: redirectURI,
+                scopes: scopes,
+            });
+        } 
+        // else {
+        //     this.ping1AuthZATVP.authorize({
+        //         responseType: responseType,
+        //         clientId: clientId,
+        //         redirectURI: redirectURI,
+        //         scopes: scopes,
+        //     });
+        // }
+    }
+
+    /**
+    OAuth Token:
+    Swap an authZ code for an access and ID token.
+    @param {string} code authorization code from AS.
+    @param {string} redirectURI App URL user should be redirected to after swap for token.
+    @returns {object} response
+    */
+    async swapCodeForToken({ code, redirectURI, authMode, clientId }) {
+        console.info('Controller.AuthZ', 'Swapping an auth code for an access token.');
+
+        let authPath;
+
+        // if (authMode === 'ATVP') {
+        //     authPath = this.envVars.REACT_APP_ATVPAUTHPATH;
+        // }
+        
+        let bauth;
+        if (!authPath) {
+            bauth = this.envVars.REACT_APP_CLIENT + ':' + this.envVars.REACT_APP_RECSET;
+        } else {
+            bauth = this.envVars.REACT_APP_ATVP_CLIENT + ':' + this.envVars.REACT_APP_ATVP_RECSET;
+        }
+        const swaprods = btoa(bauth);
+
+        let response;
+        if (!authPath) {
+            response = await this.ping1AuthZ.getToken({ code: code, redirectURI: redirectURI, swaprods: swaprods, clientId: clientId });
+        } 
+        // else {
+        //     response = await this.ping1AuthZATVP.getToken({ code: code, redirectURI: redirectURI, swaprods: swaprods });
+        // }
+        return response;
+    }
+
+}
+
+export default AuthZ;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AuthN.html">AuthN</a></li><li><a href="AuthZ.html">AuthZ</a></li><li><a href="JSONSearch.html">JSONSearch</a></li><li><a href="PingOneAuthN.html">PingOneAuthN</a></li><li><a href="PingOneAuthZ.html">PingOneAuthZ</a></li><li><a href="PingOneRegistration.html">PingOneRegistration</a></li><li><a href="PingOneUsers.html">PingOneUsers</a></li><li><a href="Registration.html">Registration</a></li><li><a href="Session.html">Session</a></li><li><a href="Users.html">Users</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Apr 06 2023 12:25:52 GMT-0700 (Pacific Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

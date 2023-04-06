@@ -1,0 +1,187 @@
+@import './variables.scss';
+@import '~bootstrap/scss/bootstrap.scss';
+
+@import './forms.scss';
+@import './modals.scss';
+
+/* Global */
+body {
+  margin: 0;
+  font-family: 'Mulish', sans-serif;
+  color: #211012;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+h1 {
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 60px;
+}
+
+h2 {
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 50px;
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 48px;
+}
+
+h4 {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+p {
+  color: rgb(29, 29, 29);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+a {
+  font-weight: 500;
+
+  &:hover,
+  &:focus {
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  &.cancel {
+    margin: 0 20px 0 0;
+  }
+}
+
+.btn-primary,
+.btn-secondary {
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 12px 30px;
+  border-radius: 13px;
+  border: 0;
+}
+
+.btn-primary {
+  &:hover,
+  &:focus {
+    box-shadow: 1px 2px 11px rgba(23, 125, 231, 0.4);
+  }
+}
+
+.btn-link {
+  font-weight: 600;
+
+  &:hover,
+  &:focus {
+    font-weight: bold;
+    text-decoration: none;
+  }
+}
+
+.module {
+  background: rgb(255, 255, 255);
+  border-radius: 11px;
+  padding: 35px;
+  margin-bottom: 20px;
+}
+
+.dashboard, .home, .advisor, .accounts {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  footer {
+    margin-top: auto;
+  }
+}
+
+.module {
+  p, h2, h3, form label {
+    color: rgb(31, 15, 17);
+    font-size: 16px;
+    line-height: 26px;
+  }
+  h2, h3 {
+    font-weight: 500;
+
+    &.confirmation {
+      font-size: 24px;
+      line-height: 30px;
+      @media only screen and (min-width: 992px) {
+        font-size: 36px;
+        line-height: 48px;
+      }
+    }
+  }
+  &.module-step1 {
+    h3 {
+      margin-top: 30px;
+    }
+  }
+  form:not(.profile-updates-form) {
+    margin: 0 -35px;
+
+    p {
+      font-weight: 500;  
+      margin: 10px 35px 0 35px;
+    }
+    
+    ul {
+      margin: 0 35px;
+    }
+
+    .form-group {
+      display: flex;
+      border-left: none;
+      border-right: none;
+      padding: 5px 35px;
+      margin: 0;
+
+      &.gray {
+        background: rgb(243, 243, 243);
+      }
+
+      > label {
+        margin: 0 0 10px 0;
+        @media only screen and (min-width: 992px) {
+          margin: 0;
+          flex-grow: 1;
+        }
+      }
+
+      .custom-radio {
+        @media only screen and (min-width: 992px) {
+          margin: 0 0 0 20px;
+        }
+      }
+    }
+    .buttons {
+      display: block;
+      border: none;
+      &:after {
+        display: block;
+        content: '';
+        clear: both;
+      }
+      .cancel {
+        margin: 20px 20px 0 0;
+        float: right;
+      }
+      button {
+        margin: 10px 0 0 10px;
+        float: right;
+      }
+    }
+  }
+}

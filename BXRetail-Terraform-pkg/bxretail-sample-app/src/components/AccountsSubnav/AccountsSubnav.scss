@@ -1,0 +1,55 @@
+@import '../../styles/variables.scss';
+@import '~bootstrap/scss/functions';
+
+.accounts-subnav {
+  background: #fff;
+  border-radius: 11px;
+  padding: 10px;
+  margin: 0 0 10px 0;
+
+  > a {
+    display: block;
+    position: relative;
+    font-size: 16px;
+    line-height: 22px;
+    padding: 3px 0 3px 25px;
+    color: theme-color("dark");
+
+    &:before {
+      display: block;
+      position: absolute;
+      left: 5px;
+      top: 2px;
+      content: "▾";
+      font-size: 12px;
+      background-size: 9px 6px;
+      height: 6px;
+      width: 9px;
+    }
+  }
+
+  .collapse,
+  .collapsing {
+    hr {
+      margin: 10px 0 0;
+    }
+    ul {
+      margin: 0;
+      list-style: none;
+      padding: 5px 0 0 25px;
+
+      li {
+        margin: 7.5px 0;
+      }
+
+      a {
+        font-size: 16px;
+        line-height: 22px;
+
+        &.active {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

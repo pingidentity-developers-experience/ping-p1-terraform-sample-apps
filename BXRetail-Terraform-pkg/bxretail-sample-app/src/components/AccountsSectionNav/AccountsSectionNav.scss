@@ -1,0 +1,51 @@
+@import '../../styles/variables.scss';
+@import '~bootstrap/scss/functions';
+
+.accounts-section-nav {
+  position: relative;
+  clear: both;
+  padding: 20px;
+
+  &.white {
+    background: #fff;
+  }
+
+  &.curved {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+  }
+
+  .accounts-section-nav-text {
+    @media only screen and (min-width: 768px) {
+      padding-right: 180px;
+    }
+
+    h4, p {
+      margin: 0;
+      color: rgb(31, 15, 17);
+      font-size: 16px;
+      line-height: 26px;
+    }
+
+    h4 {
+      font-weight: 500;
+    }
+  }
+
+  hr {
+    border-color: theme-color("primary");
+  }
+
+  button {
+    min-width: 136px;
+    @media only screen and (max-width: 767px) {
+      margin: 20px 0 0;
+    }
+    @media only screen and (min-width: 768px) {
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      margin-top: -25px;
+    }
+  }
+}

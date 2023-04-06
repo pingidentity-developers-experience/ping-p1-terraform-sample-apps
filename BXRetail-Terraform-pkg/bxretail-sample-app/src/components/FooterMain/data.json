@@ -1,0 +1,59 @@
+{
+	"menu": [
+		{
+			"title": "Our Company",
+			"url": "#",
+			"children": [
+				{
+					"title": "Investor Relations",
+					"url": "#"
+				},
+				{
+					"title": "Corporate Citizenship",
+					"url": "#"
+				},
+				{
+					"title": "News",
+					"url": "#"
+				},
+				{
+					"title": "Locations",
+					"url": "#"
+				}
+			]
+		},
+		{
+			"title": "800.543.2276",
+			"url": "#",
+			"children": [
+				{
+					"title": "help@BXRetail.com",
+					"url": "#"
+				},
+				{
+					"title": "Chat with Us",
+					"url": "https://pingidentity.slack.com/channels/bxdemos_pingpowered"
+				}
+			]
+		},
+		{
+			"title": "Privacy & Security",
+			"url": "#",
+			"children": [
+				{
+					"title": "Terms of Use",
+					"url": "#"
+				},
+				{
+					"title": "Disclosures",
+					"url": "#"
+				},
+				{
+					"title": "Accessibility",
+					"url": "#"
+				}
+			]
+		}
+	],
+	"copyright": "© BXRetail, 2020"
+}

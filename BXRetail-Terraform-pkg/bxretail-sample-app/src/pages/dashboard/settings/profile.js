@@ -366,29 +366,8 @@ class DashboardSettingsProfile extends React.Component {
                                         </Row>
                                     </form>
                                 </div>
-                                {/* PingOne Fraud Use Case - Add Credit Card */}
-                                {/* <div className='module'>
-                                    <h3>{data.form.fields.creditCards.addCardHeader}</h3>
-                                    <Row>
-                                        <Col>
-                                            <p>{data.form.fields.creditCards.description}</p>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col>
-                                            <Button
-                                                type='button'
-                                                color='primary'
-                                                onClick={() => {
-                                                    this.toggle();
-                                                }}>
-                                                {data.form.fields.creditCards.addCardLabel}
-                                            </Button>
-                                        </Col>
-                                    </Row>
-                                </div> */}
                                 {/* Add MFA section */}
-                                {!this.state.federatedUser && (
+                                {/* {!this.state.federatedUser && (
                                     <div className='module'>
                                         <h3>Authentication Preferences</h3>
                                         <Col>
@@ -413,7 +392,7 @@ class DashboardSettingsProfile extends React.Component {
                                             </Row>
                                         </Col>
                                     </div>
-                                )}
+                                )} */}
                                 {/* Add Device Management section */}
                                 {!this.state.federatedUser && (
                                 <div className='module'>     

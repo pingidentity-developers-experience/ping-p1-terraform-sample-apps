@@ -142,3 +142,4 @@ dist
 .DS_Store
 BXRetail-Terraform-pkg/bxretail-sample-app/image-build-tool.sh
 BXRetail-Terraform-pkg/bxretail-sample-app/public/env-config.js
+**/dBuild-tApply.sh

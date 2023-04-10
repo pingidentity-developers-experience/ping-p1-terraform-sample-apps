@@ -7,7 +7,7 @@
 
 | Folder | Contents |
 | ------ | -------- |
-| /components | UI components used in the UI component hierarchy. Controller and integration subfolders. |
+| /components | UI components used in the UI component hierarchy. Controller and integration sub-folders. |
 | /components/controller* | All business logic that takes user or client input as state, props, or params and processes it for the payload needed for Ping integration. |
 | /components/integration* | All methods for direct integration with Ping product and services APIs. |
 | /data | UI content in JSON object files. Keeps UI content out of the functional code. | 
@@ -22,12 +22,12 @@
 | .terraform | Terraform [working directory](https://developer.hashicorp.com/terraform/cli/init#working-directory-contents) created by Terraform. Never touch this. It's managed by Terraform. You won't see this until you run `terraform init`. |
 | .terraform.lock.hcl | The Terraform [dependency lock file](https://developer.hashicorp.com/terraform/language/files/dependency-lock). Where Terraform manages the versions of the downloaded providers or modules. Never touch this. It's managed by Terraform. If you need to update versions, see [-upgrade option](https://developer.hashicorp.com/terraform/language/files/dependency-lock#dependency-installation-behavior). You won't see this until you run `terraform init`. |
 | data.tf | HCL for doing [data](https://developer.hashicorp.com/terraform/language/data-sources) lookups/reads on data in your environment/infrastructure. |
-| k8s.tf | HCL for creating [kubernetes](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs) services, ingresses, and delpoyments. |
+| k8s.tf | HCL for creating [kubernetes](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs) services, ingresses, and deployments. |
 | main.tf | HCL for necessary [providers](https://developer.hashicorp.com/terraform/language/providers) and [modules](https://developer.hashicorp.com/terraform/language/modules). |
 | outputs.tf | HCL declaring [output values](https://developer.hashicorp.com/terraform/language/values/outputs) that are the result of dynamic data. In this case, the deployed apps URL. |
-| resources.tf | HCL that declares all the [resources](https://developer.hashicorp.com/terraform/language/resources) we need to create in our environment/infrastructure. The things you normally create by clicking around the Pingone admin console manually. |
+| resources.tf | HCL that declares all the [resources](https://developer.hashicorp.com/terraform/language/resources) we need to create in our environment/infrastructure. The things you normally create by clicking around the PingOne admin console manually. |
 | terraform.tfstate | The [Terraform state](https://developer.hashicorp.com/terraform/language/state) file. This is where Terraform manages the "state" of your infrastructure and compares that against your deployed infrastructure. Never touch this. It's managed by Terraform. |
-| terraform.tfvars | [Variable definitions](https://developer.hashicorp.com/terraform/language/values/variables#variable-definitions-tfvars-files), name/value pairs, that should not be part of your projecct repo and added dynamically during Terraform execution. This will not exist until you create it according to the instructions in the project-specific README. |
+| terraform.tfvars | [Variable definitions](https://developer.hashicorp.com/terraform/language/values/variables#variable-definitions-tfvars-files), name/value pairs, that should not be part of your project repo and added dynamically during Terraform execution. This will not exist until you create it according to the instructions in the project-specific README. |
 | vars.tf | HCL that declares [variables](https://developer.hashicorp.com/terraform/language/values/variables) that will be needed in defining your environment/infrastructure. |
 | versions.tf | HCL declaring [required providers](https://developer.hashicorp.com/terraform/language/providers/requirements#requiring-providers) & versions to use. |
 
@@ -44,11 +44,11 @@ admin_user_id   = "{{adminUserId}}"
 license_id    = "{{licenseId}}"
 worker_id       = "{{workerId}}"
 worker_secret   = "{{workerSecret}}"
-k8s_deploy_name = "{{k8sDeployName}}
+k8s_deploy_name = "{{k8sDeployName}}"
 k8s_deploy_domain = "{{k8sDeployDomain}}"
 k8s_namespace     = "{{k8sNamespace}}"
 proxy_image_name  = "docker.io/michaelspingidentity/ping-integration-proxy:0.1.0"
-app_image_name    = "docker.io/michaelspingidentity/ping-bxretail-terraform-sample:202303-0.19.1-beta"
+app_image_name    = "docker.io/michaelspingidentity/ping-bxretail-terraform-sample:202303-0.19.5-beta"
 env_type          = "dev"
 ```
 

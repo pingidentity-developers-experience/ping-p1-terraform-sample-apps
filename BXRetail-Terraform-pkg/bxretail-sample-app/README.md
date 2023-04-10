@@ -8,7 +8,7 @@ It is a unique demo due to our PingOne-led initiative, with no non-SaaS software
 BXRetail is a Single Page Application (SPA) built with React; JSX, Javascript, react-router, react-strap, SASS, JSON.
 
 ### Source Docs
-We include HTML formatted documentation using the JSDoc utility. Just open the index.html file in the /jsodcs/ folder.
+We include HTML formatted documentation using the JSDoc utility. Just open the index.html file in the /jsdocs/ folder.
 
 Also, all Ping integration methods are annotated with links to the related API docs. All of this is picked up by JSdoc, too.
 
@@ -61,7 +61,7 @@ PingOne Authentication API & PingOne Management API
     11. Click **Create My Account**.
     12. You will be redirected to the registration form with your email pre-populated. Enter a password and password confirmation to create your account.
     13. Click **Submit**.
-    14. Enter the verififcation code you received in your email and click **Submit My Code**.
+    14. Enter the verification code you received in your email and click **Submit My Code**.
     15. Upon successful registration, you will be signed in to your account.
     16. Navigate to the **My Account** tab, then click **Manage Your Profile**. You will see the information provided during checkout populated here to be used for future purchases.
   - **Streamstick Video Streaming Player with 4K, Full HD**
@@ -78,7 +78,7 @@ PingOne Authentication API & PingOne Management API
     11. Click **Create My Account**.
     12. You will be redirected to the registration form with your email pre-populated. Enter a password and password confirmation to create your account.
     13. Click **Submit**.
-    14. Enter the verififcation code you received in your email and click **Submit My Code**.
+    14. Enter the verification code you received in your email and click **Submit My Code**.
     15. Upon successful registration, you will be signed in to your account.
     16. Navigate to the **My Account** tab, then click **Manage Your Profile**. You will see the information provided during checkout populated here to be used for future purchases.
 
@@ -111,7 +111,7 @@ PingOne Authentication API
 ### Registration
 PingOne Authentication API & PingOne Management API
 1. Click **Sign up today: Create an Account**.
-2. Enter an emaill address you have access to and enter a password.
+2. Enter an email address you have access to and enter a password.
 3. Enter the verification code that you received to your email and click **Submit my code**.
 4. Your account has been created, and you will be signed on. 
 

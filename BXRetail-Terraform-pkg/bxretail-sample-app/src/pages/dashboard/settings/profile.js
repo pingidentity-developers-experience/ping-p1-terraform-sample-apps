@@ -394,12 +394,12 @@ class DashboardSettingsProfile extends React.Component {
                                     </div>
                                 )} */}
                                 {/* Add Device Management section */}
-                                {!this.state.federatedUser && (
+                                {/* {!this.state.federatedUser && (
                                 <div className='module'>     
                                     <h3>Device Management</h3>
                                     <p>To access your My Account portal to add or remove multi-factor authentication devices used for sign-in, <a href={window._env_.REACT_APP_AUTHPATH + "/myaccount/"} target="_blank" rel="noreferrer">click here</a>.</p>
                                 </div>
-                                )}
+                                )} */}
                                     
                             </div>
                         </div>

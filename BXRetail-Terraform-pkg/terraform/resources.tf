@@ -479,3 +479,28 @@ resource "pingone_notification_template_content" "email_verification" {
     }
   }
 }
+
+####################################################################################################
+# Optional Docker Image Resources.
+# These are only used if you did not choose to deploy to your k8s host, assuming you have one.
+# This is controlled by the deploy_app_to_k8s set in your tfvars file. It's defaulted to true. 
+# {@link https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs}
+# {@link https://hub.docker.com/repository/docker/michaelspingidentity/ping-bxretail-terraform-sample/general}
+####################################################################################################
+
+# Pulls the image
+resource "docker_image" "ping_bxr_sample_app" {
+  count = local.deploy_app_to_local
+  name = "michaelspingidentity/ping-bxretail-terraform-sample:202303-0.19.5-beta"
+}
+
+# Create a container
+resource "docker_container" "local_bxr_app" {
+  count = local.deploy_app_to_local
+  image = docker_image.ping_bxr_sample_app[count.index].image_id
+  name  = "Ping_BXRetail_Sample"
+
+  provisioner "local-exec" {
+    command = "docker run -i -p 5000:5000 ${var.app_image_name}"
+  }
+}

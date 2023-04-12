@@ -488,9 +488,6 @@ resource "pingone_notification_template_content" "email_verification" {
 # {@link https://hub.docker.com/repository/docker/michaelspingidentity/ping-bxretail-terraform-sample/general}
 ####################################################################################################
 
-# TODO Add another set of resources to run the fastify proxy server. Doing that, does it make more sense to
-# put it all in a YAML file and use local_exec to run docker compose up???
-
 # Pulls the image
 resource "docker_image" "ping_bxr_sample_app" {
   count = local.deploy_app_to_local
@@ -519,15 +516,6 @@ resource "docker_container" "local_bxr_app" {
     "REACT_APP_IMAGE_NAME = ${var.app_image_name}"
   ]
 
-  # WE ONLY NEED THIS IF WE GO THE YAML/DOCKER COMPOSE OPTION. OTHERWISE, DELETE THIS PROVISIONER.
-  # provisioner "local-exec" {
-  #   # FIXME can't remove dangling containers once stopped (--rm) in this Docker context via Terraform for some reason.
-  #   # FIXME Maybe this issue goes away if we use the YAML file mentioned above? Or we can modify this command to
-  #   # FIXME first stop and remove containers before running a new instance.
-  #   # Run the sample app,
-  #   # don't let start scripts exit, 
-  #   # run detached so you're not bound to the terminal.
-  #   # TODO update this command to docker compose up if we go YAML. 
-  #   command = "docker run -itd -p 5000:5000 ${var.app_image_name}"
-  # }
+  # TODO Add another set of resources to run the fastify proxy server.
+
 }

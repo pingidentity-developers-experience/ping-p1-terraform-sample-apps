@@ -83,7 +83,7 @@ variable "deploy_app_to_k8s" {
 
 locals {
   # The URL of the demo app
-  app_url             = var.deploy_app_to_k8s ? "https://${kubernetes_ingress_v1.package_ingress[0].spec[0].rule[0].host}/app/" : "https://localhost:5000"
+  app_url             = var.deploy_app_to_k8s ? "https://${kubernetes_ingress_v1.package_ingress[0].spec[0].rule[0].host}/app/" : "https://localhost:5000/app/"
   deploy_app_to_local = var.deploy_app_to_k8s ? 0 : 1
   # Translate the Region to a Domain suffix
   north_america  = var.region == "NorthAmerica" ? "com" : ""

@@ -483,10 +483,13 @@ resource "pingone_notification_template_content" "email_verification" {
 ####################################################################################################
 # Optional Docker Image Resources.
 # These are only used if you did not choose to deploy to your k8s host, assuming you have one.
-# This is controlled by the deploy_app_to_k8s set in your tfvars file. It's defaulted to true. 
+# This is controlled by the deploy_app_to_k8s var set in your tfvars file. It's defaulted to true. 
 # {@link https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs}
 # {@link https://hub.docker.com/repository/docker/michaelspingidentity/ping-bxretail-terraform-sample/general}
 ####################################################################################################
+
+# TODO Add another set of resources to run the fastify proxy server. Doing that, does it make more sense to
+# put it all in a YAML file and use local_exec to run docker compose up???
 
 # Pulls the image
 resource "docker_image" "ping_bxr_sample_app" {
@@ -499,8 +502,22 @@ resource "docker_container" "local_bxr_app" {
   count = local.deploy_app_to_local
   image = docker_image.ping_bxr_sample_app[count.index].image_id
   name  = "Ping_BXRetail_Sample"
-
-  provisioner "local-exec" {
-    command = "docker run -i -p 5000:5000 ${var.app_image_name}"
+  ports {
+    internal = 5000
+    external = 5000
   }
+  # TODO populate this with TF vars. See env example in k8s.tf.
+  env = [ "var=value" ]
+
+  # WE ONLY NEED THIS IF WE GO THE YAML/DOCKER COMPOSE OPTION. OTHERWISE, DELETE THIS PROVISIONER.
+  # provisioner "local-exec" {
+  #   # FIXME can't remove dangling containers once stopped (--rm) in this Docker context via Terraform for some reason.
+  #   # FIXME Maybe this issue goes away if we use the YAML file mentioned above? Or we can modify this command to
+  #   # FIXME first stop and remove containers before running a new instance.
+  #   # Run the sample app,
+  #   # don't let start scripts exit, 
+  #   # run detached so you're not bound to the terminal.
+  #   # TODO update this command to docker compose up if we go YAML. 
+  #   command = "docker run -itd -p 5000:5000 ${var.app_image_name}"
+  # }
 }

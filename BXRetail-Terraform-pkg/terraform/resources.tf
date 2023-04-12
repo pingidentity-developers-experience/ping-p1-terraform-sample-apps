@@ -494,7 +494,7 @@ resource "pingone_notification_template_content" "email_verification" {
 # Pulls the image
 resource "docker_image" "ping_bxr_sample_app" {
   count = local.deploy_app_to_local
-  name = "michaelspingidentity/ping-bxretail-terraform-sample:202303-0.19.5-beta"
+  name  = "michaelspingidentity/ping-bxretail-terraform-sample:202303-0.19.5-beta"
 }
 
 # Create a container
@@ -506,8 +506,18 @@ resource "docker_container" "local_bxr_app" {
     internal = 5000
     external = 5000
   }
-  # TODO populate this with TF vars. See env example in k8s.tf.
-  env = [ "var=value" ]
+  # FIXME This isn't updating the .env values that end up in env-config.js.
+  # FIXME That implies these env vars are not being passed into the container environment where
+  # FIXME env.sh normally reads them from. This should work just like BXR prod, or the k8s.tf option.
+  env = ["REACT_APP_HOST = https://${var.k8s_deploy_name}.${var.k8s_deploy_domain}",
+    "REACT_APP_PROXYAPIPATH = https://${var.k8s_deploy_name}-proxy.${var.k8s_deploy_domain}",
+    "REACT_APP_ENVID = value = ${module.environment.environment_id}",
+    "REACT_APP_CLIENT = ${pingone_application.bxretail_sample_app.oidc_options[0].client_id}",
+    "REACT_APP_RECSET = ${pingone_application.bxretail_sample_app.oidc_options[0].client_secret}",
+    "REACT_APP_AUTHPATH = https://auth.pingone.${local.pingone_domain}",
+    "REACT_APP_APIPATH = https://api.pingone.${local.pingone_domain}/v1",
+    "REACT_APP_IMAGE_NAME = ${var.app_image_name}"
+  ]
 
   # WE ONLY NEED THIS IF WE GO THE YAML/DOCKER COMPOSE OPTION. OTHERWISE, DELETE THIS PROVISIONER.
   # provisioner "local-exec" {

@@ -45,11 +45,6 @@ variable "env_name" {
   default     = "PingIdentity Example"
 }
 
-variable "env_type" {
-  type        = string
-  description = "Deployment Type (Dev | QA | Prod)"
-}
-
 variable "k8s_namespace" {
   type        = string
   description = "K8s namespace for container deployment"

@@ -1,7 +1,5 @@
 # BXRetail + Terraform + PingOne Sample App Package
 
-
-
 ## Source Code Folders
 ### /bxretail-sample-app/src
 
@@ -33,6 +31,10 @@
 
 
 ## Cloning the Project
+## Configure PingOne for Terraform access
+
+If not done so already, first configure your PingOne organization for Terraform access by following the instructions at the [PingOne Terraform provider Getting Started Guide](https://pingidentity.github.io/terraform-docs/getting-started/pingone/#configure-pingone-for-terraform-access).
+
 ### Variables
 After cloning the project, navigate to `/terraform` and create a `terraform.tfvars` file with the following:
 
@@ -49,8 +51,9 @@ k8s_deploy_domain = "{{k8sDeployDomain}}"
 k8s_namespace     = "{{k8sNamespace}}"
 proxy_image_name  = "docker.io/michaelspingidentity/ping-integration-proxy:0.1.0"
 app_image_name    = "docker.io/michaelspingidentity/ping-bxretail-terraform-sample:202303-0.19.5-beta"
-env_type          = "dev"
 ```
+
+Note the `license_id`, `organization_id` values can be found by following instructions at the [PingOne Terraform provider Getting Started Guide](https://pingidentity.github.io/terraform-docs/getting-started/pingone/#finding-required-ids).
 
 | Variable | Description | 
 | -------- | ----------- |

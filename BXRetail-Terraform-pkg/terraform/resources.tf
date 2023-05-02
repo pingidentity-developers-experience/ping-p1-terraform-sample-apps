@@ -503,17 +503,15 @@ resource "docker_container" "local_bxr_app" {
     internal = 5000
     external = 5000
   }
-  # FIXME This isn't updating the .env values that end up in env-config.js.
-  # FIXME That implies these env vars are not being passed into the container environment where
-  # FIXME env.sh normally reads them from. This should work just like BXR prod, or the k8s.tf option.
-  env = ["REACT_APP_HOST = https://${var.k8s_deploy_name}.${var.k8s_deploy_domain}",
-    "REACT_APP_PROXYAPIPATH = https://${var.k8s_deploy_name}-proxy.${var.k8s_deploy_domain}",
-    "REACT_APP_ENVID = value = ${module.environment.environment_id}",
-    "REACT_APP_CLIENT = ${pingone_application.bxretail_sample_app.oidc_options[0].client_id}",
-    "REACT_APP_RECSET = ${pingone_application.bxretail_sample_app.oidc_options[0].client_secret}",
-    "REACT_APP_AUTHPATH = https://auth.pingone.${local.pingone_domain}",
-    "REACT_APP_APIPATH = https://api.pingone.${local.pingone_domain}/v1",
-    "REACT_APP_IMAGE_NAME = ${var.app_image_name}"
+
+  env = ["REACT_APP_HOST=https://${var.k8s_deploy_name}.${var.k8s_deploy_domain}",
+    "REACT_APP_PROXYAPIPATH=https://${var.k8s_deploy_name}-proxy.${var.k8s_deploy_domain}",
+    "REACT_APP_ENVID=value=${module.environment.environment_id}",
+    "REACT_APP_CLIENT=${pingone_application.bxretail_sample_app.oidc_options[0].client_id}",
+    "REACT_APP_RECSET=${pingone_application.bxretail_sample_app.oidc_options[0].client_secret}",
+    "REACT_APP_AUTHPATH=https://auth.pingone.${local.pingone_domain}",
+    "REACT_APP_APIPATH=https://api.pingone.${local.pingone_domain}/v1",
+    "REACT_APP_IMAGE_NAME=${var.app_image_name}"
   ]
 
   # TODO Add another set of resources to run the fastify proxy server.

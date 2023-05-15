@@ -73,7 +73,7 @@ const SearchAutocomplete = () => {
   const onChange = event => {
     const value = event.target.value;
     setInputValue(value);
-    const filteredSuggestions = data.dashboard.suggestions.filter(suggestion =>
+    const filteredSuggestions = content.dashboard.suggestions.filter(suggestion =>
       suggestion.toLowerCase().includes(value.toLowerCase())
     );
     setFilteredSuggestions(filteredSuggestions);
@@ -235,7 +235,7 @@ class AnyMarketing extends React.Component {
             <Row>
               <Col lg="3">
                 {
-                  Object.keys(data.subnav).map(key => {
+                  Object.keys(content.subnav).map(key => {
                     return (
                       <AccountsSubnav key={content.subnav[key].title} subnav={content.subnav[key]} />
                     );
@@ -243,9 +243,9 @@ class AnyMarketing extends React.Component {
                 }
                 <h5 className="mt-5">{content.alerts.title}</h5>
                 {
-                  Object.keys(data.alerts.messages).map(key => {
+                  Object.keys(content.alerts.messages).map(key => {
                     return (
-                      <p key={key} dangerouslySetInnerHTML={{__html: data.alerts.messages[key]}}></p>
+                      <p key={key} dangerouslySetInnerHTML={{__html: content.alerts.messages[key]}}></p>
                     );
                   })      
                 }
@@ -304,7 +304,7 @@ class AnyMarketing extends React.Component {
                     <NavLink href="#"><FontAwesomeIcon icon={faInstagram} size="2x" /></NavLink>
                   </NavItem>
                 </Nav>
-                <p dangerouslySetInnerHTML={{__html: data.copyright}}></p>
+                <p dangerouslySetInnerHTML={{__html: content.copyright}}></p>
               </Col>
               <Col md="6" lg="8" xl="6" className="order-1 order-md-2">
                 <Nav className="nav-main">

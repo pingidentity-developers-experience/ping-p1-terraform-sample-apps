@@ -39,14 +39,14 @@ If not done so already, first configure your PingOne organization for Terraform 
 After cloning the project, navigate to `/terraform` and create a `terraform.tfvars` file with the following:
 
 ```hcl
-region          = "{{ NorthAmerica | Canada | Asia | Europe }}"
-organization_id = "{{orgId}}"
-admin_env_id    = "{{adminEnvId}}"
-admin_user_id   = "{{adminUserId}}"
-license_id    = "{{licenseId}}"
-worker_id       = "{{workerId}}"
-worker_secret   = "{{workerSecret}}"
-k8s_deploy_name = "{{k8sDeployName}}"
+region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
+organization_id   = "{{orgId}}"
+admin_env_id      = "{{adminEnvId}}"
+admin_user_id     = "{{adminUserId}}"
+license_id        = "{{licenseId}}"
+worker_id         = "{{workerId}}"
+worker_secret     = "{{workerSecret}}"
+k8s_deploy_name   = "{{k8sDeployName}}"
 k8s_deploy_domain = "{{k8sDeployDomain}}"
 k8s_namespace     = "{{k8sNamespace}}"
 proxy_image_name  = "docker.io/michaelspingidentity/ping-integration-proxy:0.1.0"

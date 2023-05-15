@@ -12,7 +12,6 @@ on:
       - 'makefile'
 
 jobs:
-
   validate:
     runs-on: ubuntu-latest
     steps:

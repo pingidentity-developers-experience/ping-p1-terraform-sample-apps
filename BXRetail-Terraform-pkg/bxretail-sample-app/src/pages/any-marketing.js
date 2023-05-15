@@ -18,11 +18,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedinIn, faFacebookF, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 // Components
-import AccountsSubnav from '../components/AccountsSubnav';
+import AccountsSubnav from '../components/UI/AccountsSubnav';
 import Session from '../components/Utils/Session';
 
-// Data
-import data from '../data/any-marketing.json';
+// Content
+import content from '../content/any-marketing.json';
 
 // Styles
 import '../styles/pages/any-marketing.scss';
@@ -93,7 +93,7 @@ const SearchAutocomplete = () => {
   return (
     <div>
       <form className="form-search form-inline float-right">
-        <input className="form-control user-input" type="text" placeholder={data.dashboard.search_placeholder} onChange={onChange} value={inputValue} />
+        <input className="form-control user-input" type="text" placeholder={content.dashboard.search_placeholder} onChange={onChange} value={inputValue} />
         <SuggestionsList
           inputValue={inputValue}
           selectedSuggestion={selectedSuggestion}
@@ -106,7 +106,7 @@ const SearchAutocomplete = () => {
       <Modal isOpen={isModalOpen} toggle={triggerModal} className="modal-lg any-marketing modal-record" centered="true" backdropClassName="modal-backdrop-record">
         <ModalHeader toggle={triggerModal}>Record Overview</ModalHeader>
         <ModalBody>
-          {data.record.fields.map((item, i) => {
+          {content.record.fields.map((item, i) => {
             return (
               <Row className="mb-3" key={i}>
                 <Col md="3">{item.label}:</Col>
@@ -117,8 +117,8 @@ const SearchAutocomplete = () => {
             );
           })}
           <div className="float-right">
-            <Button color="primary" className="mr-3">{data.record.buttons.inspect}</Button>
-            <Button color="primary">{data.record.buttons.modify}</Button>
+            <Button color="primary" className="mr-3">{content.record.buttons.inspect}</Button>
+            <Button color="primary">{content.record.buttons.modify}</Button>
           </div>
         </ModalBody>
       </Modal>
@@ -150,21 +150,21 @@ class AnyMarketing extends React.Component {
           {/* DESKTOP NAV */}
           <Navbar color="light" light expand="md" className="navbar-desktop">
             <Container>
-              <Link to="/" className="navbar-brand"><img src={window._env_.PUBLIC_URL + "/images/any-marketing-logo.svg"} alt={data.brand} /></Link>
+              <Link to="/" className="navbar-brand"><img src={window._env_.PUBLIC_URL + "/images/any-marketing-logo.svg"} alt={content.brand} /></Link>
               <NavbarToggler onClick={this.toggle.bind(this)} />
               <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="justify-content-end ml-auto navbar-nav-utility" navbar>
                   <NavItem>
-                    <NavLink><img src={window._env_.PUBLIC_URL + "/images/icons/search.svg"} alt={data.menus.utility.search} /></NavLink>
+                    <NavLink><img src={window._env_.PUBLIC_URL + "/images/icons/search.svg"} alt={content.menus.utility.search} /></NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink><img src={window._env_.PUBLIC_URL + "/images/icons/map-marker.svg"} alt={data.menus.utility.locations} /></NavLink>
+                    <NavLink><img src={window._env_.PUBLIC_URL + "/images/icons/map-marker.svg"} alt={content.menus.utility.locations} /></NavLink>
                   </NavItem>
                   <NavItem>
-                    <NavLink><img src={window._env_.PUBLIC_URL + "/images/icons/support.svg"} alt={data.menus.utility.support} /></NavLink>
+                    <NavLink><img src={window._env_.PUBLIC_URL + "/images/icons/support.svg"} alt={content.menus.utility.support} /></NavLink>
                   </NavItem>
                   <NavItem className="logout">
-                    <NavLink><img src={window._env_.PUBLIC_URL + "/images/icons/user.svg"} alt={data.menus.utility.logout} className="mr-1" /> {data.menus.utility.logout}</NavLink>
+                    <NavLink><img src={window._env_.PUBLIC_URL + "/images/icons/user.svg"} alt={content.menus.utility.logout} className="mr-1" /> {content.menus.utility.logout}</NavLink>
                   </NavItem>
                 </Nav>
               </Collapse>
@@ -173,7 +173,7 @@ class AnyMarketing extends React.Component {
           <Navbar color="light" light expand="md" className="navbar-desktop">
             <Container>
               <Nav className="mr-auto navbar-nav-main" navbar>
-                {data.menus.primary.map((item, i) => {
+                {content.menus.primary.map((item, i) => {
                   return (
                     <NavItem key={i}>
                       <NavLink to={item.url} activeClassName="active" exact tag={RRNavLink}>{item.title}</NavLink>
@@ -189,14 +189,14 @@ class AnyMarketing extends React.Component {
               <NavbarToggler onClick={this.toggle.bind(this)} />
             </div>
             <div className="mobilenav-brand">
-              <Link to="/" className="navbar-brand"><img src={window._env_.PUBLIC_URL + "/images/any-marketing-logo.svg"} alt={data.brand} /></Link>
+              <Link to="/" className="navbar-brand"><img src={window._env_.PUBLIC_URL + "/images/any-marketing-logo.svg"} alt={content.brand} /></Link>
             </div>
             <div className="mobilenav-login">
               <Link to="/" className="nav-link logout">Sign Out</Link>
             </div>
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="navbar-nav-main navbar-light bg-light" navbar>
-                {data.menus.primary.map((item, i) => {
+                {content.menus.primary.map((item, i) => {
                   return (
                     <NavItem key={i}>
                       <NavLink to={item.url} activeClassName="active" exact tag={RRNavLink}>{item.title}</NavLink>
@@ -206,16 +206,16 @@ class AnyMarketing extends React.Component {
               </Nav>
               <Nav className="navbar-nav-utility" navbar>
                 <NavItem>
-                  <NavLink><img src={window._env_.PUBLIC_URL + "/images/icons/search.svg"} alt={data.menus.utility.search} className="mr-1" /> {data.menus.utility.search}</NavLink>
+                  <NavLink><img src={window._env_.PUBLIC_URL + "/images/icons/search.svg"} alt={content.menus.utility.search} className="mr-1" /> {content.menus.utility.search}</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink><img src={window._env_.PUBLIC_URL + "/images/icons/map-marker.svg"} alt={data.menus.utility.locations} className="mr-1" /> {data.menus.utility.locations}</NavLink>
+                  <NavLink><img src={window._env_.PUBLIC_URL + "/images/icons/map-marker.svg"} alt={content.menus.utility.locations} className="mr-1" /> {content.menus.utility.locations}</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink><img src={window._env_.PUBLIC_URL + "/images/icons/support.svg"} alt={data.menus.utility.support} className="mr-1" /> {data.menus.utility.support}</NavLink>
+                  <NavLink><img src={window._env_.PUBLIC_URL + "/images/icons/support.svg"} alt={content.menus.utility.support} className="mr-1" /> {content.menus.utility.support}</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink><img src={window._env_.PUBLIC_URL + "/images/icons/user.svg"} alt={data.menus.utility.logout} className="mr-1" /> {data.menus.utility.logout}</NavLink>
+                  <NavLink><img src={window._env_.PUBLIC_URL + "/images/icons/user.svg"} alt={content.menus.utility.logout} className="mr-1" /> {content.menus.utility.logout}</NavLink>
                 </NavItem>
               </Nav>
             </Collapse>
@@ -225,7 +225,7 @@ class AnyMarketing extends React.Component {
           <Container>
             <Row>
               <Col lg="12">
-                <p><strong>{data.welcome_bar}</strong></p>
+                <p><strong>{content.welcome_bar}</strong></p>
               </Col>
             </Row>
           </Container>
@@ -237,11 +237,11 @@ class AnyMarketing extends React.Component {
                 {
                   Object.keys(data.subnav).map(key => {
                     return (
-                      <AccountsSubnav key={data.subnav[key].title} subnav={data.subnav[key]} />
+                      <AccountsSubnav key={content.subnav[key].title} subnav={content.subnav[key]} />
                     );
                   })      
                 }
-                <h5 className="mt-5">{data.alerts.title}</h5>
+                <h5 className="mt-5">{content.alerts.title}</h5>
                 {
                   Object.keys(data.alerts.messages).map(key => {
                     return (
@@ -249,13 +249,13 @@ class AnyMarketing extends React.Component {
                     );
                   })      
                 }
-                <Button color="link" className="mb-4">{data.alerts.button}</Button>
+                <Button color="link" className="mb-4">{content.alerts.button}</Button>
               </Col>
               <Col lg="9">
                 <div>
                   <Row>
                     <Col>
-                      <h4 className="mb-4">{data.dashboard.title}</h4>
+                      <h4 className="mb-4">{content.dashboard.title}</h4>
                     </Col>
                     <Col>
                       <SearchAutocomplete />
@@ -269,10 +269,10 @@ class AnyMarketing extends React.Component {
                 </div>
                 <div className="bg-light p-4">
                   <div className="float-right">
-                    <Button color="link">{data.metrics.buttons.insights}</Button>
-                    <Button color="link">{data.metrics.buttons.data}</Button>
+                    <Button color="link">{content.metrics.buttons.insights}</Button>
+                    <Button color="link">{content.metrics.buttons.data}</Button>
                   </div>
-                  <h4 className="mb-4">{data.metrics.title}</h4>
+                  <h4 className="mb-4">{content.metrics.title}</h4>
                   <Row>
                     <Col md="4">
                       <img src={window._env_.PUBLIC_URL + "/images/any-marketing-pie-chart.png"} className="img-fluid" alt="AnyMarketing Pie Chart"/>
@@ -308,7 +308,7 @@ class AnyMarketing extends React.Component {
               </Col>
               <Col md="6" lg="8" xl="6" className="order-1 order-md-2">
                 <Nav className="nav-main">
-                  {data.menus.footer.map((item, i) => {
+                  {content.menus.footer.map((item, i) => {
                     return (
                       <NavItem className="nav-item-parent" key={i}>
                         <NavLink href={item.url}>{item.title}</NavLink>

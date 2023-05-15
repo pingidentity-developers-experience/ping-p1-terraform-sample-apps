@@ -5,10 +5,10 @@
 
 | Folder | Contents |
 | ------ | -------- |
-| /components | UI components used in the UI component hierarchy. Controller and integration sub-folders. |
+| /components/UI | UI components used in the UI component hierarchy. Controller and integration sub-folders. |
 | /components/controller* | All business logic that takes user or client input as state, props, or params and processes it for the payload needed for Ping integration. |
 | /components/integration* | All methods for direct integration with Ping product and services APIs. |
-| /data | UI content in JSON object files. Keeps UI content out of the functional code. | 
+| /content | UI content in JSON object files. Keeps UI content out of the functional code. | 
 | /pages | UIs loaded by each URI that import the various UI components. |
 | /styles | SCSS files. (CSS with super powers). |
 \* Folders you care about.

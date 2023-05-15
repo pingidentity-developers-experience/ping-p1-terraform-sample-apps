@@ -1,4 +1,32 @@
-import React from 'react';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: pages/shop/checkout.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: pages/shop/checkout.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
 import {
     Container,
     Row,
@@ -193,7 +221,7 @@ class Checkout extends React.Component {
         if (stepNumber === '3') {
             // If we are logged in, we jump straight to the profile form skipping
             // email lookup form. So we can't test formRef1 in that case.
-            if (this.session.isLoggedOut && !this.formref1.current.reportValidity()) {
+            if (this.session.isLoggedOut &amp;&amp; !this.formref1.current.reportValidity()) {
                 return false;
             }
 
@@ -219,9 +247,9 @@ class Checkout extends React.Component {
             //         if (!this.session.isLoggedOut) {
             //             this.getProfile(userId);
             //             this.setState({ step: stepNumber, detailsPending: false, acctFound: true });
-            //         } else if (IdP.length && IdP === 'PING_ONE') {
+            //         } else if (IdP.length &amp;&amp; IdP === 'PING_ONE') {
             //             this.signInToCheckout(email);
-            //         } else if (IdP.length && IdP !== 'PING_ONE') {
+            //         } else if (IdP.length &amp;&amp; IdP !== 'PING_ONE') {
             //             console.info('Customer has an external IdP (federated identity).');
             //             // TODO UX question: Do we need to automate this federated login so when we kick off signin, we automatically redirect to their idp upon return with a flowId.
             //             if (authMode === 'signInToCheckout' || authMode === 'login') {
@@ -419,93 +447,93 @@ class Checkout extends React.Component {
             regMessage = this.session.getAuthenticatedUserItem('regMessage', 'session');
             this.session.removeAuthenticatedUserItem('regMessage', 'session');
         }
-        const closeBtn = <div />;
+        const closeBtn = &lt;div />;
         return (
-            <div className='dashboard accounts accounts-overview shop'>
-                <NavbarMain toggleCart={this.toggleTab} />
-                <WelcomeBar
+            &lt;div className='dashboard accounts accounts-overview shop'>
+                &lt;NavbarMain toggleCart={this.toggleTab} />
+                &lt;WelcomeBar
                     firstName={this.session.getAuthenticatedUserItem('firstName', 'session')}
                     email={this.session.getAuthenticatedUserItem('bxRetailUserType', 'session') ? this.session.getAuthenticatedUserItem('email', 'session') : ''}
                     regMessage={regMessage}
                 />
-                <Container>
-                    <div className='inner'>
-                        <div className='sidebar'>
+                &lt;Container>
+                    &lt;div className='inner'>
+                        &lt;div className='sidebar'>
                             {Object.keys(content.subnav).map((key) => {
-                                return <AccountsSubnav key={content.subnav[key].title} subnav={content.subnav[key]} />;
+                                return &lt;AccountsSubnav key={content.subnav[key].title} subnav={content.subnav[key]} />;
                             })}
-                            <div className='text-center mt-4'>
-                                <p>
-                                    <strong>Shop at our Extraordinary Club Partners</strong>
-                                </p>
-                            </div>
-                            <Row className='sites align-items-center'>
-                                <Col>
-                                    <img src={window._env_.PUBLIC_URL + '/images/logo-bxclothes.svg'} alt='BXClothes' />
-                                </Col>
-                                <Col>
-                                    <img src={window._env_.PUBLIC_URL + '/images/logo-bxhome.svg'} alt='BXHome' />
-                                </Col>
-                                <Col>
-                                    <img src={window._env_.PUBLIC_URL + '/images/logo-bxoffice.svg'} alt='BXOffice' />
-                                </Col>
-                                <Col>
-                                    <img src={window._env_.PUBLIC_URL + '/images/logo-bxtech.svg'} alt='BXTech' />
-                                </Col>
-                            </Row>
-                        </div>
-                        <div className='content'>
-                            <div className='accounts-hdr'>
-                                <h4>
-                                    {this.state.selectedItem.title} &raquo; {content.checkoutTitle}
-                                </h4>
-                                <AccountsDropdown text={content.dropdown} />
-                            </div>
-                            <div className='module'>
+                            &lt;div className='text-center mt-4'>
+                                &lt;p>
+                                    &lt;strong>Shop at our Extraordinary Club Partners&lt;/strong>
+                                &lt;/p>
+                            &lt;/div>
+                            &lt;Row className='sites align-items-center'>
+                                &lt;Col>
+                                    &lt;img src={window._env_.PUBLIC_URL + '/images/logo-bxclothes.svg'} alt='BXClothes' />
+                                &lt;/Col>
+                                &lt;Col>
+                                    &lt;img src={window._env_.PUBLIC_URL + '/images/logo-bxhome.svg'} alt='BXHome' />
+                                &lt;/Col>
+                                &lt;Col>
+                                    &lt;img src={window._env_.PUBLIC_URL + '/images/logo-bxoffice.svg'} alt='BXOffice' />
+                                &lt;/Col>
+                                &lt;Col>
+                                    &lt;img src={window._env_.PUBLIC_URL + '/images/logo-bxtech.svg'} alt='BXTech' />
+                                &lt;/Col>
+                            &lt;/Row>
+                        &lt;/div>
+                        &lt;div className='content'>
+                            &lt;div className='accounts-hdr'>
+                                &lt;h4>
+                                    {this.state.selectedItem.title} &amp;raquo; {content.checkoutTitle}
+                                &lt;/h4>
+                                &lt;AccountsDropdown text={content.dropdown} />
+                            &lt;/div>
+                            &lt;div className='module'>
                                 {/* Guest or sign in prompt */}
-                                {this.state.step === '1' && (
-                                    <div>
-                                        <h4>{content.modal.prompt.title}</h4>
-                                        <div dangerouslySetInnerHTML={{ __html: content.content }}></div>
-                                        <Button color='link' onClick={this.signInToCheckout.bind(this)}>
+                                {this.state.step === '1' &amp;&amp; (
+                                    &lt;div>
+                                        &lt;h4>{content.modal.prompt.title}&lt;/h4>
+                                        &lt;div dangerouslySetInnerHTML={{ __html: content.content }}>&lt;/div>
+                                        &lt;Button color='link' onClick={this.signInToCheckout.bind(this)}>
                                             {content.modal.prompt.buttons.signin}
-                                        </Button>
-                                        <Button
+                                        &lt;/Button>
+                                        &lt;Button
                                             color='link'
                                             onClick={() => {
                                                 this.changeUIStep('2');
                                             }}>
                                             {content.modal.prompt.buttons.checkout}
-                                        </Button>
-                                    </div>
+                                        &lt;/Button>
+                                    &lt;/div>
                                 )}
                                 {/* Guest email lookup */}
-                                {this.state.step === '2' && (
-                                    <div>
-                                        <form
+                                {this.state.step === '2' &amp;&amp; (
+                                    &lt;div>
+                                        &lt;form
                                             ref={this.formref1}
                                             onSubmit={(e) => e.preventDefault()}
                                             style={{ padding: ' 0px 30px' }}>
-                                            <h4>{content.modal.emailPrompt.title}</h4>
-                                            {this.state.lookupPending && (
-                                                <div className='spinner' style={{ textAlign: 'center' }}>
-                                                    <FontAwesomeIcon
+                                            &lt;h4>{content.modal.emailPrompt.title}&lt;/h4>
+                                            {this.state.lookupPending &amp;&amp; (
+                                                &lt;div className='spinner' style={{ textAlign: 'center' }}>
+                                                    &lt;FontAwesomeIcon
                                                         icon={faCircleNotch}
                                                         size='3x'
                                                         className='fa-spin'
                                                     />
-                                                </div>
+                                                &lt;/div>
                                             )}
-                                            {this.state.acctFound && (
-                                                <div
+                                            {this.state.acctFound &amp;&amp; (
+                                                &lt;div
                                                     style={{ color: '#FF0000', fontWeight: 'bold' }}
                                                     dangerouslySetInnerHTML={{
                                                         __html: content.modal.emailPrompt.acctFound,
-                                                    }}></div>
+                                                    }}>&lt;/div>
                                             )}
-                                            {/* <FormGroup className="form-group-light"> */}
-                                            <Label for='email'>{profileContent.form.fields.email.label}</Label>
-                                            <Input
+                                            {/* &lt;FormGroup className="form-group-light"> */}
+                                            &lt;Label for='email'>{profileContent.form.fields.email.label}&lt;/Label>
+                                            &lt;Input
                                                 onChange={this.handleUserInput.bind(this)}
                                                 required
                                                 autoFocus={true}
@@ -516,8 +544,8 @@ class Checkout extends React.Component {
                                                 placeholder={profileContent.form.fields.email.placeholder}
                                                 pattern='^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+$'
                                             />
-                                            <div className='mb-3' style={{ paddingTop: '15px' }}>
-                                                <Button
+                                            &lt;div className='mb-3' style={{ paddingTop: '15px' }}>
+                                                &lt;Button
                                                     type='button'
                                                     color='primary'
                                                     size='sm'
@@ -525,44 +553,44 @@ class Checkout extends React.Component {
                                                         this.changeUIStep('3');
                                                     }}>
                                                     {profileContent.form.buttons.submit}
-                                                </Button>
-                                            </div>
-                                            {/* </FormGroup> */}
-                                        </form>
-                                    </div>
+                                                &lt;/Button>
+                                            &lt;/div>
+                                            {/* &lt;/FormGroup> */}
+                                        &lt;/form>
+                                    &lt;/div>
                                 )}
                                 {/* Checkout profile verify/update */}
-                                {this.state.detailsPending && (
-                                    <div className='spinner' style={{ textAlign: 'center' }}>
-                                        <FontAwesomeIcon icon={faCircleNotch} size='3x' className='fa-spin' />
-                                    </div>
+                                {this.state.detailsPending &amp;&amp; (
+                                    &lt;div className='spinner' style={{ textAlign: 'center' }}>
+                                        &lt;FontAwesomeIcon icon={faCircleNotch} size='3x' className='fa-spin' />
+                                    &lt;/div>
                                 )}
-                                {this.state.step === '3' && (
-                                    <form
+                                {this.state.step === '3' &amp;&amp; (
+                                    &lt;form
                                         ref={this.formref2}
                                         onSubmit={(e) => e.preventDefault()}
                                         style={{ padding: '0px 30px' }}>
-                                        <div>
-                                            <h4 style={{ maxWidth: '100%' }}>
+                                        &lt;div>
+                                            &lt;h4 style={{ maxWidth: '100%' }}>
                                                 Confirm or update your account and shipping details
-                                            </h4>
+                                            &lt;/h4>
                                             {this.state.profilePending ? (
-                                                <div className='spinner' style={{ textAlign: 'center' }}>
-                                                    <FontAwesomeIcon
+                                                &lt;div className='spinner' style={{ textAlign: 'center' }}>
+                                                    &lt;FontAwesomeIcon
                                                         icon={faCircleNotch}
                                                         size='3x'
                                                         className='fa-spin'
                                                     />
-                                                </div>
+                                                &lt;/div>
                                             ) : (
-                                                <>
-                                                    <Row form>
-                                                        <Col md={6} className="checkout-form">
-                                                            {/* <FormGroup > */}
-                                                            <Label for='firstname'>
+                                                &lt;>
+                                                    &lt;Row form>
+                                                        &lt;Col md={6} className="checkout-form">
+                                                            {/* &lt;FormGroup > */}
+                                                            &lt;Label for='firstname'>
                                                                 {profileContent.form.fields.firstname.label}
-                                                            </Label>
-                                                            <Input
+                                                            &lt;/Label>
+                                                            &lt;Input
                                                                 onChange={this.handleUserInput.bind(this)}
                                                                 required
                                                                 autoFocus={true}
@@ -578,14 +606,14 @@ class Checkout extends React.Component {
                                                                 pattern="^(?=.*[a-zA-Z])(?!.*[^ \-a-zA-Z]).*$"
                                                                 title="Your first name may only include letters, spaces and hyphens and must include at least 1 letter."
                                                             />
-                                                            {/* </FormGroup> */}
-                                                        </Col>
-                                                        <Col md={6} className="checkout-form">
-                                                            {/* <FormGroup > */}
-                                                            <Label for='lastname'>
+                                                            {/* &lt;/FormGroup> */}
+                                                        &lt;/Col>
+                                                        &lt;Col md={6} className="checkout-form">
+                                                            {/* &lt;FormGroup > */}
+                                                            &lt;Label for='lastname'>
                                                                 {profileContent.form.fields.lastname.label}
-                                                            </Label>
-                                                            <Input
+                                                            &lt;/Label>
+                                                            &lt;Input
                                                                 onChange={this.handleUserInput.bind(this)}
                                                                 required
                                                                 type='text'
@@ -600,22 +628,22 @@ class Checkout extends React.Component {
                                                                 pattern="^(?=.*[a-zA-Z])(?!.*[^ \-a-zA-Z]).*$"
                                                                 title="Your last name may only include letters, spaces and hyphens and must include at least 1 letter."
                                                             />
-                                                            {/* </FormGroup> */}
-                                                        </Col>
-                                                        {/* <Col md={5}>
-                                                                <FormGroup>
-                                                                <Label for="fullname">{profileContent.form.fields.fullname.label}</Label>
-                                                                <Input onChange={this.handleUserInput.bind(this)} type="text" name="fullname" id="fullname" placeholder={profileContent.form.fields.fullname.placeholder} value={this.state.fullname} />
-                                                                </FormGroup>
-                                                            </Col> */}
-                                                    </Row>
-                                                    <Row form>
-                                                        <Col md={6} className="checkout-form">
-                                                            {/* <FormGroup> */}
-                                                            <Label for='email'>
+                                                            {/* &lt;/FormGroup> */}
+                                                        &lt;/Col>
+                                                        {/* &lt;Col md={5}>
+                                                                &lt;FormGroup>
+                                                                &lt;Label for="fullname">{profileContent.form.fields.fullname.label}&lt;/Label>
+                                                                &lt;Input onChange={this.handleUserInput.bind(this)} type="text" name="fullname" id="fullname" placeholder={profileContent.form.fields.fullname.placeholder} value={this.state.fullname} />
+                                                                &lt;/FormGroup>
+                                                            &lt;/Col> */}
+                                                    &lt;/Row>
+                                                    &lt;Row form>
+                                                        &lt;Col md={6} className="checkout-form">
+                                                            {/* &lt;FormGroup> */}
+                                                            &lt;Label for='email'>
                                                                 {profileContent.form.fields.email.label}
-                                                            </Label>
-                                                            <Input
+                                                            &lt;/Label>
+                                                            &lt;Input
                                                                 readOnly
                                                                 type='email'
                                                                 name='email'
@@ -624,14 +652,14 @@ class Checkout extends React.Component {
                                                                 placeholder={profileContent.form.fields.email.placeholder}
                                                                 value={this.state.email}
                                                             />
-                                                            {/* </FormGroup> */}
-                                                        </Col>
-                                                        <Col md={6} className="checkout-form">
-                                                            {/* <FormGroup> */}
-                                                            <Label for='phone'>
+                                                            {/* &lt;/FormGroup> */}
+                                                        &lt;/Col>
+                                                        &lt;Col md={6} className="checkout-form">
+                                                            {/* &lt;FormGroup> */}
+                                                            &lt;Label for='phone'>
                                                                 {profileContent.form.fields.phone.label}
-                                                            </Label>
-                                                            <Input
+                                                            &lt;/Label>
+                                                            &lt;Input
                                                                 onChange={this.handleUserInput.bind(this)}
                                                                 required
                                                                 type='tel'
@@ -644,22 +672,22 @@ class Checkout extends React.Component {
                                                                 maxLength="30"
                                                                 title="US numbers must include area code with no special characters (e.g. 8778982905). International numbers should include their country code in the following format: +44.2071909105"
                                                             />
-                                                            {/* </FormGroup> */}
-                                                        </Col>
-                                                        {/* <Col md={6}>
-                                                                <FormGroup>
-                                                                <Label for="birthdate">{profileContent.form.fields.birthdate.label}</Label>
-                                                                <Input onChange={this.handleUserInput.bind(this)} type="text" name="birthdate" id="birthdate" placeholder={profileContent.form.fields.birthdate.placeholder} value={this.state.birthdate} />
-                                                                </FormGroup>
-                                                            </Col> */}
-                                                    </Row>
-                                                    <Row form>
-                                                        <Col md={12} className="checkout-form">
-                                                            {/* <FormGroup> */}
-                                                            <Label for='street'>
+                                                            {/* &lt;/FormGroup> */}
+                                                        &lt;/Col>
+                                                        {/* &lt;Col md={6}>
+                                                                &lt;FormGroup>
+                                                                &lt;Label for="birthdate">{profileContent.form.fields.birthdate.label}&lt;/Label>
+                                                                &lt;Input onChange={this.handleUserInput.bind(this)} type="text" name="birthdate" id="birthdate" placeholder={profileContent.form.fields.birthdate.placeholder} value={this.state.birthdate} />
+                                                                &lt;/FormGroup>
+                                                            &lt;/Col> */}
+                                                    &lt;/Row>
+                                                    &lt;Row form>
+                                                        &lt;Col md={12} className="checkout-form">
+                                                            {/* &lt;FormGroup> */}
+                                                            &lt;Label for='street'>
                                                                 {profileContent.form.fields.street.label}
-                                                            </Label>
-                                                            <Input
+                                                            &lt;/Label>
+                                                            &lt;Input
                                                                 onChange={this.handleUserInput.bind(this)}
                                                                 required
                                                                 type='text'
@@ -672,16 +700,16 @@ class Checkout extends React.Component {
                                                                 maxLength="50"
                                                                 title="Street address may only include letters, numbers, spaces, periods, hyphens, and pound signs and must contain at least 1 letter."
                                                             />
-                                                            {/* </FormGroup> */}
-                                                        </Col>
-                                                    </Row>
-                                                    <Row form>
-                                                        <Col md={6} className="checkout-form">
-                                                            {/* <FormGroup> */}
-                                                            <Label for='city'>
+                                                            {/* &lt;/FormGroup> */}
+                                                        &lt;/Col>
+                                                    &lt;/Row>
+                                                    &lt;Row form>
+                                                        &lt;Col md={6} className="checkout-form">
+                                                            {/* &lt;FormGroup> */}
+                                                            &lt;Label for='city'>
                                                                 {profileContent.form.fields.city.label}
-                                                            </Label>
-                                                            <Input
+                                                            &lt;/Label>
+                                                            &lt;Input
                                                                 onChange={this.handleUserInput.bind(this)}
                                                                 required
                                                                 type='text'
@@ -694,14 +722,14 @@ class Checkout extends React.Component {
                                                                 maxLength="50"
                                                                 title="City may only include letters, spaces, and hyphens and must contain at least 1 letter."
                                                             />
-                                                            {/* </FormGroup> */}
-                                                        </Col>
-                                                        <Col md={6} className="checkout-form">
-                                                            {/* <FormGroup> */}
-                                                            <Label for='zipcode'>
+                                                            {/* &lt;/FormGroup> */}
+                                                        &lt;/Col>
+                                                        &lt;Col md={6} className="checkout-form">
+                                                            {/* &lt;FormGroup> */}
+                                                            &lt;Label for='zipcode'>
                                                                 {profileContent.form.fields.zipcode.label}
-                                                            </Label>
-                                                            <Input
+                                                            &lt;/Label>
+                                                            &lt;Input
                                                                 onChange={this.handleUserInput.bind(this)}
                                                                 required
                                                                 type='text'
@@ -716,116 +744,116 @@ class Checkout extends React.Component {
                                                                 maxLength="10"
                                                                 title="Zip code may only include letters, numbers, spaces, and hyphens and must contain at least 1 letter or 1 number."
                                                             />
-                                                            {/* </FormGroup> */}
-                                                        </Col>
-                                                    </Row>
-                                                    {/* <Row form> Not doing passwordless in v1. 
-                                                                <Col md={5}>
-                                                                <FormGroup>
-                                                                    <Label for="city">{profileContent.form.fields.login.label}</Label>
-                                                                    <Input type="select" name="login" id="login">
-                                                                    <option value="mobile">{profileContent.form.fields.login.options.mobile}</option>
-                                                                    <option value="password">{profileContent.form.fields.login.options.password}</option>
-                                                                    </Input>
-                                                                </FormGroup>
-                                                                </Col>
-                                                            </Row> */}
-                                                    <Row form>
-                                                        <Col style={{ marginBottom: '1rem' }} lg={7} md={12}>
-                                                            <FormGroup check>
-                                                                <Label check>
-                                                                    <Input type='checkbox' readOnly checked />
+                                                            {/* &lt;/FormGroup> */}
+                                                        &lt;/Col>
+                                                    &lt;/Row>
+                                                    {/* &lt;Row form> Not doing passwordless in v1. 
+                                                                &lt;Col md={5}>
+                                                                &lt;FormGroup>
+                                                                    &lt;Label for="city">{profileContent.form.fields.login.label}&lt;/Label>
+                                                                    &lt;Input type="select" name="login" id="login">
+                                                                    &lt;option value="mobile">{profileContent.form.fields.login.options.mobile}&lt;/option>
+                                                                    &lt;option value="password">{profileContent.form.fields.login.options.password}&lt;/option>
+                                                                    &lt;/Input>
+                                                                &lt;/FormGroup>
+                                                                &lt;/Col>
+                                                            &lt;/Row> */}
+                                                    &lt;Row form>
+                                                        &lt;Col style={{ marginBottom: '1rem' }} lg={7} md={12}>
+                                                            &lt;FormGroup check>
+                                                                &lt;Label check>
+                                                                    &lt;Input type='checkbox' readOnly checked />
                                                                     Billing Address is the same?
-                                                                </Label>
-                                                            </FormGroup>
-                                                        </Col>
-                                                        <Col lg={5} md={12}>
-                                                            <div className='text-right'>
-                                                                <Button
+                                                                &lt;/Label>
+                                                            &lt;/FormGroup>
+                                                        &lt;/Col>
+                                                        &lt;Col lg={5} md={12}>
+                                                            &lt;div className='text-right'>
+                                                                &lt;Button
                                                                     onClick={this.cancelCheckout.bind(this)}
                                                                     type='button'
                                                                     color='link'
                                                                     className='ml-3'>
                                                                     {profileContent.form.buttons.cancel}
-                                                                </Button>
-                                                                {/* <Button type="button" color="primary" onClick={this.props.onSubmit}>{profileContent.form.buttons.submit}</Button> */}
-                                                                <Button
+                                                                &lt;/Button>
+                                                                {/* &lt;Button type="button" color="primary" onClick={this.props.onSubmit}>{profileContent.form.buttons.submit}&lt;/Button> */}
+                                                                &lt;Button
                                                                     type='button'
                                                                     color='primary'
                                                                     onClick={() => {
                                                                         this.changeUIStep('4');
                                                                     }}>
                                                                     {profileContent.form.buttons.submit}
-                                                                </Button>
-                                                            </div>
-                                                        </Col>
-                                                    </Row>
-                                                </>
+                                                                &lt;/Button>
+                                                            &lt;/div>
+                                                        &lt;/Col>
+                                                    &lt;/Row>
+                                                &lt;/>
                                             )}
-                                        </div>
-                                    </form>
+                                        &lt;/div>
+                                    &lt;/form>
                                 )}
                                 {
                                     /* Choose billing method prompt */
-                                    this.state.step === '4' && (
-                                        <>
-                                            {this.state.paymentError && (
-                                                <div className='paymentError' id='paymentError'>
+                                    this.state.step === '4' &amp;&amp; (
+                                        &lt;>
+                                            {this.state.paymentError &amp;&amp; (
+                                                &lt;div className='paymentError' id='paymentError'>
                                                     {content.paymentProcessing.paymentErrorMsg}
-                                                </div>
+                                                &lt;/div>
                                             )}
 
-                                            <PaymentTypeForm
+                                            &lt;PaymentTypeForm
                                                 onCheckoutTypeChange={this.toggleCheckoutType.bind(this)}
                                                 guestUser={this.session.isLoggedOut}
                                                 checkoutType={this.state.checkoutType}
                                                 postalCode={this.state.zipcode}
                                             />
-                                            <Row form>
-                                                <Col>
-                                                    <div className='text-right'>
-                                                        <Button
+                                            &lt;Row form>
+                                                &lt;Col>
+                                                    &lt;div className='text-right'>
+                                                        &lt;Button
                                                             onClick={this.cancelCheckout.bind(this)}
                                                             type='button'
                                                             color='link'
                                                             className='ml-3'>
                                                             {profileContent.form.buttons.cancel}
-                                                        </Button>
-                                                        {/* <Button type="button" color="primary" onClick={this.props.onSubmit}>{profileContent.form.buttons.submit}</Button> */}
-                                                        <Button
+                                                        &lt;/Button>
+                                                        {/* &lt;Button type="button" color="primary" onClick={this.props.onSubmit}>{profileContent.form.buttons.submit}&lt;/Button> */}
+                                                        &lt;Button
                                                             type='button'
                                                             color='primary'
                                                             onClick={() => {
                                                                 this.checkout();
                                                             }}>
                                                             {profileContent.form.buttons.submit}
-                                                        </Button>
-                                                    </div>
-                                                </Col>
-                                            </Row>
-                                        </>
+                                                        &lt;/Button>
+                                                    &lt;/div>
+                                                &lt;/Col>
+                                            &lt;/Row>
+                                        &lt;/>
                                     )
                                 }
                                 {/* Create an account prompt */}
-                                {this.state.step === '5' && (
-                                    <div>
-                                        <h4 style={{ maxWidth: '100%', paddingBottom: '10px' }}>
+                                {this.state.step === '5' &amp;&amp; (
+                                    &lt;div>
+                                        &lt;h4 style={{ maxWidth: '100%', paddingBottom: '10px' }}>
                                             {content.modal.acctPrompt.title}
-                                        </h4>
-                                        {/* <FormGroup className="form-group-light"> */}
-                                        <form
+                                        &lt;/h4>
+                                        {/* &lt;FormGroup className="form-group-light"> */}
+                                        &lt;form
                                             ref={this.formref3}
                                             onSubmit={(e) => e.preventDefault()}
                                             style={{ margin: '0px', padding: '0px' }}>
-                                            {this.state.haveError && (
-                                                <div style={{ color: 'red', paddingBottom: '10px' }}>
+                                            {this.state.haveError &amp;&amp; (
+                                                &lt;div style={{ color: 'red', paddingBottom: '10px' }}>
                                                     {this.state.errorTitle}
-                                                    <br />
+                                                    &lt;br />
                                                     {this.state.errorMsg}
-                                                </div>
+                                                &lt;/div>
                                             )}
-                                            <div style={{ margin: '15px 0px 15px' }}>
-                                                <Button
+                                            &lt;div style={{ margin: '15px 0px 15px' }}>
+                                                &lt;Button
                                                     type='button'
                                                     color='primary'
                                                     size='sm'
@@ -833,11 +861,11 @@ class Checkout extends React.Component {
                                                         this.changeUIStep('6');
                                                     }}>
                                                     {content.modal.acctPrompt.buttons.createAcct}
-                                                </Button>
-                                            </div>
-                                        </form>
-                                        <div>
-                                            <Button
+                                                &lt;/Button>
+                                            &lt;/div>
+                                        &lt;/form>
+                                        &lt;div>
+                                            &lt;Button
                                                 type='button'
                                                 color='link'
                                                 size='sm'
@@ -845,74 +873,74 @@ class Checkout extends React.Component {
                                                     this.props.history.push('/shop')
                                                 }}>
                                                 {content.modal.acctPrompt.buttons.backToShop}
-                                            </Button>
-                                        </div>
-                                        {/* </FormGroup> */}
-                                    </div>
+                                            &lt;/Button>
+                                        &lt;/div>
+                                        {/* &lt;/FormGroup> */}
+                                    &lt;/div>
                                 )}
-                            </div>
-                            {/* <img alt="" src={window._env_.PUBLIC_URL + "/images/products/pagination.png"} className="img-fluid mb-3" /> */}
-                        </div>
-                    </div>
-                </Container>
-                <FooterMain />
+                            &lt;/div>
+                            {/* &lt;img alt="" src={window._env_.PUBLIC_URL + "/images/products/pagination.png"} className="img-fluid mb-3" /> */}
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/Container>
+                &lt;FooterMain />
                 {/* Loading - awaiting transaction approval */}
-                <Modal isOpen={this.state.isOpenLoading} toggle={this.toggleLoading.bind(this)} className='modal-login'>
-                    <ModalHeader toggle={this.toggleLoading.bind(this)} close={closeBtn}>
-                        <img src={window._env_.PUBLIC_URL + '/images/logo.svg'} alt='logo' />
-                    </ModalHeader>
-                    <ModalBody>
-                        {/* <div className="mobile-loading" style={{ backgroundImage: `url(${window._env_.PUBLIC_URL}/images/login-device-outline.jpg)` }}> */}
-                        <div style={{ textAlign: 'center' }}>
-                            <div className='spinner'>
-                                <img
+                &lt;Modal isOpen={this.state.isOpenLoading} toggle={this.toggleLoading.bind(this)} className='modal-login'>
+                    &lt;ModalHeader toggle={this.toggleLoading.bind(this)} close={closeBtn}>
+                        &lt;img src={window._env_.PUBLIC_URL + '/images/logo.svg'} alt='logo' />
+                    &lt;/ModalHeader>
+                    &lt;ModalBody>
+                        {/* &lt;div className="mobile-loading" style={{ backgroundImage: `url(${window._env_.PUBLIC_URL}/images/login-device-outline.jpg)` }}> */}
+                        &lt;div style={{ textAlign: 'center' }}>
+                            &lt;div className='spinner'>
+                                &lt;img
                                     src={window._env_.PUBLIC_URL + '/images/icons/pingy.gif'}
                                     alt='loading...'
                                     height='130'
                                     width='130'
                                     style={{ textAlign: 'center' }}
                                 />
-                            </div>
-                            <h4>{this.state.orderProcessingMsg}</h4>
-                        </div>
-                        <div className='mt-4 text-center'>
-                            <Button type='button' color='link' size='sm'>
+                            &lt;/div>
+                            &lt;h4>{this.state.orderProcessingMsg}&lt;/h4>
+                        &lt;/div>
+                        &lt;div className='mt-4 text-center'>
+                            &lt;Button type='button' color='link' size='sm'>
                                 {content.modal.loading.help}
-                            </Button>
-                        </div>
-                    </ModalBody>
-                </Modal>
+                            &lt;/Button>
+                        &lt;/div>
+                    &lt;/ModalBody>
+                &lt;/Modal>
                 {/* Order Confirmation */}
-                <Modal
+                &lt;Modal
                     isOpen={this.state.isOpenConfirmation}
                     toggle={this.toggleConfirmation.bind(this)}
                     onClosed={this.onClosed.bind(this)}
                     className='modal-xl modal-shop'
                     centered={true}>
-                    <ModalBody>
-                        <TabContent activeTab={this.state.activeTabConfirmation}>
-                            <TabPane tabId='1'>
+                    &lt;ModalBody>
+                        &lt;TabContent activeTab={this.state.activeTabConfirmation}>
+                            &lt;TabPane tabId='1'>
                                 {' '}
                                 {/* Order Details */}
-                                <Row>
-                                    <Col md={10}>
-                                        <h4 className='pl-4'>{content.modal.confirmation.title}</h4>
-                                        <p className='pl-4'>{this.state.selectedItem.confirmationSubtitle}</p>
-                                    </Col>
-                                    <Col md={2} className='text-right'>
-                                        <div>
-                                            <Button
+                                &lt;Row>
+                                    &lt;Col md={10}>
+                                        &lt;h4 className='pl-4'>{content.modal.confirmation.title}&lt;/h4>
+                                        &lt;p className='pl-4'>{this.state.selectedItem.confirmationSubtitle}&lt;/p>
+                                    &lt;/Col>
+                                    &lt;Col md={2} className='text-right'>
+                                        &lt;div>
+                                            &lt;Button
                                                 type='button'
                                                 color='link'
                                                 onClick={this.toggleConfirmation.bind(this)}>
                                                 {this.state.acctFound ? content.modal.product.buttons.continue : content.modal.product.buttons.close}
-                                            </Button>
-                                        </div>
-                                    </Col>
-                                </Row>
-                                <Row className='p-3'>
-                                    <Col md={4} className='text-center'>
-                                        <img
+                                            &lt;/Button>
+                                        &lt;/div>
+                                    &lt;/Col>
+                                &lt;/Row>
+                                &lt;Row className='p-3'>
+                                    &lt;Col md={4} className='text-center'>
+                                        &lt;img
                                             alt=''
                                             src={
                                                 window._env_.PUBLIC_URL +
@@ -921,12 +949,12 @@ class Checkout extends React.Component {
                                             }
                                             className='img-services'
                                         />
-                                    </Col>
-                                    <Col md={5}>
-                                        <div className='product'>
-                                            <h5>{this.state.selectedItem.title}</h5>
-                                            <p>{this.state.selectedItem.model}</p>
-                                            <img
+                                    &lt;/Col>
+                                    &lt;Col md={5}>
+                                        &lt;div className='product'>
+                                            &lt;h5>{this.state.selectedItem.title}&lt;/h5>
+                                            &lt;p>{this.state.selectedItem.model}&lt;/p>
+                                            &lt;img
                                                 alt=''
                                                 src={
                                                     window._env_.PUBLIC_URL +
@@ -935,25 +963,25 @@ class Checkout extends React.Component {
                                                     '.svg'
                                                 }
                                             />
-                                            <div>
-                                                <Button type='button' color='link'>
+                                            &lt;div>
+                                                &lt;Button type='button' color='link'>
                                                     {content.modal.product.buttons.details}
-                                                </Button>
-                                            </div>
-                                        </div>
-                                    </Col>
-                                    <Col md={1}>
-                                        <FormGroup></FormGroup>
-                                    </Col>
-                                    <Col md={2}>
-                                        <h5>{this.state.selectedItem.price}</h5>
-                                    </Col>
-                                </Row>
-                                <Row className='p-3'>
+                                                &lt;/Button>
+                                            &lt;/div>
+                                        &lt;/div>
+                                    &lt;/Col>
+                                    &lt;Col md={1}>
+                                        &lt;FormGroup>&lt;/FormGroup>
+                                    &lt;/Col>
+                                    &lt;Col md={2}>
+                                        &lt;h5>{this.state.selectedItem.price}&lt;/h5>
+                                    &lt;/Col>
+                                &lt;/Row>
+                                &lt;Row className='p-3'>
                                     {/* Order Summary: Services Section Settings */}
                                     {this.state.selectedItem.mounting != null ? (
-                                        <Col md={4} className='text-center'>
-                                            <img
+                                        &lt;Col md={4} className='text-center'>
+                                            &lt;img
                                                 alt=''
                                                 src={
                                                     window._env_.PUBLIC_URL +
@@ -961,169 +989,192 @@ class Checkout extends React.Component {
                                                 }
                                                 className='img-services'
                                             />
-                                        </Col>
+                                        &lt;/Col>
                                     ) : (
-                                        <Col md={4} className='text-center'></Col>
+                                        &lt;Col md={4} className='text-center'>&lt;/Col>
                                     )}
                                     {this.state.selectedItem.mounting == null ? (
-                                        <Col md={5}>
-                                            <div className='product'>
-                                                <h5>BXRetail Protection Plan</h5>
-                                                <p>(2 Year)</p>
-                                                <div>
-                                                    <Button type='button' color='link'>
+                                        &lt;Col md={5}>
+                                            &lt;div className='product'>
+                                                &lt;h5>BXRetail Protection Plan&lt;/h5>
+                                                &lt;p>(2 Year)&lt;/p>
+                                                &lt;div>
+                                                    &lt;Button type='button' color='link'>
                                                         {this.state.selectedItem.protection.included}
-                                                    </Button>
-                                                </div>
-                                            </div>
-                                        </Col>
+                                                    &lt;/Button>
+                                                &lt;/div>
+                                            &lt;/div>
+                                        &lt;/Col>
                                     ) : (
-                                        <Col md={5}>
-                                            <div className='product'>
-                                                <h5>Delivery + Premium TV Mounting 56" and larger</h5>
-                                                <p>(Mount, Connect, and Setup included)</p>
-                                                <div>
-                                                    <Button type='button' color='link'>
+                                        &lt;Col md={5}>
+                                            &lt;div className='product'>
+                                                &lt;h5>Delivery + Premium TV Mounting 56" and larger&lt;/h5>
+                                                &lt;p>(Mount, Connect, and Setup included)&lt;/p>
+                                                &lt;div>
+                                                    &lt;Button type='button' color='link'>
                                                         {this.state.selectedItem.protection.included}
-                                                    </Button>
-                                                </div>
-                                            </div>
-                                        </Col>
+                                                    &lt;/Button>
+                                                &lt;/div>
+                                            &lt;/div>
+                                        &lt;/Col>
                                     )}
-                                    <Col md={1}>
-                                        <FormGroup></FormGroup>
-                                    </Col>
-                                    <Col md={1}>
-                                        <h5>{this.state.selectedItem.servicesPrice}</h5>
-                                    </Col>
-                                </Row>
-                                <Row className='p-3'>
-                                    <Col md={4}></Col>
-                                    <Col md={8}>
-                                        <hr />
-                                        <Row>
-                                            <Col md={9} className='text-right'>
-                                                <p>{content.modal.cart.labels.subtotal}</p>
-                                                <p className='mt-2'>{content.modal.cart.labels.salesTax}</p>
-                                                {  (this.state.selectedItem.finalTotal === content.productsClickable[0].discountTotal) && <p className='mt-2'>{content.modal.cart.labels.discount}</p>}
-                                                <p className='mt-2'>
-                                                    <strong>{content.modal.cart.labels.finalTotal}</strong>{' '}
+                                    &lt;Col md={1}>
+                                        &lt;FormGroup>&lt;/FormGroup>
+                                    &lt;/Col>
+                                    &lt;Col md={1}>
+                                        &lt;h5>{this.state.selectedItem.servicesPrice}&lt;/h5>
+                                    &lt;/Col>
+                                &lt;/Row>
+                                &lt;Row className='p-3'>
+                                    &lt;Col md={4}>&lt;/Col>
+                                    &lt;Col md={8}>
+                                        &lt;hr />
+                                        &lt;Row>
+                                            &lt;Col md={9} className='text-right'>
+                                                &lt;p>{content.modal.cart.labels.subtotal}&lt;/p>
+                                                &lt;p className='mt-2'>{content.modal.cart.labels.salesTax}&lt;/p>
+                                                {  (this.state.selectedItem.finalTotal === content.productsClickable[0].discountTotal) &amp;&amp; &lt;p className='mt-2'>{content.modal.cart.labels.discount}&lt;/p>}
+                                                &lt;p className='mt-2'>
+                                                    &lt;strong>{content.modal.cart.labels.finalTotal}&lt;/strong>{' '}
                                                     {content.modal.confirmation.paymentMethod}
-                                                </p>
-                                            </Col>
-                                            <Col md={2}>
-                                                <p>{this.state.selectedItem.subtotal}</p>
-                                                <p className='mt-2'>{this.state.selectedItem.salesTax}</p>
-                                                { (this.state.selectedItem.finalTotal === content.productsClickable[0].discountTotal) && <p className='mt-2'>{content.productsClickable[0].discountAmount}</p>}
-                                                <p className='mt-2'>
-                                                    <strong>{this.state.selectedItem.finalTotal}</strong>
-                                                </p>
-                                            </Col>
-                                        </Row>
-                                    </Col>
-                                    <Col md={4}></Col>
-                                </Row>
-                                {this.state.selectedItem.mounting !== null && (
-                                    <Row className='bg-light p-4'>
-                                        <Col md={7}>
-                                            <h4>{content.modal.confirmation.subtitle}</h4>
-                                            <p>
+                                                &lt;/p>
+                                            &lt;/Col>
+                                            &lt;Col md={2}>
+                                                &lt;p>{this.state.selectedItem.subtotal}&lt;/p>
+                                                &lt;p className='mt-2'>{this.state.selectedItem.salesTax}&lt;/p>
+                                                { (this.state.selectedItem.finalTotal === content.productsClickable[0].discountTotal) &amp;&amp; &lt;p className='mt-2'>{content.productsClickable[0].discountAmount}&lt;/p>}
+                                                &lt;p className='mt-2'>
+                                                    &lt;strong>{this.state.selectedItem.finalTotal}&lt;/strong>
+                                                &lt;/p>
+                                            &lt;/Col>
+                                        &lt;/Row>
+                                    &lt;/Col>
+                                    &lt;Col md={4}>&lt;/Col>
+                                &lt;/Row>
+                                {this.state.selectedItem.mounting !== null &amp;&amp; (
+                                    &lt;Row className='bg-light p-4'>
+                                        &lt;Col md={7}>
+                                            &lt;h4>{content.modal.confirmation.subtitle}&lt;/h4>
+                                            &lt;p>
                                                 {content.modal.confirmation.scheduleDescription +
                                                     ' ' +
                                                     this.state.zipcode +
                                                     '.'}
-                                            </p>
-                                        </Col>
-                                        <Col md={5}>
-                                            <div className='text-right mt-4' style={{ paddingTop: '70px' }}>
-                                                <Button type='button' color='link'>
+                                            &lt;/p>
+                                        &lt;/Col>
+                                        &lt;Col md={5}>
+                                            &lt;div className='text-right mt-4' style={{ paddingTop: '70px' }}>
+                                                &lt;Button type='button' color='link'>
                                                     {content.modal.confirmation.scheduleButtons.call}
-                                                </Button>
-                                                {/* <Button type="button" color="primary" className="ml-3" onClick={() => { this.toggleTabConfirmation("2"); }}>{content.modal.confirmation.scheduleButtons.online}</Button> */}
-                                                <Button
+                                                &lt;/Button>
+                                                {/* &lt;Button type="button" color="primary" className="ml-3" onClick={() => { this.toggleTabConfirmation("2"); }}>{content.modal.confirmation.scheduleButtons.online}&lt;/Button> */}
+                                                &lt;Button
                                                     type='button'
                                                     color='primary'
                                                     className='ml-3'>
                                                     {content.modal.confirmation.scheduleButtons.online}
-                                                </Button>
-                                            </div>
-                                        </Col>
-                                    </Row>
+                                                &lt;/Button>
+                                            &lt;/div>
+                                        &lt;/Col>
+                                    &lt;/Row>
                                 )}
-                            </TabPane>
-                            {/* <TabPane tabId="2"> // Consent mgmt. - NOT USED. CONSENT MGMT DEMO'D IN PROFILE UPDATES
-                                <p className="text-center mt-4">
-                                    <img src={window._env_.PUBLIC_URL + "/images/logo.svg"} alt="logo" />
-                                </p>
-                                <Row className="p-3">
-                                    <Col md={4} className="text-center">
-                                        <img alt="" src={window._env_.PUBLIC_URL + "/images/any-tv-partner-photo-services.jpg"} className="img-services mb-4" />
-                                    </Col>
-                                    <Col md={8} className="radio-form">
-                                        <div className="product mb-4">
-                                            <p>{content.modal.confirmation.consents.description1}</p>
-                                            <p>{content.modal.confirmation.consents.description2}</p>
-                                            <p>{content.modal.confirmation.consents.description3}</p>
-                                        </div>
-                                        <h5 className="mb-4">{content.modal.confirmation.consents.iAgree}</h5>
+                            &lt;/TabPane>
+                            {/* &lt;TabPane tabId="2"> // Consent mgmt. - NOT USED. CONSENT MGMT DEMO'D IN PROFILE UPDATES
+                                &lt;p className="text-center mt-4">
+                                    &lt;img src={window._env_.PUBLIC_URL + "/images/logo.svg"} alt="logo" />
+                                &lt;/p>
+                                &lt;Row className="p-3">
+                                    &lt;Col md={4} className="text-center">
+                                        &lt;img alt="" src={window._env_.PUBLIC_URL + "/images/any-tv-partner-photo-services.jpg"} className="img-services mb-4" />
+                                    &lt;/Col>
+                                    &lt;Col md={8} className="radio-form">
+                                        &lt;div className="product mb-4">
+                                            &lt;p>{content.modal.confirmation.consents.description1}&lt;/p>
+                                            &lt;p>{content.modal.confirmation.consents.description2}&lt;/p>
+                                            &lt;p>{content.modal.confirmation.consents.description3}&lt;/p>
+                                        &lt;/div>
+                                        &lt;h5 className="mb-4">{content.modal.confirmation.consents.iAgree}&lt;/h5>
                                         {/* If you're getting delivery/installation, not sharing address doesn't make sense.
-                                        <FormGroup>
-                                        <Label>My Ship To/Installation Address</Label>
-                                        <CustomInput type="radio" name="address" label="Yes" />
-                                        <CustomInput type="radio" name="address" checked label="No" />
-                                        </FormGroup>
-                                        <FormGroup>
-                                            <Label>{content.modal.confirmation.consents.phoneLabel}</Label>
-                                            <CustomInput type="radio" name="phone" label="Yes" />
-                                            <CustomInput type="radio" name="phone" checked label="No" />
-                                        </FormGroup>
-                                        <FormGroup>
-                                            <Label>{content.modal.confirmation.consents.emailLabel}</Label>
-                                            <CustomInput type="radio" name="email" label="Yes" />
-                                            <CustomInput type="radio" name="email" checked label="No" />
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                                <div className="text-right mt-2 mr-4 mb-4">
-                                    <Button type="button" color="link" onClick={() => { this.toggleTabConfirmation("1"); }}>{content.modal.confirmation.consentButtons.cancel}</Button>
-                                    <Button type="button" color="primary" className="ml-3" onClick={() => { this.toggleTabConfirmation("3"); }}>{content.modal.confirmation.consentButtons.save}</Button>
-                                </div>
-                            </TabPane> */}
-                            {/* <TabPane tabId="3"> // Consent mgmt. confirmation - NOT USED. CONSENT MGMT DEMO'D IN PROFILE UPDATES
-                                <p className="text-center mt-4">
-                                    <img src={window._env_.PUBLIC_URL + "/images/logo.svg"} alt="logo" />
-                                </p>
-                                <div className="radio-form p-5">
-                                    <div className="product mb-4">
-                                        <p>{content.modal.confirmation.consents.confirmation}</p>
-                                    </div>
-                                    <FormGroup>
-                                        <Label>My Ship To/Installation Address</Label>
-                                        <CustomInput type="radio" name="address2" label="Yes" />
-                                        <CustomInput type="radio" name="address2" checked label="No" />
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <Label>{content.modal.confirmation.consents.phoneLabel}</Label>
-                                        <CustomInput type="radio" name="phone2" label="Yes" />
-                                        <CustomInput type="radio" name="phone2" checked label="No" />
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <Label>{content.modal.confirmation.consents.emailLabel}</Label>
-                                        <CustomInput type="radio" name="email2" label="Yes" />
-                                        <CustomInput type="radio" name="email2" checked label="No" />
-                                    </FormGroup>
-                                    <div className="text-right mt-3">
-                                        <Button type="button" color="primary" onClick={() => { this.toggleTabConfirmation("2"); }}>{content.modal.confirmation.consentButtons.changeSettings}</Button>
-                                    </div>
-                                </div>
-                                <a alt="Confirmation Footer" href="/app/any-tv-partner"><img src={window._env_.PUBLIC_URL + "/images/shop-confirmation-footer-2.png"} className="confirmation-footer" alt="confirmation" /></a>
-                            </TabPane> */}
-                        </TabContent>
-                    </ModalBody>
-                </Modal>
-                {/* <ModalRegister ref={this.modalRegister} /> */}
-            </div>
+                                        &lt;FormGroup>
+                                        &lt;Label>My Ship To/Installation Address&lt;/Label>
+                                        &lt;CustomInput type="radio" name="address" label="Yes" />
+                                        &lt;CustomInput type="radio" name="address" checked label="No" />
+                                        &lt;/FormGroup>
+                                        &lt;FormGroup>
+                                            &lt;Label>{content.modal.confirmation.consents.phoneLabel}&lt;/Label>
+                                            &lt;CustomInput type="radio" name="phone" label="Yes" />
+                                            &lt;CustomInput type="radio" name="phone" checked label="No" />
+                                        &lt;/FormGroup>
+                                        &lt;FormGroup>
+                                            &lt;Label>{content.modal.confirmation.consents.emailLabel}&lt;/Label>
+                                            &lt;CustomInput type="radio" name="email" label="Yes" />
+                                            &lt;CustomInput type="radio" name="email" checked label="No" />
+                                        &lt;/FormGroup>
+                                    &lt;/Col>
+                                &lt;/Row>
+                                &lt;div className="text-right mt-2 mr-4 mb-4">
+                                    &lt;Button type="button" color="link" onClick={() => { this.toggleTabConfirmation("1"); }}>{content.modal.confirmation.consentButtons.cancel}&lt;/Button>
+                                    &lt;Button type="button" color="primary" className="ml-3" onClick={() => { this.toggleTabConfirmation("3"); }}>{content.modal.confirmation.consentButtons.save}&lt;/Button>
+                                &lt;/div>
+                            &lt;/TabPane> */}
+                            {/* &lt;TabPane tabId="3"> // Consent mgmt. confirmation - NOT USED. CONSENT MGMT DEMO'D IN PROFILE UPDATES
+                                &lt;p className="text-center mt-4">
+                                    &lt;img src={window._env_.PUBLIC_URL + "/images/logo.svg"} alt="logo" />
+                                &lt;/p>
+                                &lt;div className="radio-form p-5">
+                                    &lt;div className="product mb-4">
+                                        &lt;p>{content.modal.confirmation.consents.confirmation}&lt;/p>
+                                    &lt;/div>
+                                    &lt;FormGroup>
+                                        &lt;Label>My Ship To/Installation Address&lt;/Label>
+                                        &lt;CustomInput type="radio" name="address2" label="Yes" />
+                                        &lt;CustomInput type="radio" name="address2" checked label="No" />
+                                    &lt;/FormGroup>
+                                    &lt;FormGroup>
+                                        &lt;Label>{content.modal.confirmation.consents.phoneLabel}&lt;/Label>
+                                        &lt;CustomInput type="radio" name="phone2" label="Yes" />
+                                        &lt;CustomInput type="radio" name="phone2" checked label="No" />
+                                    &lt;/FormGroup>
+                                    &lt;FormGroup>
+                                        &lt;Label>{content.modal.confirmation.consents.emailLabel}&lt;/Label>
+                                        &lt;CustomInput type="radio" name="email2" label="Yes" />
+                                        &lt;CustomInput type="radio" name="email2" checked label="No" />
+                                    &lt;/FormGroup>
+                                    &lt;div className="text-right mt-3">
+                                        &lt;Button type="button" color="primary" onClick={() => { this.toggleTabConfirmation("2"); }}>{content.modal.confirmation.consentButtons.changeSettings}&lt;/Button>
+                                    &lt;/div>
+                                &lt;/div>
+                                &lt;a alt="Confirmation Footer" href="/app/any-tv-partner">&lt;img src={window._env_.PUBLIC_URL + "/images/shop-confirmation-footer-2.png"} className="confirmation-footer" alt="confirmation" />&lt;/a>
+                            &lt;/TabPane> */}
+                        &lt;/TabContent>
+                    &lt;/ModalBody>
+                &lt;/Modal>
+                {/* &lt;ModalRegister ref={this.modalRegister} /> */}
+            &lt;/div>
         );
     }
 }
 export default withRouter(Checkout);
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AuthN.html">AuthN</a></li><li><a href="AuthZ.html">AuthZ</a></li><li><a href="JSONSearch.html">JSONSearch</a></li><li><a href="PingOneAuthN.html">PingOneAuthN</a></li><li><a href="PingOneAuthZ.html">PingOneAuthZ</a></li><li><a href="PingOneRegistration.html">PingOneRegistration</a></li><li><a href="PingOneUsers.html">PingOneUsers</a></li><li><a href="Registration.html">Registration</a></li><li><a href="Session.html">Session</a></li><li><a href="Users.html">Users</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon May 15 2023 14:58:07 GMT-0700 (Pacific Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

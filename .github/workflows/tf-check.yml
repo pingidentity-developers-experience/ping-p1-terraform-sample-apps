@@ -1,0 +1,63 @@
+name: Terraform Code Check
+on:
+  pull_request:
+    paths:
+      - '**.tf'
+      - '.github/workflows/tf-check.yml'
+      - 'makefile'
+  push:
+    paths:
+      - '**.tf'
+      - '.github/workflows/tf-check.yml'
+      - 'makefile'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Terraform init
+        run: |
+          for dir in $(find ./BX*-Terraform-pkg -maxdepth 0); do
+            echo ${dir} ;
+            [ -d "${dir}/terraform" ] && terraform -chdir=${dir}/terraform init ;
+          done
+
+      - name: validate
+        run: |
+          make validate
+
+  fmt:
+    needs: [validate]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: fmt-check
+        run: |
+          make fmt-check
+
+  tflint:
+    needs: [validate]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: terraform-linters/setup-tflint@v3
+        name: Setup TFLint
+        with:
+          tflint_version: latest
+
+      - name: tflint
+        run: |
+          make tflint
+
+  tfsec:
+    needs: [validate]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: tfsec
+        uses: aquasecurity/tfsec-action@v1.0.0

@@ -1,16 +1,14 @@
 # BXRetail + Terraform + PingOne Sample App Package
 
-
-
 ## Source Code Folders
 ### /bxretail-sample-app/src
 
 | Folder | Contents |
 | ------ | -------- |
-| /components | UI components used in the UI component hierarchy. Controller and integration sub-folders. |
 | /components/controller* | All business logic that takes user or client input as state, props, or params and processes it for the payload needed for Ping integration. |
 | /components/integration* | All methods for direct integration with Ping product and services APIs. |
-| /data | UI content in JSON object files. Keeps UI content out of the functional code. | 
+| /components/UI | UI components used in the UI component hierarchy. |
+| /content | UI content in JSON object files. Keeps UI content out of the functional code. | 
 | /pages | UIs loaded by each URI that import the various UI components. |
 | /styles | SCSS files. (CSS with super powers). |
 \* Folders you care about.
@@ -33,24 +31,29 @@
 
 
 ## Cloning the Project
+## Configure PingOne for Terraform access
+
+If not done so already, first configure your PingOne organization for Terraform access by following the instructions at the [PingOne Terraform provider Getting Started Guide](https://pingidentity.github.io/terraform-docs/getting-started/pingone/#configure-pingone-for-terraform-access).
+
 ### Variables
 After cloning the project, navigate to `/terraform` and create a `terraform.tfvars` file with the following:
 
 ```hcl
-region          = "{{ NorthAmerica | Canada | Asia | Europe }}"
-organization_id = "{{orgId}}"
-admin_env_id    = "{{adminEnvId}}"
-admin_user_id   = "{{adminUserId}}"
-license_id    = "{{licenseId}}"
-worker_id       = "{{workerId}}"
-worker_secret   = "{{workerSecret}}"
-k8s_deploy_name = "{{k8sDeployName}}"
+region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
+organization_id   = "{{orgId}}"
+admin_env_id      = "{{adminEnvId}}"
+admin_user_id     = "{{adminUserId}}"
+license_id        = "{{licenseId}}"
+worker_id         = "{{workerId}}"
+worker_secret     = "{{workerSecret}}"
+k8s_deploy_name   = "{{k8sDeployName}}"
 k8s_deploy_domain = "{{k8sDeployDomain}}"
 k8s_namespace     = "{{k8sNamespace}}"
 proxy_image_name  = "docker.io/michaelspingidentity/ping-integration-proxy:0.1.0"
 app_image_name    = "docker.io/michaelspingidentity/ping-bxretail-terraform-sample:202303-0.19.5-beta"
-env_type          = "dev"
 ```
+
+Note the `license_id`, `organization_id` values can be found by following instructions at the [PingOne Terraform provider Getting Started Guide](https://pingidentity.github.io/terraform-docs/getting-started/pingone/#finding-required-ids).
 
 | Variable | Description | 
 | -------- | ----------- |

@@ -1,0 +1,73 @@
+/* ModalRegister */
+
+@import '../../../styles/variables.scss';
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/bootstrap-grid';
+
+.modal-register {
+  @include media-breakpoint-up(md) {
+    margin-top: 4rem;
+  }
+
+  @include media-breakpoint-only(md) {
+    max-width: 700px;
+  }
+
+  .modal-content {
+    .modal-body {
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2rem;
+
+      h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      .form-row {
+        .col-md-6 {
+          @include media-breakpoint-up(md) {
+            &:first-child {
+              padding-right: 1rem;
+            }
+            &:last-child {
+              padding-left: 1rem;
+            }
+          }
+        }
+      }
+
+      .form-group {
+        .form-check-inline {
+          display: inline-flex;
+        }
+      }
+
+      .form-row-login {
+        margin-bottom: 1rem;
+
+        .btn {
+          padding: 0;
+          margin-left: 0.5rem;
+        }
+      }
+
+      .or {
+        width: 295px;
+        margin: 2rem auto;
+      }
+
+      .google-recaptcha {
+        width: 280px;
+        margin-bottom: 1rem;
+      }
+
+      .social-signup {
+        height: 54px;
+        margin-bottom: 10px;
+        cursor: pointer;
+      }
+    }
+  }
+}

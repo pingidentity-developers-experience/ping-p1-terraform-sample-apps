@@ -2,16 +2,16 @@ import React from 'react'
 import { Container } from 'reactstrap';
 
 // Components
-import NavbarMain from '../../../components/NavbarMain';
-import WelcomeBar from '../../../components/WelcomeBar';
-import FooterMain from '../../../components/FooterMain';
-import AccountsSubnav from '../../../components/AccountsSubnav';
-import AccountsDropdown from '../../../components/AccountsDropdown';
-import AccountsSectionNav from '../../../components/AccountsSectionNav';
+import NavbarMain from '../../../components/UI/NavbarMain';
+import WelcomeBar from '../../../components/UI/WelcomeBar';
+import FooterMain from '../../../components/UI/FooterMain';
+import AccountsSubnav from '../../../components/UI/AccountsSubnav';
+import AccountsDropdown from '../../../components/UI/AccountsDropdown';
+import AccountsSectionNav from '../../../components/UI/AccountsSectionNav';
 import Session from '../../../components/Utils/Session';
 
-// Data
-import data from '../../../data/dashboard/settings/index.json';
+// Content
+import content from '../../../content/dashboard/settings/index.json';
  
 // Styles
 import "../../../styles/pages/accounts.scss";
@@ -41,21 +41,21 @@ class DashboardSettings extends React.Component {
           <div className="inner">
             <div className="sidebar">
               {
-                Object.keys(data.subnav).map(key => {
+                Object.keys(content.subnav).map(key => {
                   return (
-                    <AccountsSubnav key={data.subnav[key].title} subnav={data.subnav[key]} />
+                    <AccountsSubnav key={content.subnav[key].title} subnav={content.subnav[key]} />
                   );
                 })      
               }
             </div>
             <div className="content">
               <div className="accounts-hdr">
-                <h1>{data.title}</h1>
-                <AccountsDropdown text={data.dropdown} />
+                <h1>{content.title}</h1>
+                <AccountsDropdown text={content.dropdown} />
               </div>
               {
-                Object.keys(data.sections).map(key => {
-                  return <AccountsSectionNav key={key} data={data.sections[key]} />;
+                Object.keys(content.sections).map(key => {
+                  return <AccountsSectionNav key={key} content={content.sections[key]} />;
                 })      
               }
             </div>

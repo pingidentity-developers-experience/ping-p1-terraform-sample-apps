@@ -4,12 +4,12 @@ import { Link, NavLink, withRouter } from 'react-router-dom';
 import { Button, Jumbotron, Container, Row, Col } from 'reactstrap';
 
 // Components
-import NavbarMain from '../components/NavbarMain';
-import ModalBirthday from '../components/ModalBirthday/';
-import FooterMain from '../components/FooterMain';
+import NavbarMain from '../components/UI/NavbarMain';
+import ModalBirthday from '../components/UI/ModalBirthday';
+import FooterMain from '../components/UI/FooterMain';
 
-// Data
-import data from '../data/home.json';
+// Content
+import content from '../content/home.json';
 
 // Styles
 import '../styles/pages/home.scss';
@@ -28,16 +28,16 @@ class Home extends React.Component {
           <Container>
             <Row>
               <Col md="5" className="electronics" style={{backgroundImage: `url(${window._env_.PUBLIC_URL}/images/home-hero-electronics-bg.jpg)`}}>
-                <h2>{data.hero.electronics.title}</h2>
-                <p>{data.hero.electronics.content}</p>
-                <Link to="/shop" className="btn btn-primary">{data.hero.electronics.button}</Link>
+                <h2>{content.hero.electronics.title}</h2>
+                <p>{content.hero.electronics.content}</p>
+                <Link to="/shop" className="btn btn-primary">{content.hero.electronics.button}</Link>
               </Col>
               <Col md="7" className="office" style={{backgroundImage: `url(${window._env_.PUBLIC_URL}/images/home-hero-office-bg.png)`}}>
                 <div className="office-content">
-                  <h2>{data.hero.office.title}</h2>
-                  <p className="lead">{data.hero.office.subtitle}</p>
-                  <p>{data.hero.office.content}</p>
-                  <NavLink to="#" className="btn btn-primary">{data.hero.office.button}</NavLink>
+                  <h2>{content.hero.office.title}</h2>
+                  <p className="lead">{content.hero.office.subtitle}</p>
+                  <p>{content.hero.office.content}</p>
+                  <NavLink to="#" className="btn btn-primary">{content.hero.office.button}</NavLink>
                 </div>
               </Col>
             </Row>
@@ -47,7 +47,7 @@ class Home extends React.Component {
           <Container>
             <Row>
               <Col lg="7">
-                <h4 dangerouslySetInnerHTML={{__html: data.cta_bar}}></h4>
+                <h4 dangerouslySetInnerHTML={{__html: content.cta_bar}}></h4>
               </Col>
               <Col lg="5">
                 <Row className="align-items-center">
@@ -63,7 +63,7 @@ class Home extends React.Component {
         <section className="section-home-features">
           <Container>
             <Row>
-              {data.features.map((item, i) => {
+              {content.features.map((item, i) => {
                 return (
                   <Col md="4" key={i}>
                     <img src={window._env_.PUBLIC_URL + "/images/" + item.image} alt={item.title} className="img-fluid" />

@@ -9,17 +9,17 @@ import {
 } from 'reactstrap';
 
 // Components
-import NavbarMain from '../../../components/NavbarMain';
-import WelcomeBar from '../../../components/WelcomeBar';
-import FooterMain from '../../../components/FooterMain';
-import AccountsSubnav from '../../../components/AccountsSubnav';
-import AccountsDropdown from '../../../components/AccountsDropdown';
+import NavbarMain from '../../../components/UI/NavbarMain';
+import WelcomeBar from '../../../components/UI/WelcomeBar';
+import FooterMain from '../../../components/UI/FooterMain';
+import AccountsSubnav from '../../../components/UI/AccountsSubnav';
+import AccountsDropdown from '../../../components/UI/AccountsDropdown';
 // import Consents from '../../../components/Controller/Consents';
 import Session from '../../../components/Utils/Session';
 import Users from '../../../components/Controller/Users';
 
-// Data
-import data from '../../../data/dashboard/settings/privacy-security.json';
+// Content
+import content from '../../../content/dashboard/settings/privacy-security.json';
  
 // Styles
 import "../../../styles/pages/dashboard/settings/privacy-security.scss";
@@ -73,9 +73,9 @@ class PrivacySecurity extends React.Component {
   }
 
   makeCommDetails(index) {
-    if (data.steps[0].communication_types[index].name === "deliveryPhone" && this.state.userPhone !== undefined) {
+    if (content.steps[0].communication_types[index].name === "deliveryPhone" && this.state.userPhone !== undefined) {
       return this.state.userPhone.length === 0 ? "" : " (" + this.state.userPhone + ")"
-    } else if (data.steps[0].communication_types[index].name === "deliveryEmail" && this.state.userEmail !== undefined) {
+    } else if (content.steps[0].communication_types[index].name === "deliveryEmail" && this.state.userEmail !== undefined) {
       return this.state.userEmail.length === 0 ? "" : " (" + this.state.userEmail + ")"
     } else {
       return ""
@@ -118,38 +118,38 @@ class PrivacySecurity extends React.Component {
         <div className="inner">
             <div className="sidebar">
               {
-                Object.keys(data.subnav).map(key => {
+                Object.keys(content.subnav).map(key => {
                   return (
-                    <AccountsSubnav key={data.subnav[key].title} subnav={data.subnav[key]} />
+                    <AccountsSubnav key={content.subnav[key].title} subnav={content.subnav[key]} />
                   );
                 })      
               }
             </div>
             <div className="content">
               <div className="accounts-hdr">
-                <h1>{data.title}</h1>
-                <AccountsDropdown text={data.dropdown} />
+                <h1>{content.title}</h1>
+                <AccountsDropdown text={content.dropdown} />
               </div>
               { this.state.step === 1 && 
                 <div className="module module-step1">
-                  <h2>{data.steps[0].title}</h2>
-                  <p>{data.steps[0].description}</p>
+                  <h2>{content.steps[0].title}</h2>
+                  <p>{content.steps[0].description}</p>
                   {this.state.settingsPending &&
                       <div className="spinner" style={{ textAlign: "center" }}>
                         <FontAwesomeIcon icon={faCircleNotch} size="3x" className="fa-spin" />
                       </div>}
-                  <h3>{data.steps[0].table_title}</h3>
+                  <h3>{content.steps[0].table_title}</h3>
                   <Form>
                     {
-                      Object.keys(data.steps[0].communication_types).map(index => {
+                      Object.keys(content.steps[0].communication_types).map(index => {
                         commDetails = this.makeCommDetails(index);
-                        commType = data.steps[0].communication_types[index].name;
+                        commType = content.steps[0].communication_types[index].name;
                         return (
                           <div>
                             <FormGroup>
-                              <Label for={data.steps[0].communication_types[index].name}>{data.steps[0].communication_types[index].label + commDetails}</Label>
-                              <CustomInput onChange={(event) => this.toggleConsent(event)} type="radio" id={`${data.steps[0].communication_types[index].name}_yes`} name={data.steps[0].communication_types[index].name} label="Yes" checked={this.state[commType + "Checked"]}/>
-                              <CustomInput onChange={(event) => this.toggleConsent(event)} type="radio" id={`${data.steps[0].communication_types[index].name}_no`} name={data.steps[0].communication_types[index].name} label="No" checked={!this.state[commType + "Checked"]}/>
+                              <Label for={content.steps[0].communication_types[index].name}>{content.steps[0].communication_types[index].label + commDetails}</Label>
+                              <CustomInput onChange={(event) => this.toggleConsent(event)} type="radio" id={`${content.steps[0].communication_types[index].name}_yes`} name={content.steps[0].communication_types[index].name} label="Yes" checked={this.state[commType + "Checked"]}/>
+                              <CustomInput onChange={(event) => this.toggleConsent(event)} type="radio" id={`${content.steps[0].communication_types[index].name}_no`} name={content.steps[0].communication_types[index].name} label="No" checked={!this.state[commType + "Checked"]}/>
                             </FormGroup>
                           </div>
                         );
@@ -164,28 +164,28 @@ class PrivacySecurity extends React.Component {
               }
               { this.state.step === 2 && 
                 <div className="module module-step2">
-                  <h2 className="confirmation">{data.steps[1].title}</h2>
-                  <p>{data.steps[1].description}</p>
-                  <h3>{data.steps[0].table_title}</h3>
+                  <h2 className="confirmation">{content.steps[1].title}</h2>
+                  <p>{content.steps[1].description}</p>
+                  <h3>{content.steps[0].table_title}</h3>
                   <Form>
                     {
-                      Object.keys(data.steps[1].communication_types).map(index => {
+                      Object.keys(content.steps[1].communication_types).map(index => {
                         commDetails = this.makeCommDetails(index);
-                        commType = data.steps[0].communication_types[index].name;
+                        commType = content.steps[0].communication_types[index].name;
                         return (
                           <>
                             <FormGroup>
-                              <Label for={data.steps[1].communication_types[index].name}>{data.steps[0].communication_types[index].label + commDetails}</Label>
-                              <CustomInput type="radio" id={`${data.steps[0].communication_types[index].name}_yes`} name={data.steps[0].communication_types[index].name} label="Yes" disabled checked={this.state[commType + "Checked"]}/>
-                              <CustomInput type="radio" id={`${data.steps[0].communication_types[index].name}_no`} name={data.steps[0].communication_types[index].name} label="No" disabled checked={!this.state[commType + "Checked"]}/>
+                              <Label for={content.steps[1].communication_types[index].name}>{content.steps[0].communication_types[index].label + commDetails}</Label>
+                              <CustomInput type="radio" id={`${content.steps[0].communication_types[index].name}_yes`} name={content.steps[0].communication_types[index].name} label="Yes" disabled checked={this.state[commType + "Checked"]}/>
+                              <CustomInput type="radio" id={`${content.steps[0].communication_types[index].name}_no`} name={content.steps[0].communication_types[index].name} label="No" disabled checked={!this.state[commType + "Checked"]}/>
                             </FormGroup>
                           </>
                         );
                       })
                     }
-                    <div dangerouslySetInnerHTML={{__html:data.steps[1].other_things}} />
+                    <div dangerouslySetInnerHTML={{__html:content.steps[1].other_things}} />
                     <FormGroup className="buttons submit-buttons">
-                      <Button color="primary" onClick={ this.close }>{data.steps[1].btn_back}</Button>
+                      <Button color="primary" onClick={ this.close }>{content.steps[1].btn_back}</Button>
                     </FormGroup>
                   </Form>
                 </div>

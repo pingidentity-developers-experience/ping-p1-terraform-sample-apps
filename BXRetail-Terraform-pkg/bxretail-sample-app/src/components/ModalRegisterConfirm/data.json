@@ -1,15 +1,0 @@
-{
-	"download": {
-		"title": "Get the BXRetail App",
-		"content": "A faster, easier way to access all your accounts from anywhere.",
-		"learn": "<small>or <a href=\"#\">Learn More</a></small>"
-	},
-	"confirmation": {
-		"title": "We've Created Your Account",
-		"content": "<p>You're now signed in. Check your email to verify your email address.</p> <p>Also, this is a great time to download the BXRetail app to your mobile device,  using the links you see here.</p> <p>With your new BXRetail account you can do all the things you'd expect: shop,  save favorites, and so much more.   There's also great security features you can set:  </p> <ul><li>Transaction limits on the amount of purchases</li><li>Ability to approve any transactions with your BXRetail mobile app</li></ul>",
-		"buttons": {
-			"learn": "Continue",
-			"close": "Close"
-		}
-	}
-}

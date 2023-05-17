@@ -2,9 +2,11 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/hashicorp/kubernetes" {
-  version = "2.19.0"
+  version     = "2.19.0"
+  constraints = ">= 2.19.0, < 3.0.0"
   hashes = [
     "h1:ID/u9YOv00w+Z8iG+592oyuV7HcqRmPiZpEC9hnyTMY=",
+    "h1:WXTbK59MHZVtikifTCvqpH/3TKMnj3MyQke4ymmUjlg=",
     "zh:028d346460de2d1d19b4c863dfc36be51c7bcd97d372b54a3a946bcb19f3f613",
     "zh:391d0b38c455437d0a2ab1beb6ce6e1230aa4160bbae11c58b2810b258b44280",
     "zh:40ea742f91b67f66e71d7091cfd40cc604528c4947651924bd6d8bd8d9793708",
@@ -44,9 +46,10 @@ provider "registry.terraform.io/kreuzwerker/docker" {
 
 provider "registry.terraform.io/pingidentity/pingone" {
   version     = "0.11.1"
-  constraints = ">= 0.6.1"
+  constraints = ">= 0.6.1, >= 0.11.1, < 1.0.0"
   hashes = [
     "h1:RuXHydUQCeR0m1cL3+GgbeJXHqtuSLrOEvFEdDXuPaA=",
+    "h1:isq1fL/UBRTNak17C0tuizDSQtWXDyctr0SW7VfA0mI=",
     "zh:00bf5609fec917ad54bf7aafb28dd7125270f5e24925b233e462677778a93d3d",
     "zh:0ba4a08e5669a85f5842641209a9adfcf7077c4941bf0421f69bb4c6807ff7e8",
     "zh:2a0a12111c436ecc69b78040aba11e1a57e100672bc01a9fa0cd36fda3263e96",

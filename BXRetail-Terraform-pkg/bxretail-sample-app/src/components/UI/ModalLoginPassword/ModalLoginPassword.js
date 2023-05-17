@@ -21,7 +21,6 @@ import { faCircleNotch, faLink } from '@fortawesome/free-solid-svg-icons';
 import FormPassword from '../FormPassword';
 // import LoginLinkButton from '../LoginLinkButton';
 import AuthN from '../../Controller/AuthN';
-import AuthZ from '../../Controller/AuthZ';
 import Session from '../../Utils/Session';
 import Registration from '../../Controller/Registration';
 import Users from '../../Controller/Users';
@@ -53,7 +52,6 @@ class ModalLoginPassword extends React.Component {
       loginPending: false
     };
     this.authn = new AuthN();
-    this.authz = new AuthZ();
     this.users = new Users();
     this.registration = new Registration();
     this.session = new Session();
@@ -94,6 +92,7 @@ class ModalLoginPassword extends React.Component {
       this.toggleTab(tab);
     }
   }
+
   toggleTab(tab) {
     this.setState({ haveError: false });
     // Tab 3 is the progress spinner.

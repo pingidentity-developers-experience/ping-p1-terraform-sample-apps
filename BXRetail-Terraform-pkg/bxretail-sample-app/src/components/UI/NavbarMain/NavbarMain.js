@@ -36,7 +36,6 @@ class NavbarMain extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
-      prospect: "",
       email: "",            
       password: "",         
       password_confirm: "", 
@@ -59,11 +58,10 @@ class NavbarMain extends React.Component {
 
   triggerModalRegister() {
     this.session.setAuthenticatedUserItem("authMode", "registration", "session");
-    const redirectURI = this.envVars.REACT_APP_HOST + this.envVars.PUBLIC_URL + "/";
-    //TODO should we move envVars param to controller like get token? Consistent pattern for the things UI shouldn't know or care about?
-    this.authz.initAuthNFlow({ grantType: "authCode", clientId: this.envVars.REACT_APP_CLIENT, redirectURI: redirectURI, scopes: "openid profile email p1:read:user p1:update:user p1:read:sessions p1:update:userMfaEnabled p1:create:device" });
-    // this.modalRegister.current.toggle(); //Moved to componentDidMount because we have to send them to P1 first.
+    // Initialize OIDC SDK and start authorization flow
+    this.authz.initAuthNFlow().catch(err => console.error(err));
   }
+
   // Sent as callback to ModalRegister.js
   onModalRegisterSubmit() {
     if (this.modalRegister.current.validate()) {
@@ -92,18 +90,16 @@ class NavbarMain extends React.Component {
         });
     };
   }
+
   showRegistrationVerification() {
     this.modalLoginPassword.current.toggle();
     this.modalRegister.current.toggle();
     this.modalRegister.current.toggleTab("2");
   }
+
   triggerModalRegisterConfirm() {
     this.modalRegisterConfirm.current.toggle();
   }
-  // Not doing identifier first in BXRetail
-  /* triggerModalLogin() {
-    this.refs.modalLogin.toggle();
-  } */
 
   triggerModalLoginPassword() {
     if (this.session.getAuthenticatedUserItem("triggerLogin", "session")) {
@@ -115,31 +111,31 @@ class NavbarMain extends React.Component {
       this.session.removeAuthenticatedUserItem("email", "session");
     }
     this.session.setAuthenticatedUserItem("authMode", "login", "session");
-    const redirectURI = this.envVars.REACT_APP_HOST + this.envVars.PUBLIC_URL + "/";
-    this.authz.initAuthNFlow({ grantType: "authCode", clientId: this.envVars.REACT_APP_CLIENT, redirectURI: redirectURI, scopes: "openid profile email p1:read:user p1:update:user p1:read:sessions p1:update:userMfaEnabled p1:create:device" });
+    // Initialize OIDC SDK and start authorization flow
+    this.authz.initAuthNFlow().catch(err => console.error(err));
+    
   }
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
+
   logout() {
-    // TODO ideally this UI content should come from a data file. Not hard coded here.
     this.setState({
-      msgTitle: "Just a minute please...",
-      msgDetail: "We are in the process of logging you out of BXRetail."
+      msgTitle: content.logout.msgTitle,
+      msgDetail: content.logout.msgDetail
     });
+
     this.modalMessage.current.toggle();
     const userType = this.session.getAuthenticatedUserItem("bxRetailUserType", "session");
     
-    this.session.clearUserAppSession('session');
-    if (userType === "Customer") {console.log("WE Are logging out");
-        window.location.assign(`${this.envVars.REACT_APP_AUTHPATH}/${this.envVars.REACT_APP_ENVID}/as/signoff?post_logout_redirect_uri=${this.envVars.REACT_APP_HOST}/app/`);
-    } 
-    // else {
-    //   // Federated ATVP users.
-    //   window.location.assign(this.envVars.REACT_APP_ATVP_PORTAL);
-    // }
+    this.session.clearUserAppSession('all');
+    if (userType === "Customer") {
+      window.location.assign(`${this.envVars.REACT_APP_AUTHPATH}/${this.envVars.REACT_APP_ENVID}/as/signoff?post_logout_redirect_uri=${this.envVars.REACT_APP_HOST}/app/`);
+    }
+
   }
   
   handleFormInput(e) {
@@ -185,25 +181,9 @@ class NavbarMain extends React.Component {
           this.session.removeAuthenticatedUserItem('userData', 'session');
         })
       }
-      // this.registration.enrollDevice({ userId: userId, email: this.session.getAuthenticatedUserItem('email', 'session'), accessToken: this.session.getAuthenticatedUserItem('AT', 'session') })
-      // .then(() => {
-      //   console.info('Email device enrolled successfully.')
-      //   this.session.removeAuthenticatedUserItem('authMode', 'session');
-      //   if (this.session.getAuthenticatedUserItem('userData', 'session')) {
-      //     const userData = JSON.parse(this.session.getAuthenticatedUserItem('userData', 'session'));
-      //     this.users.updateUserProfile({ userState: userData, userId: userId })
-      //     .then(response => {
-      //       this.session.setAuthenticatedUserItem('firstName', userData.firstname, 'session');
-      //       this.session.removeAuthenticatedUserItem('userData', 'session');
-      //     })
-      //   }
-      // }).catch(error => {
-      //   console.warn('enrollDevice Exception', error);
-      // })
     }
 
     if (window.location.search) {
-      const redirectURI = this.envVars.REACT_APP_HOST + this.envVars.PUBLIC_URL + "/";
       const queryParams = new URLSearchParams(window.location.search);
       const ga = queryParams.get("ga");
       const flowId = queryParams.get("flowId");
@@ -237,53 +217,8 @@ class NavbarMain extends React.Component {
           } 
           break;
         case "authCode":
-          // Returned state should match what was passed in
-          if ( queryParams.get("state") !== this.session.getAuthenticatedUserItem("state", "session") ) {
-            throw new Error("oAuth state parameters do not match.");
-          }
-
-          this.authz.swapCodeForToken({ code: authCode, redirectURI: redirectURI, authMode: this.session.getAuthenticatedUserItem("authMode", "session"), clientId: this.envVars.REACT_APP_CLIENT })
-            .then(response => {
-              // Clean up pkce and state storage
-              this.session.removeAuthenticatedUserItem("state", "session");
-              this.session.removeAuthenticatedUserItem("code_verifier", "session");
-
-              this.session.setAuthenticatedUserItem("AT", response.access_token, "session");
-              this.session.setAuthenticatedUserItem("IdT", response.id_token, "session");
-              const firstName = this.tokens.getTokenValue({ token: response.id_token, key: "given_name" });
-              if (firstName) {
-                this.session.setAuthenticatedUserItem("firstName", firstName, "session");
-              }
-              const email = this.tokens.getTokenValue({ token: response.id_token, key: "email" });
-              const groups = this.tokens.getTokenValue({ token: response.id_token, key: "bxRetailUserType" });
-              const userType = (groups) ? groups[0] : "Customer";
-              this.session.setAuthenticatedUserItem("email", email, "session");
-              this.session.setAuthenticatedUserItem("bxRetailUserType", userType, "session");
-              if (userType === "AnyTVPartner") {
-                this.props.history.push("/partner");
-              } else if (userType === "AnyMarketing") {
-                this.props.history.push("/any-marketing");
-              } else {
-                //Set temp reg thank you message.
-                if (authMode === "registration") { this.session.setAuthenticatedUserItem("regMessage", content.menus.utility.register_done, "session"); }
-                // It's a customer.
-                if (authMode === "login" || authMode === "registration") {
-                  if (this.session.getAuthenticatedUserItem("targetReferrer", "session")) {
-                    this.session.removeAuthenticatedUserItem("targetReferrer", "session");
-                    this.props.history.push("/dashboard/settings");
-                  } else {
-                    this.props.history.push("/shop");
-                  }
-                } else if (authMode === "signInToCheckout") {
-                  this.props.history.push({ pathname: '/shop/checkout', state: { acctFound: true }});
-                } 
-              }
-            });
-          break;
-        case "issuer":
-          //TODO Does this need to be refactored (remove authPath arg) and instantiate a new object passing in authPath to constructor?????
-          this.session.setAuthenticatedUserItem("authMode", "ATVP", "session");
-          this.authz.initAuthNFlow({ grantType: "authCode", clientId: this.envVars.REACT_APP_ATVP_CLIENT, redirectURI: redirectURI, scopes: "openid profile email bxretailLowPriv", authPath: this.envVars.REACT_APP_ATVPAUTHPATH });
+          // Call OIDC SDK to get access/id tokens
+          this.authz.getToken(this.props.history.push,content);
           break;
         default:
           console.error('AuthN param exception.', 'Received an unknown value. Expecting a flow Id, authorization code, or issuer.' );
@@ -304,7 +239,7 @@ class NavbarMain extends React.Component {
                   <span>{this.props.location.state?.action}</span>          
                   {/* <NavLink><img src={window._env_.PUBLIC_URL + "/images/navbar-search.png"} alt={content.menus.utility.search} className="searchbar" /></NavLink> */}
                   <form>
-                    <Input className="prospect" autoComplete="off" type="text" name="prospect" id="prospect" placeholder={content.menus.utility.gaCustomer} value={this.state.prospect} />
+                    <Input className="prospect" autoComplete="off" type="text" name="prospect" id="prospect" placeholder={content.menus.utility.gaCustomer} />
                   </form>
                 </NavItem>
                 <NavItem>
@@ -391,7 +326,7 @@ class NavbarMain extends React.Component {
               <NavItem className="customer-collection">
                 <span>{this.props.location.state?.action}</span>          
                 <form>
-                  <Input className="prospect" autoComplete="off" type="text" name="prospect" id="prospect" placeholder={content.menus.utility.gaCustomer} value={this.state.prospect} />
+                  <Input className="prospect" autoComplete="off" type="text" name="prospect" id="prospect" placeholder={content.menus.utility.gaCustomer} />
                 </form>
               </NavItem>
               <br/>

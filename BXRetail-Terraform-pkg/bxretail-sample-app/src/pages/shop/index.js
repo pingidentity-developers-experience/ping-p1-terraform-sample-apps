@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Container,
     Row,
@@ -613,4 +614,14 @@ class Shop extends React.Component {
         );
     }
 }
+
+Shop.propTypes = {
+    location: PropTypes.shape({
+      state: PropTypes.string
+    }),
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired
+    }).isRequired
+}
+
 export default withRouter(Shop);

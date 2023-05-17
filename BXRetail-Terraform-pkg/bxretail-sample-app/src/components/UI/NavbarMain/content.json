@@ -34,5 +34,9 @@
 			"login": "Sign In to My Account",
 			"logout": "Sign Out"
 		}
+	},
+	"logout": {
+		"msgTitle": "Just a minute please...",
+		"msgDetail": "We are in the process of logging you out of BXRetail."
 	}
 }

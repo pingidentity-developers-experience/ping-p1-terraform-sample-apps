@@ -293,13 +293,9 @@ class Checkout extends React.Component {
             // We are checking that the email is a string. If no email, we get an object passed in that we don't want to display in the login modal.
             this.session.setAuthenticatedUserItem('email', email, 'session');
         }
-        const redirectURI = this.envVars.REACT_APP_HOST + this.envVars.PUBLIC_URL + '/';
-        this.authz.initAuthNFlow({
-            grantType: 'authCode',
-            clientId: this.envVars.REACT_APP_CLIENT,
-            redirectURI: redirectURI,
-            scopes: 'openid profile email p1:read:user p1:update:user p1:read:sessions p1:update:userMfaEnabled p1:create:device',
-        });
+        
+        // Initialize OIDC SDK and start authorization flow
+        this.authz.initAuthNFlow().catch(err => console.error(err));
     }
 
     // customerLookup(email) {
@@ -388,8 +384,8 @@ class Checkout extends React.Component {
 
     createAccount() {
         this.session.setAuthenticatedUserItem('authMode', 'registration', 'session');
-        const redirectURI = this.envVars.REACT_APP_HOST + this.envVars.PUBLIC_URL + "/";
-        this.authz.initAuthNFlow({ grantType: "authCode", clientId: this.envVars.REACT_APP_CLIENT, redirectURI: redirectURI, scopes: "openid profile email p1:read:user p1:update:user p1:read:sessions p1:update:userMfaEnabled p1:create:device" });
+        // Initialize OIDC SDK and start authorization flow
+        this.authz.initAuthNFlow().catch(err => console.error(err));
     }
 
     componentDidMount() {

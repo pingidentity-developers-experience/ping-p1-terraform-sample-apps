@@ -1,5 +1,4 @@
 // Components
-import AuthZ from "./AuthZ";
 import PingOneRegistration from "../Integration/PingOneRegistration";
 import Session from "../Utils/Session";
 // import DaVinci from "../Integration/DaVinci";
@@ -19,7 +18,6 @@ class Registration {
     */
     constructor() {
         this.envVars = window._env_;
-        this.authz = new AuthZ();
         this.ping1Reg = new PingOneRegistration(this.envVars.REACT_APP_AUTHPATH, this.envVars.REACT_APP_ENVID, this.envVars.REACT_APP_APIPATH);
         this.session = new Session();
         // this.davinci = new DaVinci();

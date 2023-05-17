@@ -131,7 +131,7 @@ class NavbarMain extends React.Component {
     this.modalMessage.current.toggle();
     const userType = this.session.getAuthenticatedUserItem("bxRetailUserType", "session");
     
-    this.session.clearUserAppSession('session');
+    this.session.clearUserAppSession('all');
     if (userType === "Customer") {
       window.location.assign(`${this.envVars.REACT_APP_AUTHPATH}/${this.envVars.REACT_APP_ENVID}/as/signoff?post_logout_redirect_uri=${this.envVars.REACT_APP_HOST}/app/`);
     }

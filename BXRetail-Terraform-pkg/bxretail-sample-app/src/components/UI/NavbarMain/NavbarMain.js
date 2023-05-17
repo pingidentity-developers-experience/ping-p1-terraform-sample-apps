@@ -217,7 +217,7 @@ class NavbarMain extends React.Component {
           } 
           break;
         case "authCode":
-          // Call 
+          // Call OIDC SDK to get access/id tokens
           this.authz.getToken(this.props.history.push,content);
           break;
         default:

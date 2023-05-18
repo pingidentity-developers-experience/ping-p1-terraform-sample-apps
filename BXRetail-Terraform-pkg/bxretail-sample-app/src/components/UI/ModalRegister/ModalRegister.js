@@ -211,6 +211,7 @@ class ModalRegister extends React.Component {
 ModalRegister.propTypes = {
   flowId: PropTypes.string,
   handleFormInput: PropTypes.func.isRequired,
+  email: PropTypes.string.isRequired,
   passwordValue: PropTypes.string.isRequired,
   passwordConfirmValue: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,

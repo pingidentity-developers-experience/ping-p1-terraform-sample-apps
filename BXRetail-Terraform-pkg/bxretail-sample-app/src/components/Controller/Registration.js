@@ -52,7 +52,7 @@ class Registration {
     }
 
     /**
-    Enroll an MFA device Device. Process ther request and payload to enroll email as a device at registration for all users so that MFA works later if they opt-in. 
+    Enroll an MFA device Device. Process their request and payload to enroll email as a device at registration for all users so that MFA works later if they opt-in. 
     @param {string} userId User Id GUID for which to enroll device.
     @param {string} email Email address to be enrolled as user device.
     @param {string} accessToken PingOne access token.

@@ -416,7 +416,7 @@ class ModalLoginPassword extends React.Component {
                   {this.state.haveError && <div style={{ color: 'red', paddingBottom: '10px' }}>{this.state.errorTitle}<br />{this.state.errorMsg}</div>}
                   <FormGroup className="form-group-light">
                     <Label for="OTP">{content.mfa.login_verification.label}</Label>
-                    <Input onChange={this.handleFormInput.bind(this)} required autoFocus={true} autoComplete="off" type="text" name="OTP" id="OTP" value={this.state.OTP} />
+                    <Input onChange={this.handleFormInput.bind(this)} required autoFocus={true} autoComplete="off" type="text" name="OTP" id="OTP" value={this.state.OTP} pattern="^[0-9]{6,6}$" title="Code must be 6 digits" />
                   </FormGroup>
                   <div className="mb-3">
                     <Button type="button" color="primary" onClick={() => { this.handleUserAction("OTP") }}>{content.mfa.buttons.login_verification}</Button>
@@ -473,7 +473,7 @@ class ModalLoginPassword extends React.Component {
                   <p>{content.forgotPassword.labels.usernameWarning}</p>
                   <FormGroup className="form-group-light">
                     <Label for="email">{content.form.fields.email.label}</Label>
-                    <Input onChange={this.handleFormInput.bind(this)} required autoFocus={true} autoComplete="off" type="email" name="email" id="email" placeholder={content.form.fields.email.placeholder} />
+                    <Input onChange={this.handleFormInput.bind(this)} required autoFocus={true} autoComplete="off" type="email" name="email" id="email" placeholder={content.form.fields.email.placeholder} pattern= "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+$" />
                   </FormGroup>
                   <div className="mb-3">
                     <Button type="button" color="primary" onClick={() => { this.handleUserAction("forgotPassword"); }}>{content.form.buttons.recover_password}</Button>

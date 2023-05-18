@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Container,
     Row,
@@ -1122,4 +1123,12 @@ class Checkout extends React.Component {
         );
     }
 }
+
+Checkout.propTypes = {
+    history: PropTypes.shape({
+        push: PropTypes.func.isRequired
+    }).isRequired
+
+}
+
 export default withRouter(Checkout);

@@ -366,6 +366,7 @@ class NavbarMain extends React.Component {
 }
 
 NavbarMain.propTypes = {
+  toggleCart: PropTypes.func,
   location: PropTypes.shape({
     pathname: PropTypes.string
   }),

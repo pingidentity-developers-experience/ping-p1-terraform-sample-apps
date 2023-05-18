@@ -36,7 +36,7 @@ class CreditCardForm extends React.Component {
                         <Input id="creditCardExpiration" onChange={e => e.preventDefault()} value={this.state.expDate} />
                     </Col>
                     <Col xs={12} sm={4}>
-                        <Label for="craditCardCvv">{content.cvvLabel}</Label>
+                        <Label for="creditCardCvv">{content.cvvLabel}</Label>
                         <Input id="creditCardCvv" onChange={e => e.preventDefault()} value="123" />
                     </Col>
                     <Col xs={12} sm={4}>

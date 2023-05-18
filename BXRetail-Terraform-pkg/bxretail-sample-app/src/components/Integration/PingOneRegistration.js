@@ -1,5 +1,5 @@
 /**
-Class representing PingOne registration and profile managemente API's integration.
+Class representing PingOne registration and profile management API's integration.
 This demo-specific class is developed and maintained by Ping Identity Technical Enablement.
 Implements methods to integrate with PingOne authentication-related API endpoints.
 

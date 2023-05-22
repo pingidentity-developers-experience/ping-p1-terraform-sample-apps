@@ -15,7 +15,7 @@ import {
   TabContent, TabPane
 } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleNotch, faLink } from '@fortawesome/free-solid-svg-icons';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 // Components
 import FormPassword from '../FormPassword';
@@ -80,17 +80,12 @@ class ModalLoginPassword extends React.Component {
       this.props.history.push('/');
     }
   }
-  toggle(tab) {
+  toggle() {
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen: !this.state.isOpen,
+      haveError: false,
+      activeTab: '1',
     });
-    //TODO this needs to go away I think. Usage deprecated by moving tab 7 back to reg where it belongs. Verify that before removing.
-    // toggle() is only about show/hide modal UIs. Added tab arg
-    // and call to toggleTab() because 
-    // some uses cases require us to show a different default tabPane.
-    if (tab) {
-      this.toggleTab(tab);
-    }
   }
 
   toggleTab(tab) {
@@ -106,7 +101,11 @@ class ModalLoginPassword extends React.Component {
       });
     }
     // HACK for getting focus on subsequent tab fields.... because reactstrap. :-(
-    if (tab === "5") { document.getElementById("email").focus(); } // FIXME This is not working and I can't figure out why.
+    if (tab === "5") { 
+      setTimeout(() => {
+        document.getElementById("email").focus(); 
+      }, 10)
+    }
 
   }
   setLoginMethod() {
@@ -115,8 +114,7 @@ class ModalLoginPassword extends React.Component {
       loginMethodFormGroupClass: 'form-group-light'
     });
   }
-  // TODO is this redundant code or is the method name just not intuitive enough???
-  startRequest() {
+  resetErrorState() {
     this.setState({
       haveError: false,
       errorTitle: "",
@@ -193,35 +191,22 @@ class ModalLoginPassword extends React.Component {
       case "signInToCheckout":
       case "login":
         this.session.removeAuthenticatedUserItem("federatedUser", "session");
-        this.startRequest();
+        this.resetErrorState();
         this.authn.loginUser({ loginData: this.state, flowId: this.props.flowId })
           .then(response => {
             this.setState({ loginPending: false });
             if (response.status === "COMPLETED") {
               window.location.replace(response.resumeUrl); //Using replace() because we don't want the user to go "back" to the middle of the login process.
-            } 
-            // else if (response.status === "VERIFICATION_CODE_REQUIRED") {
-            //   this.continueVerification();
-            // } else if (response.status === "OTP_REQUIRED") {
-            //   this.toggleTab("2");
-            // } 
+            }
             else if (response.code) { //Error case.
               this.handleResponseError(response);
             } else if (response.status === "EXTERNAL_AUTHENTICATION_REQUIRED") {
-              let authenticateHref;
-              //FIXME shuoldnt hardcode authenticate.href value from env file. See tracker story #179596670
-              if (response._embedded.identityProvider.name === "AnyTVPartner") {
-                authenticateHref = this.envVars.REACT_APP_ATVP_PORTAL;
-              }
-              else {
-                authenticateHref = response._embedded.identityProvider._links.authenticate.href;
-              }
               this.setState({
                 loginStatus: response.status,
                 haveError: true,
                 errorTitle: response.status.replaceAll("_", " "),
                 errorMsg: "",
-                authNUrl: authenticateHref,
+                authNUrl: response._embedded.identityProvider._links.authenticate.href,
                 authNName: response._embedded.identityProvider.name
               });
             } else if (response.status === "PASSWORD_EXPIRED") {
@@ -233,7 +218,7 @@ class ModalLoginPassword extends React.Component {
         break;
       case "OTP":
         if (this.formref2.current.reportValidity()) {
-          this.startRequest();
+          this.resetErrorState();
           this.authn.OTPRequest({ OTP: this.state.OTP, flowId: this.props.flowId })
             .then(response => {
               this.setState({ loginPending: false });
@@ -252,7 +237,7 @@ class ModalLoginPassword extends React.Component {
         break;
       case "forgotPassword":
         if (this.formref5.current.reportValidity()) {
-          this.startRequest();
+          this.resetErrorState();
           this.authn.forgotPassword({ flowId: this.props.flowId, username: this.state.email })
             .then(response => {
               this.setState({ loginPending: false });
@@ -270,7 +255,7 @@ class ModalLoginPassword extends React.Component {
               newPassword: ""
             })
           } else {
-            this.startRequest();
+            this.resetErrorState();
             this.authn.recoverPasscode({ flowId: this.props.flowId, recoveryCode: this.state.recoveryCode, newPassword: this.state.newPassword })
               .then(response => {
                 this.setState({ loginPending: false });
@@ -314,17 +299,6 @@ class ModalLoginPassword extends React.Component {
           }
         }
         break;
-      // case "Extraordinary Club":
-      // case "Google":
-      // case "Magic Link":
-      //   this.authn.getRequestedSocialProvider({ IdP: authMode, flowId: this.props.flowId })
-      //     .then(idpURL => {
-      //       this.session.setAuthenticatedUserItem("federatedUser", true, "session");
-      //       let redirectUrl = idpURL;
-      //       if (authMode === "Magic Link") redirectUrl = idpURL.concat('&loginHint='+this.state.username);
-      //       window.location.assign(redirectUrl)
-      //     });
-      //   break;
       default:
         throw new Error("Unexpected authMode for ModalLoginPassword.handleUserAction.");
     }
@@ -387,21 +361,6 @@ class ModalLoginPassword extends React.Component {
                       <div>
                         <Button type="button" color="link" size="sm" className="text-info pl-0" onClick={() => { this.toggleTab('5'); }}>{content.form.buttons.reset_password}</Button>
                       </div>
-                      {/* <div className="login-link-container">
-                        <LoginLinkButton color="#211012" backgroundColor="#F9C646" text="Tired of Passwords?" clickHandler={() => this.handleUserAction("Magic Link")} icon={
-                          <FontAwesomeIcon size="2x" icon={faLink} />
-                        } />
-                      </div>
-                      <div className="login-link-container">
-                        <LoginLinkButton backgroundColor="#F66D0B" text="Sign In with ExtraordinaryClub" clickHandler={() => this.handleUserAction("Extraordinary Club")} icon={
-                          <img src={window._env_.PUBLIC_URL + "/images/extraordinary-club-icon.png"} alt="ExtraordinaryClub" />
-                        } />
-                      </div>
-                      <div className="login-link-container">
-                        <LoginLinkButton backgroundColor="#2A84FC" text="Sign In with Google" clickHandler={() => this.handleUserAction("Google")} icon={
-                          <img src={window._env_.PUBLIC_URL + "/images/google-icon.png"} alt="Google" />
-                        } />
-                      </div> */}
                     </div>}
                 </form>
               </TabPane>
@@ -423,22 +382,6 @@ class ModalLoginPassword extends React.Component {
                   </div>
                 </form>
               </TabPane>
-              {/* <TabPane tabId="2"> PASSWORDLESS UI. NOT SUPPORTED IN BXRetail USE CASES YET.
-                  <h4>{content.titles.login_method}</h4>
-                  <FormGroup className={this.state.loginMethodFormGroupClass}>
-                    <div>
-                      <CustomInput type="radio" id="login_method_email" name="login_method" label={content.form.fields.login_method.options.email} className="form-check-inline" onClick={this.setLoginMethod.bind(this)} />
-                      <CustomInput type="radio" id="login_method_text" name="login_method" label={content.form.fields.login_method.options.text} className="form-check-inline" onClick={this.setLoginMethod.bind(this)} />
-                      <CustomInput type="radio" id="login_method_faceid" name="login_method" label={content.form.fields.login_method.options.faceid} className="form-check-inline" onClick={this.setLoginMethod.bind(this)} />}
-                    </div>
-                  </FormGroup>
-                  <div className="mb-4 text-center">
-                    <Button type="button" color="primary" disabled={this.state.loginMethodUnset} onClick={() => { this.toggleTab('3'); }}>{content.form.buttons.login}</Button>
-                  </div>
-                  <div className="text-center">
-                    <Button type="button" color="link" size="sm" className="text-info" onClick={this.toggle.bind(this)}>{content.form.buttons.help}</Button>
-                  </div>
-                </TabPane> */}
               <TabPane tabId="3"> {/* Progress spinner UI */}
                 <form ref={this.formref3} onSubmit={e => e.preventDefault()}>
                   <div className="mobile-loading" style={{ backgroundImage: `url(${window._env_.PUBLIC_URL}/images/login-device-outline.jpg)` }}>
@@ -452,16 +395,6 @@ class ModalLoginPassword extends React.Component {
                   </div>
                 </form>
               </TabPane>
-              {/* <TabPane tabId="4"> USERNAME RECOVERY UI. PINGONE DOESN'T SUPPORT THIS TODAY.
-                  <h4>{content.form.buttons.recover_username}</h4>
-                  <FormGroup className="form-group-light">
-                    <Label for="email">{content.form.fields.email.label}</Label>
-                    <Input type="text" name="email" id="email" placeholder={content.form.fields.email.placeholder} />
-                  </FormGroup>
-                  <div className="mb-3">
-                    <Button type="button" color="primary" onClick={() => { this.toggleTab('6'); }}>{content.form.buttons.recover_username}</Button>
-                  </div>
-                </TabPane> */}
               <TabPane tabId="5"> {/* Password reset UI - enter username. */}
                 <form ref={this.formref5} onSubmit={e => e.preventDefault()}>
                   <h4>{content.form.buttons.reset_password}</h4>
@@ -481,12 +414,6 @@ class ModalLoginPassword extends React.Component {
                   {/* this.state.showForgotPasswordError && <p>Email is required.</p> */}
                 </form>
               </TabPane>
-              {/* <TabPane tabId="6"> USERNAME RECOVERY SUCCESS UI. SAME ISSUE AS TABID 4.
-                  <h4>{content.titles.recover_username_success}</h4>
-                  <div className="mb-3 text-center">
-                    <Button type="button" color="primary" onClick={() => { this.toggleTab('1'); }}>{content.form.buttons.login}</Button>
-                  </div>
-                </TabPane> */}
               <TabPane tabId="7"> {/* Password reset UI - enter code and new password. */}
                 <h4>{content.form.buttons.reset_password}</h4>
                 {this.state.loginPending &&

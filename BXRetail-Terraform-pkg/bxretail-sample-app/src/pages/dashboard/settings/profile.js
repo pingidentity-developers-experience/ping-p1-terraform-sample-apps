@@ -110,14 +110,7 @@ class DashboardSettingsProfile extends React.Component {
         formData[e.target.id] = e.target.value;
         this.setState(formData);
     }
-
-    handleCheckbox() {
-        //TODO It's probably better practice to use setState with prevState instead of a separate variable, in case state hasn't update in time.
-        const enabled = !this.state.mfaEnabled;
-        this.users.toggleMFA({ IdT: this.session.getAuthenticatedUserItem('IdT', 'session'), toggleState: enabled });
-        this.setState({ mfaEnabled: enabled });
-    }
-
+    
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen,
@@ -365,41 +358,6 @@ class DashboardSettingsProfile extends React.Component {
                                         </Row>
                                     </form>
                                 </div>
-                                {/* Add MFA section */}
-                                {/* {!this.state.federatedUser && (
-                                    <div className='module'>
-                                        <h3>Authentication Preferences</h3>
-                                        <Col>
-                                            <Row>
-                                                <p>{content.form.fields.login.description}</p>
-                                            </Row>
-                                        </Col>
-                                        <Col md={{ span: 1, offset: 1 }}>
-                                            <Row form>
-                                                <FormGroup>
-                                                    <Input
-                                                        type='checkbox'
-                                                        checked={this.state.mfaEnabled}
-                                                        onChange={this.handleCheckbox.bind(this)}
-                                                    />
-                                                    <Label>
-                                                        {this.state.mfaEnabled
-                                                            ? 'Turn off two-factor authentication.'
-                                                            : 'Turn on two-factor authentication.'}
-                                                    </Label>
-                                                </FormGroup>
-                                            </Row>
-                                        </Col>
-                                    </div>
-                                )} */}
-                                {/* Add Device Management section */}
-                                {/* {!this.state.federatedUser && (
-                                <div className='module'>     
-                                    <h3>Device Management</h3>
-                                    <p>To access your My Account portal to add or remove multi-factor authentication devices used for sign-in, <a href={window._env_.REACT_APP_AUTHPATH + "/myaccount/"} target="_blank" rel="noreferrer">click here</a>.</p>
-                                </div>
-                                )} */}
-                                    
                             </div>
                         </div>
                     </Container>

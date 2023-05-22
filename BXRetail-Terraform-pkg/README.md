@@ -63,10 +63,12 @@ Note the `license_id`, `organization_id` values can be found by following instru
 | Variable | Description | 
 | -------- | ----------- |
 | region | Region for PingOne Environment | 
-| organization_id | PingOne Organization Id - Located under Environment -> Properties  See [PingOne Terraform provider Getting Started Guide for instructions] (https://pingidentity.github.io/terraform-docs/getting-started/pingone/#finding-required-ids)  | 
+| organization_id | PingOne Organization Id - Located under Environment -> Properties\
+See [PingOne Terraform provider Getting Started Guide for instructions] (https://pingidentity.github.io/terraform-docs/getting-started/pingone/#finding-required-ids)  | 
 | admin_env_id | PingOne Environment Id for Administrators Environment - Located under Environment -> Properties |
 | admin_user_id | User Id for a user in the Administrators Environment - Located under Identities -> Users -> Select user -> Click API tab -> ID |
-| license_id | License Id to be used for PingOne Environment - Located under Environment -> Properties  See [PingOne Terraform provider Getting Started Guide for instructions] (https://pingidentity.github.io/terraform-docs/getting-started/pingone/#finding-required-ids)|
+| license_id | License Id to be used for PingOne Environment - Located under Environment -> Properties\
+See [PingOne Terraform provider Getting Started Guide for instructions] (https://pingidentity.github.io/terraform-docs/getting-started/pingone/#finding-required-ids)|
 | worker_id | Client Id for Worker App in the Administrators Environment - Located under Connections -> Applications -> Select existing Worker App or create one -> Configuration -> Expand General -> Client ID |
 | worker_secret | Client Secret for Worker App in the Administrators Environment - Located under Connections -> Applications -> Select Worker App -> Configuration -> Expand General -> Client Secret |
 | k8s_deploy_name | Name used for k8s deployment |

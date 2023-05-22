@@ -34,14 +34,14 @@
 | vars.tf | HCL that declares [variables](https://developer.hashicorp.com/terraform/language/values/variables) that will be needed in defining your environment/infrastructure. |
 | versions.tf | HCL declaring [required providers](https://developer.hashicorp.com/terraform/language/providers/requirements#requiring-providers) & versions to use. |
 
-
-## Cloning the Project
+# Getting Started
 ## Configure PingOne for Terraform access
 
 If not done so already, first configure your PingOne organization for Terraform access by following the instructions at the [PingOne Terraform provider Getting Started Guide](https://pingidentity.github.io/terraform-docs/getting-started/pingone/#configure-pingone-for-terraform-access).
 
+## Cloning the Project
 ### Variables
-After cloning the project, navigate to `/terraform` and create a `terraform.tfvars` file with the following:
+After cloning the project, in a code editor navigate to `/terraform` and create a file named `terraform.tfvars` with the following:
 
 ```hcl
 region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
@@ -58,17 +58,14 @@ proxy_image_name  = "docker.io/michaelspingidentity/ping-integration-proxy:0.1.0
 app_image_name    = "docker.io/michaelspingidentity/ping-bxretail-terraform-sample:202303-0.19.5-beta"
 ```
 
-Note the `license_id`, `organization_id` values can be found by following instructions at the [PingOne Terraform provider Getting Started Guide](https://pingidentity.github.io/terraform-docs/getting-started/pingone/#finding-required-ids).
 
 | Variable | Description | 
 | -------- | ----------- |
 | region | Region for PingOne Environment | 
-| organization_id | PingOne Organization Id - Located under Environment -> Properties\
-See [PingOne Terraform provider Getting Started Guide for instructions] (https://pingidentity.github.io/terraform-docs/getting-started/pingone/#finding-required-ids)  | 
+| organization_id | PingOne Organization Id - Located under Environment -> Properties, see [PingOne Terraform provider Getting Started Guide](https://pingidentity.github.io/terraform-docs/getting-started/pingone/#finding-required-ids) for further instructions. | 
 | admin_env_id | PingOne Environment Id for Administrators Environment - Located under Environment -> Properties |
 | admin_user_id | User Id for a user in the Administrators Environment - Located under Identities -> Users -> Select user -> Click API tab -> ID |
-| license_id | License Id to be used for PingOne Environment - Located under Environment -> Properties\
-See [PingOne Terraform provider Getting Started Guide for instructions] (https://pingidentity.github.io/terraform-docs/getting-started/pingone/#finding-required-ids)|
+| license_id | License Id to be used for PingOne Environment - Located under Environment -> Properties, see [PingOne Terraform provider Getting Started Guide](https://pingidentity.github.io/terraform-docs/getting-started/pingone/#finding-required-ids) for further instructions.|
 | worker_id | Client Id for Worker App in the Administrators Environment - Located under Connections -> Applications -> Select existing Worker App or create one -> Configuration -> Expand General -> Client ID |
 | worker_secret | Client Secret for Worker App in the Administrators Environment - Located under Connections -> Applications -> Select Worker App -> Configuration -> Expand General -> Client Secret |
 | k8s_deploy_name | Name used for k8s deployment |
@@ -77,7 +74,7 @@ See [PingOne Terraform provider Getting Started Guide for instructions] (https:/
 
 ### Deployment
 
-In the command line, navigate to the /terraform directory and run:
+In the command line, navigate to the `/terraform` directory and run:
 
 ```zsh
 terraform init
@@ -92,22 +89,25 @@ If the plan succeeds:
 terraform apply —auto-approve
 ````
 
-If this is successful, you will see a new environment added to your PingOne organization under the name "Ping Identity Example". 
+If this is successful, you will see a new environment added to your PingOne organization under the name `Ping Identity Example`. 
 
-### Optional
-Ping Identity Technical Enablement hosts and maintains the sample for you. If for some reason you'd rather build and host your own Docker images for the sample app, here are the instructions to do that. 
+### Optional - Custom Docker Images
+Ping Identity Technical Enablement hosts and maintains the sample app Docker images. However, it is possible to build and host your own Docker images by following the instructions below.
 
-You would need to have your own Docker image repo to push to and update your tfvars file accordingly. Depending on your image repo, whether that's local, ECR, GCR, etc, you may need to update the k8s.tf file too. 
+To start, you will need your own Docker image repository to push to and update your `terraform.tfvars` file accordingly. Depending on your image repository, whether that's local, ECR, GCR, etc, you may need to update the `k8s.tf` file too. 
 
-But again, none of this is necessary to use this project.
+Note: In this current version, we are not using the fastify proxy server image. So recreating that is unnecessary.
 
-Note: in this current version, we are not using the fastify proxy server image. So recreating that is unnecessary.
+**From the command line**, change directories to the `/bxretail-sample-app` directory.
 
-**From the command line**, change directories to the /bxretail-sample-app directory.
+```zsh
+cd <your project path>/BXTerraform/BXTerraform-Sample-Apps/BXRetail-Terraform-pkg/bxretail-sample-app
+```
 
-`cd <your project path>/BXTerraform/BXTerraform-Sample-Apps/BXRetail-Terraform-pkg/bxretail-sample-app`
-
-Then run, `build -f Dockerfile.dev -t <host>/<repo_path>/ping-bxretail-terraform-sample:<version_tag> .`
+Then run: 
+```zsh
+build -f Dockerfile.dev -t <host>/<repo_path>/ping-bxretail-terraform-sample:<version_tag> .
+```
 
 # Disclaimer
 THIS DEMO AND SAMPLE CODE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL PING IDENTITY OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) SUSTAINED BY YOU OR A THIRD PARTY, HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT ARISING IN ANY WAY OUT OF THE USE OF THIS DEMO AND SAMPLE CODE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.

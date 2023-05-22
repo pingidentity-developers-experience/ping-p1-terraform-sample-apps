@@ -78,14 +78,11 @@ class AuthZ {
             const authMode = this.session.getAuthenticatedUserItem("authMode", "session");
             this.session.setAuthenticatedUserItem("AT", response.access_token, "session");
             this.session.setAuthenticatedUserItem("IdT", response.id_token, "session");
-            const firstName = this.tokens.getTokenValue({ token: response.id_token, key: "given_name" });
-            if (firstName) {
-                this.session.setAuthenticatedUserItem("firstName", firstName, "session");
-            }
+
             const email = this.tokens.getTokenValue({ token: response.id_token, key: "email" });
-            const groups = this.tokens.getTokenValue({ token: response.id_token, key: "bxRetailUserType" });
-            const userType = (groups) ? groups[0] : "Customer";
             this.session.setAuthenticatedUserItem("email", email, "session");
+
+            const userType = "Customer"; // We don't have any other user types in the sample package
             this.session.setAuthenticatedUserItem("bxRetailUserType", userType, "session");
 
             // Set temp reg thank you message.

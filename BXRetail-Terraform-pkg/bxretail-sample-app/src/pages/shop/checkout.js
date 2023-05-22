@@ -183,9 +183,6 @@ class Checkout extends React.Component {
     }
 
     async changeUIStep(stepNumber) {
-        // let IdP, userId;
-        // const authMode = this.session.getAuthenticatedUserItem('authMode', 'session');
-
         /* Guest email lookup */
         if (stepNumber === '2') {
             this.setState({ step: stepNumber });
@@ -204,40 +201,6 @@ class Checkout extends React.Component {
             }
 
             this.setState({ step: stepNumber, profilePending: false });
-
-            // User Lookup DV Flow
-            // this.setState({ lookupPending: true });
-            // const email = this.state.email ? this.state.email : this.session.getAuthenticatedUserItem('email', 'session');
-            // this.customerLookup(email)
-            //     .then((lookupResponse) => {
-            //         //Promise will only resolve if there is a user record found. See customerLookup().
-            //         this.setState((state) => {
-            //             return { recordFound: true };
-            //         });
-            //         IdP = lookupResponse._embedded.users[0].identityProvider.type;
-            //         userId = lookupResponse._embedded.users[0].id;
-            //         this.setState({ userId: userId });
-            //         if (!this.session.isLoggedOut) {
-            //             this.getProfile(userId);
-            //             this.setState({ step: stepNumber, detailsPending: false, acctFound: true });
-            //         } else if (IdP.length && IdP === 'PING_ONE') {
-            //             this.signInToCheckout(email);
-            //         } else if (IdP.length && IdP !== 'PING_ONE') {
-            //             console.info('Customer has an external IdP (federated identity).');
-            //             // TODO UX question: Do we need to automate this federated login so when we kick off signin, we automatically redirect to their idp upon return with a flowId.
-            //             if (authMode === 'signInToCheckout' || authMode === 'login') {
-            //                 this.getProfile(userId);
-            //                 this.setState({ step: stepNumber, acctFound: true });
-            //             } else {
-            //                 this.signInToCheckout();
-            //             }
-            //         }
-            //     })
-            //     .catch((error) => {
-            //         console.warn("We didn't find any user records with that email address/userName.");
-            //         this.setState({ step: stepNumber });
-            //         this.setState({ lookupPending: false, detailsPending: false, profilePending: false });
-            //     });
         }
 
         /* Choose billing option */
@@ -257,8 +220,6 @@ class Checkout extends React.Component {
 
         /* Trigger account creation */
         if (stepNumber === '6') {
-            // TODO For #182366216 If sessionVar offerToCreateAcct = yes,
-            // remove that session var, bounce back to checkOut() and all should fall in line.
             this.setState({ haveError: false });
             this.createAccount();
         }
@@ -298,21 +259,6 @@ class Checkout extends React.Component {
         // Initialize OIDC SDK and start authorization flow
         this.authz.initAuthNFlow().catch(err => console.error(err));
     }
-
-    // customerLookup(email) {
-    //     return new Promise((resolve, reject) => {
-    //         this.users.userLookup(email).then((lookupResponse) => {
-    //             // If user with password found in P1, resolve promise.
-    //             if (lookupResponse.additionalProperties.existingUser === true) {
-    //                 let response = lookupResponse.additionalProperties.rawResponse;
-    //                 let jsonResponse = JSON.parse(response);
-    //                 resolve(jsonResponse.matchedUsers);
-    //             } else {
-    //                 reject(lookupResponse);
-    //             }
-    //         });
-    //     });
-    // }
 
     /**
      * Get user profile

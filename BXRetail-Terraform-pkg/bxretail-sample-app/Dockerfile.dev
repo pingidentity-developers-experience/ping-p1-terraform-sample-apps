@@ -26,7 +26,7 @@ COPY ./env.sh .
 COPY .env.development .
 
 # Add bash - not included with Alpine based images
-# RUN apk add --no-cache bash
+RUN apk add --no-cache bash
 
 # start app
 CMD ["npm", "start", ".env.development"]    

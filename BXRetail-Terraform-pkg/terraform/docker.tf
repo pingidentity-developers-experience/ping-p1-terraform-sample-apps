@@ -21,7 +21,7 @@ resource "docker_container" "local_bxr_app" {
     internal = 5000
     external = 5000
   }
-# TODO If needed, Add another set of resources to run the fastify proxy server. Not a use case currently.
+  # TODO If needed, Add another set of resources to run the fastify proxy server. Not a use case currently.
 
   env = ["REACT_APP_HOST=${local.app_url}",
     "REACT_APP_PROXYAPIPATH=https://${var.k8s_deploy_name}-proxy.${var.k8s_deploy_domain}",
@@ -33,12 +33,3 @@ resource "docker_container" "local_bxr_app" {
     "REACT_APP_IMAGE_NAME=${var.app_image_name}"
   ]
 }
-
-###############################################################
-# Output PingOne Environment variables to local global.js file
-###############################################################
-
-# resource "local_file" "env_config" {
-#   content  = "window._env_ = { REACT_APP_PROXYAPIPATH: \"https://${var.k8s_deploy_name}-proxy.${var.k8s_deploy_domain}\", REACT_APP_ENVID: \"${module.environment.environment_id}\", REACT_APP_CLIENT: \"${pingone_application.bxretail_sample_app.oidc_options[0].client_id}\", REACT_APP_RECSET: \"${pingone_application.bxretail_sample_app.oidc_options[0].client_secret}\", REACT_APP_AUTHPATH: \"https://auth.pingone.${local.pingone_domain}\", REACT_APP_APIPATH:\"https://api.pingone.${local.pingone_domain}/v1\", REACT_APP_IMAGE_NAME:\"${var.app_image_name}\"}"
-#   filename = "../bxretail-sample-app/public/env-config.js"
-# }

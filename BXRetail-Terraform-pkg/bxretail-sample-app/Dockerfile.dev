@@ -17,7 +17,6 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json ./
 COPY package-lock.json ./
 RUN npm install
-# RUN npm install react-scripts@3.4.3 -g
 
 # add app
 COPY . ./
@@ -27,7 +26,7 @@ COPY ./env.sh .
 COPY .env.development .
 
 # Add bash - not included with Alpine based images
-RUN apk add --no-cache bash
+# RUN apk add --no-cache bash
 
 # start app
-CMD ["npm", "start", ".env.development"]
+CMD ["npm", "start", ".env.development"]    

@@ -240,7 +240,7 @@ class NavbarMain extends React.Component {
                   <span>{this.props.location.state?.action}</span>          
                   {/* <NavLink><img src={window._env_.PUBLIC_URL + "/images/navbar-search.png"} alt={content.menus.utility.search} className="searchbar" /></NavLink> */}
                   <form>
-                    <Input className="prospect" autoComplete="off" type="text" name="prospect" id="prospect" placeholder={content.menus.utility.gaCustomer} />
+                    <Input className="prospect" autoComplete="off" type="text" placeholder={content.menus.utility.gaCustomer} />
                   </form>
                 </NavItem>
                 <NavItem>
@@ -327,7 +327,7 @@ class NavbarMain extends React.Component {
               <NavItem className="customer-collection">
                 <span>{this.props.location.state?.action}</span>          
                 <form>
-                  <Input className="prospect" autoComplete="off" type="text" name="prospect" id="prospect" placeholder={content.menus.utility.gaCustomer} />
+                  <Input className="prospect" autoComplete="off" type="text" placeholder={content.menus.utility.gaCustomer} />
                 </form>
               </NavItem>
               <br/>

@@ -145,7 +145,7 @@ class PrivacySecurity extends React.Component {
                         commDetails = this.makeCommDetails(index);
                         commType = content.steps[0].communication_types[index].name;
                         return (
-                          <div>
+                          <div key={index}>
                             <FormGroup>
                               <Label for={content.steps[0].communication_types[index].name}>{content.steps[0].communication_types[index].label + commDetails}</Label>
                               <CustomInput onChange={(event) => this.toggleConsent(event)} type="radio" id={`${content.steps[0].communication_types[index].name}_yes`} name={content.steps[0].communication_types[index].name} label="Yes" checked={this.state[commType + "Checked"]}/>
@@ -173,13 +173,11 @@ class PrivacySecurity extends React.Component {
                         commDetails = this.makeCommDetails(index);
                         commType = content.steps[0].communication_types[index].name;
                         return (
-                          <>
-                            <FormGroup>
-                              <Label for={content.steps[1].communication_types[index].name}>{content.steps[0].communication_types[index].label + commDetails}</Label>
-                              <CustomInput type="radio" id={`${content.steps[0].communication_types[index].name}_yes`} name={content.steps[0].communication_types[index].name} label="Yes" disabled checked={this.state[commType + "Checked"]}/>
-                              <CustomInput type="radio" id={`${content.steps[0].communication_types[index].name}_no`} name={content.steps[0].communication_types[index].name} label="No" disabled checked={!this.state[commType + "Checked"]}/>
-                            </FormGroup>
-                          </>
+                          <FormGroup key={index}>
+                            <Label for={content.steps[1].communication_types[index].name}>{content.steps[0].communication_types[index].label + commDetails}</Label>
+                            <CustomInput type="radio" id={`${content.steps[0].communication_types[index].name}_yes`} name={content.steps[0].communication_types[index].name} label="Yes" disabled checked={this.state[commType + "Checked"]}/>
+                            <CustomInput type="radio" id={`${content.steps[0].communication_types[index].name}_no`} name={content.steps[0].communication_types[index].name} label="No" disabled checked={!this.state[commType + "Checked"]}/>
+                          </FormGroup>
                         );
                       })
                     }

@@ -49,7 +49,9 @@ class ModalLoginPassword extends React.Component {
       haveError: false,
       OTP: "",
       ref: "",
-      loginPending: false
+      loginPending: false,
+      recoveryCode: "",
+      newPassword: "",
     };
     this.authn = new AuthN();
     this.users = new Users();
@@ -349,7 +351,7 @@ class ModalLoginPassword extends React.Component {
                   {this.state.loginStatus !== "EXTERNAL_AUTHENTICATION_REQUIRED" &&
                     <div><FormGroup className="form-group-light">
                       <Label for="username">{content.form.fields.email.label}</Label>
-                      <Input autoFocus={true} autoComplete="off" required onChange={this.handleFormInput.bind(this)} type="email" name="username" id="username" value={this.state.username} pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+$" title="Must be a valid email address."/>
+                      <Input autoFocus={true} autoComplete="off" required onChange={this.handleFormInput.bind(this)} type="email" name="username" id="username" value={this.state.username} pattern="^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]+$" title="Must be a valid email address."/>
                     </FormGroup>
                       <FormPassword autoComplete="off" handleFormInput={this.handleFormInput.bind(this)} name="password" label={content.form.fields.password.label} placeholder={content.form.fields.password.placeholder} />
                       <FormGroup className="form-group-light">
@@ -406,7 +408,7 @@ class ModalLoginPassword extends React.Component {
                   <p>{content.forgotPassword.labels.usernameWarning}</p>
                   <FormGroup className="form-group-light">
                     <Label for="email">{content.form.fields.email.label}</Label>
-                    <Input onChange={this.handleFormInput.bind(this)} required autoFocus={true} autoComplete="off" type="email" name="email" id="email" placeholder={content.form.fields.email.placeholder} pattern= "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+$" />
+                    <Input onChange={this.handleFormInput.bind(this)} required autoFocus={true} autoComplete="off" type="email" name="email" id="email" placeholder={content.form.fields.email.placeholder} pattern= "^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]+$" />
                   </FormGroup>
                   <div className="mb-3">
                     <Button type="button" color="primary" onClick={() => { this.handleUserAction("forgotPassword"); }}>{content.form.buttons.recover_password}</Button>

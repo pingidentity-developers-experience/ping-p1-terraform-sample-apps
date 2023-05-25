@@ -3,7 +3,7 @@
 # {@link https://developer.hashicorp.com/terraform/language/values/outputs}
 ##########################################################################
 output "login_url" {
-  value       = local.app_url
+  value       = "${local.app_url}/app/"
   description = "The sample app URL generated during terraforming. it points to either the host ingress in your k8s environment, or localhost."
 }
 

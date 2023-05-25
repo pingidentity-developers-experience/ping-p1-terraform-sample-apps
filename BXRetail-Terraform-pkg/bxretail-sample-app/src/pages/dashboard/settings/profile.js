@@ -212,7 +212,7 @@ class DashboardSettingsProfile extends React.Component {
                                             <FontAwesomeIcon icon={faCircleNotch} size='3x' className='fa-spin' />
                                         </div>
                                     )}
-                                    <form class="profile-updates-form" ref={this.profileForm} onSubmit={e => e.preventDefault()}>
+                                    <form className="profile-updates-form" ref={this.profileForm} onSubmit={e => e.preventDefault()}>
                                         <Row form>
                                             <Col md={4}>
                                                 <FormGroup>

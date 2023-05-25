@@ -457,7 +457,7 @@ class Checkout extends React.Component {
                                                 name='email'
                                                 id='email'
                                                 placeholder={profileContent.form.fields.email.placeholder}
-                                                pattern='^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+$'
+                                                pattern='^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]+$'
                                             />
                                             <div className='mb-3' style={{ paddingTop: '15px' }}>
                                                 <Button

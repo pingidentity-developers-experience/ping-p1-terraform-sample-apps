@@ -1,3 +1,8 @@
+/**
+The Fastify proxy host for proxying senstive mgmt API calls.
+NOT CURRENTLY IN USE, but will be used in future use cases.
+*/
+
 import Fastify from 'fastify'
 
 const fastify = Fastify({

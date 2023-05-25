@@ -20,10 +20,6 @@ class AuthN {
             this.envVars.REACT_APP_AUTHPATH,
             this.envVars.REACT_APP_ENVID
         );
-        this.ping1AuthNProxy = new PingOneAuthN(
-            this.envVars.REACT_APP_PROXYAPIPATH,
-            this.envVars.REACT_APP_ENVID
-        );
         this.tokens = new Tokens();
         this.session = new Session();
     }

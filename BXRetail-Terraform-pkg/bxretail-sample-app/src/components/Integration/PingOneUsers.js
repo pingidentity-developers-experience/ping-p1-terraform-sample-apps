@@ -11,11 +11,10 @@ class PingOneUsers {
     Class constructor
     What constructor does [optional if nothing done special for instantiation].
 
-    @param {string} proxyApiPath Management API host.
+    @param {string} apiPath Management API host.
     @param {string} envId PingOne tenant environment ID.
     */
-    constructor(proxyApiPath, envId, apiPath) {
-        this.proxyApiPath = proxyApiPath;
+    constructor(envId, apiPath) {
         this.envId = envId;
         this.apiPath = apiPath;
     }

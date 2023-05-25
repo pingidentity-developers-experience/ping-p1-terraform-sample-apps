@@ -21,7 +21,7 @@ resource "docker_container" "local_bxr_app" {
     internal = 5000
     external = 5000
   }
-  # TODO If needed, Add another set of resources to run the fastify proxy server. Not a use case currently.
+  # TODO If needed, Add another set of resources to run the fastify proxy server. Not a use case currently, but will be used in future use cases.
 
   # Environment variables that are injected into either the k8s deployment for the Docker container,
   # or into the local Docker container delpoyment. These override the variables in .env.development.

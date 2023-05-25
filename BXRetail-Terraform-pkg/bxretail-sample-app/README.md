@@ -13,7 +13,7 @@ We include HTML formatted documentation using the JSDoc utility. Just open the `
 Also, all Ping integration methods are annotated with links to the related API docs. All of this is picked up by JSDoc, too.
 
 ## Demo Use Cases Walk-Through
-*Incognito or private browser windows may lead to unexpected behavior, please use a regular browser window.*
+*Please Note: Strict browser settings blocking third-party cookies may lead to unexpected behavior.*
 
 ### Guest Checkout
 1. Click **Weekly Deals** on the navigation bar.

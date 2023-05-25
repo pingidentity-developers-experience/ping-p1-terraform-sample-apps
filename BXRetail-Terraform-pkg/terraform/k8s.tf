@@ -176,9 +176,8 @@ resource "kubernetes_deployment" "bxr_app" {
             value = "https://${var.k8s_deploy_name}.${var.k8s_deploy_domain}"
           }
           env {
-            # The PingOne host for authN API calls
-            # Note: For this demo, we're proxying the calls to avoid CORS
-            # Typically you'd resolve this with a P1 Custom Domain
+            # The Fastify proxy host for proxy-ing sensitive mgmt API calls.
+            # Note: This proxy is not currently in use, but will be used in future use cases.
             name  = "REACT_APP_PROXYAPIPATH"
             value = "https://${var.k8s_deploy_name}-proxy.${var.k8s_deploy_domain}"
           }

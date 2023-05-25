@@ -18,14 +18,14 @@
 | File | Contents |
 | ---- | -------- |
 | .terraform | Terraform [working directory](https://developer.hashicorp.com/terraform/cli/init#working-directory-contents) created by Terraform. Never touch this. It's managed by Terraform. You won't see this until you run `terraform init`. |
-| .terraform.lock.hcl | The Terraform [dependency lock file](https://developer.hashicorp.com/terraform/language/files/dependency-lock). Where Terraform manages the versions of the downloaded providers or modules. Never touch this. It's managed by Terraform. If you need to update versions, see [-upgrade option](https://developer.hashicorp.com/terraform/language/files/dependency-lock#dependency-installation-behavior). You won't see this until you run `terraform init`. |
+| .terraform.lock.hcl | The Terraform [dependency lock file](https://developer.hashicorp.com/terraform/language/files/dependency-lock). Where Terraform manages the versions of the downloaded providers or modules. Never touch this. It's managed by Terraform. If you need to update versions, see the [-upgrade option](https://developer.hashicorp.com/terraform/language/files/dependency-lock#dependency-installation-behavior). You won't see this until you run `terraform init`. |
 | data.tf | HCL for doing [data](https://developer.hashicorp.com/terraform/language/data-sources) lookups/reads on data in your environment/infrastructure. |
 | k8s.tf | HCL for creating [kubernetes](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs) services, ingresses, and deployments. |
 | main.tf | HCL for necessary [providers](https://developer.hashicorp.com/terraform/language/providers) and [modules](https://developer.hashicorp.com/terraform/language/modules). |
 | outputs.tf | HCL declaring [output values](https://developer.hashicorp.com/terraform/language/values/outputs) that are the result of dynamic data. In this case, the deployed apps URL. |
 | resources.tf | HCL that declares all the [resources](https://developer.hashicorp.com/terraform/language/resources) we need to create in our environment/infrastructure. The things you normally create by clicking around the PingOne admin console manually. |
 | terraform.tfstate | The [Terraform state](https://developer.hashicorp.com/terraform/language/state) file. This is where Terraform manages the "state" of your infrastructure and compares that against your deployed infrastructure. Never touch this. It's managed by Terraform. |
-| terraform.tfvars | [Variable definitions](https://developer.hashicorp.com/terraform/language/values/variables#variable-definitions-tfvars-files), name/value pairs, that should not be part of your project repo and added dynamically during Terraform execution. This will not exist until you create it according to the instructions in the project-specific README. |
+| terraform.tfvars | [Variable definitions](https://developer.hashicorp.com/terraform/language/values/variables#variable-definitions-tfvars-files), name/value pairs, that should not be part of your project repo. Values and added dynamically to vars.tf during Terraform execution. This file will not exist until you create it, according to the instructions in the project-specific README. |
 | vars.tf | HCL that declares [variables](https://developer.hashicorp.com/terraform/language/values/variables) that will be needed in defining your environment/infrastructure. |
 | versions.tf | HCL declaring [required providers](https://developer.hashicorp.com/terraform/language/providers/requirements#requiring-providers) & versions to use. |
 
@@ -85,10 +85,12 @@ If the plan succeeds:
 terraform apply —auto-approve
 ````
 
-If this is successful, you will see a new environment added to your PingOne organization under the name "Ping Identity Example". 
+If this is successful, you will see a new environment added to your PingOne organization under the name "Ping Identity Example".
+
+**NOTE:** The k8s deployment creates new ingresses and a subdomain for the app of `k8s_deploy_name.k8s_deploy_domain`. So the app may not be immediately available when terraforming is complete. Go get yourself some coff-ay and try again.
 
 ### Optional
-Ping Identity Technical Enablement hosts and maintains the sample for you. If for some reason you'd rather build and host your own Docker images for the sample app, here are the instructions to do that. 
+Ping Identity Technical Enablement hosts and maintains the sample Docker image for you. If for some reason you'd rather build and host your own Docker images for the sample app, here are the instructions to do that. 
 
 You would need to have your own Docker image repo to push to and update your tfvars file accordingly. Depending on your image repo, whether that's local, ECR, GCR, etc, you may need to update the k8s.tf file too. 
 

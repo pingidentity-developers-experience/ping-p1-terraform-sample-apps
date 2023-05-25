@@ -41,7 +41,8 @@ class ModalRegister extends React.Component {
       codeConfirmPending: false,
       errorTitle: "Oh snap!",
       errorMsg: "There was a problem. Sorry.",
-      haveError: false
+      haveError: false,
+      regCode: "",
     };
     this.envVars = window._env_;
     this.registration = new Registration();
@@ -117,13 +118,6 @@ class ModalRegister extends React.Component {
             }
           });
         break;
-      // case "Extraordinary Club":
-      // case "Google":
-      //   this.authn.getRequestedSocialProvider({ IdP: authMode, flowId: this.props.flowId })
-      //     .then(idpURL => {
-      //       window.location.assign(idpURL)
-      //     });
-      //   break;
       default:
         throw new Error("Unexpected authMode for ModalLoginPassword.handleUserAction.");
     }
@@ -149,7 +143,7 @@ class ModalRegister extends React.Component {
                     <Col md={12}>
                       <FormGroup>
                         <Label for="email">{content.form.fields.email.label}</Label>
-                        <Input maxLength="50" onChange={this.props.handleFormInput} required autoFocus={true} autoComplete="off" type="email" name="email" id="email" value={this.props.email} placeholder={content.form.fields.email.placeholder} pattern= "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+$"/>
+                        <Input maxLength="50" onChange={this.props.handleFormInput} required autoFocus={true} autoComplete="off" type="email" name="email" id="email" value={this.props.email} placeholder={content.form.fields.email.placeholder} pattern= "^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]+$"/>
                       </FormGroup>
                     </Col>
                   </Row>
@@ -171,16 +165,6 @@ class ModalRegister extends React.Component {
                       </div>
                     </Col>
                   </Row>
-                  {/* <Row form className="form-row-light">
-                    <Col className="text-center">
-                      <img src={window._env_.PUBLIC_URL + "/images/home-login-or.png"} alt="or" className="or" />
-                    </Col>
-                  </Row> */}
-                  {/* <Row form className="form-row-light">
-                    <Col className="text-center">
-                      <img onClick={() => { this.handleUserAction("Extraordinary Club") }} src={window._env_.PUBLIC_URL + "/images/SignUpEOC-500x109.png"} alt="Extraordinary Club" className="social-signup mr-1" />
-                    </Col>
-                  </Row> */}
                 </form>
               </TabPane>
               <TabPane tabId="2"> {/* Registration email verification code UI. */}

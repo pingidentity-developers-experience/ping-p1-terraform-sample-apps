@@ -38,17 +38,7 @@ class Registration {
         });
 
         const response = await this.ping1Reg.userVerify({ regCodePayload: rawPayload, flowId: flowId });
-        //TODO do we want to keep this pattern? return status and resumeUrl if "completed", otherwise entire response? Or just error data?
-        const status = await response.status;
-        if (status === "COMPLETED") {
-
-            return { status: status, resumeUrl: response.resumeUrl, user: response._embedded.user };
-
-        } else {
-            
-            return response;
-
-        }
+        return response;
     }
 
     /**

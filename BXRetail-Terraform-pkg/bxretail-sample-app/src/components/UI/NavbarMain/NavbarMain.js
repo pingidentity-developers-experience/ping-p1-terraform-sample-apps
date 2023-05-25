@@ -82,7 +82,8 @@ class NavbarMain extends React.Component {
           } else if (response.details[0].code === "UNIQUENESS_VIOLATION") {
             this.modalRegister.current.setError({errorTitle: "UNIQUENESS VIOLATION", errorMsg: "An account with this username already exists."})
           } else if (response.details[0].code === "INVALID_VALUE") {
-            // TODO This is to catch any errors if invalid characters are used (' and "). Input validation is different in mgmt api's - local reg uses mgmt api and progressive profiling uses auth api. 
+            // This is to catch any errors if invalid characters are used (' and "). 
+            // Input validation is different in mgmt api's - local reg uses mgmt api and progressive profiling uses auth api. 
             this.modalRegister.current.setError({errorTitle: response.details[0].code.replace("_", " "), errorMsg: response.details[0].message})
           } else if (response.details[0].code === "CONSTRAINT_VIOLATION") {
             this.modalRegister.current.setError({errorTitle: response.code.replace("_", " "), errorMsg: response.message + " Please try again."})
@@ -239,7 +240,7 @@ class NavbarMain extends React.Component {
                   <span>{this.props.location.state?.action}</span>          
                   {/* <NavLink><img src={window._env_.PUBLIC_URL + "/images/navbar-search.png"} alt={content.menus.utility.search} className="searchbar" /></NavLink> */}
                   <form>
-                    <Input className="prospect" autoComplete="off" type="text" name="prospect" id="prospect" placeholder={content.menus.utility.gaCustomer} />
+                    <Input className="prospect" autoComplete="off" type="text" placeholder={content.menus.utility.gaCustomer} />
                   </form>
                 </NavItem>
                 <NavItem>
@@ -326,7 +327,7 @@ class NavbarMain extends React.Component {
               <NavItem className="customer-collection">
                 <span>{this.props.location.state?.action}</span>          
                 <form>
-                  <Input className="prospect" autoComplete="off" type="text" name="prospect" id="prospect" placeholder={content.menus.utility.gaCustomer} />
+                  <Input className="prospect" autoComplete="off" type="text" placeholder={content.menus.utility.gaCustomer} />
                 </form>
               </NavItem>
               <br/>

@@ -1,9 +1,15 @@
-##########################################################################
+###################################################################################################
 # k8s.tf - Contains Kubernetes deployment declarations.
 # {@link https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs}
-##########################################################################
+# 
+# The "count" declaration is whether you want the sample delpoyed to your k8s
+# host environment, or if you want it run locally on your machine at localhost:5000.
+# There is a variable in development.tfvars to control this. The default is set
+# in vars.tf.
+###################################################################################################
 
 resource "kubernetes_ingress_v1" "package_ingress" {
+  count = var.deploy_app_to_k8s ? 1 : 0
   metadata {
     namespace = var.k8s_namespace
     name      = "${var.k8s_deploy_name}-app"
@@ -41,6 +47,7 @@ resource "kubernetes_ingress_v1" "package_ingress" {
 }
 
 resource "kubernetes_ingress_v1" "package_proxy_ingress" {
+  count = var.deploy_app_to_k8s ? 1 : 0
   metadata {
     namespace = var.k8s_namespace
     name      = "${var.k8s_deploy_name}-proxy"
@@ -73,6 +80,7 @@ resource "kubernetes_ingress_v1" "package_proxy_ingress" {
 }
 
 resource "kubernetes_deployment" "app_proxy" {
+  count = var.deploy_app_to_k8s ? 1 : 0
   metadata {
     namespace = var.k8s_namespace
     name      = "${var.k8s_deploy_name}-proxy"
@@ -110,6 +118,7 @@ resource "kubernetes_deployment" "app_proxy" {
 }
 
 resource "kubernetes_service" "app_proxy" {
+  count = var.deploy_app_to_k8s ? 1 : 0
   metadata {
     namespace = var.k8s_namespace
     name      = "${var.k8s_deploy_name}-proxy"
@@ -129,6 +138,7 @@ resource "kubernetes_service" "app_proxy" {
 }
 
 resource "kubernetes_deployment" "bxr_app" {
+  count = var.deploy_app_to_k8s ? 1 : 0
   metadata {
     namespace = var.k8s_namespace
     name      = "${var.k8s_deploy_name}-app"
@@ -183,11 +193,6 @@ resource "kubernetes_deployment" "bxr_app" {
             value = pingone_application.bxretail_sample_app.oidc_options[0].client_id
           }
           env {
-            # Client secret
-            name  = "REACT_APP_RECSET"
-            value = pingone_application.bxretail_sample_app.oidc_options[0].client_secret
-          }
-          env {
             # P1 Auth URL (accounts for Region)
             name  = "REACT_APP_AUTHPATH"
             value = "https://auth.pingone.${local.pingone_domain}"
@@ -211,6 +216,7 @@ resource "kubernetes_deployment" "bxr_app" {
 }
 
 resource "kubernetes_service" "bxr_app" {
+  count = var.deploy_app_to_k8s ? 1 : 0
   metadata {
     namespace = var.k8s_namespace
     name      = "${var.k8s_deploy_name}-app"

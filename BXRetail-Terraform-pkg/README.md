@@ -18,7 +18,7 @@
 | File | Contents |
 | ---- | -------- |
 | .terraform | Terraform [working directory](https://developer.hashicorp.com/terraform/cli/init#working-directory-contents) created by Terraform. Never touch this. It's managed by Terraform. You won't see this until you run `terraform init`. |
-| .terraform.lock.hcl | The Terraform [dependency lock file](https://developer.hashicorp.com/terraform/language/files/dependency-lock). Where Terraform manages the versions of the downloaded providers or modules. Never touch this. It's managed by Terraform. If you need to update versions, see [-upgrade option](https://developer.hashicorp.com/terraform/language/files/dependency-lock#dependency-installation-behavior). You won't see this until you run `terraform init`. |
+| .terraform.lock.hcl | The Terraform [dependency lock file](https://developer.hashicorp.com/terraform/language/files/dependency-lock). Where Terraform manages the versions of the downloaded providers or modules. Never touch this. It's managed by Terraform. If you need to update versions, see the [-upgrade option](https://developer.hashicorp.com/terraform/language/files/dependency-lock#dependency-installation-behavior). You won't see this until you run `terraform init`. |
 | applications.tf | HCL that declares all [application](https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application) related [resources](https://developer.hashicorp.com/terraform/language/resources) we need to create in our environment/infrastructure. The things you normally create by clicking around the PingOne admin console manually. |
 | branding.tf | HCL that declares all [branding](https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/branding_settings) related [resources](https://developer.hashicorp.com/terraform/language/resources) we need to create in our environment/infrastructure. The things you normally create by clicking around the PingOne admin console manually. |
 | data.tf | HCL for doing [data](https://developer.hashicorp.com/terraform/language/data-sources) lookups/reads on data in your environment/infrastructure. |
@@ -30,7 +30,7 @@
 | policies.tf | HCL that declares all policy related [resources](https://developer.hashicorp.com/terraform/language/resources) we need to create in our environment/infrastructure. The things you normally create by clicking around the PingOne admin console manually.
 | resources.tf | HCL that declares all [resource](https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/resource) and scope related [resources](https://developer.hashicorp.com/terraform/language/resources) we need to create in our environment/infrastructure. The things you normally create by clicking around the PingOne admin console manually. |
 | terraform.tfstate | The [Terraform state](https://developer.hashicorp.com/terraform/language/state) file. This is where Terraform manages the "state" of your infrastructure and compares that against your deployed infrastructure. Never touch this. It's managed by Terraform. |
-| terraform.tfvars | [Variable definitions](https://developer.hashicorp.com/terraform/language/values/variables#variable-definitions-tfvars-files), name/value pairs, that should not be part of your project repo and added dynamically during Terraform execution. This will not exist until you create it according to the instructions in the project-specific README. |
+| terraform.tfvars | [Variable definitions](https://developer.hashicorp.com/terraform/language/values/variables#variable-definitions-tfvars-files), name/value pairs, that should not be part of your project repo. Values and added dynamically to vars.tf during Terraform execution. This file will not exist until you create it, according to the instructions in the project-specific README. |
 | vars.tf | HCL that declares [variables](https://developer.hashicorp.com/terraform/language/values/variables) that will be needed in defining your environment/infrastructure. |
 | versions.tf | HCL declaring [required providers](https://developer.hashicorp.com/terraform/language/providers/requirements#requiring-providers) & versions to use. |
 
@@ -90,9 +90,12 @@ terraform apply —auto-approve
 ````
 
 If this is successful, you will see a new environment added to your PingOne organization under the name `Ping Identity Example`. 
+If this is successful, you will see a new environment added to your PingOne organization under the name "Ping Identity Example".
+
+**NOTE:** The k8s deployment creates new ingresses and a subdomain for the app of `k8s_deploy_name.k8s_deploy_domain`. So the app may not be immediately available when terraforming is complete. Go get yourself some coff-ay and try again.
 
 ### Optional - Custom Docker Images
-Ping Identity Technical Enablement hosts and maintains the sample app Docker images. However, it is possible to build and host your own Docker images by following the instructions below.
+Ping Identity Technical Enablement hosts and maintains the sample Docker image. However, it is possible to build and host your own Docker images by following the instructions below.
 
 To start, you will need your own Docker image repository to push to and update your `terraform.tfvars` file accordingly. Depending on your image repository, whether that's local, ECR, GCR, etc, you may need to update the `k8s.tf` file too. 
 

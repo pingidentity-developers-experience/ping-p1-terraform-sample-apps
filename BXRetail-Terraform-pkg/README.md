@@ -35,6 +35,9 @@
 | versions.tf | HCL declaring [required providers](https://developer.hashicorp.com/terraform/language/providers/requirements#requiring-providers) & versions to use. |
 
 # Getting Started
+
+Install Terraform on your machine, following the instructions [here](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli).
+
 ## Configure PingOne for Terraform access
 
 If not done so already, first configure your PingOne organization for Terraform access by following the instructions at the [PingOne Terraform provider Getting Started Guide](https://pingidentity.github.io/terraform-docs/getting-started/pingone/#configure-pingone-for-terraform-access).

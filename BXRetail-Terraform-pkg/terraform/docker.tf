@@ -9,7 +9,7 @@
 # Pulls the example app image
 resource "docker_image" "ping_bxr_sample_app" {
   count = local.deploy_app_to_local
-  name  = "michaelspingidentity/ping-bxretail-terraform-sample:202303-0.19.5-beta"
+  name  = var.app_image_name
 }
 
 # Create and run the container
@@ -23,6 +23,8 @@ resource "docker_container" "local_bxr_app" {
   }
   # TODO If needed, Add another set of resources to run the fastify proxy server. Not a use case currently.
 
+# Environment variables that are injected into either the k8s deployment for the Docker container,
+# or into the local Docker container delpoyment. These override the variables in .env.development.
   env = ["REACT_APP_HOST=${local.app_url}",
     "REACT_APP_PROXYAPIPATH=https://${var.k8s_deploy_name}-proxy.${var.k8s_deploy_domain}",
     "REACT_APP_ENVID=${module.environment.environment_id}",

@@ -13,7 +13,7 @@
 
 //     /**
 //     Class constructor
-//     @param {string} proxyApiPath The PingAuthorize host for proxying management API calls.
+//     @param {string} proxyApiPath The Fastify proxy host for proxy-ing sensitive mgmt API calls
 //     @param {string} envId PingOne environment ID needed for authZ integrations.
 //     */
 //     constructor(proxyApiPath, envId) {

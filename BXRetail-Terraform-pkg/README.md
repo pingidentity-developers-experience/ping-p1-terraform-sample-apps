@@ -80,7 +80,7 @@ deploy_app_to_k8s = [true | false]
 
 ### Deployment
 
-Decide whether you want the sample app deployed to your own k8s cluster, or just have it run locally on your laptop/desktop. Then change the `deploy_app_to_k8s` variable in your terraform.tfvars file accordingly. See variables section above for details.
+Decide whether you want the sample app deployed to your own k8s cluster, or just have it run locally on your laptop/desktop. Then change the `deploy_app_to_k8s` variable in your `terraform.tfvars` file accordingly. See variables section above for details.
 
 In the command line, navigate to the `/terraform` directory and run:
 
@@ -103,6 +103,18 @@ If this is successful, you will see a new environment added to your PingOne orga
 **NOTE:** The k8s deployment creates new ingresses and a subdomain for the app of `k8s_deploy_name.k8s_deploy_domain`. So the app may not be immediately available when terraforming is complete. Go get yourself some coff-ay and try again.
 
 Similarly, if you choose to deploy the app locally, the app may not load immediately depending on the amount of resources you allocated to the Docker runtime or the usual suspects; busy CPU, other resource intensive processes running, etc. 
+
+#### Deploying App Locally Using Existing PingOne Environment
+
+If you'd like to point this sample app to an existing PingOne environment and skip terraforming a new environment, you can do so by following the instructions below.
+
+Update the `deploy_app_to_k8s` variable in your `terraform.tfvars` file to "false".
+
+Navigate to the `.env.development` file in the `/bxretail-sample-app` directory, you'll need to uncomment the `REACT_APP_ENVID` and `REACT_APP_CLIENT` variables and set to your PingOne Environment Id and Application Client Id. 
+
+Then, navigate to the `env.sh` file in the `/bxretail-sample-app` directory, and comment out the last line in this file that self-destructs the file. 
+
+Once you've saved these changes, in your terminal, cd into the `/bxretail-sample-app` directory and run `npm start`. Before attempting to start the app, you will need to run `npm install` in this directory if you haven't already. 
 
 ### Optional - Custom Docker Images
 Ping Identity Technical Enablement hosts and maintains the sample Docker image. However, it is possible to build and host your own Docker images by following the instructions below.

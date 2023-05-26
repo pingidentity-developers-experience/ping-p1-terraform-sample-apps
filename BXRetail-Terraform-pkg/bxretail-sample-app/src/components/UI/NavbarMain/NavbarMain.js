@@ -218,14 +218,45 @@ class NavbarMain extends React.Component {
           } 
           break;
         case "authCode":
-          // Call OIDC SDK to get access/id tokens
-          this.authz.getToken(this.props.history.push,content);
+          // Call OIDC SDK to get access and id tokens
+          this.authz.getToken()
+            .then(response => {
+              const authMode = this.session.getAuthenticatedUserItem("authMode", "session");
+              this.session.setAuthenticatedUserItem("AT", response.access_token, "session");
+              this.session.setAuthenticatedUserItem("IdT", response.id_token, "session");
+    
+              const email = this.tokens.getTokenValue({ token: response.id_token, key: "email" });
+              this.session.setAuthenticatedUserItem("email", email, "session");
+    
+              const userType = "Customer"; // We don't have any other user types in the sample package
+              this.session.setAuthenticatedUserItem("bxRetailUserType", userType, "session");
+    
+              // Set temp reg thank you message.
+              if (authMode === "registration") {
+                  this.session.setAuthenticatedUserItem("regMessage", content.menus.utility.register_done, "session");
+              }
+
+              // It's a customer.
+              if (authMode === "login" || authMode === "registration") {
+                  if (this.session.getAuthenticatedUserItem("targetReferrer", "session")) {
+                      this.session.removeAuthenticatedUserItem("targetReferrer", "session");
+                      this.props.history.push("/dashboard/settings");
+                  } else {
+                    this.props.history.push("/shop");
+                  }
+              } else if (authMode === "signInToCheckout") {
+                this.props.history.push({ pathname: '/shop/checkout', state: { acctFound: true }});
+              }
+              
+            })
+            .catch(error => console.error(error));
           break;
         default:
           console.error('AuthN param exception.', 'Received an unknown value. Expecting a flow Id, authorization code, or issuer.' );
       }
     }
   }
+
   render() {
     return (
       <section className="navbar-main">

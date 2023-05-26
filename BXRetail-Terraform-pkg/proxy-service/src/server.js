@@ -1,5 +1,5 @@
 /**
-The Fastify proxy host for proxying senstive mgmt API calls.
+The Fastify proxy host for proxy-ing sensitive Management API calls.
 NOT CURRENTLY IN USE, but will be used in future use cases.
 */
 

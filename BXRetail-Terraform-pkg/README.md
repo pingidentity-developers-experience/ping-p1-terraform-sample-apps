@@ -102,6 +102,16 @@ If this is successful, you will see a new environment added to your PingOne orga
 
 Similarly, if you choose to deploy the app locally, the app may not load immediately depending on the amount of resources you allocated to the Docker runtime or the usual suspects; busy CPU, other resource intensive processes running, etc. 
 
+#### Deploying App Locally Using Existing PingOne Environment
+
+If you'd like to point this sample app to an existing PingOne environment and skip terraforming a new environment, you can do so by following the instructions below.
+
+Navigate to the `.env.development` file in the `/bxretail-sample-app` directory, you'll need to uncomment the `REACT_APP_ENVID` and `REACT_APP_CLIENT` variables and set to your PingOne Environment Id and Application Client Id. 
+
+Then, navigate to the `env.sh` file in the `/bxretail-sample-app` directory, and comment out the last line in this file that self-destructs the file. 
+
+Once you've saved these changes, in your terminal, cd into the `/bxretail-sample-app` directory and run `npm start`. Before attempting to start the app, you will need to run `npm install` in this directory if you haven't already. 
+
 ### Optional - Custom Docker Images
 Ping Identity Technical Enablement hosts and maintains the sample Docker image. However, it is possible to build and host your own Docker images by following the instructions below.
 

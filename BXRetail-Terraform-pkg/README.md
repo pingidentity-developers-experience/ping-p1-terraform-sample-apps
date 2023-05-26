@@ -80,7 +80,7 @@ deploy_app_to_k8s = [true | false]
 
 ### Deployment
 
-Decide whether you want the sample app deployed to your own k8s cluster, or just have it run locally on your laptop/desktop. Then change the `deploy_app_to_k8s` variable in your terraform.tfvars file accordingly. See variables section above for details.
+Decide whether you want the sample app deployed to your own k8s cluster, or just have it run locally on your laptop/desktop. Then change the `deploy_app_to_k8s` variable in your `terraform.tfvars` file accordingly. See variables section above for details.
 
 In the command line, navigate to the `/terraform` directory and run:
 
@@ -107,6 +107,8 @@ Similarly, if you choose to deploy the app locally, the app may not load immedia
 #### Deploying App Locally Using Existing PingOne Environment
 
 If you'd like to point this sample app to an existing PingOne environment and skip terraforming a new environment, you can do so by following the instructions below.
+
+Update the `deploy_app_to_k8s` variable in your `terraform.tfvars` file to "false".
 
 Navigate to the `.env.development` file in the `/bxretail-sample-app` directory, you'll need to uncomment the `REACT_APP_ENVID` and `REACT_APP_CLIENT` variables and set to your PingOne Environment Id and Application Client Id. 
 

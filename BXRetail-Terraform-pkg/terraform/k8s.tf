@@ -3,8 +3,8 @@
 # {@link https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs}
 # 
 # The "count" declaration is whether you want the sample delpoyed to your k8s
-# host environment, or if you want it run locally on your machine at localhost:5000.
-# There is a variable in development.tfvars to control this. The default is set
+# host environment, or if you want it run locally on your machine at localhost.
+# There is a variable in terraform.tfvars to control this. The default is set
 # in vars.tf.
 ###################################################################################################
 
@@ -32,7 +32,7 @@ resource "kubernetes_ingress_v1" "package_ingress" {
             service {
               name = "${var.k8s_deploy_name}-app"
               port {
-                number = 5000
+                number = var.app_port
               }
             }
           }
@@ -226,8 +226,8 @@ resource "kubernetes_service" "bxr_app" {
     }
     session_affinity = "ClientIP"
     port {
-      port        = 5000
-      target_port = 5000
+      port        = var.app_port
+      target_port = var.app_port
     }
 
     type = "ClusterIP"

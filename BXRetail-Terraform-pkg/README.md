@@ -80,6 +80,8 @@ deploy_app_to_k8s = [true | false]
 
 ### Deployment
 
+Decide whether you want the sample app deployed to your own k8s cluster, or just have it run locally on your laptop/desktop. Then change the `deploy_app_to_k8s` variable in your terraform.tfvars file accordingly. See variables section above for details.
+
 In the command line, navigate to the `/terraform` directory and run:
 
 ```zsh

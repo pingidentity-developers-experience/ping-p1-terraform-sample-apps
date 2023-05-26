@@ -18,8 +18,8 @@ resource "docker_container" "local_bxr_app" {
   image = docker_image.ping_bxr_sample_app[count.index].image_id
   name  = "Ping_BXRetail_Sample"
   ports {
-    internal = 5000
-    external = 5000
+    internal = var.app_port
+    external = var.app_port
   }
   # TODO If needed, Add another set of resources to run the fastify proxy server. Not a use case currently, but will be used in future use cases.
 
@@ -34,6 +34,7 @@ resource "docker_container" "local_bxr_app" {
     "REACT_APP_APIPATH=https://api.pingone.${local.pingone_domain}/v1",
     "REACT_APP_IMAGE_NAME=${var.app_image_name}",
     "SSL_CERT_FILE=ping-p1-terraform-sample-apps/BXRetail-Terraform-pkg/bxretail-sample-app/certs/bxterraform.crt",
-    "SSL_KEY_FILE=ping-p1-terraform-sample-apps/BXRetail-Terraform-pkg/bxretail-sample-app/certs/bxterraform.key"
+    "SSL_KEY_FILE=ping-p1-terraform-sample-apps/BXRetail-Terraform-pkg/bxretail-sample-app/certs/bxterraform.key",
+    "PORT=${var.app_port}"
   ]
 }

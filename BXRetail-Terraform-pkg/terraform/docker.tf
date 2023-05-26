@@ -32,6 +32,8 @@ resource "docker_container" "local_bxr_app" {
     "REACT_APP_RECSET=${pingone_application.bxretail_sample_app.oidc_options[0].client_secret}",
     "REACT_APP_AUTHPATH=https://auth.pingone.${local.pingone_domain}",
     "REACT_APP_APIPATH=https://api.pingone.${local.pingone_domain}/v1",
-    "REACT_APP_IMAGE_NAME=${var.app_image_name}"
+    "REACT_APP_IMAGE_NAME=${var.app_image_name}",
+    "SSL_CERT_FILE=ping-p1-terraform-sample-apps/BXRetail-Terraform-pkg/bxretail-sample-app/certs/bxterraform.crt",
+    "SSL_KEY_FILE=ping-p1-terraform-sample-apps/BXRetail-Terraform-pkg/bxretail-sample-app/certs/bxterraform.key"
   ]
 }

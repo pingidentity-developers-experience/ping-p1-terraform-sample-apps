@@ -58,7 +58,7 @@ k8s_deploy_name   = "{{k8sDeployName}}"
 k8s_deploy_domain = "{{k8sDeployDomain}}"
 k8s_namespace     = "{{k8sNamespace}}"
 proxy_image_name  = "docker.io/michaelspingidentity/ping-integration-proxy:0.1.0"
-app_image_name    = "docker.io/michaelspingidentity/ping-bxretail-terraform-sample:202303-0.19.5-beta"
+app_image_name    = "docker.io/michaelspingidentity/ping-bxretail-terraform-sample:202305-0.19.11-earlyaccess"
 deploy_app_to_k8s = [true | false]
 ```
 

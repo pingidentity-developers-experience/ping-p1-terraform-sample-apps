@@ -33,6 +33,8 @@ resource "docker_container" "local_bxr_app" {
     "REACT_APP_AUTHPATH=https://auth.pingone.${local.pingone_domain}",
     "REACT_APP_APIPATH=https://api.pingone.${local.pingone_domain}/v1",
     "REACT_APP_IMAGE_NAME=${var.app_image_name}",
+    "SSL_CRT_FILE=certs/cert.pem",
+    "SSL_KEY_FILE=certs/key.pem",
     "PORT=${var.app_port}"
   ]
 }

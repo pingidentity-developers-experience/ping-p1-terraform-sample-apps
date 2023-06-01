@@ -3,18 +3,17 @@ import { Container, Button, FormGroup, Label, Input, Row, Col } from 'reactstrap
 
 // Components
 // import { DaVinciWidget } from '../../../components/DaVinci/DaVinciWidget.js';
-import NavbarMain from '../../../components/NavbarMain';
-import WelcomeBar from '../../../components/WelcomeBar';
-import FooterMain from '../../../components/FooterMain';
-import AccountsSubnav from '../../../components/AccountsSubnav';
-import AccountsDropdown from '../../../components/AccountsDropdown';
+import NavbarMain from '../../../components/UI/NavbarMain';
+import WelcomeBar from '../../../components/UI/WelcomeBar';
+import FooterMain from '../../../components/UI/FooterMain';
+import AccountsSubnav from '../../../components/UI/AccountsSubnav';
+import AccountsDropdown from '../../../components/UI/AccountsDropdown';
 import Users from '../../../components/Controller/Users';
 import Session from '../../../components/Utils/Session';
 import Tokens from '../../../components/Utils/Tokens.js';
 
-
-// Data
-import data from '../../../data/dashboard/settings/profile.json';
+// Content
+import content from '../../../content/dashboard/settings/profile.json';
 
 // Styles
 import '../../../styles/pages/dashboard/settings/profile.scss';
@@ -111,14 +110,7 @@ class DashboardSettingsProfile extends React.Component {
         formData[e.target.id] = e.target.value;
         this.setState(formData);
     }
-
-    handleCheckbox() {
-        //TODO It's probably better practice to use setState with prevState instead of a separate variable, in case state hasn't update in time.
-        const enabled = !this.state.mfaEnabled;
-        this.users.toggleMFA({ IdT: this.session.getAuthenticatedUserItem('IdT', 'session'), toggleState: enabled });
-        this.setState({ mfaEnabled: enabled });
-    }
-
+    
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen,
@@ -204,14 +196,14 @@ class DashboardSettingsProfile extends React.Component {
                     <Container>
                         <div className='inner'>
                             <div className='sidebar'>
-                                {Object.keys(data.subnav).map((key) => {
-                                    return <AccountsSubnav key={data.subnav[key].title} subnav={data.subnav[key]} />;
+                                {Object.keys(content.subnav).map((key) => {
+                                    return <AccountsSubnav key={content.subnav[key].title} subnav={content.subnav[key]} />;
                                 })}
                             </div>
                             <div className='content'>
                                 <div className='accounts-hdr'>
-                                    <h1>{data.title}</h1>
-                                    <AccountsDropdown text={data.dropdown} />
+                                    <h1>{content.title}</h1>
+                                    <AccountsDropdown text={content.dropdown} />
                                 </div>
                                 <div className='module'>
                                     <h3>Profile Details</h3>
@@ -220,18 +212,18 @@ class DashboardSettingsProfile extends React.Component {
                                             <FontAwesomeIcon icon={faCircleNotch} size='3x' className='fa-spin' />
                                         </div>
                                     )}
-                                    <form class="profile-updates-form" ref={this.profileForm} onSubmit={e => e.preventDefault()}>
+                                    <form className="profile-updates-form" ref={this.profileForm} onSubmit={e => e.preventDefault()}>
                                         <Row form>
                                             <Col md={4}>
                                                 <FormGroup>
-                                                    <Label for='firstname'>{data.form.fields.firstname.label}</Label>
+                                                    <Label for='firstname'>{content.form.fields.firstname.label}</Label>
                                                     <Input
                                                         onChange={this.handleUserInput.bind(this)}
                                                         type='text'
                                                         autoComplete='new-firstname'
                                                         name='firstname'
                                                         id='firstname'
-                                                        placeholder={data.form.fields.firstname.placeholder}
+                                                        placeholder={content.form.fields.firstname.placeholder}
                                                         value={this.state.firstname}
                                                         required={this.state.firstNameRequired}
                                                         maxLength="50"
@@ -243,14 +235,14 @@ class DashboardSettingsProfile extends React.Component {
                                             </Col>
                                             <Col md={4}>
                                                 <FormGroup>
-                                                    <Label for='lastname'>{data.form.fields.lastname.label}</Label>
+                                                    <Label for='lastname'>{content.form.fields.lastname.label}</Label>
                                                     <Input
                                                         onChange={this.handleUserInput.bind(this)}
                                                         type='text'
                                                         autoComplete='new-lastname'
                                                         name='lastname'
                                                         id='lastname'
-                                                        placeholder={data.form.fields.lastname.placeholder}
+                                                        placeholder={content.form.fields.lastname.placeholder}
                                                         value={this.state.lastname}
                                                         required={this.state.lastNameRequired}
                                                         maxLength="50"
@@ -261,14 +253,14 @@ class DashboardSettingsProfile extends React.Component {
                                             </Col>
                                             <Col md={4}>
                                                 <FormGroup>
-                                                    <Label for='phone'>{data.form.fields.phone.label}</Label>
+                                                    <Label for='phone'>{content.form.fields.phone.label}</Label>
                                                     <Input
                                                         onChange={this.handleUserInput.bind(this)}
                                                         type='tel'
                                                         autoComplete='new-phone'
                                                         name='phone'
                                                         id='phone'
-                                                        placeholder={data.form.fields.phone.placeholder}
+                                                        placeholder={content.form.fields.phone.placeholder}
                                                         value={this.state.phone}
                                                         required={this.state.phoneRequired}
                                                         pattern="^\+?([0-9]+){1,3}\.?([0-9]+){4,14}$"
@@ -279,14 +271,14 @@ class DashboardSettingsProfile extends React.Component {
                                             </Col>
                                             <Col md={4}>
                                                 <FormGroup>
-                                                    <Label for='birthdate'>{data.form.fields.birthdate.label}</Label>
+                                                    <Label for='birthdate'>{content.form.fields.birthdate.label}</Label>
                                                     <Input
                                                         onChange={this.handleUserInput.bind(this)}
                                                         type='text'
                                                         autoComplete='new-birthdate'
                                                         name='birthdate'
                                                         id='birthdate'
-                                                        placeholder={data.form.fields.birthdate.placeholder}
+                                                        placeholder={content.form.fields.birthdate.placeholder}
                                                         value={this.state.birthdate}
                                                         required={this.state.birthDateRequired}
                                                         pattern="\d{1,2}/\d{1,2}/\d{4}"
@@ -298,14 +290,14 @@ class DashboardSettingsProfile extends React.Component {
                                             </Col>
                                             <Col md={4}>
                                                 <FormGroup>
-                                                    <Label for='street'>{data.form.fields.street.label}</Label>
+                                                    <Label for='street'>{content.form.fields.street.label}</Label>
                                                     <Input
                                                         onChange={this.handleUserInput.bind(this)}
                                                         type='text'
                                                         autoComplete='new-street'
                                                         name='street'
                                                         id='street'
-                                                        placeholder={data.form.fields.street.placeholder}
+                                                        placeholder={content.form.fields.street.placeholder}
                                                         value={this.state.street}
                                                         required={this.state.streetRequired}
                                                         pattern="^(?=.*[a-zA-Z])(?!.*[^ \-a-zA-Z0-9\.#]).*$"
@@ -316,14 +308,14 @@ class DashboardSettingsProfile extends React.Component {
                                             </Col>
                                             <Col md={4}>
                                                 <FormGroup>
-                                                    <Label for='city'>{data.form.fields.city.label}</Label>
+                                                    <Label for='city'>{content.form.fields.city.label}</Label>
                                                     <Input
                                                         onChange={this.handleUserInput.bind(this)}
                                                         type='text'
                                                         autoComplete='new-city'
                                                         name='city'
                                                         id='city'
-                                                        placeholder={data.form.fields.city.placeholder}
+                                                        placeholder={content.form.fields.city.placeholder}
                                                         value={this.state.city}
                                                         required={this.state.cityRequired}
                                                         pattern="^(?=.*[a-zA-Z])(?!.*[^ \-a-zA-Z]).*$"
@@ -334,14 +326,14 @@ class DashboardSettingsProfile extends React.Component {
                                             </Col>
                                             <Col md={4}>
                                                 <FormGroup>
-                                                    <Label for='zipCode'>{data.form.fields.zipcode.label}</Label>
+                                                    <Label for='zipCode'>{content.form.fields.zipcode.label}</Label>
                                                     <Input
                                                         onChange={this.handleUserInput.bind(this)}
                                                         type='text'
                                                         autoComplete='new-zipcode'
                                                         name='zipcode'
                                                         id='zipcode'
-                                                        placeholder={data.form.fields.zipcode.placeholder}
+                                                        placeholder={content.form.fields.zipcode.placeholder}
                                                         value={this.state.zipcode}
                                                         required={this.state.zipcodeRequired}
                                                         pattern="^(?=.*[a-zA-Z0-9])(?!.*[^ \-a-zA-Z0-9]).*$"
@@ -356,51 +348,16 @@ class DashboardSettingsProfile extends React.Component {
                                                 <div className='text-right'>
                                                     {this.state.success && <p>Updated!</p>}
                                                     <Button type='button' color='link' className='ml-3'>
-                                                        {data.form.buttons.cancel}
+                                                        {content.form.buttons.cancel}
                                                     </Button>
                                                     <Button type='button' color='primary' onClick={this.handleSubmit}>
-                                                        {data.form.buttons.submit}
+                                                        {content.form.buttons.submit}
                                                     </Button>
                                                 </div>
                                             </Col>
                                         </Row>
                                     </form>
                                 </div>
-                                {/* Add MFA section */}
-                                {/* {!this.state.federatedUser && (
-                                    <div className='module'>
-                                        <h3>Authentication Preferences</h3>
-                                        <Col>
-                                            <Row>
-                                                <p>{data.form.fields.login.description}</p>
-                                            </Row>
-                                        </Col>
-                                        <Col md={{ span: 1, offset: 1 }}>
-                                            <Row form>
-                                                <FormGroup>
-                                                    <Input
-                                                        type='checkbox'
-                                                        checked={this.state.mfaEnabled}
-                                                        onChange={this.handleCheckbox.bind(this)}
-                                                    />
-                                                    <Label>
-                                                        {this.state.mfaEnabled
-                                                            ? 'Turn off two-factor authentication.'
-                                                            : 'Turn on two-factor authentication.'}
-                                                    </Label>
-                                                </FormGroup>
-                                            </Row>
-                                        </Col>
-                                    </div>
-                                )} */}
-                                {/* Add Device Management section */}
-                                {/* {!this.state.federatedUser && (
-                                <div className='module'>     
-                                    <h3>Device Management</h3>
-                                    <p>To access your My Account portal to add or remove multi-factor authentication devices used for sign-in, <a href={window._env_.REACT_APP_AUTHPATH + "/myaccount/"} target="_blank" rel="noreferrer">click here</a>.</p>
-                                </div>
-                                )} */}
-                                    
                             </div>
                         </div>
                     </Container>

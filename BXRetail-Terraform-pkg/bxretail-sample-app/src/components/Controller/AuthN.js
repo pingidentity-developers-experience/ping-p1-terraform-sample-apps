@@ -1,6 +1,5 @@
 // Components
 import PingOneAuthN from "../Integration/PingOneAuthN";
-import AuthZ from "./AuthZ";
 import Tokens from "../Utils/Tokens";
 import Session from "../Utils/Session";
 
@@ -21,11 +20,6 @@ class AuthN {
             this.envVars.REACT_APP_AUTHPATH,
             this.envVars.REACT_APP_ENVID
         );
-        this.ping1AuthNProxy = new PingOneAuthN(
-            this.envVars.REACT_APP_PROXYAPIPATH,
-            this.envVars.REACT_APP_ENVID
-        );
-        this.authz = new AuthZ();
         this.tokens = new Tokens();
         this.session = new Session();
     }

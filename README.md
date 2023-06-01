@@ -6,9 +6,9 @@ As the start of a new initiative called "developer experience", we are creating 
 
 We chose React as our development library for many reasons, but that should not be any concern. The primary concern in these samples apps is what's in the /integration folder, for integration with Ping products, and the /terraform folder for example HCL on how to provision a PingOne environment in your organization, AKA tenant.
 
-We are not a custom app vendor for your line of business. That is your expertise. So the UI frameworks and our demo use cases are 2nd class citizens to the purpose of this project. 
+We are not a custom app vendor for your line of business. That is your expertise. So the UI frameworks and our demo use cases are 2nd class citizens to the purpose of this project. They are merely a conduit to the goal; Ping integration examples.
 
-The sample application source code has been structured following a typical [MVC model](https://developer.mozilla.org/en-US/docs/Glossary/MVC) so as to keep the code responsible for showing integration with Ping products and services isolated from other code making it tedious for you, the developer, to weed out and interpret the code you need from the code that makes up a sample app. And MVC, we think, tends to be the simplest model to grasp the basics of  a "separation of concerns" (SoC).
+The sample application source code has been structured following a typical [MVC model](https://developer.mozilla.org/en-US/docs/Glossary/MVC) so as to keep the code responsible for showing integration with Ping products and services isolated from other UI code which would make it tedious for you, the developer, to weed out and interpret the code you need from the code that makes up a sample app. And MVC, we think, tends to be the simplest model to grasp the basics of  a "separation of concerns" (SoC).
 
 The Terraform source code, [HCL](https://developer.hashicorp.com/terraform/language/syntax/configuration), has been organized by the same SoC design principle. This is not required as Terraform is graph-based and will build its own dependency graph based on your HCL. Hence Terraform being declarative, and not procedural. But for organizational and ease of use, and getting familiar with Terraform, we felt this file structure was a better "getting started" experience.
 

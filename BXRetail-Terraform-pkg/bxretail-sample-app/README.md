@@ -8,12 +8,12 @@ It is a unique demo due to our PingOne-led initiative, with no non-SaaS software
 BXRetail is a Single Page Application (SPA) built with React; JSX, Javascript, react-router, react-strap, SASS, JSON.
 
 ### Source Docs
-We include HTML formatted documentation using the JSDoc utility. Just open the index.html file in the /jsdocs/ folder.
+We include HTML formatted documentation using the JSDoc utility. Just open the `index.html` file in the `/jsdocs/` folder.
 
-Also, all Ping integration methods are annotated with links to the related API docs. All of this is picked up by JSdoc, too.
+Also, all Ping integration methods are annotated with links to the related API docs. All of this is picked up by JSDoc, too.
 
 ## Demo Use Cases Walk-Through
-*Incognito or private browser windows may lead to unexpected behavior, please use a regular browser window.*
+*Please Note: Strict browser settings blocking third-party cookies may lead to unexpected behavior.*
 
 ### Guest Checkout
 1. Click **Weekly Deals** on the navigation bar.

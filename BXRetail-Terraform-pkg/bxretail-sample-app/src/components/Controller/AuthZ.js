@@ -1,15 +1,15 @@
-// Components
-// import DaVinci from "../Integration/DaVinci";
-import PingOneAuthZ from "../Integration/PingOneAuthZ";
+// Import OIDC SDK
+import { OidcClient } from '@pingidentity-developers-experience/ping-oidc-client-sdk';
 import Session from "../Utils/Session";
 import Tokens from "../Utils/Tokens";
 
 /**
- Class representing authorization business logic and payload prep for PingOne authorization API calls.
+ Class representing authorization business logic and payload prep for PingOne authorization API
+ calls using the Ping Identity OIDC SDK.
  This demo-specific class is developed and maintained by Ping Identity Technical Enablement.
- Implements methods to integrate with PingOne authorization API endpoints.
+ Implements methods to integrate with the Ping Identity OIDC SDK.
  @author Ping Identity Technical Enablement
-
+ @see https://www.npmjs.com/package/@pingidentity-developers-experience/ping-oidc-client-sdk
 */
 
 class AuthZ {
@@ -19,81 +19,48 @@ class AuthZ {
     */
     constructor() {
         this.envVars = window._env_;
-        this.ping1AuthZ = new PingOneAuthZ(this.envVars.REACT_APP_AUTHPATH, this.envVars.REACT_APP_ENVID, this.envVars.REACT_APP_PROXYAPIPATH);
-        // this.atvpPath = this.envVars.REACT_APP_ATVPAUTHPATH + '/' + this.envVars.REACT_APP_ATVP_ENVID;
-        // this.ping1AuthZATVP = new PingOneAuthZ(this.atvpPath, this.envVars.REACT_APP_ENVID);
         this.session = new Session();
         this.tokens = new Tokens();
-        // this.davinci = new DaVinci();
+    }
+
+    /**
+    Initialize the OIDC client
+    @return {object} oidcClient Returns the OIDC client
+    */
+    async initSdk() {
+        console.info('Controller.AuthZ', 'Initializing OIDC SDK.');
+        const redirectURI = this.envVars.REACT_APP_HOST + this.envVars.PUBLIC_URL + "/";
+        // Configure OIDC SDK client options
+        const clientOptions = {
+            client_id: this.envVars.REACT_APP_CLIENT,
+            redirect_uri: redirectURI,
+            scope: 'openid profile email p1:read:user p1:update:user p1:read:sessions p1:update:userMfaEnabled p1:create:device',
+        };
+        // Initialize the library using an authentication server's well-known endpoint. Note this takes in the base url of the auth server, not the well-known endpoint itself. '/.well-known/openid-configuration' will be appended to the url by the SDK.
+        const oidcClient = await OidcClient.initializeFromOpenIdConfig(`https://auth.pingone.com/${this.envVars.REACT_APP_ENVID}/as`, clientOptions);
+        return oidcClient;
     }
 
     /**
     Initialize an authorization request. Process the request to call the authorization endpoint.
-    @param {string} grantType The OAuth grant type to be used.
-    @param {string} clientId The OAuth client from which you want to authorize.
-    @param {string} redirectURI The URI the OAuth client should send you back to after completing OAuth authZ.
-    @param {string} scopes The app or OIDC scopes being requested by the client.
     */
-    initAuthNFlow({ grantType, clientId, redirectURI, scopes, authPath }) {
-        console.info('Controller.AuthZ', 'Initializing an authorization flow with PingOne.');
-
-        if (grantType !== 'implicit' && grantType !== 'authCode') {
-            throw new Error('Invalid grant type provided. Controller.AuthZ.');
-        }
-
-        const responseType = grantType === 'implicit' ? 'token' : 'code';
-        if (!authPath) {
-            this.ping1AuthZ.authorize({
-                responseType: responseType,
-                clientId: clientId,
-                redirectURI: redirectURI,
-                scopes: scopes,
-            });
-        } 
-        // else {
-        //     this.ping1AuthZATVP.authorize({
-        //         responseType: responseType,
-        //         clientId: clientId,
-        //         redirectURI: redirectURI,
-        //         scopes: scopes,
-        //     });
-        // }
+    async initAuthNFlow() {
+        console.info('Controller.AuthZ', 'Initializing an authorization flow using OIDC SDK.');
+        const oidcClient = await this.initSdk();
+        oidcClient.authorize(/* optional login_hint */);
     }
 
     /**
-    OAuth Token:
-    Swap an authZ code for an access and ID token.
-    @param {string} code authorization code from AS.
-    @param {string} redirectURI App URL user should be redirected to after swap for token.
-    @returns {object} response
+    Get OAuth Token:
+    Use authZ code to get access and id tokens.
     */
-    async swapCodeForToken({ code, redirectURI, authMode, clientId }) {
-        console.info('Controller.AuthZ', 'Swapping an auth code for an access token.');
-
-        let authPath;
-
-        // if (authMode === 'ATVP') {
-        //     authPath = this.envVars.REACT_APP_ATVPAUTHPATH;
-        // }
-        
-        let bauth;
-        if (!authPath) {
-            bauth = this.envVars.REACT_APP_CLIENT + ':' + this.envVars.REACT_APP_RECSET;
-        } else {
-            bauth = this.envVars.REACT_APP_ATVP_CLIENT + ':' + this.envVars.REACT_APP_ATVP_RECSET;
-        }
-        const swaprods = btoa(bauth);
-
-        let response;
-        if (!authPath) {
-            response = await this.ping1AuthZ.getToken({ code: code, redirectURI: redirectURI, swaprods: swaprods, clientId: clientId });
-        } 
-        // else {
-        //     response = await this.ping1AuthZATVP.getToken({ code: code, redirectURI: redirectURI, swaprods: swaprods });
-        // }
-        return response;
+    async getToken() {
+        console.info('Controller.AuthZ', 'Swap auth code for an access token.');
+        const oidcClient = await this.initSdk();
+        // Get the access and id tokens from OIDC SDK
+        const tokens = await oidcClient.getToken();
+        return tokens;
     }
-
 }
 
 export default AuthZ;

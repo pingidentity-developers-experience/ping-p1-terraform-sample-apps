@@ -8,8 +8,8 @@ import Checkout from './pages/shop/checkout';
 import DashboardSettings from './pages/dashboard/settings/index'; 
 import DashboardSettingsProfile from './pages/dashboard/settings/profile'; 
 import DashboardSettingsPrivacySecurity from './pages/dashboard/settings/privacy-security'; 
-import Partner from './pages/partner/index'; 
-import PartnerClient from './pages/partner/client'; 
+// import Partner from './pages/partner/index'; 
+// import PartnerClient from './pages/partner/client'; 
 import AnyMarketing from './pages/any-marketing'; 
 import * as serviceWorker from './serviceWorker';
 
@@ -32,12 +32,12 @@ const routing = (
             <Route path='/dashboard/settings'>
                 <DashboardSettings />
             </Route>
-            <Route path='/partner/client'>
+            {/*<Route path='/partner/client'>
                 <PartnerClient />
             </Route>
             <Route path='/partner'>
                 <Partner />
-            </Route>
+            </Route>*/}
             <Route path='/any-marketing'>
                 <AnyMarketing />
             </Route>

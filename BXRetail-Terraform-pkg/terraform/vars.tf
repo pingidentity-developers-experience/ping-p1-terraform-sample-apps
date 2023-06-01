@@ -45,11 +45,6 @@ variable "env_name" {
   default     = "PingIdentity Example"
 }
 
-variable "env_type" {
-  type        = string
-  description = "Deployment Type (Dev | QA | Prod)"
-}
-
 variable "k8s_namespace" {
   type        = string
   description = "K8s namespace for container deployment"
@@ -75,9 +70,22 @@ variable "app_image_name" {
   description = "Repo/Image:tag used for App container"
 }
 
+variable "deploy_app_to_k8s" {
+  type        = bool
+  description = "Whether you want the sample app deployed to your k8s host or just run locally on your machine at localhost."
+  default     = true
+}
+
+variable "app_port" {
+  type        = number
+  description = "The port used by the sample app. Override this in your tfvars file if you have a port conflict."
+  default     = 5000
+}
+
 locals {
   # The URL of the demo app
-  app_url = "https://${kubernetes_ingress_v1.package_ingress.spec[0].rule[0].host}/app/"
+  app_url             = var.deploy_app_to_k8s ? "https://${kubernetes_ingress_v1.package_ingress[0].spec[0].rule[0].host}" : "https://localhost:${var.app_port}"
+  deploy_app_to_local = var.deploy_app_to_k8s ? 0 : 1
   # Translate the Region to a Domain suffix
   north_america  = var.region == "NorthAmerica" ? "com" : ""
   europe         = var.region == "Europe" ? "eu" : ""

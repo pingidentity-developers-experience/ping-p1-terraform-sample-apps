@@ -1,10 +1,6 @@
-// Components
-import JSONSearch from "../Utils/JSONSearch";
-
 class Tokens {
     constructor() {
         this.envVars = window._env_;
-        this.jsonSearch = new JSONSearch();
     }
 
     /**
@@ -20,9 +16,7 @@ class Tokens {
         // Extracting the payload portion of the JWT.
         const base64Fragment = token.split(".")[1];
         const decodedFragment = JSON.parse(atob(base64Fragment));
-        const jwtValue = this.jsonSearch.findValues(decodedFragment, key); //FIXME this can be converted to Javascripts intrinsic .find() function.
-
-        return jwtValue[0];
+        return decodedFragment[key];
     }
 }
 export default Tokens;

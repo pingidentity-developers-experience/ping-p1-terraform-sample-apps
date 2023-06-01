@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Container,
     Row,
@@ -18,20 +19,20 @@ import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { withRouter } from 'react-router-dom';
 
 // Components
-import NavbarMain from '../../components/NavbarMain';
-import WelcomeBar from '../../components/WelcomeBar';
-import FooterMain from '../../components/FooterMain';
-import AccountsSubnav from '../../components/AccountsSubnav';
-import AccountsDropdown from '../../components/AccountsDropdown';
-import PaymentTypeForm from '../../components/PaymentTypeForm';
+import NavbarMain from '../../components/UI/NavbarMain';
+import WelcomeBar from '../../components/UI/WelcomeBar';
+import FooterMain from '../../components/UI/FooterMain';
+import AccountsSubnav from '../../components/UI/AccountsSubnav';
+import AccountsDropdown from '../../components/UI/AccountsDropdown';
+import PaymentTypeForm from '../../components/UI/PaymentTypeForm';
 import Session from '../../components/Utils/Session';
 import AuthZ from '../../components/Controller/AuthZ';
 import Registration from '../../components/Controller/Registration';
 import Users from '../../components/Controller/Users';
 
-// Data
-import data from '../../data/shop/index.json';
-import profileData from '../../data/dashboard/settings/profile.json';
+// Content
+import content from '../../content/shop/index.json';
+import profileContent from '../../content/dashboard/settings/profile.json';
 
 // Styles
 import '../../styles/pages/shop.scss';
@@ -47,7 +48,7 @@ class Checkout extends React.Component {
             activeTabConfirmation: '1',
             profilePending: true,
             lookupPending: false,
-            orderProcessingMsg: data.modal.loading.title,
+            orderProcessingMsg: content.modal.loading.title,
             acctFound: props.location.state?.acctFound || false,
             recordFound: false,
             step: '1',
@@ -112,7 +113,7 @@ class Checkout extends React.Component {
         setTimeout(
             function () {
                 this.setState({
-                    orderProcessingMsg: data.modal.loading.finalizeOrder,
+                    orderProcessingMsg: content.modal.loading.finalizeOrder,
                 });
             }.bind(this),
             3000
@@ -182,9 +183,6 @@ class Checkout extends React.Component {
     }
 
     async changeUIStep(stepNumber) {
-        let IdP, userId;
-        const authMode = this.session.getAuthenticatedUserItem('authMode', 'session');
-
         /* Guest email lookup */
         if (stepNumber === '2') {
             this.setState({ step: stepNumber });
@@ -203,40 +201,6 @@ class Checkout extends React.Component {
             }
 
             this.setState({ step: stepNumber, profilePending: false });
-
-            // User Lookup DV Flow
-            // this.setState({ lookupPending: true });
-            // const email = this.state.email ? this.state.email : this.session.getAuthenticatedUserItem('email', 'session');
-            // this.customerLookup(email)
-            //     .then((lookupResponse) => {
-            //         //Promise will only resolve if there is a user record found. See customerLookup().
-            //         this.setState((state) => {
-            //             return { recordFound: true };
-            //         });
-            //         IdP = lookupResponse._embedded.users[0].identityProvider.type;
-            //         userId = lookupResponse._embedded.users[0].id;
-            //         this.setState({ userId: userId });
-            //         if (!this.session.isLoggedOut) {
-            //             this.getProfile(userId);
-            //             this.setState({ step: stepNumber, detailsPending: false, acctFound: true });
-            //         } else if (IdP.length && IdP === 'PING_ONE') {
-            //             this.signInToCheckout(email);
-            //         } else if (IdP.length && IdP !== 'PING_ONE') {
-            //             console.info('Customer has an external IdP (federated identity).');
-            //             // TODO UX question: Do we need to automate this federated login so when we kick off signin, we automatically redirect to their idp upon return with a flowId.
-            //             if (authMode === 'signInToCheckout' || authMode === 'login') {
-            //                 this.getProfile(userId);
-            //                 this.setState({ step: stepNumber, acctFound: true });
-            //             } else {
-            //                 this.signInToCheckout();
-            //             }
-            //         }
-            //     })
-            //     .catch((error) => {
-            //         console.warn("We didn't find any user records with that email address/userName.");
-            //         this.setState({ step: stepNumber });
-            //         this.setState({ lookupPending: false, detailsPending: false, profilePending: false });
-            //     });
         }
 
         /* Choose billing option */
@@ -256,8 +220,6 @@ class Checkout extends React.Component {
 
         /* Trigger account creation */
         if (stepNumber === '6') {
-            // TODO For #182366216 If sessionVar offerToCreateAcct = yes,
-            // remove that session var, bounce back to checkOut() and all should fall in line.
             this.setState({ haveError: false });
             this.createAccount();
         }
@@ -293,29 +255,10 @@ class Checkout extends React.Component {
             // We are checking that the email is a string. If no email, we get an object passed in that we don't want to display in the login modal.
             this.session.setAuthenticatedUserItem('email', email, 'session');
         }
-        const redirectURI = this.envVars.REACT_APP_HOST + this.envVars.PUBLIC_URL + '/';
-        this.authz.initAuthNFlow({
-            grantType: 'authCode',
-            clientId: this.envVars.REACT_APP_CLIENT,
-            redirectURI: redirectURI,
-            scopes: 'openid profile email p1:read:user p1:update:user p1:read:sessions p1:update:userMfaEnabled p1:create:device',
-        });
+        
+        // Initialize OIDC SDK and start authorization flow
+        this.authz.initAuthNFlow().catch(err => console.error(err));
     }
-
-    // customerLookup(email) {
-    //     return new Promise((resolve, reject) => {
-    //         this.users.userLookup(email).then((lookupResponse) => {
-    //             // If user with password found in P1, resolve promise.
-    //             if (lookupResponse.additionalProperties.existingUser === true) {
-    //                 let response = lookupResponse.additionalProperties.rawResponse;
-    //                 let jsonResponse = JSON.parse(response);
-    //                 resolve(jsonResponse.matchedUsers);
-    //             } else {
-    //                 reject(lookupResponse);
-    //             }
-    //         });
-    //     });
-    // }
 
     /**
      * Get user profile
@@ -388,8 +331,8 @@ class Checkout extends React.Component {
 
     createAccount() {
         this.session.setAuthenticatedUserItem('authMode', 'registration', 'session');
-        const redirectURI = this.envVars.REACT_APP_HOST + this.envVars.PUBLIC_URL + "/";
-        this.authz.initAuthNFlow({ grantType: "authCode", clientId: this.envVars.REACT_APP_CLIENT, redirectURI: redirectURI, scopes: "openid profile email p1:read:user p1:update:user p1:read:sessions p1:update:userMfaEnabled p1:create:device" });
+        // Initialize OIDC SDK and start authorization flow
+        this.authz.initAuthNFlow().catch(err => console.error(err));
     }
 
     componentDidMount() {
@@ -431,8 +374,8 @@ class Checkout extends React.Component {
                 <Container>
                     <div className='inner'>
                         <div className='sidebar'>
-                            {Object.keys(data.subnav).map((key) => {
-                                return <AccountsSubnav key={data.subnav[key].title} subnav={data.subnav[key]} />;
+                            {Object.keys(content.subnav).map((key) => {
+                                return <AccountsSubnav key={content.subnav[key].title} subnav={content.subnav[key]} />;
                             })}
                             <div className='text-center mt-4'>
                                 <p>
@@ -457,25 +400,25 @@ class Checkout extends React.Component {
                         <div className='content'>
                             <div className='accounts-hdr'>
                                 <h4>
-                                    {this.state.selectedItem.title} &raquo; {data.checkoutTitle}
+                                    {this.state.selectedItem.title} &raquo; {content.checkoutTitle}
                                 </h4>
-                                <AccountsDropdown text={data.dropdown} />
+                                <AccountsDropdown text={content.dropdown} />
                             </div>
                             <div className='module'>
                                 {/* Guest or sign in prompt */}
                                 {this.state.step === '1' && (
                                     <div>
-                                        <h4>{data.modal.prompt.title}</h4>
-                                        <div dangerouslySetInnerHTML={{ __html: data.content }}></div>
+                                        <h4>{content.modal.prompt.title}</h4>
+                                        <div dangerouslySetInnerHTML={{ __html: content.content }}></div>
                                         <Button color='link' onClick={this.signInToCheckout.bind(this)}>
-                                            {data.modal.prompt.buttons.signin}
+                                            {content.modal.prompt.buttons.signin}
                                         </Button>
                                         <Button
                                             color='link'
                                             onClick={() => {
                                                 this.changeUIStep('2');
                                             }}>
-                                            {data.modal.prompt.buttons.checkout}
+                                            {content.modal.prompt.buttons.checkout}
                                         </Button>
                                     </div>
                                 )}
@@ -486,7 +429,7 @@ class Checkout extends React.Component {
                                             ref={this.formref1}
                                             onSubmit={(e) => e.preventDefault()}
                                             style={{ padding: ' 0px 30px' }}>
-                                            <h4>{data.modal.emailPrompt.title}</h4>
+                                            <h4>{content.modal.emailPrompt.title}</h4>
                                             {this.state.lookupPending && (
                                                 <div className='spinner' style={{ textAlign: 'center' }}>
                                                     <FontAwesomeIcon
@@ -500,11 +443,11 @@ class Checkout extends React.Component {
                                                 <div
                                                     style={{ color: '#FF0000', fontWeight: 'bold' }}
                                                     dangerouslySetInnerHTML={{
-                                                        __html: data.modal.emailPrompt.acctFound,
+                                                        __html: content.modal.emailPrompt.acctFound,
                                                     }}></div>
                                             )}
                                             {/* <FormGroup className="form-group-light"> */}
-                                            <Label for='email'>{profileData.form.fields.email.label}</Label>
+                                            <Label for='email'>{profileContent.form.fields.email.label}</Label>
                                             <Input
                                                 onChange={this.handleUserInput.bind(this)}
                                                 required
@@ -513,8 +456,8 @@ class Checkout extends React.Component {
                                                 type='email'
                                                 name='email'
                                                 id='email'
-                                                placeholder={profileData.form.fields.email.placeholder}
-                                                pattern='^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+$'
+                                                placeholder={profileContent.form.fields.email.placeholder}
+                                                pattern='^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]+$'
                                             />
                                             <div className='mb-3' style={{ paddingTop: '15px' }}>
                                                 <Button
@@ -524,7 +467,7 @@ class Checkout extends React.Component {
                                                     onClick={() => {
                                                         this.changeUIStep('3');
                                                     }}>
-                                                    {profileData.form.buttons.submit}
+                                                    {profileContent.form.buttons.submit}
                                                 </Button>
                                             </div>
                                             {/* </FormGroup> */}
@@ -560,7 +503,7 @@ class Checkout extends React.Component {
                                                         <Col md={6} className="checkout-form">
                                                             {/* <FormGroup > */}
                                                             <Label for='firstname'>
-                                                                {profileData.form.fields.firstname.label}
+                                                                {profileContent.form.fields.firstname.label}
                                                             </Label>
                                                             <Input
                                                                 onChange={this.handleUserInput.bind(this)}
@@ -571,7 +514,7 @@ class Checkout extends React.Component {
                                                                 id='firstname'
                                                                 autoComplete='off'
                                                                 placeholder={
-                                                                    profileData.form.fields.firstname.placeholder
+                                                                    profileContent.form.fields.firstname.placeholder
                                                                 }
                                                                 value={this.state.firstname}
                                                                 maxLength="50"
@@ -583,7 +526,7 @@ class Checkout extends React.Component {
                                                         <Col md={6} className="checkout-form">
                                                             {/* <FormGroup > */}
                                                             <Label for='lastname'>
-                                                                {profileData.form.fields.lastname.label}
+                                                                {profileContent.form.fields.lastname.label}
                                                             </Label>
                                                             <Input
                                                                 onChange={this.handleUserInput.bind(this)}
@@ -593,7 +536,7 @@ class Checkout extends React.Component {
                                                                 id='lastname'
                                                                 autoComplete='off'
                                                                 placeholder={
-                                                                    profileData.form.fields.lastname.placeholder
+                                                                    profileContent.form.fields.lastname.placeholder
                                                                 }
                                                                 value={this.state.lastname}
                                                                 maxLength="50"
@@ -604,8 +547,8 @@ class Checkout extends React.Component {
                                                         </Col>
                                                         {/* <Col md={5}>
                                                                 <FormGroup>
-                                                                <Label for="fullname">{profileData.form.fields.fullname.label}</Label>
-                                                                <Input onChange={this.handleUserInput.bind(this)} type="text" name="fullname" id="fullname" placeholder={profileData.form.fields.fullname.placeholder} value={this.state.fullname} />
+                                                                <Label for="fullname">{profileContent.form.fields.fullname.label}</Label>
+                                                                <Input onChange={this.handleUserInput.bind(this)} type="text" name="fullname" id="fullname" placeholder={profileContent.form.fields.fullname.placeholder} value={this.state.fullname} />
                                                                 </FormGroup>
                                                             </Col> */}
                                                     </Row>
@@ -613,7 +556,7 @@ class Checkout extends React.Component {
                                                         <Col md={6} className="checkout-form">
                                                             {/* <FormGroup> */}
                                                             <Label for='email'>
-                                                                {profileData.form.fields.email.label}
+                                                                {profileContent.form.fields.email.label}
                                                             </Label>
                                                             <Input
                                                                 readOnly
@@ -621,7 +564,7 @@ class Checkout extends React.Component {
                                                                 name='email'
                                                                 id='email'
                                                                 autoComplete='off'
-                                                                placeholder={profileData.form.fields.email.placeholder}
+                                                                placeholder={profileContent.form.fields.email.placeholder}
                                                                 value={this.state.email}
                                                             />
                                                             {/* </FormGroup> */}
@@ -629,7 +572,7 @@ class Checkout extends React.Component {
                                                         <Col md={6} className="checkout-form">
                                                             {/* <FormGroup> */}
                                                             <Label for='phone'>
-                                                                {profileData.form.fields.phone.label}
+                                                                {profileContent.form.fields.phone.label}
                                                             </Label>
                                                             <Input
                                                                 onChange={this.handleUserInput.bind(this)}
@@ -638,7 +581,7 @@ class Checkout extends React.Component {
                                                                 name='phone'
                                                                 id='phone'
                                                                 autoComplete='off'
-                                                                placeholder={profileData.form.fields.phone.placeholder}
+                                                                placeholder={profileContent.form.fields.phone.placeholder}
                                                                 value={this.state.phone}
                                                                 pattern="^\+?([0-9]+){1,3}\.?([0-9]+){4,14}$"
                                                                 maxLength="30"
@@ -648,8 +591,8 @@ class Checkout extends React.Component {
                                                         </Col>
                                                         {/* <Col md={6}>
                                                                 <FormGroup>
-                                                                <Label for="birthdate">{profileData.form.fields.birthdate.label}</Label>
-                                                                <Input onChange={this.handleUserInput.bind(this)} type="text" name="birthdate" id="birthdate" placeholder={profileData.form.fields.birthdate.placeholder} value={this.state.birthdate} />
+                                                                <Label for="birthdate">{profileContent.form.fields.birthdate.label}</Label>
+                                                                <Input onChange={this.handleUserInput.bind(this)} type="text" name="birthdate" id="birthdate" placeholder={profileContent.form.fields.birthdate.placeholder} value={this.state.birthdate} />
                                                                 </FormGroup>
                                                             </Col> */}
                                                     </Row>
@@ -657,7 +600,7 @@ class Checkout extends React.Component {
                                                         <Col md={12} className="checkout-form">
                                                             {/* <FormGroup> */}
                                                             <Label for='street'>
-                                                                {profileData.form.fields.street.label}
+                                                                {profileContent.form.fields.street.label}
                                                             </Label>
                                                             <Input
                                                                 onChange={this.handleUserInput.bind(this)}
@@ -666,7 +609,7 @@ class Checkout extends React.Component {
                                                                 name='street'
                                                                 id='street'
                                                                 autoComplete='off'
-                                                                placeholder={profileData.form.fields.street.placeholder}
+                                                                placeholder={profileContent.form.fields.street.placeholder}
                                                                 value={this.state.street}
                                                                 pattern="^(?=.*[a-zA-Z])(?!.*[^ \-a-zA-Z0-9\.#]).*$"
                                                                 maxLength="50"
@@ -679,7 +622,7 @@ class Checkout extends React.Component {
                                                         <Col md={6} className="checkout-form">
                                                             {/* <FormGroup> */}
                                                             <Label for='city'>
-                                                                {profileData.form.fields.city.label}
+                                                                {profileContent.form.fields.city.label}
                                                             </Label>
                                                             <Input
                                                                 onChange={this.handleUserInput.bind(this)}
@@ -688,7 +631,7 @@ class Checkout extends React.Component {
                                                                 name='city'
                                                                 id='city'
                                                                 autoComplete='off'
-                                                                placeholder={profileData.form.fields.city.placeholder}
+                                                                placeholder={profileContent.form.fields.city.placeholder}
                                                                 value={this.state.city}
                                                                 pattern="^(?=.*[a-zA-Z])(?!.*[^ \-a-zA-Z]).*$"
                                                                 maxLength="50"
@@ -699,7 +642,7 @@ class Checkout extends React.Component {
                                                         <Col md={6} className="checkout-form">
                                                             {/* <FormGroup> */}
                                                             <Label for='zipcode'>
-                                                                {profileData.form.fields.zipcode.label}
+                                                                {profileContent.form.fields.zipcode.label}
                                                             </Label>
                                                             <Input
                                                                 onChange={this.handleUserInput.bind(this)}
@@ -709,7 +652,7 @@ class Checkout extends React.Component {
                                                                 id='zipcode'
                                                                 autoComplete='off'
                                                                 placeholder={
-                                                                    profileData.form.fields.zipcode.placeholder
+                                                                    profileContent.form.fields.zipcode.placeholder
                                                                 }
                                                                 value={this.state.zipcode}
                                                                 pattern="^(?=.*[a-zA-Z0-9])(?!.*[^ \-a-zA-Z0-9]).*$"
@@ -722,10 +665,10 @@ class Checkout extends React.Component {
                                                     {/* <Row form> Not doing passwordless in v1. 
                                                                 <Col md={5}>
                                                                 <FormGroup>
-                                                                    <Label for="city">{profileData.form.fields.login.label}</Label>
+                                                                    <Label for="city">{profileContent.form.fields.login.label}</Label>
                                                                     <Input type="select" name="login" id="login">
-                                                                    <option value="mobile">{profileData.form.fields.login.options.mobile}</option>
-                                                                    <option value="password">{profileData.form.fields.login.options.password}</option>
+                                                                    <option value="mobile">{profileContent.form.fields.login.options.mobile}</option>
+                                                                    <option value="password">{profileContent.form.fields.login.options.password}</option>
                                                                     </Input>
                                                                 </FormGroup>
                                                                 </Col>
@@ -746,16 +689,16 @@ class Checkout extends React.Component {
                                                                     type='button'
                                                                     color='link'
                                                                     className='ml-3'>
-                                                                    {profileData.form.buttons.cancel}
+                                                                    {profileContent.form.buttons.cancel}
                                                                 </Button>
-                                                                {/* <Button type="button" color="primary" onClick={this.props.onSubmit}>{profileData.form.buttons.submit}</Button> */}
+                                                                {/* <Button type="button" color="primary" onClick={this.props.onSubmit}>{profileContent.form.buttons.submit}</Button> */}
                                                                 <Button
                                                                     type='button'
                                                                     color='primary'
                                                                     onClick={() => {
                                                                         this.changeUIStep('4');
                                                                     }}>
-                                                                    {profileData.form.buttons.submit}
+                                                                    {profileContent.form.buttons.submit}
                                                                 </Button>
                                                             </div>
                                                         </Col>
@@ -771,7 +714,7 @@ class Checkout extends React.Component {
                                         <>
                                             {this.state.paymentError && (
                                                 <div className='paymentError' id='paymentError'>
-                                                    {data.paymentProcessing.paymentErrorMsg}
+                                                    {content.paymentProcessing.paymentErrorMsg}
                                                 </div>
                                             )}
 
@@ -789,16 +732,16 @@ class Checkout extends React.Component {
                                                             type='button'
                                                             color='link'
                                                             className='ml-3'>
-                                                            {profileData.form.buttons.cancel}
+                                                            {profileContent.form.buttons.cancel}
                                                         </Button>
-                                                        {/* <Button type="button" color="primary" onClick={this.props.onSubmit}>{profileData.form.buttons.submit}</Button> */}
+                                                        {/* <Button type="button" color="primary" onClick={this.props.onSubmit}>{profileContent.form.buttons.submit}</Button> */}
                                                         <Button
                                                             type='button'
                                                             color='primary'
                                                             onClick={() => {
                                                                 this.checkout();
                                                             }}>
-                                                            {profileData.form.buttons.submit}
+                                                            {profileContent.form.buttons.submit}
                                                         </Button>
                                                     </div>
                                                 </Col>
@@ -810,7 +753,7 @@ class Checkout extends React.Component {
                                 {this.state.step === '5' && (
                                     <div>
                                         <h4 style={{ maxWidth: '100%', paddingBottom: '10px' }}>
-                                            {data.modal.acctPrompt.title}
+                                            {content.modal.acctPrompt.title}
                                         </h4>
                                         {/* <FormGroup className="form-group-light"> */}
                                         <form
@@ -832,7 +775,7 @@ class Checkout extends React.Component {
                                                     onClick={() => {
                                                         this.changeUIStep('6');
                                                     }}>
-                                                    {data.modal.acctPrompt.buttons.createAcct}
+                                                    {content.modal.acctPrompt.buttons.createAcct}
                                                 </Button>
                                             </div>
                                         </form>
@@ -844,7 +787,7 @@ class Checkout extends React.Component {
                                                 onClick={() => {
                                                     this.props.history.push('/shop')
                                                 }}>
-                                                {data.modal.acctPrompt.buttons.backToShop}
+                                                {content.modal.acctPrompt.buttons.backToShop}
                                             </Button>
                                         </div>
                                         {/* </FormGroup> */}
@@ -877,7 +820,7 @@ class Checkout extends React.Component {
                         </div>
                         <div className='mt-4 text-center'>
                             <Button type='button' color='link' size='sm'>
-                                {data.modal.loading.help}
+                                {content.modal.loading.help}
                             </Button>
                         </div>
                     </ModalBody>
@@ -896,7 +839,7 @@ class Checkout extends React.Component {
                                 {/* Order Details */}
                                 <Row>
                                     <Col md={10}>
-                                        <h4 className='pl-4'>{data.modal.confirmation.title}</h4>
+                                        <h4 className='pl-4'>{content.modal.confirmation.title}</h4>
                                         <p className='pl-4'>{this.state.selectedItem.confirmationSubtitle}</p>
                                     </Col>
                                     <Col md={2} className='text-right'>
@@ -905,7 +848,7 @@ class Checkout extends React.Component {
                                                 type='button'
                                                 color='link'
                                                 onClick={this.toggleConfirmation.bind(this)}>
-                                                {this.state.acctFound ? data.modal.product.buttons.continue : data.modal.product.buttons.close}
+                                                {this.state.acctFound ? content.modal.product.buttons.continue : content.modal.product.buttons.close}
                                             </Button>
                                         </div>
                                     </Col>
@@ -937,7 +880,7 @@ class Checkout extends React.Component {
                                             />
                                             <div>
                                                 <Button type='button' color='link'>
-                                                    {data.modal.product.buttons.details}
+                                                    {content.modal.product.buttons.details}
                                                 </Button>
                                             </div>
                                         </div>
@@ -1003,18 +946,18 @@ class Checkout extends React.Component {
                                         <hr />
                                         <Row>
                                             <Col md={9} className='text-right'>
-                                                <p>{data.modal.cart.labels.subtotal}</p>
-                                                <p className='mt-2'>{data.modal.cart.labels.salesTax}</p>
-                                                {  (this.state.selectedItem.finalTotal === data.productsClickable[0].discountTotal) && <p className='mt-2'>{data.modal.cart.labels.discount}</p>}
+                                                <p>{content.modal.cart.labels.subtotal}</p>
+                                                <p className='mt-2'>{content.modal.cart.labels.salesTax}</p>
+                                                {  (this.state.selectedItem.finalTotal === content.productsClickable[0].discountTotal) && <p className='mt-2'>{content.modal.cart.labels.discount}</p>}
                                                 <p className='mt-2'>
-                                                    <strong>{data.modal.cart.labels.finalTotal}</strong>{' '}
-                                                    {data.modal.confirmation.paymentMethod}
+                                                    <strong>{content.modal.cart.labels.finalTotal}</strong>{' '}
+                                                    {content.modal.confirmation.paymentMethod}
                                                 </p>
                                             </Col>
                                             <Col md={2}>
                                                 <p>{this.state.selectedItem.subtotal}</p>
                                                 <p className='mt-2'>{this.state.selectedItem.salesTax}</p>
-                                                { (this.state.selectedItem.finalTotal === data.productsClickable[0].discountTotal) && <p className='mt-2'>{data.productsClickable[0].discountAmount}</p>}
+                                                { (this.state.selectedItem.finalTotal === content.productsClickable[0].discountTotal) && <p className='mt-2'>{content.productsClickable[0].discountAmount}</p>}
                                                 <p className='mt-2'>
                                                     <strong>{this.state.selectedItem.finalTotal}</strong>
                                                 </p>
@@ -1026,9 +969,9 @@ class Checkout extends React.Component {
                                 {this.state.selectedItem.mounting !== null && (
                                     <Row className='bg-light p-4'>
                                         <Col md={7}>
-                                            <h4>{data.modal.confirmation.subtitle}</h4>
+                                            <h4>{content.modal.confirmation.subtitle}</h4>
                                             <p>
-                                                {data.modal.confirmation.scheduleDescription +
+                                                {content.modal.confirmation.scheduleDescription +
                                                     ' ' +
                                                     this.state.zipcode +
                                                     '.'}
@@ -1037,14 +980,14 @@ class Checkout extends React.Component {
                                         <Col md={5}>
                                             <div className='text-right mt-4' style={{ paddingTop: '70px' }}>
                                                 <Button type='button' color='link'>
-                                                    {data.modal.confirmation.scheduleButtons.call}
+                                                    {content.modal.confirmation.scheduleButtons.call}
                                                 </Button>
-                                                {/* <Button type="button" color="primary" className="ml-3" onClick={() => { this.toggleTabConfirmation("2"); }}>{data.modal.confirmation.scheduleButtons.online}</Button> */}
+                                                {/* <Button type="button" color="primary" className="ml-3" onClick={() => { this.toggleTabConfirmation("2"); }}>{content.modal.confirmation.scheduleButtons.online}</Button> */}
                                                 <Button
                                                     type='button'
                                                     color='primary'
                                                     className='ml-3'>
-                                                    {data.modal.confirmation.scheduleButtons.online}
+                                                    {content.modal.confirmation.scheduleButtons.online}
                                                 </Button>
                                             </div>
                                         </Col>
@@ -1061,11 +1004,11 @@ class Checkout extends React.Component {
                                     </Col>
                                     <Col md={8} className="radio-form">
                                         <div className="product mb-4">
-                                            <p>{data.modal.confirmation.consents.description1}</p>
-                                            <p>{data.modal.confirmation.consents.description2}</p>
-                                            <p>{data.modal.confirmation.consents.description3}</p>
+                                            <p>{content.modal.confirmation.consents.description1}</p>
+                                            <p>{content.modal.confirmation.consents.description2}</p>
+                                            <p>{content.modal.confirmation.consents.description3}</p>
                                         </div>
-                                        <h5 className="mb-4">{data.modal.confirmation.consents.iAgree}</h5>
+                                        <h5 className="mb-4">{content.modal.confirmation.consents.iAgree}</h5>
                                         {/* If you're getting delivery/installation, not sharing address doesn't make sense.
                                         <FormGroup>
                                         <Label>My Ship To/Installation Address</Label>
@@ -1073,20 +1016,20 @@ class Checkout extends React.Component {
                                         <CustomInput type="radio" name="address" checked label="No" />
                                         </FormGroup>
                                         <FormGroup>
-                                            <Label>{data.modal.confirmation.consents.phoneLabel}</Label>
+                                            <Label>{content.modal.confirmation.consents.phoneLabel}</Label>
                                             <CustomInput type="radio" name="phone" label="Yes" />
                                             <CustomInput type="radio" name="phone" checked label="No" />
                                         </FormGroup>
                                         <FormGroup>
-                                            <Label>{data.modal.confirmation.consents.emailLabel}</Label>
+                                            <Label>{content.modal.confirmation.consents.emailLabel}</Label>
                                             <CustomInput type="radio" name="email" label="Yes" />
                                             <CustomInput type="radio" name="email" checked label="No" />
                                         </FormGroup>
                                     </Col>
                                 </Row>
                                 <div className="text-right mt-2 mr-4 mb-4">
-                                    <Button type="button" color="link" onClick={() => { this.toggleTabConfirmation("1"); }}>{data.modal.confirmation.consentButtons.cancel}</Button>
-                                    <Button type="button" color="primary" className="ml-3" onClick={() => { this.toggleTabConfirmation("3"); }}>{data.modal.confirmation.consentButtons.save}</Button>
+                                    <Button type="button" color="link" onClick={() => { this.toggleTabConfirmation("1"); }}>{content.modal.confirmation.consentButtons.cancel}</Button>
+                                    <Button type="button" color="primary" className="ml-3" onClick={() => { this.toggleTabConfirmation("3"); }}>{content.modal.confirmation.consentButtons.save}</Button>
                                 </div>
                             </TabPane> */}
                             {/* <TabPane tabId="3"> // Consent mgmt. confirmation - NOT USED. CONSENT MGMT DEMO'D IN PROFILE UPDATES
@@ -1095,7 +1038,7 @@ class Checkout extends React.Component {
                                 </p>
                                 <div className="radio-form p-5">
                                     <div className="product mb-4">
-                                        <p>{data.modal.confirmation.consents.confirmation}</p>
+                                        <p>{content.modal.confirmation.consents.confirmation}</p>
                                     </div>
                                     <FormGroup>
                                         <Label>My Ship To/Installation Address</Label>
@@ -1103,17 +1046,17 @@ class Checkout extends React.Component {
                                         <CustomInput type="radio" name="address2" checked label="No" />
                                     </FormGroup>
                                     <FormGroup>
-                                        <Label>{data.modal.confirmation.consents.phoneLabel}</Label>
+                                        <Label>{content.modal.confirmation.consents.phoneLabel}</Label>
                                         <CustomInput type="radio" name="phone2" label="Yes" />
                                         <CustomInput type="radio" name="phone2" checked label="No" />
                                     </FormGroup>
                                     <FormGroup>
-                                        <Label>{data.modal.confirmation.consents.emailLabel}</Label>
+                                        <Label>{content.modal.confirmation.consents.emailLabel}</Label>
                                         <CustomInput type="radio" name="email2" label="Yes" />
                                         <CustomInput type="radio" name="email2" checked label="No" />
                                     </FormGroup>
                                     <div className="text-right mt-3">
-                                        <Button type="button" color="primary" onClick={() => { this.toggleTabConfirmation("2"); }}>{data.modal.confirmation.consentButtons.changeSettings}</Button>
+                                        <Button type="button" color="primary" onClick={() => { this.toggleTabConfirmation("2"); }}>{content.modal.confirmation.consentButtons.changeSettings}</Button>
                                     </div>
                                 </div>
                                 <a alt="Confirmation Footer" href="/app/any-tv-partner"><img src={window._env_.PUBLIC_URL + "/images/shop-confirmation-footer-2.png"} className="confirmation-footer" alt="confirmation" /></a>
@@ -1126,4 +1069,12 @@ class Checkout extends React.Component {
         );
     }
 }
+
+Checkout.propTypes = {
+    history: PropTypes.shape({
+        push: PropTypes.func.isRequired
+    }).isRequired
+
+}
+
 export default withRouter(Checkout);

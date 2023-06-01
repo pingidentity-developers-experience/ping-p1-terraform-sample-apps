@@ -8,14 +8,14 @@
 // import { useHistory, withRouter } from 'react-router-dom';
 
 // // Components
-// import NavbarMain from '../../components/NavbarMain';
-// import FooterMain from '../../components/FooterMain';
+// import NavbarMain from '../../components/UI/NavbarMain';
+// import FooterMain from '../../components/UI/FooterMain';
 // import Consents from '../../components/Controller/Consents';
 // import Session from '../../components/Utils/Session';
 // import Users from '../../components/Controller/Users';
 
-// // Data
-// import data from '../../data/partner.json';
+// // Content
+// import content from '../../content/partner.json';
 
 // // Styles
 // import '../../styles/pages/partner.scss';
@@ -100,7 +100,7 @@
 //   return (
 //     <div>
 //       <form onSubmit={e => e.preventDefault()} className="form-search form-inline float-right">
-//         <input className="form-control user-input" type="text" placeholder={data.clients.search_placeholder} onChange={onChange} value={inputValue} />
+//         <input className="form-control user-input" type="text" placeholder={content.clients.search_placeholder} onChange={onChange} value={inputValue} />
 //         <SuggestionsList
 //           inputValue={inputValue}
 //           selectedSuggestion={selectedSuggestion}
@@ -209,7 +209,7 @@
 //           <Container>
 //             <Row>
 //               <Col lg="12">
-//                 <h3>{data.welcome_bar}</h3>
+//                 <h3>{content.welcome_bar}</h3>
 //               </Col>
 //             </Row>
 //           </Container>
@@ -218,7 +218,7 @@
 //           <Container>
 //             <Row>
 //               <Col lg="4">
-//                 <h5>{data.profile.partner.title}</h5>
+//                 <h5>{content.profile.partner.title}</h5>
 //                 <Card>
 //                   <CardBody>
 //                     <Media>
@@ -227,12 +227,12 @@
 //                       </Media>
 //                       <Media body>
 //                         <p dangerouslySetInnerHTML={{__html: data.profile.partner.content}}></p>
-//                         <Button color="link">{data.profile.partner.button}</Button>
+//                         <Button color="link">{content.profile.partner.button}</Button>
 //                       </Media>
 //                     </Media>
 //                   </CardBody>
 //                 </Card>
-//                 <h5 className="mt-5">{data.alerts.title}</h5>
+//                 <h5 className="mt-5">{content.alerts.title}</h5>
 //                 <Card className="mb-5">
 //                   <CardBody>
 //                     {
@@ -242,7 +242,7 @@
 //                         );
 //                       })      
 //                     }
-//                     <Button color="link">{data.alerts.button}</Button>
+//                     <Button color="link">{content.alerts.button}</Button>
 //                   </CardBody>
 //                 </Card>
 //               </Col>
@@ -250,7 +250,7 @@
 //                 <div>
 //                   <Row>
 //                     <Col>
-//                       <h5 className="mb-4">{data.clients.title}</h5>
+//                       <h5 className="mb-4">{content.clients.title}</h5>
 //                     </Col>
 //                     <Col>
 //                       <SearchAutocomplete fetchEnforceConsents={this.fetchEnforceConsents.bind(this)}/>
@@ -258,7 +258,7 @@
 //                   </Row>
 //                   <Row>
 //                     <Col>
-//                       {data.clients.orders.map((order) => (
+//                       {content.clients.orders.map((order) => (
 //                         <div className="module">
 //                           <Container>
 //                             <Row className="pt-4 pb-3 pl-2 pr-2">

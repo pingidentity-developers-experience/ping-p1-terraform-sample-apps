@@ -1,5 +1,4 @@
 // Components
-import AuthZ from "./AuthZ";
 import Tokens from "../Utils/Tokens"; 
 import PingOneUsers from "../Integration/PingOneUsers";
 // import DaVinci from '../Integration/DaVinci';
@@ -20,9 +19,8 @@ class Users {
     */
     constructor() {
         this.envVars = window._env_;
-        this.authz = new AuthZ();
         this.tokens = new Tokens();
-        this.ping1Users = new PingOneUsers(this.envVars.REACT_APP_PROXYAPIPATH, this.envVars.REACT_APP_ENVID, this.envVars.REACT_APP_APIPATH);
+        this.ping1Users = new PingOneUsers(this.envVars.REACT_APP_ENVID, this.envVars.REACT_APP_APIPATH);
         // this.davinci = new DaVinci();
         this.session = new Session();
     }

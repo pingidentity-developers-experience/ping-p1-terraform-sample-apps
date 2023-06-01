@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
     Container,
     Row,
@@ -16,16 +17,16 @@ import {
 import { NavLink, withRouter } from 'react-router-dom';
 
 // Components
-import NavbarMain from '../../components/NavbarMain';
-import WelcomeBar from '../../components/WelcomeBar';
-import FooterMain from '../../components/FooterMain';
-import AccountsSubnav from '../../components/AccountsSubnav';
-import AccountsDropdown from '../../components/AccountsDropdown';
+import NavbarMain from '../../components/UI/NavbarMain';
+import WelcomeBar from '../../components/UI/WelcomeBar';
+import FooterMain from '../../components/UI/FooterMain';
+import AccountsSubnav from '../../components/UI/AccountsSubnav';
+import AccountsDropdown from '../../components/UI/AccountsDropdown';
 import Session from '../../components/Utils/Session';
 import Users from '../../components/Controller/Users';
 
-// Data
-import data from '../../data/shop/index.json';
+// Content
+import content from '../../content/shop/index.json';
 
 // Styles
 import '../../styles/pages/shop.scss';
@@ -134,8 +135,8 @@ class Shop extends React.Component {
                 <Container>
                     <div className='inner'>
                         <div className='sidebar'>
-                            {Object.keys(data.subnav).map((key) => {
-                                return <AccountsSubnav key={data.subnav[key].title} subnav={data.subnav[key]} />;
+                            {Object.keys(content.subnav).map((key) => {
+                                return <AccountsSubnav key={content.subnav[key].title} subnav={content.subnav[key]} />;
                             })}
                             <div className='text-center mt-4'>
                                 <p>
@@ -159,12 +160,12 @@ class Shop extends React.Component {
                         </div>
                         <div className='content'>
                             <div className='accounts-hdr'>
-                                <h1>{data.title}</h1>
-                                <AccountsDropdown text={data.dropdown} />
+                                <h1>{content.title}</h1>
+                                <AccountsDropdown text={content.dropdown} />
                             </div>
                             <div className='module'>
                                 <Row>
-                                    {data.productsClickable.map((item, i) => {
+                                    {content.productsClickable.map((item, i) => {
                                         return (
                                             <Col md={4} key={i}>
                                                 <div className='product'>
@@ -199,7 +200,7 @@ class Shop extends React.Component {
                                             </Col>
                                         );
                                     })}
-                                    {data.products.map((item, i) => {
+                                    {content.products.map((item, i) => {
                                         return (
                                             <Col md={4} key={i}>
                                                 <div className='product'>
@@ -265,18 +266,18 @@ class Shop extends React.Component {
                                                 src={window._env_.PUBLIC_URL + '/images/icons/check-blue-circle.svg'}
                                                 className='mx-3'
                                             />
-                                            {data.modal.product.title}
+                                            {content.modal.product.title}
                                         </h4>
                                     </Col>
                                     <Col className='text-right'>
                                         <div>
                                             <Button type='button' color='link'>
-                                                {data.modal.product.buttons.cart}
+                                                {content.modal.product.buttons.cart}
                                             </Button>
                                         </div>
                                         <div>
                                             <Button type='button' color='link' onClick={this.toggle.bind(this)}>
-                                                {data.modal.product.buttons.continue}
+                                                {content.modal.product.buttons.continue}
                                             </Button>
                                         </div>
                                         <div>
@@ -284,7 +285,7 @@ class Shop extends React.Component {
                                                 type='button'
                                                 color='link'
                                                 onClick={this.clearShoppingCart.bind(this)}>
-                                                {data.modal.product.buttons.clearCart}
+                                                {content.modal.product.buttons.clearCart}
                                             </Button>
                                         </div>
                                     </Col>
@@ -320,12 +321,12 @@ class Shop extends React.Component {
                                             </p>
                                             <div>
                                                 <Button type='button' color='link'>
-                                                    {data.modal.product.buttons.details}
+                                                    {content.modal.product.buttons.details}
                                                 </Button>
                                             </div>
                                             <div>
                                                 <Button type='button' color='link'>
-                                                    {data.modal.product.buttons.calculate}
+                                                    {content.modal.product.buttons.calculate}
                                                 </Button>
                                             </div>
                                         </div>
@@ -362,7 +363,7 @@ class Shop extends React.Component {
                                         {this.state.selectedItem.mounting == null && (
                                             <div className='text-right mt-4' style={{ paddingTop: '70px' }}>
                                                 <Button type='button' color='link'>
-                                                    {data.modal.product.buttons.skip}
+                                                    {content.modal.product.buttons.skip}
                                                 </Button>
                                                 <Button
                                                     type='button'
@@ -421,7 +422,7 @@ class Shop extends React.Component {
                                             </FormGroup>
                                             <div className='text-right mt-4'>
                                                 <Button type='button' color='link'>
-                                                    {data.modal.product.buttons.skip}
+                                                    {content.modal.product.buttons.skip}
                                                 </Button>
                                                 <Button
                                                     type='button'
@@ -441,12 +442,12 @@ class Shop extends React.Component {
                             <TabPane tabId='2'>
                                 <Row>
                                     <Col>
-                                        <h4 className='pl-4'>{data.modal.cart.title}</h4>
+                                        <h4 className='pl-4'>{content.modal.cart.title}</h4>
                                     </Col>
                                     <Col className='text-right'>
                                         <div>
                                             <Button type='button' color='link' onClick={this.toggle.bind(this)}>
-                                                {data.modal.product.buttons.continue}
+                                                {content.modal.product.buttons.continue}
                                             </Button>
                                         </div>
                                         <div>
@@ -454,7 +455,7 @@ class Shop extends React.Component {
                                                 type='button'
                                                 color='link'
                                                 onClick={this.clearShoppingCart.bind(this)}>
-                                                {data.modal.product.buttons.clearCart}
+                                                {content.modal.product.buttons.clearCart}
                                             </Button>
                                         </div>
                                     </Col>
@@ -486,7 +487,7 @@ class Shop extends React.Component {
                                             />
                                             <div>
                                                 <Button type='button' color='link'>
-                                                    {data.modal.product.buttons.details}
+                                                    {content.modal.product.buttons.details}
                                                 </Button>
                                             </div>
                                         </div>
@@ -557,10 +558,10 @@ class Shop extends React.Component {
                                         <Row>
                                             <Col md={6}></Col>
                                             <Col md={3} className='text-right'>
-                                                <p>{data.modal.cart.labels.subtotal}</p>
-                                                <p className='mt-2'>{data.modal.cart.labels.salesTax}</p>
+                                                <p>{content.modal.cart.labels.subtotal}</p>
+                                                <p className='mt-2'>{content.modal.cart.labels.salesTax}</p>
                                                 <p className='mt-2'>
-                                                    <strong>{data.modal.cart.labels.finalTotal}</strong>
+                                                    <strong>{content.modal.cart.labels.finalTotal}</strong>
                                                 </p>
                                             </Col>
                                             <Col md={2}>
@@ -576,7 +577,7 @@ class Shop extends React.Component {
                                 {this.state.selectedItem.mounting != null ? (
                                     <div className='text-right mt-2 mr-4 mb-4'>
                                         <Button type='button' color='link'>
-                                            {data.modal.cart.buttons.update}
+                                            {content.modal.cart.buttons.update}
                                         </Button>
                                         <Button
                                             type='button'
@@ -585,13 +586,13 @@ class Shop extends React.Component {
                                             onClick={() => {
                                                 this.checkout();
                                             }}>
-                                            {data.modal.cart.buttons.checkout}
+                                            {content.modal.cart.buttons.checkout}
                                         </Button>
                                     </div>
                                 ) : (
                                     <div className='text-right mt-2 mr-4 mb-4'>
                                         <Button type='button' color='link'>
-                                            {data.modal.cart.buttons.update}
+                                            {content.modal.cart.buttons.update}
                                         </Button>
                                         <Button
                                             type='button'
@@ -600,7 +601,7 @@ class Shop extends React.Component {
                                             onClick={() => {
                                                 this.checkout();
                                             }}>
-                                            {data.modal.cart.buttons.checkout}
+                                            {content.modal.cart.buttons.checkout}
                                         </Button>
                                     </div>
                                 )}
@@ -613,4 +614,14 @@ class Shop extends React.Component {
         );
     }
 }
+
+Shop.propTypes = {
+    location: PropTypes.shape({
+      state: PropTypes.string
+    }),
+    history: PropTypes.shape({
+      push: PropTypes.func.isRequired
+    }).isRequired
+}
+
 export default withRouter(Shop);

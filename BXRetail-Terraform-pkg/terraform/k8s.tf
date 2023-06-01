@@ -1,9 +1,15 @@
-##########################################################################
+###################################################################################################
 # k8s.tf - Contains Kubernetes deployment declarations.
 # {@link https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs}
-##########################################################################
+# 
+# The "count" declaration is whether you want the sample delpoyed to your k8s
+# host environment, or if you want it run locally on your machine at localhost.
+# There is a variable in terraform.tfvars to control this. The default is set
+# in vars.tf.
+###################################################################################################
 
 resource "kubernetes_ingress_v1" "package_ingress" {
+  count = var.deploy_app_to_k8s ? 1 : 0
   metadata {
     namespace = var.k8s_namespace
     name      = "${var.k8s_deploy_name}-app"
@@ -26,7 +32,7 @@ resource "kubernetes_ingress_v1" "package_ingress" {
             service {
               name = "${var.k8s_deploy_name}-app"
               port {
-                number = 5000
+                number = var.app_port
               }
             }
           }
@@ -41,6 +47,7 @@ resource "kubernetes_ingress_v1" "package_ingress" {
 }
 
 resource "kubernetes_ingress_v1" "package_proxy_ingress" {
+  count = var.deploy_app_to_k8s ? 1 : 0
   metadata {
     namespace = var.k8s_namespace
     name      = "${var.k8s_deploy_name}-proxy"
@@ -73,6 +80,7 @@ resource "kubernetes_ingress_v1" "package_proxy_ingress" {
 }
 
 resource "kubernetes_deployment" "app_proxy" {
+  count = var.deploy_app_to_k8s ? 1 : 0
   metadata {
     namespace = var.k8s_namespace
     name      = "${var.k8s_deploy_name}-proxy"
@@ -110,6 +118,7 @@ resource "kubernetes_deployment" "app_proxy" {
 }
 
 resource "kubernetes_service" "app_proxy" {
+  count = var.deploy_app_to_k8s ? 1 : 0
   metadata {
     namespace = var.k8s_namespace
     name      = "${var.k8s_deploy_name}-proxy"
@@ -129,6 +138,7 @@ resource "kubernetes_service" "app_proxy" {
 }
 
 resource "kubernetes_deployment" "bxr_app" {
+  count = var.deploy_app_to_k8s ? 1 : 0
   metadata {
     namespace = var.k8s_namespace
     name      = "${var.k8s_deploy_name}-app"
@@ -166,9 +176,8 @@ resource "kubernetes_deployment" "bxr_app" {
             value = "https://${var.k8s_deploy_name}.${var.k8s_deploy_domain}"
           }
           env {
-            # The PingOne host for authN API calls
-            # Note: For this demo, we're proxying the calls to avoid CORS
-            # Typically you'd resolve this with a P1 Custom Domain
+            # The Fastify proxy host for proxy-ing sensitive mgmt API calls.
+            # Note: This proxy is not currently in use, but will be used in future use cases.
             name  = "REACT_APP_PROXYAPIPATH"
             value = "https://${var.k8s_deploy_name}-proxy.${var.k8s_deploy_domain}"
           }
@@ -181,11 +190,6 @@ resource "kubernetes_deployment" "bxr_app" {
             # Client ID
             name  = "REACT_APP_CLIENT"
             value = pingone_application.bxretail_sample_app.oidc_options[0].client_id
-          }
-          env {
-            # Client secret
-            name  = "REACT_APP_RECSET"
-            value = pingone_application.bxretail_sample_app.oidc_options[0].client_secret
           }
           env {
             # P1 Auth URL (accounts for Region)
@@ -211,6 +215,7 @@ resource "kubernetes_deployment" "bxr_app" {
 }
 
 resource "kubernetes_service" "bxr_app" {
+  count = var.deploy_app_to_k8s ? 1 : 0
   metadata {
     namespace = var.k8s_namespace
     name      = "${var.k8s_deploy_name}-app"
@@ -221,8 +226,8 @@ resource "kubernetes_service" "bxr_app" {
     }
     session_affinity = "ClientIP"
     port {
-      port        = 5000
-      target_port = 5000
+      port        = var.app_port
+      target_port = var.app_port
     }
 
     type = "ClusterIP"

@@ -1,5 +1,4 @@
 // Components
-import AuthZ from "./AuthZ";
 import PingOneRegistration from "../Integration/PingOneRegistration";
 import Session from "../Utils/Session";
 // import DaVinci from "../Integration/DaVinci";
@@ -19,7 +18,6 @@ class Registration {
     */
     constructor() {
         this.envVars = window._env_;
-        this.authz = new AuthZ();
         this.ping1Reg = new PingOneRegistration(this.envVars.REACT_APP_AUTHPATH, this.envVars.REACT_APP_ENVID, this.envVars.REACT_APP_APIPATH);
         this.session = new Session();
         // this.davinci = new DaVinci();
@@ -40,21 +38,11 @@ class Registration {
         });
 
         const response = await this.ping1Reg.userVerify({ regCodePayload: rawPayload, flowId: flowId });
-        //TODO do we want to keep this pattern? return status and resumeUrl if "completed", otherwise entire response? Or just error data?
-        const status = await response.status;
-        if (status === "COMPLETED") {
-
-            return { status: status, resumeUrl: response.resumeUrl, user: response._embedded.user };
-
-        } else {
-            
-            return response;
-
-        }
+        return response;
     }
 
     /**
-    Enroll an MFA device Device. Process ther request and payload to enroll email as a device at registration for all users so that MFA works later if they opt-in. 
+    Enroll an MFA device Device. Process their request and payload to enroll email as a device at registration for all users so that MFA works later if they opt-in. 
     @param {string} userId User Id GUID for which to enroll device.
     @param {string} email Email address to be enrolled as user device.
     @param {string} accessToken PingOne access token.

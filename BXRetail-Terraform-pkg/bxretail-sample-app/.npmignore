@@ -3,7 +3,7 @@
 .vscode
 .DS_Store
 .dockerignore
-build-bx-app-image.sh
+dBuild-tApply.sh
 *-sbom.json
 Dockerfile
 Dockerfile.dev

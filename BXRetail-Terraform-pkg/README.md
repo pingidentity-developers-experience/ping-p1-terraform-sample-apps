@@ -58,8 +58,9 @@ k8s_deploy_name   = "{{k8sDeployName}}"
 k8s_deploy_domain = "{{k8sDeployDomain}}"
 k8s_namespace     = "{{k8sNamespace}}"
 proxy_image_name  = "docker.io/michaelspingidentity/ping-integration-proxy:0.1.0"
-app_image_name    = "docker.io/michaelspingidentity/ping-bxretail-terraform-sample:202305-0.19.12-earlyaccess"
+app_image_name    = "docker.io/michaelspingidentity/ping-bxretail-terraform-sample:latest"
 deploy_app_to_k8s = [true | false]
+app_port          = 5000
 ```
 
 
@@ -77,6 +78,7 @@ deploy_app_to_k8s = [true | false]
 | k8s_namespace | K8s Namespace to deploy app |
 | app_image_name | The name and tag of the Docker image pulled from DockerHub. For reference only in the console log.
 | deploy_app_to_k8s | Whether to deploy the sample app to your k8s cluster, or deploy the app locally to your laptop running at localhost.
+| app_port | Defaults to 5000. Port the localhost version of the app runs at.
 
 ### Deployment
 

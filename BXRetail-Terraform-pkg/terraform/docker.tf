@@ -7,13 +7,13 @@
 # {@link https://hub.docker.com/repository/docker/michaelspingidentity/ping-bxretail-terraform-sample/general}
 ####################################################################################################
 
-# Pulls the example app image
+# # Pulls the example app image
 # resource "docker_image" "ping_bxr_sample_app" {
 #   count = var.deploy_app_to_k8s ? 0 : 1
 #   name  = var.app_image_name
 # }
 
-# Create and run the container
+# # Create and run the container
 # resource "docker_container" "local_bxr_app" {
 #   count = var.deploy_app_to_k8s ? 0 : 1
 #   image = docker_image.ping_bxr_sample_app[count.index].image_id

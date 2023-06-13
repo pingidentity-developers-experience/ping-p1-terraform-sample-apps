@@ -77,7 +77,7 @@ app_port          = 5000
 | k8s_deploy_domain | K8s Deploy Domain name |
 | k8s_namespace | K8s Namespace to deploy app |
 | app_image_name | The name and tag of the Docker image pulled from DockerHub. For reference only in the console log.
-| deploy_app_to_k8s | Whether to deploy the sample app to your k8s cluster, or deploy the app locally to your laptop running at localhost.
+| deploy_app_to_k8s | Whether to deploy the sample app to your k8s cluster, or deploy the app locally to your laptop running at localhost. ***NOTE:*** if you set this to false, you need to uncomment the resources in docker.tf. This is because even if you choose to deploy with k8s, `terraform plan` will still check if the Docker runtime is available.
 | app_port | Defaults to 5000. Port the localhost version of the app runs at.
 
 ### Deployment

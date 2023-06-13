@@ -37,7 +37,7 @@ class AuthZ {
             scope: 'openid profile email p1:read:user p1:update:user p1:read:sessions p1:update:userMfaEnabled p1:create:device',
         };
         // Initialize the library using an authentication server's well-known endpoint. Note this takes in the base url of the auth server, not the well-known endpoint itself. '/.well-known/openid-configuration' will be appended to the url by the SDK.
-        const oidcClient = await OidcClient.initializeFromOpenIdConfig(`https://auth.pingone.com/${this.envVars.REACT_APP_ENVID}/as`, clientOptions);
+        const oidcClient = await OidcClient.initializeFromOpenIdConfig(`${this.envVars.REACT_APP_AUTHPATH}/${this.envVars.REACT_APP_ENVID}/as`, clientOptions);
         return oidcClient;
     }
 

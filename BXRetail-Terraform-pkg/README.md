@@ -98,7 +98,6 @@ terraform apply —auto-approve
 ````
 
 If this is successful, you will see a new environment added to your PingOne organization under the name `Ping Identity Example`. 
-If this is successful, you will see a new environment added to your PingOne organization under the name "Ping Identity Example".
 
 **NOTE:** The k8s deployment creates new ingresses and a subdomain for the app of `k8s_deploy_name.k8s_deploy_domain`. So the app may not be immediately available when terraforming is complete. Go get yourself some coff-ay and try again.
 

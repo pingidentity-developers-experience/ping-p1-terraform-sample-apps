@@ -28,7 +28,8 @@ module "environment" {
   create_mfa = true
   # create_davinci   = true
   # create_authorize = true
-  license_id = var.license_id
+  license_id      = var.license_id
+  organization_id = var.organization_id
 }
 
 ##############################################

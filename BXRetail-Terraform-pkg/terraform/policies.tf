@@ -33,11 +33,7 @@ resource "pingone_mfa_policy" "bxr_mfa_policy" {
     enabled = false
   }
 
-  security_key {
-    enabled = false
-  }
-
-  platform {
+  fido2 {
     enabled = false
   }
 

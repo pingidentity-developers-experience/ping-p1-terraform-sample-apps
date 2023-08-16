@@ -42,7 +42,7 @@ COPY --chown=node:node . ./
 
 # Install packages and locked dependencies.
 # And Docker doesn't need to hear about available npm updates.
-RUN npm config set update-notifier false && npm ci
+RUN npm config set update-notifier false && npm ci --ignore-scripts
 
 # Make sure our shell script is executable
 RUN chmod +x env.sh

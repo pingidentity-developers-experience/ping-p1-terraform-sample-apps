@@ -8,7 +8,7 @@
     },
     "dependencies": {
       "fastify": "^4.11.0",
-      "@fastify/http-proxy": "^8.4.0",
+      "@fastify/http-proxy": "^9.2.1",
       "@fastify/cors": "^8.2.0"
     },
     "engines": {

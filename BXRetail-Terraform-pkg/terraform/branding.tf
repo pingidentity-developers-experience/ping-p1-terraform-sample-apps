@@ -24,7 +24,7 @@ resource "pingone_branding_settings" "branding" {
 resource "pingone_branding_theme" "bxretail_theme" {
   environment_id = module.environment.environment_id
 
-  name     = "BXRetail (not used)"
+  name     = "BXRetail"
   template = "mural"
 
   body_text_color    = "#000000"
@@ -43,6 +43,12 @@ resource "pingone_branding_theme" "bxretail_theme" {
     id   = pingone_image.bxretail_logo.id
     href = pingone_image.bxretail_logo.uploaded_image[0].href
   }
+}
+
+resource "pingone_branding_theme_default" "bxretail_theme" {
+  environment_id = module.environment.environment_id
+
+  branding_theme_id = pingone_branding_theme.bxretail_theme.id
 }
 
 # Pulling in BXRetail images.

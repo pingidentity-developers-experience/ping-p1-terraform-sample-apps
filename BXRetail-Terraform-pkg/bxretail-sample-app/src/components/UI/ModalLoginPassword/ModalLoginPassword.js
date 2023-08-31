@@ -19,7 +19,6 @@ import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 // Components
 import FormPassword from '../FormPassword';
-// import LoginLinkButton from '../LoginLinkButton';
 import AuthN from '../../Controller/AuthN';
 import Session from '../../Utils/Session';
 import Registration from '../../Controller/Registration';

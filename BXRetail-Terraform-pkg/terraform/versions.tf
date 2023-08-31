@@ -4,7 +4,7 @@ terraform {
   required_providers {
     pingone = {
       source  = "pingidentity/pingone"
-      version = ">= 0.11.1, < 1.0.0"
+      version = ">= 0.18.1, < 1.0.0"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"

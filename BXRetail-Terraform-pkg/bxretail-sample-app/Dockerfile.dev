@@ -1,32 +1,54 @@
-# This Dockerfile is used development images only.
+# This Dockerfile is used for development images only.
 # The .env config file should be updated accordingly before running "docker build...".
-# The Dev environment has its own DockerFile and Compose YAML file because we want 
-# a React "dev build" that allows for hot code reloading and volume mounted source for
-# development with VSCode Remote.
+# There are no production images since this is a sample app we want easy access to source. 
+# Plsu a React "dev build" allows for hot code reloading.
+# @see https://res.cloudinary.com/snyk/images/v1/wordpress-sync/NodeJS-CheatSheet/NodeJS-CheatSheet.pdf
+# @see https://snyk.io/advisor/docker/node/lts-slim
+# @see https://docs.docker.com/develop/security-best-practices/
+# @see https://github.com/Yelp/dumb-init
+# @see https://cheatsheetseries.owasp.org/cheatsheets/NPM_Security_Cheat_Sheet.html
  
-# pull official base image
-FROM node:18.13.0-alpine
+# Pull the official slim LTS base image. Lightweight, stable, long-term support.
+# Production ready image with no critical or high vulns.
+FROM node:lts-slim
 
-# set working directory
+# Mostly for reference. Some frameworks optimize based on this var.
+ENV NODE_ENV=development
+
+# Meta data. It matters.
+LABEL com.pingidentity.vendor="Ping Identity"
+LABEL com.pingidentity.department="Technical Enablement"
+LABEL com.pingidentity.product="sample app"
+LABEL com.pingidentity.vertical="retail"
+LABEL com.pingidentity.environment="Developers' Experience"
+LABEL com.pingidentity.security="snyk container test, snyk test --dev"
+
+# Init system wrapper to properly handle child processes and signals.
+RUN apt update && apt install dumb-init
+
+# Run as a non-privileged user.
+USER node
+
+# Create/set the working directory.
 WORKDIR /app
 
-# add `/app/node_modules/.bin` to $PATH
+# Add `/app/node_modules/.bin` to $PATH.
 ENV PATH /app/node_modules/.bin:$PATH
 
-# install app dependencies
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install
+# Copy the source into the image and change owner to 'node'.
+# Copy everything in one COPY to avoid creating multiple layers.
+# Manage unwanted files in .dockerignore
+COPY --chown=node:node . ./
 
-# add app
-COPY . ./
+# Install packages and locked dependencies.
+# And Docker doesn't need to hear about available npm updates.
+RUN npm config set update-notifier false && npm ci --ignore-scripts
 
-# Copy .env file and shell script to container
-COPY ./env.sh .
-COPY .env.development .
+# Make sure our shell script is executable
+RUN chmod +x env.sh
 
-# Add bash - not included with Alpine based images
-RUN apk add --no-cache bash
+# Run dumb-init to manage CMD commands and processes/signals.
+ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
-# start app
-CMD ["npm", "start", ".env.development"]    
+# start the app when the container is created.
+CMD ["npm", "start", ".env.development"]

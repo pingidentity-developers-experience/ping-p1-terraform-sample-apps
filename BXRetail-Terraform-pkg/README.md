@@ -67,7 +67,7 @@ app_port          = 5000
 | Variable | Description | 
 | -------- | ----------- |
 | region | Region for PingOne Environment | 
-| organization_id | PingOne Organization Id - Located under Environment -> Properties, see [PingOne Terraform provider Getting Started Guide](https://pingidentity.github.io/terraform-docs/getting-started/pingone/#finding-required-ids) for further instructions. | 
+| organization_id | PingOne Organization Id - Located under Environment -> Properties, see [PingOne Terraform provider Getting Started Guide](https://pingidentity.github.io/terraform-docs/getting-started/pingone/#finding-required-ids) for further instructions. |
 | admin_env_id | PingOne Environment Id for Administrators Environment - Located under Environment -> Properties |
 | admin_user_id | User Id for a user in the Administrators Environment - Located under Identities -> Users -> Select user -> Click API tab -> ID |
 | license_id | License Id to be used for PingOne Environment - Located under Environment -> Properties, see [PingOne Terraform provider Getting Started Guide](https://pingidentity.github.io/terraform-docs/getting-started/pingone/#finding-required-ids) for further instructions.|
@@ -100,7 +100,6 @@ terraform apply —auto-approve
 ````
 
 If this is successful, you will see a new environment added to your PingOne organization under the name `Ping Identity Example`. 
-If this is successful, you will see a new environment added to your PingOne organization under the name "Ping Identity Example".
 
 **NOTE:** The k8s deployment creates new ingresses and a subdomain for the app of `k8s_deploy_name.k8s_deploy_domain`. So the app may not be immediately available when terraforming is complete. Go get yourself some coff-ay and try again.
 

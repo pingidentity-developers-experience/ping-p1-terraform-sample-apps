@@ -20,7 +20,7 @@ tflint:
 	@for dir in $$(find ./BX*-Terraform-pkg -maxdepth 0); do \
 		echo $${dir} ; \
 		[ -d "$${dir}/terraform" ] && tflint --chdir=$${dir}/terraform; \
-    done
+	done
 
 tfsec:
 	@echo "==> Checking Terraform code with tfsec..."

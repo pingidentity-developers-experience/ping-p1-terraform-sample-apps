@@ -17,7 +17,7 @@ validate:
 
 tflint:
 	@echo "==> Checking Terraform code with tflint..."
-	@tflint ./BX*-Terraform-pkg/terraform
+	@tflint --recursive
 
 tfsec:
 	@echo "==> Checking Terraform code with tfsec..."

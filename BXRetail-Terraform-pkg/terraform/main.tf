@@ -32,6 +32,18 @@ module "environment" {
   organization_id = var.organization_id
 }
 
+
+# PingOne Utilities Module
+# {@link https://registry.terraform.io/modules/pingidentity/utils/pingone/latest}
+module "pingone_utils" {
+  source  = "pingidentity/utils/pingone"
+  version = "0.0.8"
+
+  environment_id = module.environment.environment_id
+  region         = var.region
+  # custom_domain  = "auth.bxretail.org"
+}
+
 ##############################################
 # PingOne Provider
 ##############################################

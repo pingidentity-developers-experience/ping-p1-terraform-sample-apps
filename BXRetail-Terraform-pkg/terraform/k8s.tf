@@ -192,14 +192,14 @@ resource "kubernetes_deployment" "bxr_app" {
             value = pingone_application.bxretail_sample_app.oidc_options[0].client_id
           }
           env {
-            # P1 Auth URL (accounts for Region)
+            # P1 Auth URL (accounts for Region) - https://auth.pingone.{region}
             name  = "REACT_APP_AUTHPATH"
-            value = "https://auth.pingone.${local.pingone_domain}"
+            value = module.pingone_utils.pingone_url_auth_path
           }
           env {
-            # P1 API URL (accounts for Region)
+            # P1 API URL (accounts for Region) - https://api.pingone.{region}/v1
             name  = "REACT_APP_APIPATH"
-            value = "https://api.pingone.${local.pingone_domain}/v1"
+            value = module.pingone_utils.pingone_url_api_path_v1
           }
           env {
             # The Docker image name just for validation/troubleshooting.

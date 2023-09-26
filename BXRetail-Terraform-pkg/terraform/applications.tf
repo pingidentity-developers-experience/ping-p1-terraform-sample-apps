@@ -38,16 +38,18 @@ resource "pingone_application" "bxretail_sample_app" {
 resource "pingone_application_resource_grant" "pingone_scopes" {
   environment_id = module.environment.environment_id
   application_id = pingone_application.bxretail_sample_app.id
-  resource_id    = data.pingone_resource.pingone_apis.id
-  scopes = [
-    data.pingone_resource_scope.p1api_validatePassword.id,
-    data.pingone_resource_scope.p1api_read_sessions.id,
-    data.pingone_resource_scope.p1api_update_user.id,
-    data.pingone_resource_scope.p1api_create_device.id,
-    data.pingone_resource_scope.p1api_read_consents.id,
-    data.pingone_resource_scope.p1api_update_mfa.id,
-    data.pingone_resource_scope.p1api_read_user.id,
-    data.pingone_resource_scope.p1api_reset_password.id
+
+  resource_name = module.pingone_utils.pingone_resource_name_pingone_api
+
+  scope_names = [
+    module.pingone_utils.pingone_resource_scope_name_pingone_api_validate_userpassword,
+    module.pingone_utils.pingone_resource_scope_name_pingone_api_read_sessions,
+    module.pingone_utils.pingone_resource_scope_name_pingone_api_update_user,
+    module.pingone_utils.pingone_resource_scope_name_pingone_api_create_device,
+    module.pingone_utils.pingone_resource_scope_name_pingone_api_read_userconsent,
+    module.pingone_utils.pingone_resource_scope_name_pingone_api_update_usermfaenabled,
+    module.pingone_utils.pingone_resource_scope_name_pingone_api_read_user,
+    module.pingone_utils.pingone_resource_scope_name_pingone_api_reset_userpassword
   ]
 }
 

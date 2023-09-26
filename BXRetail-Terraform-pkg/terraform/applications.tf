@@ -57,13 +57,13 @@ resource "pingone_application_resource_grant" "bxretail_openid" {
   environment_id = module.environment.environment_id
   application_id = pingone_application.bxretail_sample_app.id
 
-  resource_id = data.pingone_resource.openid.id
+  resource_name = "openid"
 
-  scopes = [
-    data.pingone_resource_scope.openid_profile.id,
-    data.pingone_resource_scope.openid_address.id,
-    data.pingone_resource_scope.openid_phone.id,
-    data.pingone_resource_scope.openid_email.id
+  scope_names = [
+    "profile",
+    "address",
+    "phone",
+    "email"
   ]
 }
 

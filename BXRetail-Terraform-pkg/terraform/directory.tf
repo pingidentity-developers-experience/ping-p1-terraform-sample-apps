@@ -27,8 +27,6 @@ resource "pingone_population" "bxr_pop" {
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_t_adduserattributes}
 resource "pingone_schema_attribute" "consent_json_attribute" {
   environment_id = module.environment.environment_id
-  #resource_id    = pingone_population.bxr_pop.id
-  schema_id = data.pingone_schema.bxr_schema.id
 
   name         = "consent"
   display_name = "Consent"

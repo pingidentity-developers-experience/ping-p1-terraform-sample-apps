@@ -17,7 +17,10 @@ validate:
 
 tflint:
 	@echo "==> Checking Terraform code with tflint..."
-	@tflint ./BX*-Terraform-pkg/terraform
+	@for dir in $$(find ./BX*-Terraform-pkg -maxdepth 0); do \
+		echo $${dir} ; \
+		[ -d "$${dir}/terraform" ] && tflint --chdir=$${dir}/terraform; \
+	done
 
 tfsec:
 	@echo "==> Checking Terraform code with tfsec..."

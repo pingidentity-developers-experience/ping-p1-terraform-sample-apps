@@ -11,7 +11,7 @@
 ##############################################
 
 resource "pingone_branding_settings" "branding" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   company_name = "BXRetail Sample Company"
 
@@ -22,7 +22,7 @@ resource "pingone_branding_settings" "branding" {
 }
 
 resource "pingone_branding_theme" "bxretail_theme" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   name     = "BXRetail"
   template = "mural"
@@ -46,7 +46,7 @@ resource "pingone_branding_theme" "bxretail_theme" {
 }
 
 resource "pingone_branding_theme_default" "bxretail_theme" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   branding_theme_id = pingone_branding_theme.bxretail_theme.id
 }
@@ -54,18 +54,18 @@ resource "pingone_branding_theme_default" "bxretail_theme" {
 # Pulling in BXRetail images.
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/image}
 resource "pingone_image" "bxretail_logo" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   image_file_base64 = filebase64("${path.module}/bxretail_logo.png")
 }
 resource "pingone_image" "bxretail_logo_white" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   image_file_base64 = filebase64("${path.module}/bxretail_logo_white.png")
 }
 
 resource "pingone_image" "bxretail_background" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   image_file_base64 = filebase64("${path.module}/home-hero-office-bg.png")
 }

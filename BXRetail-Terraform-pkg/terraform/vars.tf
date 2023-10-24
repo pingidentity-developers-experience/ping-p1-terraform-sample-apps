@@ -42,7 +42,7 @@ variable "worker_secret" {
 variable "env_name" {
   type        = string
   description = "Name used for the PingOne Environment"
-  default     = "PingIdentity BXRetail Example"
+  default     = "Ping Identity BXRetail Example"
 }
 
 variable "k8s_namespace" {

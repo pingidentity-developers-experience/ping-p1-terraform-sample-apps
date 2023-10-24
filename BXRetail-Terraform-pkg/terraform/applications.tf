@@ -12,7 +12,7 @@
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application}
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_add_app_worker}
 resource "pingone_application" "bxretail_sample_app" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   enabled        = true
   name           = "BXRetail Sample App"
   description    = "A custom sample retail app to demonstrate PingOne integtation."
@@ -36,7 +36,7 @@ resource "pingone_application" "bxretail_sample_app" {
 
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application_resource_grant}
 resource "pingone_application_resource_grant" "pingone_scopes" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.bxretail_sample_app.id
 
   resource_name = module.pingone_utils.pingone_resource_name_pingone_api
@@ -54,7 +54,7 @@ resource "pingone_application_resource_grant" "pingone_scopes" {
 }
 
 resource "pingone_application_resource_grant" "bxretail_openid" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.bxretail_sample_app.id
 
   resource_name = "openid"
@@ -72,22 +72,22 @@ resource "pingone_application_resource_grant" "bxretail_openid" {
 ##############################################
 
 resource "pingone_resource_scope_openid" "profile_scope" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   name = "profile"
 }
 resource "pingone_resource_scope_openid" "address_scope" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   name = "address"
 }
 resource "pingone_resource_scope_openid" "phone_scope" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   name = "phone"
 }
 resource "pingone_resource_scope_openid" "email_scope" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   name = "email"
 }

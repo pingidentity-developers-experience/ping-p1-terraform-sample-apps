@@ -184,7 +184,7 @@ resource "kubernetes_deployment" "bxr_app" {
           env {
             # P1 Environment ID
             name  = "REACT_APP_ENVID"
-            value = module.environment.environment_id
+            value = pingone_environment.my_environment.id
           }
           env {
             # Client ID

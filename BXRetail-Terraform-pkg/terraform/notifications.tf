@@ -12,7 +12,7 @@
 
 # Device pairing templates.
 resource "pingone_notification_template_content" "pair_sms_device" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   template_name  = "device_pairing"
   locale         = "en"
 
@@ -22,7 +22,7 @@ resource "pingone_notification_template_content" "pair_sms_device" {
   }
 }
 resource "pingone_notification_template_content" "pair_email_device" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   template_name  = "device_pairing"
   locale         = "en"
 
@@ -38,7 +38,7 @@ resource "pingone_notification_template_content" "pair_email_device" {
 }
 # Password recovery tempalate
 resource "pingone_notification_template_content" "recover_password_email" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   template_name  = "recovery_code_template"
   locale         = "en"
 
@@ -55,7 +55,7 @@ resource "pingone_notification_template_content" "recover_password_email" {
 
 # Strong authentication templates
 resource "pingone_notification_template_content" "sms_authn" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   template_name  = "strong_authentication"
   locale         = "en"
 
@@ -66,7 +66,7 @@ resource "pingone_notification_template_content" "sms_authn" {
 }
 
 resource "pingone_notification_template_content" "email_authn" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   template_name  = "strong_authentication"
   locale         = "en"
 
@@ -82,7 +82,7 @@ resource "pingone_notification_template_content" "email_authn" {
 }
 # Transaction templates
 resource "pingone_notification_template_content" "sms_transaction" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   template_name  = "transaction"
   locale         = "en"
 
@@ -93,7 +93,7 @@ resource "pingone_notification_template_content" "sms_transaction" {
 }
 
 resource "pingone_notification_template_content" "email_transaction" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   template_name  = "transaction"
   locale         = "en"
 
@@ -110,7 +110,7 @@ resource "pingone_notification_template_content" "email_transaction" {
 
 # Verification template
 resource "pingone_notification_template_content" "email_verification" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   template_name  = "verification_code_template"
   locale         = "en"
 

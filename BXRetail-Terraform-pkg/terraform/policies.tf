@@ -12,7 +12,7 @@
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/sign_on_policy}
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_add_an_auth_policy}
 resource "pingone_sign_on_policy" "default_authN_policy" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   name        = "BXRetail_Sample_Policy"
   description = "Simple Login with optional, opt-in MFA. Includes options for account registration and account recovery."
@@ -22,7 +22,7 @@ resource "pingone_sign_on_policy" "default_authN_policy" {
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/mfa_policy}
 # {@link https://docs.pingidentity.com/r/en-us/pingone/pingone_c_mfa_policies}
 resource "pingone_mfa_policy" "bxr_mfa_policy" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   name           = "BXRetail Sample MFA Policy"
 
   mobile {
@@ -58,7 +58,7 @@ resource "pingone_mfa_policy" "bxr_mfa_policy" {
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/sign_on_policy_action}
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_add_login_auth_step}
 resource "pingone_sign_on_policy_action" "default_authN_policy_firstFactor" {
-  environment_id    = module.environment.environment_id
+  environment_id    = pingone_environment.my_environment.id
   sign_on_policy_id = pingone_sign_on_policy.default_authN_policy.id
 
   registration_local_population_id = pingone_population.bxr_pop.id
@@ -75,7 +75,7 @@ resource "pingone_sign_on_policy_action" "default_authN_policy_firstFactor" {
 }
 
 resource "pingone_sign_on_policy_action" "default_authN_policy_secondFactor" {
-  environment_id    = module.environment.environment_id
+  environment_id    = pingone_environment.my_environment.id
   sign_on_policy_id = pingone_sign_on_policy.default_authN_policy.id
 
   priority = 2
@@ -96,7 +96,7 @@ resource "pingone_sign_on_policy_action" "default_authN_policy_secondFactor" {
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application_sign_on_policy_assignment}
 # {@link https://docs.pingidentity.com/r/en-us/pingone/pingonemfa_associating_sign_on_policy_with_web_app?section=rxy1666194779493}
 resource "pingone_application_sign_on_policy_assignment" "default_authN_policy" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.bxretail_sample_app.id
 
   sign_on_policy_id = pingone_sign_on_policy.default_authN_policy.id

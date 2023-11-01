@@ -9,5 +9,4 @@ output "login_url" {
 
 output "app_deploymnent_location" {
   value = var.deploy_app_to_k8s ? "Kubernetes Service" : "Localhost"
-
 }

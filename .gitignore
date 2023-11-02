@@ -34,10 +34,6 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-# Ignore lock files.
-.terraform.lock.hcl
-
-
 ################### START NODE IGNORE FILE PATTERNS. ###################
 # Logs
 logs

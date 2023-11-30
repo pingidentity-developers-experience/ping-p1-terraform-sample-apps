@@ -12,7 +12,7 @@
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application}
 # {@link https://docs.pingidentity.com/r/en-us/pingone/p1_add_app_worker}
 resource "pingone_application" "bxretail_sample_app" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   enabled        = true
   name           = "BXRetail Sample App"
   description    = "A custom sample retail app to demonstrate PingOne integtation."
@@ -36,32 +36,34 @@ resource "pingone_application" "bxretail_sample_app" {
 
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application_resource_grant}
 resource "pingone_application_resource_grant" "pingone_scopes" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.bxretail_sample_app.id
-  resource_id    = data.pingone_resource.pingone_apis.id
-  scopes = [
-    data.pingone_resource_scope.p1api_validatePassword.id,
-    data.pingone_resource_scope.p1api_read_sessions.id,
-    data.pingone_resource_scope.p1api_update_user.id,
-    data.pingone_resource_scope.p1api_create_device.id,
-    data.pingone_resource_scope.p1api_read_consents.id,
-    data.pingone_resource_scope.p1api_update_mfa.id,
-    data.pingone_resource_scope.p1api_read_user.id,
-    data.pingone_resource_scope.p1api_reset_password.id
+
+  resource_name = module.pingone_utils.pingone_resource_name_pingone_api
+
+  scope_names = [
+    module.pingone_utils.pingone_resource_scope_name_pingone_api_validate_userpassword,
+    module.pingone_utils.pingone_resource_scope_name_pingone_api_read_sessions,
+    module.pingone_utils.pingone_resource_scope_name_pingone_api_update_user,
+    module.pingone_utils.pingone_resource_scope_name_pingone_api_create_device,
+    module.pingone_utils.pingone_resource_scope_name_pingone_api_read_userconsent,
+    module.pingone_utils.pingone_resource_scope_name_pingone_api_update_usermfaenabled,
+    module.pingone_utils.pingone_resource_scope_name_pingone_api_read_user,
+    module.pingone_utils.pingone_resource_scope_name_pingone_api_reset_userpassword
   ]
 }
 
 resource "pingone_application_resource_grant" "bxretail_openid" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.bxretail_sample_app.id
 
-  resource_id = data.pingone_resource.openid.id
+  resource_name = "openid"
 
-  scopes = [
-    data.pingone_resource_scope.openid_profile.id,
-    data.pingone_resource_scope.openid_address.id,
-    data.pingone_resource_scope.openid_phone.id,
-    data.pingone_resource_scope.openid_email.id
+  scope_names = [
+    "profile",
+    "address",
+    "phone",
+    "email"
   ]
 }
 
@@ -70,22 +72,22 @@ resource "pingone_application_resource_grant" "bxretail_openid" {
 ##############################################
 
 resource "pingone_resource_scope_openid" "profile_scope" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   name = "profile"
 }
 resource "pingone_resource_scope_openid" "address_scope" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   name = "address"
 }
 resource "pingone_resource_scope_openid" "phone_scope" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   name = "phone"
 }
 resource "pingone_resource_scope_openid" "email_scope" {
-  environment_id = module.environment.environment_id
+  environment_id = pingone_environment.my_environment.id
 
   name = "email"
 }

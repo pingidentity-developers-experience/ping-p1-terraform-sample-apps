@@ -28,7 +28,7 @@
 #   # or into the local Docker container delpoyment. These override the variables in .env.development.
 #   env = ["REACT_APP_HOST=${local.app_url}",
 #     "REACT_APP_PROXYAPIPATH=https://${var.k8s_deploy_name}-proxy.${var.k8s_deploy_domain}",
-#     "REACT_APP_ENVID=${module.environment.environment_id}",
+#     "REACT_APP_ENVID=${pingone_environment.my_environment.id}",
 #     "REACT_APP_CLIENT=${pingone_application.bxretail_sample_app.oidc_options[0].client_id}",
 #     "REACT_APP_RECSET=${pingone_application.bxretail_sample_app.oidc_options[0].client_secret}",
 #     "REACT_APP_AUTHPATH=https://auth.pingone.${local.pingone_domain}",

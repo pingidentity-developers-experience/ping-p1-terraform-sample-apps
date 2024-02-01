@@ -3,14 +3,14 @@
 # There are no production images since this is a sample app we want easy access to source. 
 # Plsu a React "dev build" allows for hot code reloading.
 # @see https://res.cloudinary.com/snyk/images/v1/wordpress-sync/NodeJS-CheatSheet/NodeJS-CheatSheet.pdf
-# @see https://snyk.io/advisor/docker/node/lts-slim
+# @see https://snyk.io/advisor/docker/node/lts-alpine
 # @see https://docs.docker.com/develop/security-best-practices/
 # @see https://github.com/Yelp/dumb-init
 # @see https://cheatsheetseries.owasp.org/cheatsheets/NPM_Security_Cheat_Sheet.html
  
-# Pull the official slim LTS base image. Lightweight, stable, long-term support.
+# Pull the official alpine LTS base image. Lightweight, stable, long-term support.
 # Production ready image with no critical or high vulns.
-FROM node:lts-slim
+FROM node:lts-alpine
 
 # Mostly for reference. Some frameworks optimize based on this var.
 ENV NODE_ENV=development
@@ -24,7 +24,7 @@ LABEL com.pingidentity.environment="Developers' Experience"
 LABEL com.pingidentity.security="snyk container test, snyk test --dev"
 
 # Init system wrapper to properly handle child processes and signals.
-RUN apt update && apt install dumb-init
+RUN apk update && apk add dumb-init bash
 
 # Run as a non-privileged user.
 USER node
@@ -39,13 +39,15 @@ ENV PATH /app/node_modules/.bin:$PATH
 # Copy everything in one COPY to avoid creating multiple layers.
 # Manage unwanted files in .dockerignore
 COPY --chown=node:node . ./
+COPY --chmod=700 --chown=node:node ./env.sh .
+COPY .env.development .
 
 # Install packages and locked dependencies.
 # And Docker doesn't need to hear about available npm updates.
 RUN npm config set update-notifier false && npm ci --ignore-scripts
 
 # Make sure our shell script is executable
-RUN chmod +x env.sh
+# RUN chmod +x env.sh
 
 # Run dumb-init to manage CMD commands and processes/signals.
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]

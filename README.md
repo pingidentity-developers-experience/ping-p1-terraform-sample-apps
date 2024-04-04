@@ -2,7 +2,7 @@
 
 ## Terraforming Ping Products with a Custom App
 
-As the start of a new initiative called "The Developers' Experience", we are creating "BXTerraform" sample app packages. "BX" being our "be extraordinary" mantra used in all our demo brands. Starting with BXRetail, our BXRetail, BXHealth, and BXFinance live integration demo apps have been modified to be used as sample Ping integration apps, concentrating on integration and best practices, and are deployed and integrated using Terraform from Hashicorp.
+As the start of a new initiative called "The Developers' Experience", we are creating "BXTerraform" sample app packages. "BX" being our "be extraordinary" mantra used in all our demo brands. The BXRetail live integration demo app has been modified to be used as a sample Ping integration app, concentrating on integration and best practices, and is deployed and integrated using Terraform from Hashicorp.
 
 We chose React as our development library for many reasons, but that should not be any concern. The primary concern in these samples apps is what's in the /integration folder, for integration with Ping products, and the /terraform folder for example HCL on how to provision a PingOne environment in your organization, AKA tenant.
 

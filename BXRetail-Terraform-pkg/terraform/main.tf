@@ -13,13 +13,14 @@ resource "pingone_environment" "my_environment" {
   type        = "SANDBOX"
   license_id  = var.license_id
 
-  service {
-    type = "SSO"
-  }
-
-  service {
-    type = "MFA"
-  }
+  services = [
+    {
+      type = "SSO"
+    },
+    {
+      type = "MFA"
+    }
+  ]
 }
 
 # PingOne Environment (Data Source)
@@ -30,7 +31,7 @@ data "pingone_environment" "administrators" {
 
 # PingOne User Role Assignment
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/role_assignment_user}
-resource "pingone_role_assignment_user" "admin_user_identity_data_admin_role" {
+resource "pingone_user_role_assignment" "admin_user_identity_data_admin_role" {
   environment_id       = data.pingone_environment.administrators.id
   user_id              = var.admin_user_id
   role_id              = module.pingone_utils.pingone_role_id_identity_data_admin
@@ -58,6 +59,5 @@ provider "pingone" {
   client_id                    = var.worker_id
   client_secret                = var.worker_secret
   environment_id               = var.admin_env_id
-  region                       = var.region
-  force_delete_production_type = false
+  region_code                  = var.region_code
 }

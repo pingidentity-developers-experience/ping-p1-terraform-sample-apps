@@ -19,14 +19,14 @@ resource "pingone_application" "bxretail_sample_app" {
   login_page_url = "${local.app_url}/app/"
 
   oidc_options = {
-    type                        = "SINGLE_PAGE_APP"
-    grant_types                 = ["AUTHORIZATION_CODE", "IMPLICIT"]
-    response_types              = ["CODE", "TOKEN", "ID_TOKEN"]
-    pkce_enforcement            = "S256_REQUIRED"
-    token_endpoint_auth_method  = "NONE"
-    redirect_uris               = ["${local.app_url}/app/"]
-    home_page_url               = "${local.app_url}/app/"
-    post_logout_redirect_uris   = ["${local.app_url}/app/"]
+    type                       = "SINGLE_PAGE_APP"
+    grant_types                = ["AUTHORIZATION_CODE", "IMPLICIT"]
+    response_types             = ["CODE", "TOKEN", "ID_TOKEN"]
+    pkce_enforcement           = "S256_REQUIRED"
+    token_endpoint_auth_method = "NONE"
+    redirect_uris              = ["${local.app_url}/app/"]
+    home_page_url              = "${local.app_url}/app/"
+    post_logout_redirect_uris  = ["${local.app_url}/app/"]
   }
 }
 

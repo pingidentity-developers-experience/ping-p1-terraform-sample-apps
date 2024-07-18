@@ -42,10 +42,10 @@ resource "pingone_user_role_assignment" "admin_user_identity_data_admin_role" {
 # {@link https://registry.terraform.io/modules/pingidentity/utils/pingone/latest}
 module "pingone_utils" {
   source  = "pingidentity/utils/pingone"
-  version = "0.0.8"
+  version = "0.1.0"
 
   environment_id = pingone_environment.my_environment.id
-  region         = var.region
+  region_code    = var.region_code
   # custom_domain  = "auth.bxretail.org"
 }
 
@@ -56,8 +56,8 @@ module "pingone_utils" {
 # PingOne Provider
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs}
 provider "pingone" {
-  client_id                    = var.worker_id
-  client_secret                = var.worker_secret
-  environment_id               = var.admin_env_id
-  region_code                  = var.region_code
+  client_id      = var.worker_id
+  client_secret  = var.worker_secret
+  environment_id = var.admin_env_id
+  region_code    = var.region_code
 }

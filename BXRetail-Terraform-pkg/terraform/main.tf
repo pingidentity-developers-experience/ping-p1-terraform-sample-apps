@@ -13,13 +13,14 @@ resource "pingone_environment" "my_environment" {
   type        = "SANDBOX"
   license_id  = var.license_id
 
-  service {
-    type = "SSO"
-  }
-
-  service {
-    type = "MFA"
-  }
+  services = [
+    {
+      type = "SSO"
+    },
+    {
+      type = "MFA"
+    }
+  ]
 }
 
 # PingOne Environment (Data Source)
@@ -30,7 +31,7 @@ data "pingone_environment" "administrators" {
 
 # PingOne User Role Assignment
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/role_assignment_user}
-resource "pingone_role_assignment_user" "admin_user_identity_data_admin_role" {
+resource "pingone_user_role_assignment" "admin_user_identity_data_admin_role" {
   environment_id       = data.pingone_environment.administrators.id
   user_id              = var.admin_user_id
   role_id              = module.pingone_utils.pingone_role_id_identity_data_admin
@@ -41,10 +42,10 @@ resource "pingone_role_assignment_user" "admin_user_identity_data_admin_role" {
 # {@link https://registry.terraform.io/modules/pingidentity/utils/pingone/latest}
 module "pingone_utils" {
   source  = "pingidentity/utils/pingone"
-  version = "0.0.8"
+  version = "0.1.0"
 
   environment_id = pingone_environment.my_environment.id
-  region         = var.region
+  region_code    = var.region_code
   # custom_domain  = "auth.bxretail.org"
 }
 
@@ -55,9 +56,8 @@ module "pingone_utils" {
 # PingOne Provider
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs}
 provider "pingone" {
-  client_id                    = var.worker_id
-  client_secret                = var.worker_secret
-  environment_id               = var.admin_env_id
-  region                       = var.region
-  force_delete_production_type = false
+  client_id      = var.worker_id
+  client_secret  = var.worker_secret
+  environment_id = var.admin_env_id
+  region_code    = var.region_code
 }

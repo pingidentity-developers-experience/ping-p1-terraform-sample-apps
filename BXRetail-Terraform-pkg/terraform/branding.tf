@@ -15,9 +15,9 @@ resource "pingone_branding_settings" "branding" {
 
   company_name = "BXRetail Sample Company"
 
-  logo_image {
+  logo_image = {
     id   = pingone_image.bxretail_logo_white.id
-    href = pingone_image.bxretail_logo_white.uploaded_image[0].href
+    href = pingone_image.bxretail_logo_white.uploaded_image.href
   }
 }
 
@@ -34,14 +34,14 @@ resource "pingone_branding_theme" "bxretail_theme" {
   heading_text_color = "#000000"
   link_text_color    = "#FFC107"
 
-  background_image {
+  background_image = {
     id   = pingone_image.bxretail_background.id
-    href = pingone_image.bxretail_background.uploaded_image[0].href
+    href = pingone_image.bxretail_background.uploaded_image.href
   }
 
-  logo {
+  logo = {
     id   = pingone_image.bxretail_logo.id
-    href = pingone_image.bxretail_logo.uploaded_image[0].href
+    href = pingone_image.bxretail_logo.uploaded_image.href
   }
 }
 

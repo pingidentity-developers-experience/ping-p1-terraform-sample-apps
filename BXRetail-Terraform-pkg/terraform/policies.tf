@@ -19,35 +19,35 @@ resource "pingone_sign_on_policy" "default_authN_policy" {
 }
 
 # MFA Policy
-# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/mfa_policy}
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/mfa_device_policy}
 # {@link https://docs.pingidentity.com/r/en-us/pingone/pingone_c_mfa_policies}
-resource "pingone_mfa_policy" "bxr_mfa_policy" {
+resource "pingone_mfa_device_policy" "bxr_mfa_policy" {
   environment_id = pingone_environment.my_environment.id
-  name           = "BXRetail Sample MFA Policy"
+  name           = "BXRetail Sample MFA Device Policy"
 
-  mobile {
+  mobile = {
     enabled = true
   }
 
-  totp {
+  totp = {
     enabled = false
   }
 
-  fido2 {
+  fido2 = {
     enabled = false
   }
 
-  sms {
+  sms = {
     enabled               = false
     otp_lifetime_duration = 30
     otp_lifetime_timeunit = "MINUTES"
   }
 
-  voice {
+  voice = {
     enabled = false
   }
 
-  email {
+  email = {
     enabled               = true
     otp_lifetime_duration = 30
     otp_lifetime_timeunit = "MINUTES"
@@ -88,7 +88,7 @@ resource "pingone_sign_on_policy_action" "default_authN_policy_secondFactor" {
   }
 
   mfa {
-    device_sign_on_policy_id = pingone_mfa_policy.bxr_mfa_policy.id
+    device_sign_on_policy_id = pingone_mfa_device_policy.bxr_mfa_policy.id
     no_device_mode           = "BYPASS"
   }
 }

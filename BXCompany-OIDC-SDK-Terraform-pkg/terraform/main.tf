@@ -48,10 +48,10 @@ module "pingone_utils" {
 # PingOne Provider
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs}
 provider "pingone" {
-  client_id                    = var.worker_id
-  client_secret                = var.worker_secret
-  environment_id               = var.pingone_environment_id
-  region_code                       = var.region_code
+  client_id      = var.worker_id
+  client_secret  = var.worker_secret
+  environment_id = var.pingone_environment_id
+  region_code    = var.region_code
 }
 
 provider "http" {

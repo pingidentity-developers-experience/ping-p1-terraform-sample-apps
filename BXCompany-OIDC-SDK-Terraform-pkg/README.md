@@ -71,7 +71,6 @@ After cloning the project, navigate to `/terraform` and create a `terraform.tfva
 
 ```hcl
 pingone_environment_id    = "{{adminEnvId}}"
-
 region_code     = "{{ NA | CA | AP | AU | EU }}"
 admin_user_id   = "{{adminUserId}}"
 license_id      = "{{licenseId}}"

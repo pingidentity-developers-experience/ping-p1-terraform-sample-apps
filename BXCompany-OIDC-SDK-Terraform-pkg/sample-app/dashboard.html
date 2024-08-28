@@ -1117,7 +1117,9 @@
         console.log("Token:", token);
         console.log("User Info:", userInfo);
         document.getElementById("username-container").innerHTML =
-          userInfo.given_name;
+          userInfo.given_name
+            ? userInfo.given_name
+            : userInfo.preferred_username;
       }
     </script>
   </body>

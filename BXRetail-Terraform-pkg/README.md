@@ -47,7 +47,7 @@ If not done so already, first configure your PingOne organization for Terraform 
 After cloning the project, in an IDE (code editor) navigate to `/terraform` and create a file named `terraform.tfvars` with the following name/value pairs. You replace the values in double braces.
 
 ```hcl
-region            = "{{ NorthAmerica | Canada | Asia | Europe }}"
+region_code       = "{{ NA | CA | AP | AU | EU }}"
 admin_env_id      = "{{adminEnvId}}"
 admin_user_id     = "{{adminUserId}}"
 license_id        = "{{licenseId}}"
@@ -65,7 +65,7 @@ app_port          = 5000
 
 | Variable | Description | 
 | -------- | ----------- |
-| region | Region for PingOne Environment | 
+| region_code | Region code for PingOne Environment (`NA`, `CA`, `AP`, `AU` or `EU`) | 
 | admin_env_id | PingOne Environment Id for Administrators Environment - Located under Environment -> Properties |
 | admin_user_id | User Id for a user in the Administrators Environment - Located under Identities -> Users -> Select user -> Click API tab -> ID |
 | license_id | License Id to be used for PingOne Environment - Located under Environment -> Properties, see [PingOne Terraform provider Getting Started Guide](https://pingidentity.github.io/terraform-docs/getting-started/pingone/#finding-required-ids) for further instructions.|

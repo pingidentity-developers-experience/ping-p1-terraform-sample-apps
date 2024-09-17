@@ -16,7 +16,7 @@ resource "pingone_notification_template_content" "pair_sms_device" {
   template_name  = "device_pairing"
   locale         = "en"
 
-  sms {
+  sms = {
     content = "To finish pairing your device, enter this code: $${otp}."
     sender  = "BXRetail"
   }
@@ -26,11 +26,11 @@ resource "pingone_notification_template_content" "pair_email_device" {
   template_name  = "device_pairing"
   locale         = "en"
 
-  email {
+  email = {
     body    = "Device enrollment code: $${otp}."
     subject = "BXRetail: Finish pairing your device"
 
-    from {
+    from = {
       name    = "BXRetail"
       address = "noreply@pingidentity.com"
     }
@@ -42,11 +42,11 @@ resource "pingone_notification_template_content" "recover_password_email" {
   template_name  = "recovery_code_template"
   locale         = "en"
 
-  email {
+  email = {
     body    = "Please use this code to reset your password. Your reset code is: $${code.value}."
     subject = "BXRetail: Password Reset"
 
-    from {
+    from = {
       name    = "BXRetail"
       address = "noreply@pingidentity.com"
     }
@@ -59,7 +59,7 @@ resource "pingone_notification_template_content" "sms_authn" {
   template_name  = "strong_authentication"
   locale         = "en"
 
-  sms {
+  sms = {
     content = "Your BXRetail passcode is $${otp}."
     sender  = "BXRetail"
   }
@@ -70,11 +70,11 @@ resource "pingone_notification_template_content" "email_authn" {
   template_name  = "strong_authentication"
   locale         = "en"
 
-  email {
+  email = {
     body    = "We received a request for a one-time passcode. If youd like to signin, you can use the following one-time passcode at bxretail.org. Your passscode: $${otp}."
     subject = "BXRetail: New Transaction Request"
 
-    from {
+    from = {
       name    = "BXRetail"
       address = "noreply@pingidentity.com"
     }
@@ -86,7 +86,7 @@ resource "pingone_notification_template_content" "sms_transaction" {
   template_name  = "transaction"
   locale         = "en"
 
-  sms {
+  sms = {
     content = "Please approve this BXRetail transaction with passcode $${otp}."
     sender  = "BXRetail"
   }
@@ -97,11 +97,11 @@ resource "pingone_notification_template_content" "email_transaction" {
   template_name  = "transaction"
   locale         = "en"
 
-  email {
+  email = {
     body    = "Please approve this BXRetail transaction with passcode $${otp}."
     subject = "BXFinance Transaction Request"
 
-    from {
+    from = {
       name    = "BXRetail"
       address = "noreply@pingidentity.com"
     }
@@ -114,11 +114,11 @@ resource "pingone_notification_template_content" "email_verification" {
   template_name  = "verification_code_template"
   locale         = "en"
 
-  email {
+  email = {
     body    = "Please use this code to verify your registration: Account verification code: $${code.value}."
     subject = "BXRetail: Verification Code"
 
-    from {
+    from = {
       name    = "BXRetail"
       address = "noreply@pingidentity.com"
     }

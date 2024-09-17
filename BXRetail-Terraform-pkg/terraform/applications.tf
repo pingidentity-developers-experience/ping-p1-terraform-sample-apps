@@ -18,15 +18,15 @@ resource "pingone_application" "bxretail_sample_app" {
   description    = "A custom sample retail app to demonstrate PingOne integtation."
   login_page_url = "${local.app_url}/app/"
 
-  oidc_options {
-    type                        = "SINGLE_PAGE_APP"
-    grant_types                 = ["AUTHORIZATION_CODE", "IMPLICIT"]
-    response_types              = ["CODE", "TOKEN", "ID_TOKEN"]
-    pkce_enforcement            = "S256_REQUIRED"
-    token_endpoint_authn_method = "NONE"
-    redirect_uris               = ["${local.app_url}/app/"]
-    home_page_url               = "${local.app_url}/app/"
-    post_logout_redirect_uris   = ["${local.app_url}/app/"]
+  oidc_options = {
+    type                       = "SINGLE_PAGE_APP"
+    grant_types                = ["AUTHORIZATION_CODE", "IMPLICIT"]
+    response_types             = ["CODE", "TOKEN", "ID_TOKEN"]
+    pkce_enforcement           = "S256_REQUIRED"
+    token_endpoint_auth_method = "NONE"
+    redirect_uris              = ["${local.app_url}/app/"]
+    home_page_url              = "${local.app_url}/app/"
+    post_logout_redirect_uris  = ["${local.app_url}/app/"]
   }
 }
 
@@ -34,14 +34,8 @@ resource "pingone_application" "bxretail_sample_app" {
 # PingOne Application Resource Grants
 ##############################################
 
-# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application_resource_grant}
-resource "pingone_application_resource_grant" "pingone_scopes" {
-  environment_id = pingone_environment.my_environment.id
-  application_id = pingone_application.bxretail_sample_app.id
-
-  resource_name = module.pingone_utils.pingone_resource_name_pingone_api
-
-  scope_names = [
+locals {
+  pingone_api_scopes = [
     module.pingone_utils.pingone_resource_scope_name_pingone_api_validate_userpassword,
     module.pingone_utils.pingone_resource_scope_name_pingone_api_read_sessions,
     module.pingone_utils.pingone_resource_scope_name_pingone_api_update_user,
@@ -53,17 +47,54 @@ resource "pingone_application_resource_grant" "pingone_scopes" {
   ]
 }
 
-resource "pingone_application_resource_grant" "bxretail_openid" {
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/data-sources/resource_scope}
+data "pingone_resource_scope" "pingone_api" {
+  for_each = toset(local.pingone_api_scopes)
+
+  environment_id = pingone_environment.my_environment.id
+  resource_type  = "PINGONE_API"
+
+  name = each.key
+}
+
+# {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/application_resource_grant}
+resource "pingone_application_resource_grant" "pingone_scopes" {
   environment_id = pingone_environment.my_environment.id
   application_id = pingone_application.bxretail_sample_app.id
 
-  resource_name = "openid"
+  resource_type = "PINGONE_API"
 
-  scope_names = [
+  scopes = [
+    for scope in data.pingone_resource_scope.pingone_api : scope.id
+  ]
+}
+
+locals {
+  openid_standard_scopes = [
     "profile",
     "address",
     "phone",
     "email"
+  ]
+}
+
+data "pingone_resource_scope" "openid_connect_standard_scope" {
+  for_each = toset(local.openid_standard_scopes)
+
+  environment_id = pingone_environment.my_environment.id
+  resource_type  = "OPENID_CONNECT"
+
+  name = each.key
+}
+
+resource "pingone_application_resource_grant" "bxretail_openid" {
+  environment_id = pingone_environment.my_environment.id
+  application_id = pingone_application.bxretail_sample_app.id
+
+  resource_type = "OPENID_CONNECT"
+
+  scopes = [
+    for scope in data.pingone_resource_scope.openid_connect_standard_scope : scope.id
   ]
 }
 

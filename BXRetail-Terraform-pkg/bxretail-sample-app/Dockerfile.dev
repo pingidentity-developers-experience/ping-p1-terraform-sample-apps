@@ -33,7 +33,7 @@ USER node
 WORKDIR /app
 
 # Add `/app/node_modules/.bin` to $PATH.
-ENV PATH /app/node_modules/.bin:$PATH
+ENV PATH=/app/node_modules/.bin:$PATH
 
 # Copy the source into the image and change owner to 'node'.
 # Copy everything in one COPY to avoid creating multiple layers.

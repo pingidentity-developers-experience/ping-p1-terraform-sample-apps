@@ -9,7 +9,7 @@
 # {@link https://registry.terraform.io/providers/pingidentity/pingone/latest/docs/resources/environment}
 resource "pingone_environment" "my_environment" {
   name        = var.env_name
-  description = "BXRetail Sample App integration environment provisioned with Terraform. By Ping Identity, Technical Enablement."
+  description = "BXRetail Sample App integration environment provisioned with Terraform. By Ping Identity, Demo Engineering."
   type        = "SANDBOX"
   license_id  = var.license_id
 

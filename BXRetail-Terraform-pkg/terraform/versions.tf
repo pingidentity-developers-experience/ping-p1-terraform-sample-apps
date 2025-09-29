@@ -4,11 +4,11 @@ terraform {
   required_providers {
     pingone = {
       source  = "pingidentity/pingone"
-      version = ">= 1.0.0, < 2.0.0"
+      version = ">= 1.12.0, < 2.0.0"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = ">= 2.19.0, < 3.0.0"
+      version = ">= 2.38.0, < 3.0.0"
     }
     # davinci = {
     #   source = "pingidentity/davinci"
@@ -16,7 +16,7 @@ terraform {
     # }
     docker = {
       source  = "kreuzwerker/docker"
-      version = "3.0.2"
+      version = "3.6.2"
     }
   }
 }

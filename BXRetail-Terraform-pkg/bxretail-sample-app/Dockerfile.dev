@@ -17,8 +17,8 @@ ENV NODE_ENV=development
 
 # Meta data. It matters.
 LABEL com.pingidentity.vendor="Ping Identity"
-LABEL com.pingidentity.department="Technical Enablement"
-LABEL com.pingidentity.product="sample app"
+LABEL com.pingidentity.department="Demo Engineering"
+LABEL com.pingidentity.product="sample app for PingOne + Terraform integration"
 LABEL com.pingidentity.vertical="retail"
 LABEL com.pingidentity.environment="Developers' Experience"
 LABEL com.pingidentity.security="snyk container test, snyk test --dev"
